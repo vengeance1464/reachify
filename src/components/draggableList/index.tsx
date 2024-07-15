@@ -7,6 +7,9 @@ interface DraggableListProps {
   onItemMove: (dragIndex: number, hoverIndex: number) => void;
   label: string;
   required: boolean;
+  items: any;
+  setItems: any;
+  register: any;
 }
 
 interface DragItem {
@@ -19,13 +22,10 @@ const DraggableList: React.FC<DraggableListProps> = ({
   label,
   onItemMove,
   required,
+  items,
+  setItems,
+  register,
 }) => {
-  const [items, setItems] = useState<string[]>([
-    "Who are you / what are you working on?",
-    "How has [our product / service] helped you?",
-    "What is the best thing about [our product / service]",
-  ]);
-
   const handleDragEnd = (event: any) => {
     const { active, over, delta } = event;
 
@@ -33,13 +33,15 @@ const DraggableList: React.FC<DraggableListProps> = ({
     if (over.id.includes("droppable") && active.id.includes("draggable")) {
       const endId = over.id.split("-")[1];
       const startId = active.id.split("-")[1];
-      const itemsCopy = [...items];
+      const itemsCopy = [...items.items];
       const startElement = itemsCopy[startId];
       const endElement = itemsCopy[endId];
       itemsCopy[startId] = endElement;
       itemsCopy[endId] = startElement;
       console.log("Set items", itemsCopy);
-      setItems(itemsCopy);
+      setItems((items: any) => {
+        return { ...items, items: itemsCopy };
+      });
     }
     // if (active.id !== over.id) {
     //   setItems((items) => {
@@ -60,9 +62,16 @@ const DraggableList: React.FC<DraggableListProps> = ({
         </div>
       )}
       <DndContext onDragEnd={handleDragEnd}>
-        {items.map((item, index) => (
+        {items.items.map((item: any, index: number) => (
           <DroppableArea id={`droppable-${index}`}>
-            <DraggableItem index={index} item={item} />
+            <DraggableItem
+              index={index}
+              name={`${items.namePrefix}.${
+                item.nameSuffix ? item.nameSuffix : item.id
+              }.name`}
+              register={register}
+              item={item.text}
+            />
           </DroppableArea>
         ))}
       </DndContext>

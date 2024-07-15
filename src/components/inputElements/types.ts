@@ -5,6 +5,7 @@
     required?: boolean;
     name:string;
     label: string;
+    defaultValue?:string
 }
 
 

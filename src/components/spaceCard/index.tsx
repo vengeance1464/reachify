@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InputTextElement from "../inputElements/inputTextBox";
 import InputTextArea from "../inputElements/inputTextArea";
 import { useCustomForm } from "@/hooks/useFormContext";
@@ -7,10 +7,17 @@ import DraggableList from "../draggableList";
 import Dropdown from "../dropdown";
 import Toggle from "../toggle";
 import Like from "../../../public/assets/like";
+import { useFieldArray, useWatch } from "react-hook-form";
 
 interface Props {
   // Define your component's props here
 }
+
+type ItemType = {
+  id: number;
+  text: string;
+  nameSuffix?: string;
+};
 
 const SpaceCard: React.FC<Props> = (props) => {
   // Implement your component's logic here
@@ -19,7 +26,45 @@ const SpaceCard: React.FC<Props> = (props) => {
     console.log(data);
   };
 
-  const { register, handleSubmit, errors } = useCustomForm("space-Card");
+  const { register, handleSubmit, errors, watch, control, getValues } =
+    useCustomForm("space-Card");
+
+  const { fields, append, remove } = useFieldArray<any>({
+    control,
+    name: "questions",
+  });
+
+  const questionsList = watch("questions");
+  console.log("get values ", watch("questions"));
+
+  // useEffect(() => {
+  //   console.log("Watched fields", fields);
+  // }, [fields]);
+  //const questionList = watch("question");
+  // console.log("questionList", questionList);
+
+  const watchedFields = useWatch({
+    control,
+    name: ["space-name", "header-title", "custom-message"], // specify the names of the fields you want to watch
+    // defaultValue: ["", "", ""], // optional default values
+  });
+
+  console.log("fields", watchedFields, fields);
+
+  const [items, setItems] = useState<{
+    namePrefix: string;
+    items: ItemType[];
+  }>({
+    namePrefix: "questions",
+    items: [
+      {
+        id: 0,
+        text: "Who are you / what are you working on?",
+      },
+      { id: 1, text: "How has [our product / service] helped you?" },
+      { id: 2, text: "What is the best thing about [our product / service]" },
+    ],
+  });
   return (
     // JSX markup for your component goes here
 
@@ -30,21 +75,31 @@ const SpaceCard: React.FC<Props> = (props) => {
             <Like />
           </div>
         </div>
-        <h3 className="text-xl font-semibold text-center mb-2">kuk</h3>
+        <h3 className="text-xl font-semibold text-center mb-2">
+          {watchedFields[1] ? watchedFields[1] : "Header goes here"}
+        </h3>
         <p className="text-center text-gray-500 mb-4">
-          Your custom message goes here...
+          {watchedFields[2]
+            ? watchedFields[2]
+            : "Your custom message goes here..."}
         </p>
         <div className="border-t border-gray-200 pt-4">
           <h4 className="text-sm font-semibold text-gray-700 mb-2">
             QUESTIONS
           </h4>
           <ul className="list-disc list-inside text-gray-600">
-            <li>Who are you / what are you working on?</li>
-            <li>How has [our product / service] helped you?</li>
-            <li>What is the best thing about [our product / service]</li>
+            {questionsList &&
+            questionsList.filter((question: any) => question.name.length > 0)
+              .length > 0
+              ? questionsList.map((question: any, index: number) => {
+                  return <li key={index}>{question.name}</li>;
+                })
+              : items.items.map((item: ItemType) => {
+                  return <li key={item.id}>{item.text}</li>;
+                })}
           </ul>
         </div>
-        <div className=" flex flex-col">
+        <div className="flex flex-col">
           <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
             Record a video
           </button>
@@ -54,7 +109,7 @@ const SpaceCard: React.FC<Props> = (props) => {
         </div>
       </div>
       <div>
-        <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <InputTextElement
             label={"Space Name"}
             name={"space-name"}
@@ -86,6 +141,9 @@ const SpaceCard: React.FC<Props> = (props) => {
           <DraggableList
             label={"Questions"}
             required
+            items={items}
+            register={register}
+            setItems={setItems}
             onItemMove={function (dragIndex: number, hoverIndex: number): void {
               throw new Error("Function not implemented.");
             }}
@@ -99,7 +157,7 @@ const SpaceCard: React.FC<Props> = (props) => {
             defaultKey={1}
           />
 
-          <Toggle />
+          <Toggle label={"Collect Star Ratings"} />
 
           <div className="w-full px-3">
             <button

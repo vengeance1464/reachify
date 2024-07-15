@@ -1,13 +1,21 @@
-import InputElement from "@/components/inputElement";
 import { useDraggable } from "@dnd-kit/core";
 import MoreActions from "../../../../public/assets/moreActions";
+import Delete from "../../../../public/assets/delete";
+import InputTextElement from "@/components/inputElements/inputTextBox";
 
 interface DraggableItemProps {
   index: number;
   item: string;
+  name: string;
+  register: any;
 }
 
-const DraggableItem: React.FC<DraggableItemProps> = ({ index, item }) => {
+const DraggableItem: React.FC<DraggableItemProps> = ({
+  index,
+  item,
+  name,
+  register,
+}) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: `draggable-${index}`,
   });
@@ -28,8 +36,16 @@ const DraggableItem: React.FC<DraggableItemProps> = ({ index, item }) => {
       <div {...listeners} {...attributes}>
         <MoreActions />
       </div>
-      <div>
-        <InputElement defaultValue={item} type="text" name="item" required />
+      <div className="flex items-center">
+        <InputTextElement
+          classes="w-4/5"
+          defaultValue={item}
+          type="text"
+          name={name}
+          register={register}
+          required
+        />
+        <Delete />
       </div>
     </div>
   );

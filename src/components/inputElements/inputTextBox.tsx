@@ -6,6 +6,7 @@ const InputTextElement: React.FC<InputType> = ({
   name,
   required = false,
   register,
+  defaultValue,
 }) => {
   return (
     <div className="flex flex-col">
@@ -17,6 +18,7 @@ const InputTextElement: React.FC<InputType> = ({
       )}
       <input
         {...register(name, { required })}
+        defaultValue={defaultValue}
         className="border border-gray-300 px-4 py-2 rounded-md mt-2"
         type={"text"}
       />

@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React, { useState } from "react";
 import InputTextElement from "../inputElements/inputTextBox";
 import InputTextArea from "../inputElements/inputTextArea";
 import { useCustomForm } from "@/hooks/useFormContext";
-import ImageComponent from "../image";
 import DraggableList from "../draggableList";
 import Dropdown from "../dropdown";
 import Toggle from "../toggle";
 import Like from "../../../public/assets/like";
 import { useFieldArray, useWatch } from "react-hook-form";
-
+import { createSpaceAction } from "@/actions/actions";
 interface Props {
   // Define your component's props here
 }
@@ -24,6 +25,9 @@ const SpaceCard: React.FC<Props> = (props) => {
 
   const onSubmit = (data: any) => {
     console.log(data);
+  };
+  const formAction = (data: any) => {
+    console.log("form data", data);
   };
 
   const { register, handleSubmit, errors, watch, control, getValues } =
@@ -109,7 +113,7 @@ const SpaceCard: React.FC<Props> = (props) => {
         </div>
       </div>
       <div>
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+        <form action={createSpaceAction} className="flex flex-col gap-4">
           <InputTextElement
             label={"Space Name"}
             name={"space-name"}

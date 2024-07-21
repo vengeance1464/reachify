@@ -10,6 +10,10 @@ export default function handler(
   res: NextApiResponse<Data>,
 ) {
 
-  
+  const {method}=req
+  if(method!=="POST"){
+        res.status(405).end(`Method ${method} Not Allowed`)
+ }
+  const body=req.body
   res.status(200).json({ name: "John Doe" });
 }

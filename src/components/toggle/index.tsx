@@ -4,8 +4,9 @@ import { useState } from "react";
 type ToggleProps = {
   label: string;
   required?: boolean;
+  name?: string;
 };
-const Toggle: React.FC<ToggleProps> = ({ label, required }) => {
+const Toggle: React.FC<ToggleProps> = ({ label, required, name }) => {
   const [isToggled, setIsToggled] = useState(false);
 
   const handleToggle = () => {
@@ -25,7 +26,7 @@ const Toggle: React.FC<ToggleProps> = ({ label, required }) => {
       >
         <input
           type="checkbox"
-          name="toggle"
+          name={name}
           id="toggle"
           className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
           checked={isToggled}

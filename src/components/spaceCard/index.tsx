@@ -23,6 +23,8 @@ type ItemType = {
 const SpaceCard: React.FC<Props> = (props) => {
   // Implement your component's logic here
 
+  //console.log("result", result);
+
   const onSubmit = (data: any) => {
     console.log(data);
   };
@@ -159,9 +161,10 @@ const SpaceCard: React.FC<Props> = (props) => {
               { key: 2, text: "Video only" },
             ]}
             defaultKey={1}
+            name={"testimonial-type"}
           />
 
-          <Toggle label={"Collect Star Ratings"} />
+          <Toggle name="star-ratings" label={"Collect Star Ratings"} />
 
           <div className="w-full px-3">
             <button

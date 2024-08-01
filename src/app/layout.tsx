@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
-import "./styles/globals.css";
+import "./globals.css";
+import { TRPCProvider } from "../providers/TrpcProvider";
 
 type LayoutProps = {
   children: ReactNode;
@@ -8,7 +9,10 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <html>
-      <body>{children}</body>
+      <body className="bg-navy-blue">
+        {" "}
+        <TRPCProvider>{children}</TRPCProvider>
+      </body>
     </html>
   );
 };

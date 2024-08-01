@@ -1,3 +1,4 @@
+'use client'
 import { FormContext } from "@/contexts/FormContext";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";

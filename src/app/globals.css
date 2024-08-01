@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* styles/globals.css */
+
 .toggle-checkbox:checked {
   right: 0;
 }

@@ -7,8 +7,9 @@ type Element = {
 type DropdownType = {
   items: Element[];
   defaultKey: number;
+  name?: string;
 };
-const Dropdown: React.FC<DropdownType> = ({ items, defaultKey }) => {
+const Dropdown: React.FC<DropdownType> = ({ items, defaultKey, name }) => {
   const [selectedOption, setSelectedOption] = useState(defaultKey ?? 0);
 
   const handleChange = (event) => {
@@ -21,9 +22,10 @@ const Dropdown: React.FC<DropdownType> = ({ items, defaultKey }) => {
         className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
         value={selectedOption}
         onChange={handleChange}
+        name={name}
       >
         {items.map((item) => (
-          <option value={item.key}>{item.text}</option>
+          <option value={JSON.stringify(item)}>{item.text}</option>
         ))}
       </select>
     </div>

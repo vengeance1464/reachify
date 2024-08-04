@@ -37,4 +37,10 @@ export default class BaseDbService<T extends Prisma.ModelName> {
   async delete(params: any) {
     return await this.prisma[this.model].delete(params);
   }
+
+  async upsert(params:any)
+  {
+    return await this.prisma[this.model].upsert(params);
+
+  }
 }

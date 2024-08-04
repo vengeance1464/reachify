@@ -19,6 +19,7 @@ enum TestimonialType {
   VIDEO
 }
 
+
 model Space {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
   spaceName String
@@ -27,7 +28,27 @@ model Space {
   questions String[]
   collectStars Boolean @default(false)
   testimonialType TestimonialType @default(TEXT)
+  reviews Review[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 }
+
+model Review {
+  id   String   @id @default(auto()) @map("_id") @db.ObjectId
+  space Space  @relation(fields: [reviewId], references: [id])
+  type TestimonialType @default(TEXT)
+  testimonialText String
+  videoLink String
+  reviewId String   @db.ObjectId
+}
+
+model User{
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String  @unique
+  name String
+  email String
+  imageUrl String
+  posts Post[] @relation("UserPosts")
+}
+
+

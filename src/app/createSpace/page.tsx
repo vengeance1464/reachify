@@ -5,7 +5,6 @@ import { trpc } from "@/server/client";
 
 const CreateSpace = () => {
   // const result = trpc.greeting.useQuery({ name: "client" });
-  let { data, isLoading, isFetching } = trpc.space.getUser.useQuery();
 
   return (
     <div

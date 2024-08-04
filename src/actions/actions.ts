@@ -3,6 +3,8 @@
 import { trpc } from "@/server/client"
 import SpaceService from "@/lib/db/SpaceService"
 import { TestimonialType } from "@prisma/client"
+import { revalidatePath } from "next/cache"
+import { redirect } from "next/navigation"
 
 
 async function createSpaceAction(formData:FormData)
@@ -41,13 +43,22 @@ async function createSpaceAction(formData:FormData)
         customMessage:customMessage,
         questions:questionsList,
         testimonialType:TestimonialType[testimonialType!],
-        collectStars:shouldCollectStars
+        collectStars:shouldCollectStars,
+        reviews:{
+          create: [
+            {
+              
+            }
+          ],
+        },
      }
 
     console.log("spaceBody",spaceBody)
     console.log("testimonial type",testimonialType)
     let spaceService=new SpaceService('Space')
     const space = await spaceService.create(spaceBody);
+    revalidatePath("/dashboard")
+    redirect("/dashboard")
 
     //const createUser = trpc.space.createSpace.useMutation();
     //await createUser.mutateAsync(spaceBody);

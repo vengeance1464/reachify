@@ -6,15 +6,18 @@
 import { publicProcedure, router } from '../trpc';
 import { z } from 'zod';
 import SpaceService from '@/lib/db/SpaceService';
+import { isAuthenticated } from '../middleware/auth';
+//import { protectedProcedure } from '../trpc';
 
 export const appRouter = router({
-   getAllSpaces:publicProcedure.query(async ({ input, ctx }) => {
+   getAllSpaces:publicProcedure.use(isAuthenticated).query(async ({ input, ctx }) => {
     // Replace with your database call
     let spaceService=new SpaceService('Space')
     const data=spaceService.findMany()
     return data;
   }),
    createSpace:publicProcedure
+   .use(isAuthenticated)
    //.mutation((opts) => {
   //   const { input } = opts;
   //   // const newCat: Cat = { id: newId(), name: input.name };

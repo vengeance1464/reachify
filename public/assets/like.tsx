@@ -1,10 +1,12 @@
 import React from "react";
 
 interface Props {
+  width: number;
+  height: number;
   // Define your component's props here
 }
 
-const Like: React.FC<Props> = () => {
+const Like: React.FC<Props> = ({ width, height }) => {
   // Implement your component logic here
 
   return (
@@ -13,8 +15,8 @@ const Like: React.FC<Props> = () => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        width="75"
-        height="75"
+        width={width}
+        height={height}
         viewBox="0 0 375 374.999991"
         version="1.2"
       >

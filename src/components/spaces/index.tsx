@@ -14,7 +14,12 @@ const Spaces: React.FC = async () => {
         spaces.length > 0 &&
         spaces.map((space: any) => {
           return (
-            <SpaceItem videosCount={0} textCount={0} name={space.spaceName} />
+            <SpaceItem
+              imageUrl=""
+              videosCount={0}
+              textCount={0}
+              name={space.spaceName}
+            />
           );
         })}
     </>

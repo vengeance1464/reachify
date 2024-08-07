@@ -7,7 +7,7 @@ interface Props {
 
 const Login: React.FC<Props> = () => {
   return (
-    <div>
+    <div className="m-20">
       <SignIn />
     </div>
   );

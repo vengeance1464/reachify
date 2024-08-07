@@ -10,6 +10,7 @@ import Toggle from "../toggle";
 import Like from "../../../public/assets/like";
 import { useFieldArray, useWatch } from "react-hook-form";
 import { createSpaceAction } from "@/actions/actions";
+import ImageElement from "../inputElements/imageElement";
 interface Props {
   // Define your component's props here
 }
@@ -31,6 +32,8 @@ const SpaceCard: React.FC<Props> = (props) => {
   const formAction = (data: any) => {
     console.log("form data", data);
   };
+
+  const [createSpace, setCreateSpace] = useState<boolean>(false);
 
   const { register, handleSubmit, errors, watch, control, getValues } =
     useCustomForm("space-Card");
@@ -71,14 +74,34 @@ const SpaceCard: React.FC<Props> = (props) => {
       { id: 2, text: "What is the best thing about [our product / service]" },
     ],
   });
+
+  const handleImageUpload = (event) => {
+    const files = event.target.files;
+    console.log("files", files);
+    // const uploadedImages = [];
+
+    // for (let i = 0; i < files.length; i++) {
+    //     const file = files[i];
+    //     const reader = new FileReader();
+
+    //     reader.onload = (e) => {
+    //         uploadedImages.push(e.target.result);
+    //         if (uploadedImages.length === files.length) {
+    //             setImages(uploadedImages);
+    //         }
+    //     };
+
+    //     reader.readAsDataURL(file);
+    // }
+  };
   return (
     // JSX markup for your component goes here
 
-    <div className="bg-white w-3/4 grid grid-cols-2 gap-1 border rounded- shadow-md">
-      <div className="max-w-md mx-auto h-3/4 p-6 bg-white border rounded-lg shadow-md">
+    <div className="bg-[#fff] w-3/4 grid grid-cols-2 gap-1 border rounded- shadow-md">
+      <div className="max-w-md mx-auto h-3/4 p-6 bg-#fff border rounded-lg shadow-md">
         <div className="flex justify-center items-center mb-4">
           <div className="w-4 h-4 bg-indigo-100 rounded-full flex items-center justify-center">
-            <Like />
+            <Like width={75} height={75} />
           </div>
         </div>
         <h3 className="text-xl font-semibold text-center mb-2">
@@ -114,13 +137,24 @@ const SpaceCard: React.FC<Props> = (props) => {
           </button>
         </div>
       </div>
-      <div>
-        <form action={createSpaceAction} className="flex flex-col gap-4">
+      <div className="bg-#fff">
+        <form
+          action={createSpaceAction.bind(null)}
+          className="bg-#fff flex flex-col gap-4"
+        >
           <InputTextElement
             label={"Space Name"}
             name={"space-name"}
             required
             register={register}
+          />
+          <ImageElement
+            src=""
+            alt=""
+            required
+            onChange={handleImageUpload}
+            classes="w-10 h-10 bg-white rounded-full"
+            label="Space Logo"
           />
 
           {/* <ImageComponent
@@ -167,12 +201,18 @@ const SpaceCard: React.FC<Props> = (props) => {
           <Toggle name="star-ratings" label={"Collect Star Ratings"} />
 
           <div className="w-full px-3">
-            <button
-              className="btn text-white bg-[#5D5DFF] hover:bg-purple-700 w-full"
-              type="submit"
+            <form
+              action={createSpaceAction}
+              className="bg-#fff flex flex-col gap-4"
             >
-              Create new space
-            </button>
+              <button
+                className="btn text-white bg-[#5D5DFF] hover:bg-purple-700 w-full"
+                type="submit"
+                onClick={() => setCreateSpace(true)}
+              >
+                Create new space
+              </button>
+            </form>
           </div>
         </form>
       </div>

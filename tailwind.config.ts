@@ -39,7 +39,8 @@ const config: Config = {
           'gray-light': '#d3dce6',
           'navy-blue':'#151719',
           'primary': '#1DA1F2',
-          'white':'rgb(235 241 245/1)',
+          'white':'rgb(235 241 245/1)'
+    
         },
     },
   },

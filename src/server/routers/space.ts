@@ -12,6 +12,7 @@ import { isAuthenticated } from '../middleware/auth';
 export const appRouter = router({
    getAllSpaces:publicProcedure.use(isAuthenticated).query(async ({ input, ctx }) => {
     // Replace with your database call
+    console.log("context ",ctx)
     let spaceService=new SpaceService('Space')
     const data=spaceService.findMany()
     return data;

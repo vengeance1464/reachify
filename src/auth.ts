@@ -10,7 +10,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // if (user) { // User is available during sign-in
       //   token.id = user.id
       // }
-     console.log("Unathourized")
       // if (account && profile) {
       //   token.id = profile.id;
       // }

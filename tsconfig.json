@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/components/collectionWidget/index.js", "src/components/collectionWidget/collectionWidget.ts", "src/components/collectionWidget/index.tsx", "src/components/collectionWidget/collectionPreview/index.js"  ],
   "exclude": [
     "node_modules"
   ]

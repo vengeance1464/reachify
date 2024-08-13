@@ -11,6 +11,7 @@ import Like from "../../../public/assets/like";
 import { useFieldArray, useWatch } from "react-hook-form";
 import { createSpaceAction } from "@/actions/actions";
 import ImageElement from "../inputElements/imageElement";
+import { Ratings } from "../reviewStars";
 interface Props {
   // Define your component's props here
 }
@@ -201,18 +202,13 @@ const SpaceCard: React.FC<Props> = (props) => {
           <Toggle name="star-ratings" label={"Collect Star Ratings"} />
 
           <div className="w-full px-3">
-            <form
-              action={createSpaceAction}
-              className="bg-#fff flex flex-col gap-4"
+            <button
+              className="btn text-white bg-[#5D5DFF] hover:bg-purple-700 w-full"
+              type="submit"
+              onClick={() => setCreateSpace(true)}
             >
-              <button
-                className="btn text-white bg-[#5D5DFF] hover:bg-purple-700 w-full"
-                type="submit"
-                onClick={() => setCreateSpace(true)}
-              >
-                Create new space
-              </button>
-            </form>
+              Create new space
+            </button>
           </div>
         </form>
       </div>

@@ -12,7 +12,7 @@ const CreateSpace = () => {
         backgroundColor:
           "radial-gradient(#d7e0ea 18.75%, transparent 0) 2px 2px / 10px 10px #ecf0f5",
       }}
-      className="w-screen  h-screen  flex  justify-center overflow-scroll"
+      className="w-screen p-40 h-screen  flex  justify-center overflow-scroll"
     >
       <SpaceCard />
     </div>

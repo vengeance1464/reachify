@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* styles/globals.css */
+
+.toggle-checkbox:checked {
+  right: 0;
+}
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #68d391;
+}

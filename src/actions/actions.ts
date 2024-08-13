@@ -44,13 +44,7 @@ async function createSpaceAction(formData:FormData)
         questions:questionsList,
         testimonialType:TestimonialType[testimonialType!],
         collectStars:shouldCollectStars,
-        reviews:{
-          create: [
-            {
-              
-            }
-          ],
-        },
+        //reviews:{set:[]}
      }
 
     console.log("spaceBody",spaceBody)

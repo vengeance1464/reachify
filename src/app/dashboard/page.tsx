@@ -13,7 +13,7 @@ const Dashboard: React.FC<Props> = () => {
   // setSpaces(data);
   return (
     <AuthComponent>
-      <div className="p-8">
+      <div className="p-20">
         <div className=" flex justify-between">
           <h1 className="text-4xl text-white">Spaces</h1>
           <button className="bg-white text-black">

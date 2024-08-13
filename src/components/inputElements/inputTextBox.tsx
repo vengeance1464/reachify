@@ -12,7 +12,7 @@ const InputTextElement: React.FC<InputType> = ({
     <div className="flex flex-col">
       {label && (
         <div className="flex">
-          <label className="text-gray-700">{label}</label>
+          <label className="text-textBlack">{label}</label>
           {required && <span className="text-red-600">*</span>}
         </div>
       )}

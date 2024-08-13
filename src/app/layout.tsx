@@ -17,9 +17,9 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <html>
       <body className="bg-navy-blue">
-        <Header title="Testimonial">
+        {/* <Header title="Testimonial">
           <Like width={50} height={50} />
-        </Header>
+        </Header> */}
         {/* {!unauthenticatedPaths.includes(pathName) ? (
           <TRPCProvider>
             <AuthComponent>{children}</AuthComponent>

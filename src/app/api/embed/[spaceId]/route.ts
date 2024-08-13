@@ -15,3 +15,18 @@ export async function GET(
     })
     return Response.json({ data:spaceData })
   }
+
+  export async function POST(
+    request: Request, context: { params: Params }
+    ) {
+      const body=await request.json()
+      const spaceService=new SpaceService('Space')
+      console.log("req",body,"context",context)
+      await spaceService.addReview(context.params.spaceId,body)
+      // const spaceData=await spaceService.addReview({
+      //   where :{
+      //     id:context.params.spaceId
+      //   }
+      // })
+      return Response.json({ data:{} })
+    }

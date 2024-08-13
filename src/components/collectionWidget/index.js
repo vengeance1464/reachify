@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import CollectionPreview from "./collectionPreview";
 
-const CollectionWidget = ({ spaceId }) => {
-  const [spaceData, setSpaceData] = useState<any>();
+const CollectionWidget = ({ spaceId ,setOpenReview}) => {
+  const [spaceData, setSpaceData] = useState();
 
   useEffect(() => {
     const fetchSpaceData = async (spaceId) => {
@@ -27,6 +27,7 @@ const CollectionWidget = ({ spaceId }) => {
     <div>
       {spaceData && (
         <CollectionPreview
+          setOpenReview={setOpenReview}
           spaceHeader={spaceData?.headerTitle}
           questions={spaceData?.questions}
           customMessage={spaceData?.customMessage}

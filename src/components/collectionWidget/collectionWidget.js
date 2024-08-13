@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CollectionWidget from '.';
+import "./globals.css"
 
 function mount(containerId,spaceId) {
  // const { name } = params;

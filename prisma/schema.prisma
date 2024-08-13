@@ -35,11 +35,16 @@ model Space {
 
 model Review {
   id   String   @id @default(auto()) @map("_id") @db.ObjectId
-  space Space  @relation(fields: [reviewId], references: [id])
+  spaceId String   @db.ObjectId
+  space Space  @relation(fields: [spaceId], references: [id])
+  testimonialText String?
+  name String
+  email String
+  rating Int?
   type TestimonialType @default(TEXT)
-  testimonialText String
-  videoLink String
-  reviewId String   @db.ObjectId
+  videoLink String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model User{
@@ -48,7 +53,6 @@ model User{
   name String
   email String
   imageUrl String
-  posts Post[] @relation("UserPosts")
 }
 
 

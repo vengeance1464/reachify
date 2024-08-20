@@ -5,6 +5,7 @@ import SpaceService from "@/lib/db/SpaceService"
 import { TestimonialType } from "@prisma/client"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
+import ReviewService from "@/lib/db/ReviewService"
 
 
 async function createSpaceAction(formData:FormData)
@@ -61,4 +62,14 @@ async function createSpaceAction(formData:FormData)
     
 }
 
-export {createSpaceAction}
+async function archiveOrUnarchiveReview(reviewId:string,isArchived:boolean)
+{
+  console.log("Is archived",isArchived)
+  let reviewService=new ReviewService('Review')
+  const res=await reviewService.archiveOrUnarchiveReview(reviewId,isArchived)
+  console.log("Archive Res",res)
+  return res
+}
+
+
+export {createSpaceAction,archiveOrUnarchiveReview}

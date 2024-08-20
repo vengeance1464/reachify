@@ -13,6 +13,33 @@ class ReviewService extends BaseService<'Review'> {
         console.log("Reviews",reviews)
         return reviews
     }
+
+    async archiveOrUnarchiveReview(reviewId:string,archive:boolean)
+    {
+
+        const review=await this.findUnique({
+            where:{
+                id:reviewId
+            }
+        })
+
+        if(review)
+        {
+            const updatedReview=await this.update({
+                where:{
+                    id:reviewId
+                },
+                data:{
+                    isArchived:archive
+                }
+            })
+            return updatedReview
+        }
+        else
+        {
+            throw new Error("Review not found")
+        }
+    }
 }
 
 

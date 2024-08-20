@@ -43,6 +43,7 @@ model Review {
   rating Int?
   type TestimonialType @default(TEXT)
   videoLink String?
+  isArchived  Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -15,6 +15,8 @@ type CardProps = {
   description?: React.ReactNode;
   content: React.ReactNode;
   footerContent?: React.ReactNode;
+  classNames?: string;
+  headerContent?: React.ReactNode;
 };
 
 const CardComponent: React.FC<CardProps> = ({
@@ -22,12 +24,15 @@ const CardComponent: React.FC<CardProps> = ({
   description,
   content,
   footerContent,
+  classNames,
+  headerContent,
 }) => {
   return (
-    <Card className="w-[350px]">
+    <Card className={`w-[350px] ${classNames}`}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
+        {headerContent}
       </CardHeader>
       <CardContent>{content}</CardContent>
       <CardFooter className="flex justify-between">{footerContent}</CardFooter>

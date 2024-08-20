@@ -18,8 +18,8 @@ const BaseModal: React.FC<BaseModalProps> = ({ trigger, title, children }) => {
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
+      <DialogContent className="bg-[#fff]">
+        <DialogHeader className="bg-[#fff]">
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{children}</DialogDescription>
         </DialogHeader>

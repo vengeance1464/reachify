@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AuthComponent from "@/components/auth";
 import CollectionTutorial from "@/components/modal/collectionTutorial";
+import Badge from "@/components/modal/badgeModal";
 
 interface Props {
   name: string;
@@ -11,10 +12,10 @@ const ReviewPage: React.FC<Props> = () => {
 
   // setSpaces(data);
   return (
-    <AuthComponent>
-      <CollectionTutorial />
-      {/* <ReviewForm /> */}
-    </AuthComponent>
+    // <AuthComponent>
+    <Badge reviewRatings={[5, 4, 3]} />
+    /* <ReviewForm /> */
+    // </AuthComponent>
   );
 };
 

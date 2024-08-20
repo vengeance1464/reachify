@@ -22,8 +22,9 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: "var(--background)",
         foreground: "hsl(var(--foreground))",
+        grayText:'rgb(197 210 220 / 1)',
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -59,6 +60,14 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        marquee: {
+          '0%': { transform: 'translateY(0%)' },
+          '100%': { transform: 'translateY(-100%)' },
+        },
+        marquee2: {
+          '0%': { top:'0'},
+          '100%': {  top: '100vh' },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -69,8 +78,9 @@ const config = {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
+       "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "marquee-infinite": "marquee2 10s linear infinite alternate",
       },
     },
   },

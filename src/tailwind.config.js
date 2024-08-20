@@ -42,7 +42,9 @@ module.exports = {
                 'gray-light': '#d3dce6',
                 'navy-blue':'#151719',
                 'primary': '#1DA1F2',
-                'gray-border':'rgb(51 54 58/1)'
+                'gray-border':'rgb(51 54 58/1)',
+                'gray-card':'rgb(37 40 44/1)',
+                'red-border':'rgb(248 113 113/1)'
               },
           }
         },

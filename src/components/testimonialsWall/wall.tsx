@@ -9,7 +9,7 @@ const TestimonialsWall: React.FC<WallProps> = ({ spaceId, layoutType }) => {
   useEffect(() => {
     async function fetchReviews() {
       const response = await fetch(
-        `http://127.0.0.1:3000/api/reviews/${spaceId}`,
+        `http://127.0.0.1:3000/api/embed/reviews/${spaceId}`,
         {
           method: "GET",
           // headers: {
@@ -26,7 +26,7 @@ const TestimonialsWall: React.FC<WallProps> = ({ spaceId, layoutType }) => {
   }, []);
 
   return (
-    <TestimonialsWallLayout layoutType={LayoutType.CAROUSEL}>
+    <TestimonialsWallLayout layoutType={LayoutType.FIXED}>
       {reviews.length > 0 &&
         reviews.map((review: any) => <TestimonialCard review={review} />)}
     </TestimonialsWallLayout>

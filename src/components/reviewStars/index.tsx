@@ -6,11 +6,13 @@ interface StarProps {
   totalStars?: number;
   isStatic?: boolean;
   setRating?: (rating: number) => void;
+  children?: ReactNode;
 }
 export const Ratings: React.FC<StarProps> = ({
   totalStars = 5,
   setRating,
   isStatic = false,
+  children,
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   const [clickedIndex, setClickedIndex] = useState(-1);
@@ -76,8 +78,11 @@ export const Ratings: React.FC<StarProps> = ({
     return elements;
   };
   return (
-    <div className="flex ">
-      {!isStatic ? getRatingsComponent() : getStaticRatings()}
+    <div className="flex flex-col items-center">
+      <div className="flex  ">
+        {!isStatic ? getRatingsComponent() : getStaticRatings()}
+      </div>
+      {children}
     </div>
   );
 };

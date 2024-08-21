@@ -8,6 +8,8 @@ import Love from "../../../public/assets/love";
 import Code from "../../../public/assets/code";
 import Collecting from "../../../public/assets/collecting";
 import SidebarStar from "../../../public/assets/sidebarStar";
+import { DialogTrigger } from "../ui/dialog";
+import Badge from "../modal/badgeModal";
 
 type MenuItem = {
   text: string;
@@ -44,22 +46,26 @@ const Sidebar: React.FC<Props> = ({ menuLists }) => {
               text={menuList.listTitle}
             />
             <div className="flex flex-col gap-2">
-              {menuList.menuItems.map((item, index) => (
-                <SidebarButton
-                  clickHandler={() => menuList.clickHandler(index)}
-                  isActive={menuList.isActive(index, menuList.listTitle)}
-                >
-                  <div className="flex items-center gap-1">
-                    {/* <Circle color={item.color} /> */}
-                    {item.icon}
-                    <Typography
-                      type={"p"}
-                      text={item.text}
-                      classes="text-grayText"
-                    />
-                  </div>
-                </SidebarButton>
-              ))}
+              {menuList.menuItems.map((item, index) => {
+                return (
+                  //}
+                  ///>
+                  <SidebarButton
+                    clickHandler={() => menuList.clickHandler(index)}
+                    isActive={menuList.isActive(index, menuList.listTitle)}
+                  >
+                    <div ref={item.ref} className="flex items-center gap-1">
+                      {/* <Circle color={item.color} /> */}
+                      {item.icon}
+                      <Typography
+                        type={"p"}
+                        text={item.text}
+                        classes="text-grayText"
+                      />
+                    </div>
+                  </SidebarButton>
+                );
+              })}
             </div>
           </>
         );

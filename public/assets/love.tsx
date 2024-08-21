@@ -5,7 +5,7 @@ type IconProps = {
   height?: number;
   strokeColor?: string;
   fillColor?: string;
-  onClick: (e: any) => void;
+  onClick?: (e: any) => void;
 };
 const LoveIcon: React.FC<IconProps> = ({
   width,

@@ -9,15 +9,24 @@ import {
 } from "@/components/ui/dialog";
 
 interface BaseModalProps {
-  trigger: ReactNode;
   title: string;
-  children: ReactNode;
+  children?: ReactNode;
+  trigger?: ReactNode;
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
-const BaseModal: React.FC<BaseModalProps> = ({ trigger, title, children }) => {
+const BaseModal: React.FC<BaseModalProps> = ({
+  title,
+  children,
+  trigger,
+  open,
+  setOpen,
+}) => {
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>{trigger}</DialogTrigger>
+
       <DialogContent className="bg-[#fff]">
         <DialogHeader className="bg-[#fff]">
           <DialogTitle>{title}</DialogTitle>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CollectionPreview from "./collectionPreview";
+import ReviewForm from "./reviewForm"
 
-const CollectionWidget = ({ spaceId ,setOpenReview}) => {
+const CollectionWidget = ({ spaceId}) => {
   const [spaceData, setSpaceData] = useState();
+  const [openReview, setOpenReview] = useState(false);
 
   useEffect(() => {
     const fetchSpaceData = async (spaceId) => {
@@ -23,15 +25,36 @@ const CollectionWidget = ({ spaceId ,setOpenReview}) => {
     fetchSpaceData(spaceId);
   }, []);
 
+  const getCollectionPreview=()=>{
+
+    if(spaceData)
+    {
+      return <CollectionPreview
+          setOpenReview={setOpenReview}
+          spaceHeader={spaceData?.headerTitle}
+          questions={spaceData?.questions}
+          customMessage={spaceData?.customMessage}
+        />
+    }
+
+    return null
+  }
+
   return (
     <div>
-      {spaceData && (
+      {/* {spaceData && (
         <CollectionPreview
           setOpenReview={setOpenReview}
           spaceHeader={spaceData?.headerTitle}
           questions={spaceData?.questions}
           customMessage={spaceData?.customMessage}
         />
+      )} */}
+
+       {openReview ? (
+        <ReviewForm setOpenReview={setOpenReview} />
+      ) : (
+        getCollectionPreview()
       )}
     </div>
   );

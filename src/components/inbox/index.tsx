@@ -8,6 +8,7 @@ import Code from "../../../public/assets/code";
 import SidebarStar from "../../../public/assets/sidebarStar";
 import Collecting from "../../../public/assets/collecting";
 import Badge from "../modal/badgeModal";
+import CollectionTutorial from "../modal/collectionTutorial";
 
 interface Props {
   // Define your component's props here
@@ -20,6 +21,7 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [embedSelectedIndex, setEmbedSelectedIndex] = useState(-1);
   const [badgeDialog, setBadgeDialogOpen] = useState(false);
+  const [collectionDialog, setCollectionDialogOpen] = useState(false);
 
   // Implement your component logic here
   //const router = useRouter();
@@ -41,6 +43,8 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
     setEmbedSelectedIndex(index);
     if (index === 2) {
       setBadgeDialogOpen(true);
+    } else if (index === 3) {
+      setCollectionDialogOpen(true);
     }
     setSelectedIndex(-1);
   };
@@ -108,7 +112,19 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
           })}
         </>
       </div>
-      {<Badge reviewRatings={[]} open={badgeDialog} />}
+      {
+        <Badge
+          setOpen={setBadgeDialogOpen}
+          reviewRatings={[]}
+          open={badgeDialog}
+        />
+      }
+      {
+        <CollectionTutorial
+          open={collectionDialog}
+          setOpen={setCollectionDialogOpen}
+        />
+      }
     </>
   );
 };

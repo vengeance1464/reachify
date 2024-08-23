@@ -27,7 +27,7 @@ const BaseModal: React.FC<BaseModalProps> = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>{trigger}</DialogTrigger>
 
-      <DialogContent className="bg-[#fff]">
+      <DialogContent className="max-w-screen-lg bg-[#fff]">
         <DialogHeader className="bg-[#fff]">
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{children}</DialogDescription>

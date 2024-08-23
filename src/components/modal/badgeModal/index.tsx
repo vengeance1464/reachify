@@ -1,9 +1,19 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import BaseModal from "../baseModal";
 import { Ratings } from "@/components/reviewStars";
 import Typography from "@/components/typography";
+// import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { dark, tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
+import Markdown from "react-markdown";
+import { Button } from "@/components/button";
+import CopyToClipboard from "@/components/copyToClipboard";
+//import CodeBlock from "@/components/code";
+//import Prism from "prismjs";
+
+// require("prismjs/components/prism-javascript");
+// require("prismjs/components/prism-css");
+// require("prismjs/components/prism-jsx");
 
 interface Props {
   // Define the props for your component here
@@ -20,9 +30,38 @@ const Badge: React.FC<Props> = ({ reviewRatings, open, setOpen }) => {
     }, 0) / reviewRatings.length;
 
   const fullStarsRating = reviewRatings.filter((item) => item === 5).length;
+  const [isCopied, setIsCopied] = useState(false);
 
-  const codeString = `<script async type="text/javascript" src="https://testimonial.to/js/widget-embed.js"></script>
-<div class="testimonial-to-embed" data-url="https://embed-v2.testimonial.to/badge/space-new?backgroundColor=EB144C&starColor=facc15&fontColor=000000&fontFamily=Roboto&reviewTerm=review&fontSize=16&reviewTermPlural=reviews&alignment=left" data-resize="true" data-resize-width="true" data-redirect-click="https://testimonial.to/space-new/all" style="width:fit-content"></div>`;
+  // const code = `<pre>
+  //     <code>
+  //       <script
+  //         async
+  //         type="text/javascript"
+  //         src="https://testimonial.to/js/widget-embed.js"
+  //       ></script>
+  //       <div
+  //         class="testimonial-to-embed"
+  //         data-url="https://embed-v2.testimonial.to/badge/space-new?backgroundColor=EB144C&starColor=facc15&fontColor=000000&fontFamily=Roboto&reviewTerm=review&fontSize=16&reviewTermPlural=reviews&alignment=left"
+  //         data-resize="true"
+  //         data-resize-width="true"
+  //         data-redirect-click="https://testimonial.to/space-new/all"
+  //         style="width:fit-content"
+  //       ></div>
+  //     </code>
+  //   </pre>`;
+
+  const codeString = `<script async type="text/javascript" src="https://testimonial.to/js/widget-embed.js"></script>\n<div class="testimonial-to-embed" data-url="https://embed-v2.testimonial.to/badge/space-new?backgroundColor=EB144C&starColor=facc15&fontColor=000000&fontFamily=Roboto&reviewTerm=review&fontSize=16&reviewTermPlural=reviews&alignment=left" data-resize="true" data-resize-width="true" data-redirect-click="https://testimonial.to/space-new/all" style="width:fit-content"></div>`;
+  const CodeBlock = () => {
+    return (
+      <SyntaxHighlighter language={"javascript"} style={tomorrow}>
+        {codeString}
+      </SyntaxHighlighter>
+    );
+  };
+
+  // useEffect(() => {
+  //   Prism.highlightAll();
+  // }, []);
   return (
     <BaseModal open={open} title={"Embed a Badge"}>
       <div>
@@ -35,11 +74,49 @@ const Badge: React.FC<Props> = ({ reviewRatings, open, setOpen }) => {
           </Ratings>
         }
       </div>
-      {/* <div>
-        <SyntaxHighlighter language="javascript" style={dark}>
+      <div
+        style={{
+          width: "800px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
+        {/* <article>
+          <ReactMarkdown
+            escapeHtml={false}
+            source={""}
+            renderers={{ code: CodeBlock }}
+          />
+        </article>
+        <SyntaxHighlighter language="javascript">
           {codeString}
-        </SyntaxHighlighter>
-      </div> */}
+        </SyntaxHighlighter> */}
+        {/* <Markdown children={code} /> */}
+        <CodeBlock />
+      </div>
+
+      <div className="flex justify-center">
+        <Button
+          text={"Close"}
+          onClick={() => {
+            setOpen(false);
+          }}
+        ></Button>
+        {/* <Button
+          text={"Copy Code"}
+          onClick={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        ></Button> */}
+        <CopyToClipboard
+          setIsCopied={setIsCopied}
+          textToCopy={codeString}
+          isCopied={isCopied}
+        />
+      </div>
     </BaseModal>
   );
 };

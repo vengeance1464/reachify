@@ -17,6 +17,7 @@ type CardProps = {
   footerContent?: React.ReactNode;
   classNames?: string;
   headerContent?: React.ReactNode;
+  onClick?: () => void;
 };
 
 const CardComponent: React.FC<CardProps> = ({
@@ -26,9 +27,10 @@ const CardComponent: React.FC<CardProps> = ({
   footerContent,
   classNames,
   headerContent,
+  onClick,
 }) => {
   return (
-    <Card className={`w-[350px] ${classNames}`}>
+    <Card onClick={onClick} className={`w-[350px] ${classNames}`}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>

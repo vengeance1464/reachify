@@ -29,7 +29,7 @@ const BaseModal: React.FC<BaseModalProps> = ({
 
       <DialogContent className="max-w-screen-lg bg-[#fff]">
         <DialogHeader className="bg-[#fff]">
-          <DialogTitle>{title}</DialogTitle>
+          <DialogTitle className="text-center">{title}</DialogTitle>
           <DialogDescription>{children}</DialogDescription>
         </DialogHeader>
       </DialogContent>

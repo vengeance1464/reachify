@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { Button } from "../button";
+import CopyIcon from "../../../public/assets/copy";
+import Tick from "../../../public/assets/tick";
 
 type ClipboardProps = {
   textToCopy: string;
   isCopied: boolean;
   setIsCopied: (isCopied: boolean) => void;
+  className: string;
+  copyText?: string;
 };
 const CopyToClipboard: React.FC<ClipboardProps> = ({
   textToCopy,
   isCopied,
   setIsCopied,
+  className,
+  copyText,
 }) => {
   //const [copied, setCopied] = useState(false);
 
@@ -27,13 +33,12 @@ const CopyToClipboard: React.FC<ClipboardProps> = ({
   };
 
   return (
-    <div>
-      <Button
-        text={isCopied ? "Code Copied" : "Copy Code"}
-        onClick={copyToClipboard}
-      ></Button>
-      {/* {copied && <p>Text copied to clipboard!</p>} */}
-    </div>
+    <Button
+      text={isCopied ? "Copied" : copyText ?? "Copy"}
+      onClick={copyToClipboard}
+      icon={isCopied ? <Tick /> : <CopyIcon />}
+      className={className}
+    ></Button>
   );
 };
 

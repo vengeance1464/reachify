@@ -63,28 +63,29 @@ const Badge: React.FC<Props> = ({ reviewRatings, open, setOpen }) => {
   //   Prism.highlightAll();
   // }, []);
   return (
-    <BaseModal open={open} title={"Embed a Badge"}>
-      <div>
-        {
-          <Ratings isStatic>
-            <Typography
-              type={"h4"}
-              text={`5/5 from ${fullStarsRating} reviews`}
-            />
-          </Ratings>
-        }
-      </div>
-      <div
-        style={{
-          width: "800px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-      >
-        {/* <article>
+    <BaseModal setOpen={setOpen} open={open} title={"Embed a Badge"}>
+      <div className="flex flex-col gap-2">
+        <div>
+          {
+            <Ratings isStatic>
+              <Typography
+                type={"h4"}
+                text={`5/5 from ${fullStarsRating} reviews`}
+              />
+            </Ratings>
+          }
+        </div>
+        <div
+          style={{
+            width: "800px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          {/* <article>
           <ReactMarkdown
             escapeHtml={false}
             source={""}
@@ -94,28 +95,32 @@ const Badge: React.FC<Props> = ({ reviewRatings, open, setOpen }) => {
         <SyntaxHighlighter language="javascript">
           {codeString}
         </SyntaxHighlighter> */}
-        {/* <Markdown children={code} /> */}
-        <CodeBlock />
-      </div>
+          {/* <Markdown children={code} /> */}
+          <CodeBlock />
+        </div>
 
-      <div className="flex justify-center">
-        <Button
-          text={"Close"}
-          onClick={() => {
-            setOpen(false);
-          }}
-        ></Button>
-        {/* <Button
+        <div className="flex justify-center gap-1">
+          <Button
+            text={"Close"}
+            className="w-6/12 !h-9 bg-[#fff] !text-black border-solid border-2 border-grayText"
+            onClick={() => {
+              setOpen(false);
+            }}
+          ></Button>
+          {/* <Button
           text={"Copy Code"}
           onClick={function (): void {
             throw new Error("Function not implemented.");
           }}
         ></Button> */}
-        <CopyToClipboard
-          setIsCopied={setIsCopied}
-          textToCopy={codeString}
-          isCopied={isCopied}
-        />
+          <CopyToClipboard
+            className="w-6/12 !h-9"
+            copyText="Copy Code"
+            setIsCopied={setIsCopied}
+            textToCopy={codeString}
+            isCopied={isCopied}
+          />
+        </div>
       </div>
     </BaseModal>
   );

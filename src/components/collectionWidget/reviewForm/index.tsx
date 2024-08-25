@@ -50,7 +50,7 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview }) => {
   return (
     // JSX code goes here
     // <form className="bg-#fff flex flex-col gap-4  h-100">
-    <div className="bg-#fff flex flex-col gap-4  h-100">
+    <div className="bg-#fff flex flex-col gap-4  h-100 relative">
       <div className="flex">
         <Ratings setRating={setRating} />
       </div>
@@ -78,7 +78,7 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview }) => {
         }
       />
 
-      <div className="flex gap-2 absolute right-0 bottom-0">
+      <div className="flex gap-2 right-0">
         <Button
           text={"Send"}
           onClick={() => {

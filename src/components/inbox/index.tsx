@@ -9,6 +9,8 @@ import SidebarStar from "../../../public/assets/sidebarStar";
 import Collecting from "../../../public/assets/collecting";
 import Badge from "../modal/badgeModal";
 import CollectionTutorial from "../modal/collectionTutorial";
+import LayoutModal from "../modal/layoutModal";
+import { TestimonialType } from "@prisma/client";
 
 interface Props {
   // Define your component's props here
@@ -22,6 +24,7 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
   const [embedSelectedIndex, setEmbedSelectedIndex] = useState(-1);
   const [badgeDialog, setBadgeDialogOpen] = useState(false);
   const [collectionDialog, setCollectionDialogOpen] = useState(false);
+  const [layoutDialog, setLayoutDialogOpen] = useState(false);
 
   // Implement your component logic here
   //const router = useRouter();
@@ -41,6 +44,9 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
 
   const embedClickHandler = (index: number) => {
     setEmbedSelectedIndex(index);
+    if (index === 0) {
+      setLayoutDialogOpen(true);
+    }
     if (index === 2) {
       setBadgeDialogOpen(true);
     } else if (index === 3) {
@@ -87,7 +93,11 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
 
   const filteredReviews = reviews.filter((review: any) => {
     if (selectedIndex !== -1) {
-      if (selectedIndex === 3) {
+      if (selectedIndex === 0) {
+        return true;
+      } else if (selectedIndex === 1) {
+        return review.type === TestimonialType.VIDEO;
+      } else if (selectedIndex === 3) {
         return review.isArchived;
       } else if (selectedIndex === 4) {
         return !review.isArchived;
@@ -115,7 +125,7 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
       {
         <Badge
           setOpen={setBadgeDialogOpen}
-          reviewRatings={[]}
+          reviewRatings={[5, 4, 3]}
           open={badgeDialog}
         />
       }
@@ -125,6 +135,7 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
           setOpen={setCollectionDialogOpen}
         />
       }
+      {<LayoutModal open={layoutDialog} setOpen={setLayoutDialogOpen} />}
     </>
   );
 };

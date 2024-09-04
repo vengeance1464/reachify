@@ -32,6 +32,12 @@ const Badge: React.FC<Props> = ({ reviewRatings, open, setOpen }) => {
   const fullStarsRating = reviewRatings.filter((item) => item === 5).length;
   const [isCopied, setIsCopied] = useState(false);
 
+  useEffect(() => {
+    if (!open) {
+      setIsCopied(false);
+    }
+  }, [open]);
+
   // const code = `<pre>
   //     <code>
   //       <script

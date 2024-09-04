@@ -14,10 +14,13 @@ const useCustomForm = (contextType:string ) => {
         return {register:value.register, handleSubmit:value.handleSubmit, errors:value.errors}
     }
 
-    const { register, handleSubmit, formState: { errors },watch,control ,getValues} = useForm();
+    const { register, handleSubmit, formState: { errors },watch,control ,getValues,trigger} = useForm({
+        mode: "onBlur",
+    reValidateMode: "onBlur",
+    });
 
     formMap?.set(contextType,{register, handleSubmit, errors})
-    return { register, handleSubmit, errors,watch,control ,getValues};
+    return { register, handleSubmit, errors,watch,control ,getValues,trigger};
 
  
 };

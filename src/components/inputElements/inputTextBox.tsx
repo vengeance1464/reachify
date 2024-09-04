@@ -7,9 +7,16 @@ const InputTextElement: React.FC<InputType> = ({
   required = false,
   register,
   defaultValue,
+  classes,
+  hasError = false,
+  errorMessage = "",
+  trigger,
 }) => {
+  // const handleBlur = async (field) => {
+  //   await trigger(field); // Trigger validation on blur
+  // };
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-col`}>
       {label && (
         <div className="flex">
           <label className="text-textBlack">{label}</label>
@@ -17,11 +24,20 @@ const InputTextElement: React.FC<InputType> = ({
         </div>
       )}
       <input
-        {...register(name, { required })}
+        {...register(name, {
+          required: required ? `This field is required` : "",
+        })}
         defaultValue={defaultValue}
-        className="border border-gray-300 px-4 py-2 rounded-md mt-2"
+        name={name}
+        //onBlur={() => handleBlur(name)} // Call handleBlur on blur event
+        className={` ${
+          errorMessage !== ""
+            ? "border border-red-600"
+            : "border border-gray-300"
+        } px-4 py-2 rounded-md mt-2 ${classes}`}
         type={"text"}
       />
+      {errorMessage !== "" && <p className="text-red-600">{errorMessage}</p>}
     </div>
   );
 };

@@ -25,6 +25,7 @@ const CollectionWidget = ({ spaceId}) => {
     fetchSpaceData(spaceId);
   }, []);
 
+
   const getCollectionPreview=()=>{
 
     if(spaceData)

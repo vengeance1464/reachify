@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import AuthComponent from "@/components/auth";
 import Spaces from "@/components/spaces";
+import ProgressLink from "@/components/progressLink";
 
 interface Props {
   name: string;
@@ -20,6 +21,8 @@ const Dashboard: React.FC<Props> = () => {
             <Link href="/createSpace">+ Create Space</Link>{" "}
           </button>
         </div>
+
+        {/* <ProgressLink href="/createSpace" /> */}
         <Spaces />
         {/* {spaces &&
           spaces.length > 0 &&

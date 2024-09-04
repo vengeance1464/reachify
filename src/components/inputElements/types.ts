@@ -4,8 +4,12 @@
     register: any;
     required?: boolean;
     name:string;
-    label: string;
+    label?: string;
     defaultValue?:string
+    classes?:string
+    hasError?:boolean
+    errorMessage?:string
+    trigger?:any
 }
 
 

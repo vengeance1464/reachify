@@ -1,7 +1,7 @@
 "use client";
 import ReviewForm from "@/components/collectionWidget/reviewForm";
 import BaseModal from "../baseModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dark, tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 import CollectionWidget from "@/components/collectionWidget";
@@ -27,6 +27,12 @@ const LayoutModal: React.FC<Props> = ({ open, setOpen }) => {
   };
   const [isCopied, setIsCopied] = useState(false);
 
+  useEffect(() => {
+    if (!open) {
+      setIsCopied(false);
+      setLayoutSelect(undefined);
+    }
+  }, [open]);
   return (
     <BaseModal
       open={open}

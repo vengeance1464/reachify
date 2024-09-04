@@ -31,6 +31,7 @@ const SpaceProduct: React.FC<Props> = async ({
       `http://localhost:3000/api/embed/reviews/${params.spaceId}`,
       {
         cache: "no-store",
+        next: { tags: ["reviews"] },
       }
     ).then((res) => res.json());
 

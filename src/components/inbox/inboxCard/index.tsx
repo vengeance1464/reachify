@@ -8,7 +8,8 @@ import React, {
 } from "react";
 import InboxAccordian from "../inboxAccordian";
 import Love from "../../../../public/assets/love";
-import { archiveOrUnarchiveReview } from "@/actions/actions";
+import { archiveOrUnarchiveReview, revalidateData } from "@/actions/actions";
+import { revalidateTag } from "next/cache";
 
 interface InboxCardProps {
   // Define props here
@@ -21,7 +22,13 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
   //   (currentState, value) => value // optimistic update function
   // );
 
-  const [archived, setArchived] = useState(review.isArchived);
+  const [archived, setArchived] = useState<boolean>(review.isArchived);
+
+  // useEffect(() => {
+  //   setArchived(review.isArchived);
+  // }, []);
+
+  console.log("archived", archived, review);
   // Implement component logic here
 
   const archiveOrUnarchive = () => {
@@ -36,13 +43,15 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
     archiveOrUnarchiveReview(review.id, !archived)
       .then((res) => {
         console.log("Res promis", res);
+        revalidateData("reviews");
+        //revalidateTag("reviews");
       })
       .catch((err) => {
         //applyOptimisticUpdate(!optimisticState);
         setArchived((archived) => !archived);
       });
 
-    return true;
+    //return true;
 
     // Perform actual side effect (e.g., API call)
     // fetch("/api/add-item", {
@@ -114,7 +123,7 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
           width={24}
           height={24}
           strokeColor="rgb(248 113 113/1)"
-          fillColor={!archived ? "rgb(248 113 113/1)" : "none"}
+          fillColor={!archived ? "rgb(248 113 113/1)" : undefined}
         />
         {/* </div> */}
       </div>

@@ -6,6 +6,7 @@ const InputTextArea: React.FC<InputType> = ({
   required,
   label,
   name,
+  errorMessage,
 }) => {
   return (
     <div className="flex flex-col">
@@ -16,9 +17,17 @@ const InputTextArea: React.FC<InputType> = ({
         </div>
       )}
       <textarea
-        className="border border-gray-300 px-4 py-2 rounded-md mt-2"
-        {...register(name, { required })}
+        name={name}
+        className={`border border-gray-300 px-4 py-2 rounded-md mt-2  ${
+          errorMessage !== ""
+            ? "border border-red-600"
+            : "border border-gray-300"
+        } `}
+        {...register(name, {
+          required: required ? "This field is requried" : "",
+        })}
       />
+      {errorMessage !== "" && <p className="text-red-600">{errorMessage}</p>}
     </div>
   );
 };

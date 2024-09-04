@@ -98,9 +98,10 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
       } else if (selectedIndex === 1) {
         return review.type === TestimonialType.VIDEO;
       } else if (selectedIndex === 3) {
-        return review.isArchived;
+        console.log("selected", selectedIndex);
+        return review.isArchived === true;
       } else if (selectedIndex === 4) {
-        return !review.isArchived;
+        return review.isArchived === false;
       } else {
         return (
           review.type.toLowerCase() ===

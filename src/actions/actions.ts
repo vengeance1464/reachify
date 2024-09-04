@@ -3,9 +3,11 @@
 import { trpc } from "@/server/client"
 import SpaceService from "@/lib/db/SpaceService"
 import { TestimonialType } from "@prisma/client"
-import { revalidatePath } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 import ReviewService from "@/lib/db/ReviewService"
+import { v4 as uuidv4 } from 'uuid';
+import { getS3Url } from "@/lib/utils"
 
 
 async function createSpaceAction(formData:FormData)
@@ -13,6 +15,56 @@ async function createSpaceAction(formData:FormData)
 
 
     console.log("data",Object.fromEntries(formData))
+    const body = new FormData();
+    const file = formData.get('imageUpload') as File;
+    const name=`${uuidv4()}${file.name}`
+    body.append("file", file, name);
+
+  //   con
+  //   const body = new FormData();
+  //    arg.files.forEach((file) => {
+  //   body.append("file", file, file.name);
+  // });
+    // const response = await fetch(
+    //   process.env.NEXT_PUBLIC_BASE_URL + '/api/aws/fileUpload',
+    //   {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ filename: file.name, contentType: file.type }),
+    //   }
+    // )
+    // if (response.ok) {
+    //   const { url, fields } = await response.json()
+
+    //   const imageData = new FormData()
+    //   Object.entries(fields).forEach(([key, value]) => {
+    //     imageData.append(key, value as string)
+    //   })
+    //   imageData.append('file', file)
+
+      //let options = { headers: { 'Content-Type': file.type, 'x-amz-acl': 'public-read' } };
+
+
+      const uploadResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/aws/fileOperations/${name}`, {
+        method: 'POST',
+        body,
+     //  headers: options.headers,
+      })
+
+      console.log
+
+      if (uploadResponse.ok) {
+        //alert('Upload successful!')
+      } else {
+        console.error('S3 Upload Error:', uploadResponse)
+        //alert('Upload failed.')
+      }
+    // } else {
+    //   //alert('Failed to get pre-signed URL.')
+    // }
+
     const  spaceName=formData.get("space-name")
     const headerTitle=formData.get("header-title")
     const customMessage=formData.get("custom-message")
@@ -45,6 +97,7 @@ async function createSpaceAction(formData:FormData)
         questions:questionsList,
         testimonialType:TestimonialType[testimonialType!],
         collectStars:shouldCollectStars,
+        spaceUrl:getS3Url(name)
         //reviews:{set:[]}
      }
 
@@ -71,5 +124,9 @@ async function archiveOrUnarchiveReview(reviewId:string,isArchived:boolean)
   return res
 }
 
+  async function revalidateData(tagName:string) {
+  revalidateTag(tagName)
+}
 
-export {createSpaceAction,archiveOrUnarchiveReview}
+
+export {createSpaceAction,archiveOrUnarchiveReview,revalidateData}

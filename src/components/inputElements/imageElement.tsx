@@ -30,13 +30,20 @@ const ImageElement: React.FC<ImageElementProps> = ({
           {required && <span className="text-red-600">*</span>}
         </div>
       )}
-      <div className="flex">
-        {src && src.length > 0 ? (
-          <Image className={classes} src={src} alt={alt} />
+      <div className="flex gap-2">
+        {src !== "" ? (
+          <Image
+            width={24}
+            height={24}
+            className={classes}
+            src={src!}
+            alt={alt}
+          />
         ) : (
           <div className={classes}></div>
         )}
         <button
+          type="button"
           onClick={(event) => {
             event.stopPropagation();
 
@@ -52,6 +59,7 @@ const ImageElement: React.FC<ImageElementProps> = ({
           className="hidden"
           type="file"
           id="imageUpload"
+          name="imageUpload"
           onChange={onChange}
           accept="image/*"
           //onChange={handleImageUpload}

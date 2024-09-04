@@ -17,6 +17,19 @@ function loadCSS(url, callback) {
     document.head.appendChild(link);
 }
 
+
+function getPathParams(){
+    const queryString = window.location.search;
+
+    // Create a URLSearchParams object
+    const params = new URLSearchParams(queryString);
+    
+    // Retrieve specific query parameters
+    const spaceId = params.get('spaceId'); // 'asc'
+
+    return spaceId;
+}
+
 // Load Tailwind CSS first
 loadCSS('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css', function() {
     console.log('Tailwind CSS loaded');
@@ -25,7 +38,7 @@ loadCSS('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css',
     loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css', function() {
         console.log('FontAwesome CSS loaded');
 
-loadCSS('../../../dist/layoutWidgetHelper.css', function() {
+loadCSS('https://reachify-bucker.s3.amazonaws.com/bundles/layoutWidgetHelper.css', function() {
 // Load React
 loadScript('https://unpkg.com/react@17/umd/react.development.js', function() {
     console.log('React loaded');
@@ -35,7 +48,7 @@ loadScript('https://unpkg.com/react@17/umd/react.development.js', function() {
         console.log('ReactDOM loaded');
         
         // After React and ReactDOM have loaded, start your application
-        loadScript('../../../dist/layoutWidgetHelper.js', function() {
+        loadScript('https://reachify-bucker.s3.amazonaws.com/bundles/layoutWidgetHelper.js', function() {
             console.log('ReactDOM loaded');
             
             // After React and ReactDOM have loaded, start your application
@@ -44,8 +57,23 @@ loadScript('https://unpkg.com/react@17/umd/react.development.js', function() {
     });
 });
 })})})
+
+
 // Function to start your application
 function startApp() {
     //BadgeWidgetHelper.mount('hello-world-container','66acbb8d01328df97a7be18a')
-    LayoutHelper.mount('hello-world-container','66acbb8d01328df97a7be18a');
+
+    const scripts = document.getElementsByTagName('script');
+    console.log("scripts",scripts)
+
+    const currentScript = scripts[scripts.length - 2];
+
+    const url = new URL(currentScript.src);
+
+// Use URLSearchParams to parse the query string
+   const urlParams = new URLSearchParams(url.search);
+
+   const spaceId = urlParams.get('spaceId');
+
+    LayoutHelper.mount('hello-world-container',spaceId);
 }

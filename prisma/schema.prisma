@@ -23,6 +23,7 @@ enum TestimonialType {
 model Space {
   id     String @id @default(auto()) @map("_id") @db.ObjectId
   spaceName String
+  spaceUrl String?
   headerTitle    String
   customMessage String 
   questions String[]

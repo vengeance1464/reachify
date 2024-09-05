@@ -1,3 +1,4 @@
+import { revalidateData } from "@/actions/actions";
 import { Button } from "@/components/button";
 import { InputCheckbox } from "@/components/checkbox";
 import InputTextArea from "@/components/inputElements/inputTextArea";
@@ -5,14 +6,17 @@ import InputTextElement from "@/components/inputElements/inputTextBox";
 import { Ratings } from "@/components/reviewStars";
 import { useCustomForm } from "@/hooks/useFormContext";
 import { TestimonialType } from "@prisma/client";
+import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 interface Props {
   // Define your component's props here
   setOpenReview: (review: boolean) => void;
+  spaceId: string;
+  spaceName: string;
 }
 
-const ReviewForm: React.FC<Props> = ({ setOpenReview }) => {
+const ReviewForm: React.FC<Props> = ({ setOpenReview, spaceId, spaceName }) => {
   // Implement your component's logic here
   const totalStarCount = 5;
 
@@ -29,9 +33,32 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview }) => {
     setReview({ ...data, rating, type: TestimonialType.TEXT, videoLink: "" });
   };
 
+  const [reviewText, name, email] = getValues([
+    "testimonialText",
+    "name",
+    "email",
+  ]);
+  const hasError = () => {
+    let err = false;
+    if (
+      !reviewText ||
+      !name ||
+      !email ||
+      reviewText === "" ||
+      name === "" ||
+      email === "" ||
+      !checked
+    ) {
+      err = true;
+    }
+
+    console.log("Error", err);
+    return err;
+  };
+
   useEffect(() => {
     async function addReview() {
-      await fetch("/api/embed/66acbb8d01328df97a7be18a", {
+      await fetch(`/api/embed/${spaceId}`, {
         method: "POST", // Specifies the HTTP method as POST
         headers: {
           "Content-Type": "application/json", // Sets the content type to JSON
@@ -44,22 +71,39 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview }) => {
     if (review) {
       addReview();
       setReview(null);
+      setOpenReview(false);
+      revalidateData("reviews");
+      redirect(`/products/${spaceId}/${spaceName}`);
     }
   }, [review]);
 
   return (
     // JSX code goes here
     // <form className="bg-#fff flex flex-col gap-4  h-100">
-    <div className="bg-#fff flex flex-col gap-4  h-100 relative">
+    <div className="w-full mx-auto h-100 relative p-6 bg-#fff border rounded-lg shadow-md flex flex-col justify-evenly gap-4">
+      {/* <div className="bg-#fff flex flex-col gap-4  h-100 relative"> */}
       <div className="flex">
         <Ratings setRating={setRating} />
       </div>
-      <InputTextArea register={register} name={"testimonialText"} label={""} />
+      <InputTextArea
+        required
+        register={register}
+        name={"testimonialText"}
+        errorMessage={
+          errors.hasOwnProperty("testimonialText")
+            ? errors["testimonialText"].message
+            : ""
+        }
+        label={""}
+      />
 
       <InputTextElement
         required
         register={register}
         name={"name"}
+        errorMessage={
+          errors.hasOwnProperty("name") ? errors["name"].message : ""
+        }
         label={"Your Name"}
       />
 
@@ -68,6 +112,9 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview }) => {
         required
         name={"email"}
         label={"Your Email"}
+        errorMessage={
+          errors.hasOwnProperty("email") ? errors["email"].message : ""
+        }
       />
 
       <InputCheckbox
@@ -81,13 +128,19 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview }) => {
       <div className="flex gap-2 right-0">
         <Button
           text={"Send"}
+          className="!h-fit text-white px-4 py-2 rounded-md"
+          disabled={hasError()}
           onClick={() => {
             handleSubmit(onSubmit)();
             // setSendReview(true);
           }}
         />
 
-        <Button text={"Cancel"} onClick={() => setOpenReview(false)} />
+        <Button
+          className="h-fit  px-4 py-2 rounded-md !bg-[#fff] !text-black border-solid border-2 border-grayText"
+          text={"Cancel"}
+          onClick={() => setOpenReview(false)}
+        />
       </div>
 
       {/* <InputTextElement

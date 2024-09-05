@@ -20,6 +20,7 @@ const CopyToClipboard: React.FC<ClipboardProps> = ({
   //const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
+    console.log("Text copied");
     navigator.clipboard
       .writeText(textToCopy)
       .then(() => {
@@ -35,7 +36,7 @@ const CopyToClipboard: React.FC<ClipboardProps> = ({
   return (
     <Button
       text={isCopied ? "Copied" : copyText ?? "Copy"}
-      onClick={copyToClipboard}
+      onClick={() => copyToClipboard()}
       icon={isCopied ? <Tick /> : <CopyIcon />}
       className={className}
     ></Button>

@@ -21,6 +21,11 @@ const SpaceProduct: React.FC<Props> = async ({
 }: {
   params: { spaceId: string; spaceName: string };
 }) => {
+  const spaceWithReviews = await trpcClient.space.getSpaceWithReviews(
+    params.spaceId
+  );
+  console.log("spaceWithReviews", spaceWithReviews);
+
   const getData = async () => {
     "use server";
 
@@ -40,14 +45,22 @@ const SpaceProduct: React.FC<Props> = async ({
 
   const data = await getData();
   //revalidatePath("/");
-  console.log("New data", data);
+  //console.log("New data", data);
 
   return (
-    <div className="grid grid-cols-3">
-      <div className="col-span-3 ">
-        <SpaceHeader spaceHeader={params.spaceName} spaceId={params.spaceId} />
+    <div className="grid grid-cols-3 ">
+      <div className="col-span-3   !border-y-[1px] !border-[#25282C] mb-4">
+        <SpaceHeader
+          spaceUrl={spaceWithReviews.spaceUrl}
+          spaceHeader={params.spaceName}
+          spaceId={params.spaceId}
+        />
       </div>
-      <Inbox reviews={data} />
+      <Inbox
+        spaceName={params.spaceName}
+        spaceId={params.spaceId}
+        reviews={spaceWithReviews.reviews}
+      />
       {/* <Sidebar menuLists={menuLists} />
       <div className="col-span-2 flex flex-col items-center gap-2">
         <>

@@ -15,7 +15,7 @@ const AccordianContent: React.FC = () => {
   return (
     <div className="flex items-center gap-2">
       {menuTiles.map((tile, index) => (
-        <div className="flex">
+        <div className="flex text-[#D9E3EA]">
           {tile.icon}
           {tile.text}
         </div>

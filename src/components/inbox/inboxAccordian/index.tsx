@@ -13,7 +13,13 @@ const InboxAccordion: React.FC<InboxAccordionProps> = (
 ) => {
   // Add your component logic here
 
-  return <AccordionComponent trigger={""} content={<AccordianContent />} />;
+  return (
+    <AccordionComponent
+      triggerStyles="text-[#D9E3EA]"
+      trigger={""}
+      content={<AccordianContent />}
+    />
+  );
 };
 
 export default InboxAccordion;

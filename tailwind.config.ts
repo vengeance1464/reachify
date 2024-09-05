@@ -18,10 +18,12 @@ const config = {
       },
     },
     extend: {
+      fontFamily: { sans: ["Inter", "sans-serif"] },
       colors: {
-        border: "hsl(var(--border))",
+        border: "#d9e3ea",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        normalBorder:"#d9e3ea",
         background: "var(--background)",
         foreground: "hsl(var(--foreground))",
         grayText:'rgb(197 210 220 / 1)',

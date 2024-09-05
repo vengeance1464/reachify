@@ -9,6 +9,7 @@ import { Button } from "@/components/button";
 import CopyToClipboard from "@/components/copyToClipboard";
 import Card from "@/components/card";
 import { LayoutType } from "@/components/testimonialsWall/types";
+import Typography from "@/components/typography";
 
 interface Props {
   // Define the props for your component here
@@ -38,7 +39,7 @@ const LayoutModal: React.FC<Props> = ({ open, setOpen }) => {
       open={open}
       setOpen={setOpen}
       //trigger={"Open"}
-      title={"Embed a Wall Of Love"}
+      title={<Typography type={"h2"} text={"Embed a Wall Of Love"} />}
     >
       {/* {openReview ? (
         <ReviewForm setOpenReview={setOpenReview} />
@@ -98,7 +99,7 @@ const LayoutModal: React.FC<Props> = ({ open, setOpen }) => {
           <div className="flex justify-center gap-1">
             <Button
               text={"Close"}
-              className="w-6/12 !h-9 bg-[#fff] !text-black border-solid border-2 border-grayText"
+              className="w-6/12 !h-9 !bg-[#fff] !text-black border-solid border-2 border-grayText"
               onClick={() => {
                 setOpen(false);
               }}

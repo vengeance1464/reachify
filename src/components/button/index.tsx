@@ -4,7 +4,7 @@ import { useFormStatus } from "react-dom";
 type ButtonProps = {
   text: string;
   onClick?: () => void;
-  className: string;
+  className?: string;
   icon?: ReactNode;
   type?: "button" | "submit" | "reset";
   formAction?: (formData: FormData) => void;
@@ -45,13 +45,13 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       ref={buttonRef}
-      disabled
-      formAction={formAction}
-      className={`btn rounded  text-white   w-40 h-8 ${
+      disabled={disabled}
+      formAction={formAction ?? formAction}
+      className={`btn rounded  text-white   w-40 ${
         icon && "flex items-center justify-center"
-      } ${className} ${animationClassname} ${
-        disabled ? "bg-[#d3d3d3]" : "hover:bg-purple-700"
-      }`}
+      } ${
+        disabled ? "bg-[#d3d3d3]" : "bg-blue-500 hover:bg-purple-700"
+      } ${className} ${animationClassname} `}
       type={type}
       onClick={onClick}
     >
@@ -62,10 +62,10 @@ export const Button: React.FC<ButtonProps> = ({
           <span className="bubble bg-white rounded-full w-2.5 h-2.5 animate-bubble3"></span>
         </div>
       ) : (
-        <>
+        <div className="flex justify-center items-center">
           {icon}
           {text}
-        </>
+        </div>
       )}
     </button>
   );

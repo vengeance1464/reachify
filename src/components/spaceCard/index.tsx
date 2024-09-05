@@ -164,7 +164,7 @@ const SpaceCard: React.FC<Props> = (props) => {
         {/* <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
               Record a video
             </button> */}
-        <button className="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 justify=self-end">
+        <button className="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 justify-self-end">
           Send in text
         </button>
         {/* </div> */}

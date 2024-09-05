@@ -42,6 +42,14 @@ export const appRouter = router({
     console.log("Space",space)
     return space;
   }),
+
+  getSpaceWithReviews:publicProcedure.use(isAuthenticated).input(z.string()).query(async ({ input, ctx }) => {
+    // Replace with your database call
+    console.log("context ",input)
+    let spaceService=new SpaceService('Space')
+    const data=spaceService.getSpaceWithReviews(input)
+    return data;
+  })
 });
 
 // export only the type definition of the API

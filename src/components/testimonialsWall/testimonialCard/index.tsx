@@ -1,5 +1,6 @@
 import Card from "@/components/card";
 import { Ratings } from "@/components/reviewStars";
+import { format } from "date-fns";
 
 type TestimonialCardProps = {
   review: {
@@ -27,7 +28,11 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ review }) => {
     <Card
       title={review.name}
       footerContent={
-        <div>{review.createdAt !== null ? review.createdAt : ""}</div>
+        <div>
+          {review.createdAt !== null
+            ? format(review.createdAt, "MMM d, yyyy, h:mm:ss a")
+            : ""}
+        </div>
       }
       content={content()}
     />

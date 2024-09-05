@@ -56,7 +56,7 @@ const Badge: React.FC<Props> = ({ reviewRatings, open, setOpen }) => {
   //     </code>
   //   </pre>`;
 
-  const codeString = `<script async type="text/javascript" src="https://testimonial.to/js/widget-embed.js"></script>\n<div class="testimonial-to-embed" data-url="https://embed-v2.testimonial.to/badge/space-new?backgroundColor=EB144C&starColor=facc15&fontColor=000000&fontFamily=Roboto&reviewTerm=review&fontSize=16&reviewTermPlural=reviews&alignment=left" data-resize="true" data-resize-width="true" data-redirect-click="https://testimonial.to/space-new/all" style="width:fit-content"></div>`;
+  const codeString = `<script type="text/javascript" src="https://reachify-bucker.s3.amazonaws.com/bundles/badgeWidget.main.js"></script>\n<div class="testimonial-to-embed" data-url="https://embed-v2.testimonial.to/badge/space-new?backgroundColor=EB144C&starColor=facc15&fontColor=000000&fontFamily=Roboto&reviewTerm=review&fontSize=16&reviewTermPlural=reviews&alignment=left" data-resize="true" data-resize-width="true" data-redirect-click="https://testimonial.to/space-new/all" style="width:fit-content"></div>`;
   const CodeBlock = () => {
     return (
       <SyntaxHighlighter language={"javascript"} style={tomorrow}>
@@ -69,7 +69,11 @@ const Badge: React.FC<Props> = ({ reviewRatings, open, setOpen }) => {
   //   Prism.highlightAll();
   // }, []);
   return (
-    <BaseModal setOpen={setOpen} open={open} title={"Embed a Badge"}>
+    <BaseModal
+      setOpen={setOpen}
+      open={open}
+      title={<Typography type={"h2"} text={"Embed a Badge"} />}
+    >
       <div className="flex flex-col gap-2">
         <div>
           {
@@ -108,7 +112,7 @@ const Badge: React.FC<Props> = ({ reviewRatings, open, setOpen }) => {
         <div className="flex justify-center gap-1">
           <Button
             text={"Close"}
-            className="w-6/12 !h-9 bg-[#fff] !text-black border-solid border-2 border-grayText"
+            className="w-6/12 !h-9 !bg-[#fff] !text-black border-solid border-2 border-grayText"
             onClick={() => {
               setOpen(false);
             }}

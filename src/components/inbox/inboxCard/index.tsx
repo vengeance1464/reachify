@@ -10,6 +10,7 @@ import InboxAccordian from "../inboxAccordian";
 import Love from "../../../../public/assets/love";
 import { archiveOrUnarchiveReview, revalidateData } from "@/actions/actions";
 import { revalidateTag } from "next/cache";
+import { format } from "date-fns";
 
 interface InboxCardProps {
   // Define props here
@@ -77,30 +78,30 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
 
   const content = () => {
     return (
-      <div className="flex-col">
+      <div className="flex-col !font-sans ">
         <div>
           <Ratings isStatic totalStars={review.rating} />
         </div>
-        <div>{review.testimonialText}</div>
+        <div className="text-[#D9E3EA]">{review.testimonialText}</div>
       </div>
     );
   };
 
   const footerContent = () => {
     return (
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full !font-sans">
         <div className="flex justify-between ">
-          <div>
+          <div className="text-[#D9E3EA] ">
             Name:
             <div>{review.name}</div>
           </div>
-          <div>
+          <div className="text-[#D9E3EA]">
             Email:
             <div>{review.email}</div>
           </div>
-          <div>
+          <div className="text-[#D9E3EA]">
             Submitted At:
-            <div>{review.createdAt}</div>
+            <div>{format(review.createdAt, "MMM d, yyyy, h:mm:ss a")}</div>
           </div>
         </div>
         <div className="self-end">
@@ -112,8 +113,8 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
 
   const headerContent = () => {
     return (
-      <div className="flex justify-between">
-        {review.type}
+      <div className="flex justify-between !font-sans">
+        <div className="text-[#D9E3EA]">{review.type}</div>
         {/* <div onClick={() => archiveOrUnarchive()}> */}
         <Love
           onClick={(e: any) => {
@@ -132,7 +133,7 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
 
   return (
     <Card
-      classNames="w-3/4"
+      classNames="w-3/4 bg-[#25282C] border-none"
       title={""}
       headerContent={headerContent()}
       footerContent={footerContent()}

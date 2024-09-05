@@ -18,7 +18,7 @@ module.exports = {
           },
         
           fontFamily: {
-            sans: ['Graphik', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
             serif: ['Merriweather', 'serif'],
           },
           extend: {
@@ -44,7 +44,8 @@ module.exports = {
                 'primary': '#1DA1F2',
                 'gray-border':'rgb(51 54 58/1)',
                 'gray-card':'rgb(37 40 44/1)',
-                'red-border':'rgb(248 113 113/1)'
+                'red-border':'rgb(248 113 113/1)',
+                'whiteText':'#D9E3EA'
               },
           }
         },

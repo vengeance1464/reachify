@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 
 interface BaseModalProps {
-  title: string;
+  title: ReactNode;
   children?: ReactNode;
   trigger?: ReactNode;
   open: boolean;
@@ -30,7 +30,7 @@ const BaseModal: React.FC<BaseModalProps> = ({
       <DialogContent className="max-w-screen-lg bg-[#fff]">
         <DialogHeader className="bg-[#fff]">
           <DialogTitle className="text-center">{title}</DialogTitle>
-          <DialogDescription>{children}</DialogDescription>
+          {children}
         </DialogHeader>
       </DialogContent>
     </Dialog>

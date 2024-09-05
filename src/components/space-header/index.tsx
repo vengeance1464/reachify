@@ -6,16 +6,26 @@ import { Button } from "../ui/button";
 type HeaderProps = {
   spaceHeader: string;
   spaceId: string;
+  spaceUrl?: string;
 };
-const SpaceHeader: React.FC<HeaderProps> = ({ spaceHeader, spaceId }) => {
+const SpaceHeader: React.FC<HeaderProps> = ({
+  spaceHeader,
+  spaceId,
+  spaceUrl,
+}) => {
   return (
-    <div className="flex p-8  border-6 border-b-indigo-500">
-      <Image src={""} alt={""} />
+    <div className="flex gap-3 p-8 border-red-500 ">
+      {spaceUrl && <Image width={50} height={50} src={spaceUrl} alt={""} />}
       <div className="flex justify-between w-full">
-        <div>
+        <div className="flex flex-col">
           <Typography classes="text-grayText" type={"h1"} text={spaceHeader} />
+          {/* <Typography
+            classes="text-grayText"
+            type={"p"}
+            text={`Space ID: ${spaceId}`}
+          /> */}
         </div>
-        <Button className="bg-white text-black">Edit Space</Button>
+        {/* <Button className="bg-white text-black">Edit Space</Button> */}
       </div>
     </div>
   );

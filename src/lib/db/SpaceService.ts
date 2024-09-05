@@ -22,6 +22,20 @@ class SpaceService extends BaseService<'Space'> {
         return await this.update(reviewData)
     }
 
+    async getSpaceWithReviews(spaceId:string)
+    {
+      const spaceWithReviews = await this.findUnique({
+        where: {
+          id: spaceId, // Replace with the actual user ID
+        },
+        include: {
+          reviews: true,  // This will include the related Post documents
+        }
+      });
+
+      return spaceWithReviews;
+    }
+
 }
 
 export default SpaceService;

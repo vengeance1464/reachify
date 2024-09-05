@@ -7,13 +7,21 @@ import { dark, tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 import CollectionWidget from "@/components/collectionWidget";
 import { Button } from "@/components/button";
 import CopyToClipboard from "@/components/copyToClipboard";
+import Typography from "@/components/typography";
 
 interface Props {
   // Define the props for your component here
   open: boolean;
   setOpen: (open: boolean) => void;
+  spaceId: string;
+  spaceName: string;
 }
-const CollectionTutorial: React.FC<Props> = ({ open, setOpen }) => {
+const CollectionTutorial: React.FC<Props> = ({
+  open,
+  setOpen,
+  spaceId,
+  spaceName,
+}) => {
   const codeString = `<script async type="text/javascript" src="https://testimonial.to/js/widget-embed.js"></script>\n<div class="testimonial-to-embed" data-url="https://embed-v2.testimonial.to/badge/space-new?backgroundColor=EB144C&starColor=facc15&fontColor=000000&fontFamily=Roboto&reviewTerm=review&fontSize=16&reviewTermPlural=reviews&alignment=left" data-resize="true" data-resize-width="true" data-redirect-click="https://testimonial.to/space-new/all" style="width:fit-content"></div>`;
   const CodeBlock = () => {
     return (
@@ -35,12 +43,17 @@ const CollectionTutorial: React.FC<Props> = ({ open, setOpen }) => {
       open={open}
       setOpen={setOpen}
       //trigger={"Open"}
-      title={"Add collecting widget to your own website"}
+      title={
+        <Typography
+          type={"h2"}
+          text={"Add collecting widget to your own website"}
+        />
+      }
     >
       {/* {openReview ? (
         <ReviewForm setOpenReview={setOpenReview} />
       ) : ( */}
-      <CollectionWidget spaceId={"66b8b4c89db23b2d1a47a691"} />
+      <CollectionWidget spaceName={spaceName} spaceId={spaceId} />
 
       <div
         style={{
@@ -69,7 +82,7 @@ const CollectionTutorial: React.FC<Props> = ({ open, setOpen }) => {
       <div className="flex justify-center gap-1">
         <Button
           text={"Close"}
-          className="w-6/12 !h-9 bg-[#fff] !text-black border-solid border-2 border-grayText"
+          className="w-6/12 !h-9 !bg-[#fff] !text-black border-solid border-2 border-grayText"
           onClick={() => {
             setOpen(false);
           }}

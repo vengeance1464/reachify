@@ -15,9 +15,11 @@ import { TestimonialType } from "@prisma/client";
 interface Props {
   // Define your component's props here
   reviews: any;
+  spaceId: string;
+  spaceName: string;
 }
 
-const Inbox: React.FC<Props> = ({ reviews }) => {
+const Inbox: React.FC<Props> = ({ reviews, spaceId, spaceName }) => {
   // Implement your component logic here
   // console.log("Reviews Inbox", reviews);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -115,7 +117,7 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
     // JSX code for your component's UI goes here
     <>
       <Sidebar menuLists={menuLists} />
-      <div className="col-span-2 flex flex-col items-center gap-2">
+      <div className="col-span-2 flex flex-col items-center gap-1">
         <>
           {filteredReviews.map((review: any) => {
             //   <InboxCard review={review} />;
@@ -132,6 +134,8 @@ const Inbox: React.FC<Props> = ({ reviews }) => {
       }
       {
         <CollectionTutorial
+          spaceId={spaceId}
+          spaceName={spaceName}
           open={collectionDialog}
           setOpen={setCollectionDialogOpen}
         />

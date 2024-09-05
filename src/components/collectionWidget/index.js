@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CollectionPreview from "./collectionPreview";
 import ReviewForm from "./reviewForm"
 
-const CollectionWidget = ({ spaceId}) => {
+const CollectionWidget = ({ spaceId,spaceName}) => {
   const [spaceData, setSpaceData] = useState();
   const [openReview, setOpenReview] = useState(false);
 
@@ -42,7 +42,7 @@ const CollectionWidget = ({ spaceId}) => {
   }
 
   return (
-    <div>
+    <>
       {/* {spaceData && (
         <CollectionPreview
           setOpenReview={setOpenReview}
@@ -53,11 +53,11 @@ const CollectionWidget = ({ spaceId}) => {
       )} */}
 
        {openReview ? (
-        <ReviewForm setOpenReview={setOpenReview} />
+        <ReviewForm spaceName={spaceName} setOpenReview={setOpenReview} spaceId={spaceId}/>
       ) : (
         getCollectionPreview()
       )}
-    </div>
+    </>
   );
 };
 

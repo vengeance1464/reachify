@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CollectionPreview from "./collectionPreview";
 import ReviewForm from "./reviewForm"
+import Loader from "../loader";
 
 const CollectionWidget = ({ spaceId,spaceName}) => {
   const [spaceData, setSpaceData] = useState();
@@ -38,7 +39,11 @@ const CollectionWidget = ({ spaceId,spaceName}) => {
         />
     }
 
-    return null
+    return (
+      <div className="w-full mx-auto !h-5/6  p-6 bg-#fff border rounded-lg shadow-md flex justify-center items-center">
+       <Loader className="!h-fit mt-5 mb-5"/>
+    </div>
+    )
   }
 
   return (

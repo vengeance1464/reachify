@@ -4,6 +4,7 @@ import { InputCheckbox } from "@/components/checkbox";
 import InputTextArea from "@/components/inputElements/inputTextArea";
 import InputTextElement from "@/components/inputElements/inputTextBox";
 import { Ratings } from "@/components/reviewStars";
+import { useToast } from "@/hooks/use-toast";
 import { useCustomForm } from "@/hooks/useFormContext";
 import { TestimonialType } from "@prisma/client";
 import { redirect } from "next/navigation";
@@ -26,6 +27,16 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview, spaceId, spaceName }) => {
   const [checked, setIsChecked] = useState(false);
   const [review, setReview] = useState<any>(null);
   const [rating, setRating] = useState(5);
+
+  const { toast } = useToast();
+  // Add your component logic here
+
+  const showToast = () => {
+    toast({
+      title: "Review Created !",
+      description: "Review has been created successfully",
+    });
+  };
 
   const onSubmit = (data: any) => {
     console.log("Data", data);
@@ -72,6 +83,9 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview, spaceId, spaceName }) => {
       addReview();
       setReview(null);
       setOpenReview(false);
+      setTimeout(() => {
+        showToast();
+      }, 1000);
       revalidateData("reviews");
       redirect(`/products/${spaceId}/${spaceName}`);
     }

@@ -1,8 +1,11 @@
-import React, { ReactNode, useState, useRef } from "react";
+"use client";
+import { useToast } from "@/hooks/use-toast";
+//import { useToast } from "@/components/hooks/use-toast"
+import React, { ReactNode, useState, useRef, useEffect } from "react";
 import { useFormStatus } from "react-dom";
 
 type ButtonProps = {
-  text: string;
+  text?: string;
   onClick?: () => void;
   className?: string;
   icon?: ReactNode;
@@ -10,6 +13,10 @@ type ButtonProps = {
   formAction?: (formData: FormData) => void;
   showLoader?: boolean;
   disabled?: boolean;
+  children?: ReactNode;
+  showToastOnComplete?: boolean;
+  toastTitle?: string;
+  toastDescription?: string;
 };
 export const Button: React.FC<ButtonProps> = ({
   text,
@@ -18,14 +25,34 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   type = "button",
   formAction,
+  children,
   disabled = false,
   showLoader = false,
+  showToastOnComplete = false,
+  toastTitle,
+  toastDescription,
 }) => {
   const buttonRef = useRef(null);
   const { pending } = useFormStatus();
   console.log("Pending", pending);
+  const { toast } = useToast();
+  const [processStarted, setProcessStarted] = useState(false);
   //const [loading, setLoading] = useState(false);
 
+  // useEffect(() => {
+  //   if (showToastOnComplete) {
+  //     if (pending) {
+  //       setProcessStarted(true);
+  //     } else if (processStarted && !pending) {
+  //       setProcessStarted(false);
+  //       console.log("toast shown");
+  //       toast({
+  //         title: toastTitle,
+  //         description: toastDescription,
+  //       });
+  //     }
+  //   }
+  // }, [pending]);
   const animationClassname =
     showLoader && !disabled
       ? `relative px-6 py-3 text-white text-base font-medium bg-blue-500 rounded-md focus:outline-none flex justify-center items-center ${
@@ -33,6 +60,9 @@ export const Button: React.FC<ButtonProps> = ({
         }`
       : "";
 
+  // useEffect(()=>{
+
+  // },[])
   // const handleClick = () => {
   //   console.log("Button ref", buttonRef);
   //   setLoading(true);
@@ -63,8 +93,13 @@ export const Button: React.FC<ButtonProps> = ({
         </div>
       ) : (
         <div className="flex justify-center items-center">
-          {icon}
-          {text}
+          {children ? (
+            children
+          ) : (
+            <>
+              {icon} {text}
+            </>
+          )}
         </div>
       )}
     </button>

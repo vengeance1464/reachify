@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputTextElement from "../inputElements/inputTextBox";
 import InputTextArea from "../inputElements/inputTextArea";
 import { useCustomForm } from "@/hooks/useFormContext";
@@ -14,6 +14,11 @@ import ImageElement from "../inputElements/imageElement";
 import { Ratings } from "../reviewStars";
 import { Button } from "../button";
 import Typography from "../typography";
+import { useFormState } from "react-dom";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+
 interface Props {
   // Define your component's props here
 }
@@ -120,7 +125,27 @@ const SpaceCard: React.FC<Props> = (props) => {
     }
   };
 
-  const createAction = createSpaceAction.bind(null);
+  const [spaceResponse, createAction] = useFormState(createSpaceAction, false);
+
+  const { toast } = useToast();
+  // Add your component logic here
+
+  const showToast = () => {
+    toast({
+      title: "Space Created !",
+      description: "Space has been created successfully",
+    });
+  };
+
+  useEffect(() => {
+    if (spaceResponse) {
+      setTimeout(() => {
+        showToast();
+      }, 1000);
+      //revalidateData()
+      redirect("/dashboard");
+    }
+  }, [spaceResponse]);
 
   return (
     // JSX markup for your component goes here
@@ -171,10 +196,7 @@ const SpaceCard: React.FC<Props> = (props) => {
         {/* </div> */}
       </div>
       <div className="bg-#fff">
-        <form
-          // action={createSpaceAction.bind(null)}
-          className="bg-#fff flex flex-col gap-4"
-        >
+        <form className="bg-#fff flex flex-col gap-4">
           <Typography
             classes="text-center"
             type={"h2"}

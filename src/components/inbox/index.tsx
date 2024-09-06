@@ -1,5 +1,5 @@
 "use client";
-import React, { useOptimistic, useRef, useState } from "react";
+import React, { useEffect, useOptimistic, useRef, useState } from "react";
 import InboxCard from "./inboxCard";
 import Sidebar from "../sidebar";
 import Circle from "../../../public/assets/circle";
@@ -11,6 +11,7 @@ import Badge from "../modal/badgeModal";
 import CollectionTutorial from "../modal/collectionTutorial";
 import LayoutModal from "../modal/layoutModal";
 import { TestimonialType } from "@prisma/client";
+import { revalidateData } from "@/actions/actions";
 
 interface Props {
   // Define your component's props here
@@ -38,6 +39,10 @@ const Inbox: React.FC<Props> = ({ reviews, spaceId, spaceName }) => {
   // ).then((res) => res.json());
   // // const { data } = await response.json();
   // console.log("Response Space Productde", response);
+
+  useEffect(() => {
+    revalidateData("reviews");
+  }, [selectedIndex]);
 
   const clickHandler = (index: number) => {
     setSelectedIndex(index);

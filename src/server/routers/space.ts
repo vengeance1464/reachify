@@ -49,6 +49,16 @@ export const appRouter = router({
     let spaceService=new SpaceService('Space')
     const data=spaceService.getSpaceWithReviews(input)
     return data;
+  }),
+  deleteReview:publicProcedure.use(isAuthenticated).input(z.string()).mutation(async ({ input, ctx }) => {
+    // Replace with your database call
+    console.log("context ",input)
+    let reviewService=new ReviewService('Review')
+    const data=reviewService.delete({
+      where: {
+        id: input, // Ensure this is a valid string
+      }})
+    return data;
   })
 });
 

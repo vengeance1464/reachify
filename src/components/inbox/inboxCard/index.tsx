@@ -1,3 +1,4 @@
+"use client";
 import Card from "@/components/card";
 import { Ratings } from "@/components/reviewStars";
 import React, {
@@ -11,6 +12,7 @@ import Love from "../../../../public/assets/love";
 import { archiveOrUnarchiveReview, revalidateData } from "@/actions/actions";
 import { revalidateTag } from "next/cache";
 import { format } from "date-fns";
+import { useRouter } from "next/router";
 
 interface InboxCardProps {
   // Define props here
@@ -23,13 +25,21 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
   //   (currentState, value) => value // optimistic update function
   // );
 
-  const [archived, setArchived] = useState<boolean>(review.isArchived);
+  // const [archived, setArchived] = useState<boolean>();
+
+  // useEffect(() => {
+  //   console.log("isarchived", review.isArchived);
+  //   setArchived(review.isArchived);
+  // }, []);
+  // const router = useRouter();
+  // const currentPath = router.asPath;
+  // console.log("current ", currentPath);
 
   // useEffect(() => {
   //   setArchived(review.isArchived);
   // }, []);
 
-  console.log("archived", archived, review);
+  //console.log("archived", archived, review);
   // Implement component logic here
 
   const archiveOrUnarchive = () => {
@@ -39,9 +49,11 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
     //   applyOptimisticUpdate(!optimisticState);
     // });
 
-    setArchived((archived) => !archived);
+    //setArchived((archived) => !archived);
 
-    archiveOrUnarchiveReview(review.id, !archived)
+    //revalidateData("reviews");
+
+    archiveOrUnarchiveReview(review.id, !review.isArchived)
       .then((res) => {
         console.log("Res promis", res);
         revalidateData("reviews");
@@ -49,7 +61,7 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
       })
       .catch((err) => {
         //applyOptimisticUpdate(!optimisticState);
-        setArchived((archived) => !archived);
+        //setArchived((archived) => !archived);
       });
 
     //return true;
@@ -105,16 +117,18 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
           </div>
         </div>
         <div className="self-end">
-          <InboxAccordian />
+          <InboxAccordian reviewId={review.id} />
         </div>
       </div>
     );
   };
 
   const headerContent = () => {
+    // console.log("archived header", archived);
     return (
       <div className="flex justify-between !font-sans">
         <div className="text-[#D9E3EA]">{review.type}</div>
+
         {/* <div onClick={() => archiveOrUnarchive()}> */}
         <Love
           onClick={(e: any) => {
@@ -124,7 +138,7 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
           width={24}
           height={24}
           strokeColor="rgb(248 113 113/1)"
-          fillColor={!archived ? "rgb(248 113 113/1)" : undefined}
+          fillColor={!review.isArchived ? "rgb(248 113 113/1)" : "none"}
         />
         {/* </div> */}
       </div>

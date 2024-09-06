@@ -8,9 +8,10 @@ import { redirect } from "next/navigation"
 import ReviewService from "@/lib/db/ReviewService"
 import { v4 as uuidv4 } from 'uuid';
 import { getS3Url } from "@/lib/utils"
+import { trpcClient } from "@/server"
 
 
-async function createSpaceAction(formData:FormData)
+async function createSpaceAction(previousState:boolean,formData:FormData)
 {  
 
 
@@ -105,8 +106,8 @@ async function createSpaceAction(formData:FormData)
     console.log("testimonial type",testimonialType)
     let spaceService=new SpaceService('Space')
     const space = await spaceService.create(spaceBody);
-    revalidatePath("/dashboard")
-    redirect("/dashboard")
+    return true
+   
 
     //const createUser = trpc.space.createSpace.useMutation();
     //await createUser.mutateAsync(spaceBody);
@@ -128,5 +129,23 @@ async function archiveOrUnarchiveReview(reviewId:string,isArchived:boolean)
   revalidateTag(tagName)
 }
 
+async function deleteSpaceReview(reviewId:string)
+{
+  console.log("Review Id",reviewId)
+  const data=await trpcClient.space.deleteReview(
+    reviewId
+  );
 
-export {createSpaceAction,archiveOrUnarchiveReview,revalidateData}
+  //callbackFn()
+  //revalidateData("reviews")
+  return true
+  
+  //revalidatePath(`/products/${spaceId}/${spaceName}`)
+  // let reviewService=new ReviewService('Review')
+  // const res=await reviewService.delete(reviewId)
+  // console.log("Delete Res",res)
+  //return res
+}
+
+
+export {createSpaceAction,archiveOrUnarchiveReview,revalidateData,deleteSpaceReview}

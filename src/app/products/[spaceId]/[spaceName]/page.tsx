@@ -11,6 +11,7 @@ import Love from "../../../../../public/assets/love";
 import Code from "../../../../../public/assets/code";
 import Collecting from "../../../../../public/assets/collecting";
 import SidebarStar from "../../../../../public/assets/sidebarStar";
+import Loader from "@/components/loader";
 
 interface Props {
   // Define the props for your component here
@@ -21,10 +22,10 @@ const SpaceProduct: React.FC<Props> = async ({
 }: {
   params: { spaceId: string; spaceName: string };
 }) => {
-  const spaceWithReviews = await trpcClient.space.getSpaceWithReviews(
-    params.spaceId
-  );
-  console.log("spaceWithReviews", spaceWithReviews);
+  // const spaceWithReviews = await trpcClient.space.getSpaceWithReviews(
+  //   params.spaceId
+  // );
+  // console.log("spaceWithReviews", spaceWithReviews);
 
   const getData = async () => {
     "use server";
@@ -33,7 +34,7 @@ const SpaceProduct: React.FC<Props> = async ({
     // return await res.json();
 
     const response = await fetch(
-      `http://localhost:3000/api/embed/reviews/${params.spaceId}`,
+      `http://localhost:3000/api/reviews/${params.spaceId}`,
       {
         cache: "no-store",
         next: { tags: ["reviews"] },
@@ -43,9 +44,9 @@ const SpaceProduct: React.FC<Props> = async ({
     return response.data;
   };
 
-  const data = await getData();
+  const spaceWithReviews = await getData();
   //revalidatePath("/");
-  //console.log("New data", data);
+  console.log("New data", spaceWithReviews);
 
   return (
     <div className="grid grid-cols-3 ">
@@ -56,11 +57,13 @@ const SpaceProduct: React.FC<Props> = async ({
           spaceId={params.spaceId}
         />
       </div>
-      <Inbox
-        spaceName={params.spaceName}
-        spaceId={params.spaceId}
-        reviews={spaceWithReviews.reviews}
-      />
+      <Suspense fallback={<Loader />}>
+        <Inbox
+          spaceName={params.spaceName}
+          spaceId={params.spaceId}
+          reviews={spaceWithReviews.reviews}
+        />
+      </Suspense>
       {/* <Sidebar menuLists={menuLists} />
       <div className="col-span-2 flex flex-col items-center gap-2">
         <>

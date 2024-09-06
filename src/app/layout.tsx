@@ -5,7 +5,7 @@ import { ProgressBar, ProgressBarProvider } from "react-transition-progress";
 import AuthComponent from "@/components/auth";
 import { usePathname, useRouter } from "next/navigation";
 import Header from "@/components/header";
-import Like from "../../public/assets/like";
+import { Toaster } from "@/components/ui/toaster";
 
 type LayoutProps = {
   children: ReactNode;
@@ -21,9 +21,10 @@ const Layout = ({ children }: LayoutProps) => {
         <ProgressBarProvider>
           {/* I.e. using Tailwind CSS to show the progress bar with custom styling */}
           <ProgressBar className="fixed h-1 shadow-lg shadow-sky-500/20 bg-sky-500 top-0" />
-          {/* <Header title="Testimonial">
-          <Like width={50} height={50} />
-        </Header> */}
+          <Toaster />
+          <div className="mb-4">
+            <Header title="Reachify" />
+          </div>
           {/* {!unauthenticatedPaths.includes(pathName) ? (
           <TRPCProvider>
             <AuthComponent>{children}</AuthComponent>

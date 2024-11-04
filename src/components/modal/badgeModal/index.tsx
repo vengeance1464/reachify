@@ -77,7 +77,7 @@ const Badge: React.FC<Props> = ({ reviewRatings, open, setOpen }) => {
       <div className="flex flex-col gap-2">
         <div>
           {
-            <Ratings isStatic>
+            <Ratings isStatic className="items-center">
               <Typography
                 type={"h4"}
                 text={`5/5 from ${fullStarsRating} reviews`}

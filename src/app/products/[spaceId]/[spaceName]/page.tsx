@@ -49,7 +49,7 @@ const SpaceProduct: React.FC<Props> = async ({
   console.log("New data", spaceWithReviews);
 
   return (
-    <div className="grid grid-cols-3 ">
+    <div className="grid grid-cols-3">
       <div className="col-span-3   !border-y-[1px] !border-[#25282C] mb-4">
         <SpaceHeader
           spaceUrl={spaceWithReviews.spaceUrl}

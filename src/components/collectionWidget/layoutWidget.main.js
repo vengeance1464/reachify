@@ -75,5 +75,5 @@ function startApp() {
 
    const spaceId = urlParams.get('spaceId');
 
-    LayoutHelper.mount('hello-world-container',spaceId);
+    LayoutHelper.mount('hello-world-container',spaceId,"fixed");
 }

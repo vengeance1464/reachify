@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
 
  export enum LayoutType {
-    FIXED,
-    CAROUSEL,
-    ANIMATED,
+    FIXED="fixed",
+    CAROUSEL="carousel",
+    ANIMATED="animated",
   }
   type WallProps = {
     spaceId: string;
-    layoutType: LayoutType;
+    layoutType: string;
   };
 
   type LayoutProps={

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import TestimonialCard from "./testimonialCard";
 import { LayoutType, WallProps } from "./types";
 import TestimonialsWallLayout from "./layout";
+import Like from "../../../public/assets/like";
+import Typography from "../typography";
 
 const TestimonialsWall: React.FC<WallProps> = ({ spaceId, layoutType }) => {
   const [reviews, setReviews] = useState([]);
@@ -25,10 +27,17 @@ const TestimonialsWall: React.FC<WallProps> = ({ spaceId, layoutType }) => {
     fetchReviews();
   }, []);
 
+  console.log("Reviews ", reviews.length);
   return (
-    <TestimonialsWallLayout layoutType={LayoutType.FIXED}>
+    <TestimonialsWallLayout layoutType={LayoutType.CAROUSEL}>
       {reviews.length > 0 &&
-        reviews.map((review: any) => <TestimonialCard review={review} />)}
+        [...reviews, ...reviews, ...reviews, ...reviews].map((review: any) => (
+          <TestimonialCard review={review} />
+        ))}
+      {/* <div className="flex justify-center items-center">
+        <Like width={50} height={50} />
+        <Typography type="h3" text={"Reachify"} classes="text-white" />
+      </div> */}
     </TestimonialsWallLayout>
   );
 };

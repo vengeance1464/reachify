@@ -4,7 +4,8 @@ import { router, t } from "./trpc";
 
 export const appRouter = router({
   space: spaceRouter,
-  user:userRouter
+  user:userRouter,
+  //ai:aiRouter,
 });
 
 export type AppRouter = typeof appRouter;

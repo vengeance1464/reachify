@@ -148,4 +148,14 @@ async function deleteSpaceReview(reviewId:string)
 }
 
 
-export {createSpaceAction,archiveOrUnarchiveReview,revalidateData,deleteSpaceReview}
+async function emphasizeReview(reviewId:string,review:string)
+{
+
+  let reviewService=new ReviewService('Review')
+  console.log("Review",reviewId,review)
+  const res=await reviewService.updateReview(reviewId,review)
+  return res
+}
+
+
+export {createSpaceAction,archiveOrUnarchiveReview,revalidateData,deleteSpaceReview,emphasizeReview}

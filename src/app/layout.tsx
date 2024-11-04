@@ -17,21 +17,24 @@ const Layout = ({ children }: LayoutProps) => {
   const unauthenticatedPaths = ["/login"];
   return (
     <html>
-      <body className="bg-navy-blue">
-        <ProgressBarProvider>
-          {/* I.e. using Tailwind CSS to show the progress bar with custom styling */}
-          <ProgressBar className="fixed h-1 shadow-lg shadow-sky-500/20 bg-sky-500 top-0" />
-          <Toaster />
-          <div className="mb-4">
-            <Header title="Reachify" />
-          </div>
-          {/* {!unauthenticatedPaths.includes(pathName) ? (
+      <body className="bg-navy-blue overflow-y-scroll max-h-screen ">
+        <TRPCProvider>
+          <ProgressBarProvider>
+            {/* I.e. using Tailwind CSS to show the progress bar with custom styling */}
+            <ProgressBar className="fixed h-1 shadow-lg shadow-sky-500/20 bg-sky-500 top-0" />
+            {/* <Toaster /> */}
+
+            <div className="mb-4">
+              <Header title="Reachify" />
+            </div>
+            {/* {!unauthenticatedPaths.includes(pathName) ? (
           <TRPCProvider>
             <AuthComponent>{children}</AuthComponent>
           </TRPCProvider>
         ) : ( */}
-          <TRPCProvider>{children}</TRPCProvider>
-        </ProgressBarProvider>
+            {children}
+          </ProgressBarProvider>
+        </TRPCProvider>
       </body>
     </html>
   );

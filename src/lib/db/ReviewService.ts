@@ -40,6 +40,32 @@ class ReviewService extends BaseService<'Review'> {
             throw new Error("Review not found")
         }
     }
+
+    async updateReview(reviewId:string,reviewText:string)
+    {
+        const review=await this.findUnique({
+            where:{
+                id:reviewId
+            }
+        })
+
+        if(review)
+        {
+            const updatedReview=await this.update({
+                where:{
+                    id:reviewId
+                },
+                data:{
+                    testimonialText:reviewText
+                }
+            })
+            return updatedReview
+        }
+        else
+        {
+            throw new Error("Review not found")
+        }
+    }
 }
 
 

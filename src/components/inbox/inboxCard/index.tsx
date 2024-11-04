@@ -94,7 +94,15 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
         <div>
           <Ratings isStatic totalStars={review.rating} />
         </div>
-        <div className="text-[#D9E3EA]">{review.testimonialText}</div>
+        <div className="testimonial">
+          <div
+            className="testimonial"
+            dangerouslySetInnerHTML={{
+              __html: review.testimonialText,
+            }}
+          />
+        </div>
+        {/* <div className="text-[#D9E3EA]">{review.testimonialText}</div> */}
       </div>
     );
   };
@@ -117,7 +125,10 @@ const InboxCard: React.FC<InboxCardProps> = ({ review }) => {
           </div>
         </div>
         <div className="self-end">
-          <InboxAccordian reviewId={review.id} />
+          <InboxAccordian
+            reviewText={review.testimonialText}
+            reviewId={review.id}
+          />
         </div>
       </div>
     );

@@ -67,5 +67,14 @@
     @apply bg-background text-foreground;
     @apply font-sans ;
     overflow-x: hidden;
+   
   }
+}
+
+.testimonial:not([style*="background-color: yellow"]) {
+  color: white;
+}
+
+.testimonial[style*="background-color: yellow"] {
+  color: black !important;
 }

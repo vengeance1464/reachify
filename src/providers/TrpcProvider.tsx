@@ -13,7 +13,7 @@ export function TRPCProvider({ children }: { children: React.ReactNode }) {
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: `http://localhost:3000/api/spaces`,
+          url: `http://${process.env.NEXT_PUBLIC_BASE_URL}/api/spaces`,
         }),
       ],
     })

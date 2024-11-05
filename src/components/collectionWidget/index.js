@@ -10,7 +10,7 @@ const CollectionWidget = ({ spaceId,spaceName}) => {
   useEffect(() => {
     const fetchSpaceData = async (spaceId) => {
       const response = await fetch(
-        `http://127.0.0.1:3000/api/embed/${spaceId}`,
+        `https://reachify.vercel.app/api/embed/${spaceId}`,
         {
           method: "GET",
           // headers: {

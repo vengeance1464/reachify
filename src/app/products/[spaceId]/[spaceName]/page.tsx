@@ -35,7 +35,7 @@ const SpaceProduct: React.FC<Props> = async ({
     // return await res.json();
 
     const response = await fetch(
-      `http://localhost:3000/api/reviews/${params.spaceId}`,
+      `http://${process.env.NEXT_PUBLIC_BASE_URL}/api/reviews/${params.spaceId}`,
       {
         cache: "no-store",
         next: { tags: ["reviews"] },

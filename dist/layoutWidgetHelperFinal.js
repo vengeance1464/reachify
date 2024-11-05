@@ -27997,7 +27997,7 @@
     (0, import_react5.useEffect)(() => {
       async function fetchReviews() {
         const response = await fetch(
-          `http://127.0.0.1:3000/api/embed/reviews/${spaceId}`,
+          `https://reachify.vercel.app/api/embed/reviews/${spaceId}`,
           {
             method: "GET"
             // headers: {

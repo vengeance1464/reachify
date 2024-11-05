@@ -26396,7 +26396,7 @@ If this is unexpected, please open an issue: https://pris.ly/prisma-prisma-bug-r
     (0, import_react12.useEffect)(() => {
       const fetchSpaceData = async (spaceId2) => {
         const response = await fetch(
-          `http://127.0.0.1:3000/api/embed/${spaceId2}`,
+          `https://reachify.vercel.app/api/embed/${spaceId2}`,
           {
             method: "GET"
             // headers: {

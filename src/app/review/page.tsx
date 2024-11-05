@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import AuthComponent from "@/components/auth";
-import CollectionTutorial from "@/components/modal/collectionTutorial";
+
 import Badge from "@/components/modal/badgeModal";
 
-interface Props {
-  name: string;
-}
-
-const ReviewPage: React.FC<Props> = () => {
+const ReviewPage: React.FC = () => {
   //const [spaces, setSpaces] = useState([]);
 
   // setSpaces(data);
   return (
     // <AuthComponent>
-    <Badge reviewRatings={[5, 4, 3]} />
+    <Badge
+      reviewRatings={[5, 4, 3]}
+      open={false}
+      setOpen={function (open: boolean): void {
+        throw new Error("Function not implemented.");
+      }}
+    />
     /* <ReviewForm /> */
     // </AuthComponent>
   );

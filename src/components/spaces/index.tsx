@@ -15,9 +15,9 @@ const Spaces: React.FC = async () => {
     <div className="grid grid-cols-3 gap-4">
       {spaces &&
         spaces.length > 0 &&
-        spaces.map((space: any) => {
+        spaces.map((space: any, index: number) => {
           return (
-            <Link href={`/products/${space.id}/${space.spaceName}`}>
+            <Link key={space} href={`/products/${space.id}/${space.spaceName}`}>
               <CardComponent
                 key={space}
                 classNames="bg-[#25282C] border-[#33363A]"

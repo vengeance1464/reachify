@@ -51,6 +51,7 @@ const Sidebar: React.FC<Props> = ({ menuLists }) => {
                   //}
                   ///>
                   <SidebarButton
+                    key={index}
                     clickHandler={() => menuList.clickHandler(index)}
                     isActive={menuList.isActive(index, menuList.listTitle)}
                   >

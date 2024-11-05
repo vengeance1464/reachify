@@ -63,7 +63,7 @@ const DraggableList: React.FC<DraggableListProps> = ({
       )}
       <DndContext onDragEnd={handleDragEnd}>
         {items.items.map((item: any, index: number) => (
-          <DroppableArea id={`droppable-${index}`}>
+          <DroppableArea key={`droppable-${index}`} id={`droppable-${index}`}>
             <DraggableItem
               key={item}
               index={index}

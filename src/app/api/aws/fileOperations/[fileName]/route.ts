@@ -12,7 +12,7 @@ type Params={
   fileName:string
 }
 
-export async function GET(context: { params: Params }){
+export async function GET(req:Request,context: { params: Params }){
   try {
     const command = new GetObjectCommand({
       Bucket: process.env.AWS_BUCKET_NAME!,

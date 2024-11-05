@@ -44,11 +44,9 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview, spaceId, spaceName }) => {
     setReview({ ...data, rating, type: TestimonialType.TEXT, videoLink: "" });
   };
 
-  const [reviewText, name, email] = getValues([
-    "testimonialText",
-    "name",
-    "email",
-  ]);
+  const [reviewText, name, email] = getValues
+    ? getValues(["testimonialText", "name", "email"])
+    : ["", "", ""];
   const hasError = () => {
     let err = false;
     if (

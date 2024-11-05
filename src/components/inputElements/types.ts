@@ -1,4 +1,4 @@
- type InputType= {
+ export type InputType= {
     value?: string;
     onChange?: (value: string) => void;
     register: any;
@@ -11,6 +11,3 @@
     errorMessage?:string
     trigger?:any
 }
-
-
-export {InputType}

@@ -17,7 +17,9 @@ interface Props {
   setOpen: (open: boolean) => void;
 }
 const LayoutModal: React.FC<Props> = ({ open, setOpen }) => {
-  const [layoutSelect, setLayoutSelect] = useState<LayoutType | null>(null);
+  const [layoutSelect, setLayoutSelect] = useState<
+    LayoutType | null | undefined
+  >(null);
   const codeString = `<script async type="text/javascript" src="https://testimonial.to/js/widget-embed.js"></script>\n<div class="testimonial-to-embed" data-url="https://embed-v2.testimonial.to/badge/space-new?backgroundColor=EB144C&starColor=facc15&fontColor=000000&fontFamily=Roboto&reviewTerm=review&fontSize=16&reviewTermPlural=reviews&alignment=left" data-resize="true" data-resize-width="true" data-redirect-click="https://testimonial.to/space-new/all" style="width:fit-content"></div>`;
   const CodeBlock = () => {
     return (

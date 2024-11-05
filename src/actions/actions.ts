@@ -71,7 +71,7 @@ async function createSpaceAction(previousState:boolean,formData:FormData)
     const customMessage=formData.get("custom-message")
     const testimonialTypeStringified=formData.get("testimonial-type") as string
     const shouldCollectStars=formData.get("collect-stars")==='on'
-    let questionsList=[]
+    let questionsList:any=[]
     let testimonialType=null
     if(testimonialTypeStringified!==null)
     {
@@ -82,6 +82,7 @@ async function createSpaceAction(previousState:boolean,formData:FormData)
     for(let i=0;i<questionsLength;i++)
     {
       const value = formData.get(`questions.${i}.name`)
+      
       questionsList.push(value?.toString())
     }
 

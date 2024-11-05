@@ -1,6 +1,6 @@
 import { appRouter as spaceRouter } from "./routers/space";
 import { appRouter as userRouter } from "./routers/users";
-import { router, t } from "./trpc";
+import { Context, router, t } from "./trpc";
 
 export const appRouter = router({
   space: spaceRouter,
@@ -14,6 +14,6 @@ export type AppRouter = typeof appRouter;
 
   const createCaller=callerFactory(appRouter)
 
- export const trpcClient=createCaller({})
+ export const trpcClient=createCaller({} as Context)
 
  

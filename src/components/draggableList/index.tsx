@@ -4,7 +4,7 @@ import DroppableArea from "./droppable";
 import { DndContext } from "@dnd-kit/core";
 
 interface DraggableListProps {
-  onItemMove: (dragIndex: number, hoverIndex: number) => void;
+  // onItemMove: (dragIndex: number, hoverIndex: number) => void;
   label: string;
   required: boolean;
   items: any;
@@ -20,7 +20,7 @@ interface DragItem {
 
 const DraggableList: React.FC<DraggableListProps> = ({
   label,
-  onItemMove,
+  // onItemMove,
   required,
   items,
   setItems,

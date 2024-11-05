@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import InputTextElement from "../inputElements/inputTextBox";
 import InputTextArea from "../inputElements/inputTextArea";
 import { useCustomForm } from "@/hooks/useFormContext";
@@ -53,15 +53,13 @@ const SpaceCard: React.FC<Props> = (props) => {
     name: "questions",
   });
 
-  const questionsList = watch("questions");
-  console.log("get values ", getValues("space-name"));
-  const [spaceName, title, customMessage] = getValues([
-    "space-name",
-    "header-title",
-    "custom-message",
-  ]);
+  const questionsList = watch ? watch("questions") : [];
+
+  const [spaceName, title, customMessage] = getValues
+    ? getValues(["space-name", "header-title", "custom-message"])
+    : ["", "", ""];
   console.log("spaceName", spaceName, "questions", questionsList);
-  const [imgSrc, setImgSrc] = useState("");
+  const [imgSrc, setImgSrc] = useState<string | ArrayBuffer | null>("");
 
   // useEffect(() => {
   //   console.log("Watched fields", fields);
@@ -99,7 +97,7 @@ const SpaceCard: React.FC<Props> = (props) => {
 
   const [items, setItems] = useState<{
     namePrefix: string;
-    items: ItemType[];
+    items: any;
   }>({
     namePrefix: "questions",
     items: [
@@ -224,7 +222,7 @@ const SpaceCard: React.FC<Props> = (props) => {
           />
           {
             <ImageElement
-              src={imgSrc}
+              src={imgSrc?.toString()}
               alt=""
               onChange={handleImageUpload}
               classes="w-10 h-10 bg-[#EBF1F5] rounded-full"
@@ -266,9 +264,12 @@ const SpaceCard: React.FC<Props> = (props) => {
             items={items}
             register={register}
             setItems={setItems}
-            onItemMove={function (dragIndex: number, hoverIndex: number): void {
-              throw new Error("Function not implemented.");
-            }}
+            // onItemMove={function (
+            //   dragIndex: number,
+            //   hoverIndex: number
+            // ): ReactNode {
+            //   return null;
+            // }}
           />
           {/* <div className="flex jusify-between items-center w-full">
             <Dropdown
@@ -283,7 +284,6 @@ const SpaceCard: React.FC<Props> = (props) => {
 
             <Toggle name="star-ratings" label={"Collect Star Ratings"} />
           </div> */}
-          {console.log("Errors", hasError())}
           <div className="w-full px-3 h-10 mt-5 flex justify-center">
             <Button
               formAction={createAction}

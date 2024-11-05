@@ -1,16 +1,10 @@
 import React, { Suspense, useState } from "react";
 import AuthComponent from "@/components/auth";
 import Spaces from "@/components/spaces";
-import ProgressLink from "@/components/progressLink";
-import SkeletonLoader from "@/components/skeleton";
 import { Button } from "@/components/button";
 import { Link } from "react-transition-progress/next";
 
-interface Props {
-  name: string;
-}
-
-const Dashboard: React.FC<Props> = () => {
+const Dashboard: React.FC = () => {
   //const [spaces, setSpaces] = useState([]);
 
   // setSpaces(data);

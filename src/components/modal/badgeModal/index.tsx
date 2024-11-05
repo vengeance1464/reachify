@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactNode, useEffect, useState } from "react";
 import BaseModal from "../baseModal";
 import { Ratings } from "@/components/reviewStars";

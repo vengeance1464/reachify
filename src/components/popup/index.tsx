@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef } from "react";
 import BaseModal from "../modal/baseModal";
 import { useOpenAI } from "@/hooks/useOpenAI";

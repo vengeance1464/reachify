@@ -4,11 +4,7 @@ import Typography from "@/components/typography";
 import { redirect } from "next/navigation";
 import React from "react";
 
-interface Props {
-  name: string;
-}
-
-const Login: React.FC<Props> = async () => {
+const Login: React.FC = async () => {
   const session: any = await auth();
   console.log("session", session);
 

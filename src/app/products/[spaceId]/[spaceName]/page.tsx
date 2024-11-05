@@ -12,6 +12,7 @@ import Code from "../../../../../public/assets/code";
 import Collecting from "../../../../../public/assets/collecting";
 import SidebarStar from "../../../../../public/assets/sidebarStar";
 import Loader from "@/components/loader";
+import AuthComponent from "@/components/auth";
 
 interface Props {
   // Define the props for your component here
@@ -49,22 +50,23 @@ const SpaceProduct: React.FC<Props> = async ({
   console.log("New data", spaceWithReviews);
 
   return (
-    <div className="grid grid-cols-3">
-      <div className="col-span-3   !border-y-[1px] !border-[#25282C] mb-4">
-        <SpaceHeader
-          spaceUrl={spaceWithReviews.spaceUrl}
-          spaceHeader={params.spaceName}
-          spaceId={params.spaceId}
-        />
-      </div>
-      <Suspense fallback={<Loader />}>
-        <Inbox
-          spaceName={params.spaceName}
-          spaceId={params.spaceId}
-          reviews={spaceWithReviews.reviews}
-        />
-      </Suspense>
-      {/* <Sidebar menuLists={menuLists} />
+    <AuthComponent>
+      <div className="grid grid-cols-3">
+        <div className="col-span-3   !border-y-[1px] !border-[#25282C] mb-4">
+          <SpaceHeader
+            spaceUrl={spaceWithReviews.spaceUrl}
+            spaceHeader={params.spaceName}
+            spaceId={params.spaceId}
+          />
+        </div>
+        <Suspense fallback={<Loader />}>
+          <Inbox
+            spaceName={params.spaceName}
+            spaceId={params.spaceId}
+            reviews={spaceWithReviews.reviews}
+          />
+        </Suspense>
+        {/* <Sidebar menuLists={menuLists} />
       <div className="col-span-2 flex flex-col items-center gap-2">
         <>
           {data.map((review: any) => {
@@ -73,7 +75,8 @@ const SpaceProduct: React.FC<Props> = async ({
           })}
         </>
       </div> */}
-    </div>
+      </div>
+    </AuthComponent>
   );
 };
 

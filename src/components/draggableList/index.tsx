@@ -54,7 +54,7 @@ const DraggableList: React.FC<DraggableListProps> = ({
   };
 
   return (
-    <div>
+    <div className="w-full">
       {label && (
         <div className="flex">
           <label className="text-gray-700">{label}</label>

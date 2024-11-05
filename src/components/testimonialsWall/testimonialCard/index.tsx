@@ -10,16 +10,24 @@ type TestimonialCardProps = {
     rating: number;
     createdAt: any;
   };
+  className: string;
 };
 
-const TestimonialCard: React.FC<TestimonialCardProps> = ({ review }) => {
+const TestimonialCard: React.FC<TestimonialCardProps> = ({
+  review,
+  className,
+}) => {
   const content = () => {
     return (
       <div className="flex-col">
         <div>
           <Ratings isStatic totalStars={review.rating} />
         </div>
-        <div>{review.testimonialText}</div>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: review.testimonialText,
+          }}
+        />
       </div>
     );
   };
@@ -27,6 +35,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ review }) => {
   return (
     <Card
       title={review.name}
+      classNames={className}
       footerContent={
         <div>
           {review.createdAt !== null

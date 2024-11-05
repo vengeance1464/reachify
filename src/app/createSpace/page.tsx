@@ -1,4 +1,4 @@
-"use client";
+import AuthComponent from "@/components/auth";
 import CardComponent from "@/components/card";
 import SpaceCard from "@/components/spaceCard";
 //import { trpc } from "@/utils/trpc";
@@ -18,7 +18,9 @@ const CreateSpace = () => {
     //   <Card />
     //   <SpaceCard />
     // </div>
-    <CardComponent classNames="w-full" title={""} content={<SpaceCard />} />
+    <AuthComponent>
+      <CardComponent classNames="w-full" title={""} content={<SpaceCard />} />
+    </AuthComponent>
   );
 };
 

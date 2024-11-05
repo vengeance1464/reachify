@@ -29,10 +29,12 @@ const TestimonialsWall: React.FC<WallProps> = ({ spaceId, layoutType }) => {
 
   console.log("Reviews ", reviews.length);
   return (
-    <TestimonialsWallLayout layoutType={LayoutType.CAROUSEL}>
+    <TestimonialsWallLayout layoutType={layoutType}>
       {reviews.length > 0 &&
-        [...reviews, ...reviews, ...reviews, ...reviews].map((review: any) => (
-          <TestimonialCard review={review} />
+        [...reviews].map((review: any) => (
+          <div style={{ maxWidth: "350px" }}>
+            <TestimonialCard className="!w-[350px]" review={review} />
+          </div>
         ))}
       {/* <div className="flex justify-center items-center">
         <Like width={50} height={50} />

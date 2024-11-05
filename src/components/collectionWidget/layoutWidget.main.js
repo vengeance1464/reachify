@@ -1,3 +1,4 @@
+
 // Function to load a script dynamically
 function loadScript(url, callback) {
     const script = document.createElement('script');
@@ -38,7 +39,7 @@ loadCSS('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css',
     loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css', function() {
         console.log('FontAwesome CSS loaded');
 
-loadCSS('https://reachify-bucker.s3.amazonaws.com/bundles/layoutWidgetHelper.css', function() {
+loadCSS('https://reachify-bucker.s3.us-east-1.amazonaws.com/bundles/layoutWidgetHelperFile.css', function() {
 // Load React
 loadScript('https://unpkg.com/react@17/umd/react.development.js', function() {
     console.log('React loaded');
@@ -48,7 +49,7 @@ loadScript('https://unpkg.com/react@17/umd/react.development.js', function() {
         console.log('ReactDOM loaded');
         
         // After React and ReactDOM have loaded, start your application
-        loadScript('https://reachify-bucker.s3.amazonaws.com/bundles/layoutWidgetHelper.js', function() {
+        loadScript('https://reachify-bucker.s3.us-east-1.amazonaws.com/bundles/layoutWidgetHelperFinal.js', function() {
             console.log('ReactDOM loaded');
             
             // After React and ReactDOM have loaded, start your application
@@ -75,5 +76,7 @@ function startApp() {
 
    const spaceId = urlParams.get('spaceId');
 
-    LayoutHelper.mount('hello-world-container',spaceId,"fixed");
+   const layoutType=urlParams.get("layoutType")
+
+    LayoutHelper.mount('hello-world-container',spaceId,layoutType);
 }

@@ -16,7 +16,7 @@ const InputTextElement: React.FC<InputType> = ({
   //   await trigger(field); // Trigger validation on blur
   // };
   return (
-    <div className={`flex flex-col`}>
+    <div className={`flex flex-col ${classes}`}>
       {label && (
         <div className="flex">
           <label className="text-textBlack">{label}</label>

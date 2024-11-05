@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { AppRouter, trpcClient } from "@/server";
 import { inferProcedureInput } from "@trpc/server";
+import { redirect } from "next/navigation";
 import React, { ReactNode, Suspense } from "react";
 
 type Props = {
@@ -12,7 +13,9 @@ const AuthComponent: React.FC<Props> = async ({ children }) => {
 
   //const currentPath = router.pathname;
   console.log("session", session);
-  if (!session?.user) return null;
+  if (session === null || !session?.user) {
+    redirect("/login");
+  }
 
   const input: any = {
     userId: session.user.id,

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import "./globals.css"
-import BadgeWidget from './badgeWidget';
 import TestimonialsWall from "../testimonialsWall/wall"
 
 function mount(containerId,spaceId,layoutType) {

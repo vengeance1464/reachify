@@ -151,7 +151,7 @@ const SpaceCard: React.FC<Props> = (props) => {
     // JSX markup for your component goes here
 
     // <div className="bg-[#fff] w-3/4 grid grid-cols-2 gap-1 border rounded- shadow-md">
-    <div className="grid grid-cols-2 gap-1 ">
+    <div className="grid grid-cols-2 gap-1 pb-10">
       <div className="max-w-md mx-auto h-3/4 p-6 bg-#fff border rounded-lg shadow-md flex flex-col justify-evenly">
         <div className="flex justify-center items-center mb-4">
           <div className="w-4 h-4 bg-indigo-100 rounded-full flex items-center justify-center">
@@ -284,10 +284,10 @@ const SpaceCard: React.FC<Props> = (props) => {
             <Toggle name="star-ratings" label={"Collect Star Ratings"} />
           </div> */}
           {console.log("Errors", hasError())}
-          <div className="w-full px-3 flex justify-center">
+          <div className="w-full px-3 h-10 mt-5 flex justify-center">
             <Button
               formAction={createAction}
-              text={"Update Space"}
+              text={"Create Space"}
               type="submit"
               showLoader
               className={"w-9/12"}

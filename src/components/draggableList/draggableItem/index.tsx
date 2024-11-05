@@ -31,14 +31,14 @@ const DraggableItem: React.FC<DraggableItemProps> = ({
       ref={setNodeRef}
       key={index}
       style={style}
-      className="flex items-center"
+      className="flex items-center "
     >
       <div {...listeners} {...attributes}>
         <MoreActions />
       </div>
       <div className="flex items-center">
         <InputTextElement
-          //classes="w-full"
+          // classes="w-[80%]"
           defaultValue={item}
           //type="text"
           name={name}

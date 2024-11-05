@@ -43,12 +43,12 @@ const CarouselLayout: React.FC<any> = ({ children }) => {
     // </Carousel>
     <div className="flex flex-col">
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        className="grid grid-cols-5 gap-x-3 p-4 flex flex-row justify-center items-center mx-auto"
+        // style={{
+        //   display: "flex",
+        //   justifyContent: "center",
+        //   alignItems: "center",
+        // }}
+        className="flex justify-center items-center gap-2"
       >
         {/* <div className="bg-blue-200 p-4">Column 1</div>
       <div className="bg-blue-300 p-4">Column 2</div>
@@ -65,7 +65,7 @@ const CarouselLayout: React.FC<any> = ({ children }) => {
         {children &&
           children.length > 0 &&
           getCurrentCarouselItems().map((item: any) => (
-            <div className="w-[350px]">{item}</div>
+            <div style={{ maxWidth: "350px" }}>{item}</div>
           ))}
         {/* </div> */}
         {/* <RightArrow
@@ -82,7 +82,7 @@ const CarouselLayout: React.FC<any> = ({ children }) => {
         />
       </div>
       {totalPages >= 1 && (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center mt-5">
           {Array(totalPages)
             .fill(0)
             .map((_, index) => (

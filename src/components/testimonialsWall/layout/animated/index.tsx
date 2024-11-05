@@ -10,7 +10,9 @@ const AnimatedLayout: React.FC<any> = ({ children, width = 1, gap = 0.2 }) => {
       {children &&
         children.length > 0 &&
         children.map((item) => (
-          <div className="relative animate-marquee-infinite">{item}</div>
+          <div key={item} className="relative animate-marquee-infinite">
+            {item}
+          </div>
         ))}
     </div>
   );

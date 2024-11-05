@@ -32,7 +32,7 @@ const TestimonialsWall: React.FC<WallProps> = ({ spaceId, layoutType }) => {
     <TestimonialsWallLayout layoutType={layoutType}>
       {reviews.length > 0 &&
         [...reviews].map((review: any) => (
-          <div style={{ maxWidth: "350px" }}>
+          <div key={review} style={{ maxWidth: "350px" }}>
             <TestimonialCard className="!w-[350px]" review={review} />
           </div>
         ))}

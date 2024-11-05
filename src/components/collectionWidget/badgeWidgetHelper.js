@@ -5,7 +5,7 @@ import BadgeWidget from './badgeWidget';
 
 function mount(containerId,spaceId) {
  // const { name } = params;
-  ReactDOM.render(<BadgeWidget spaceId={spaceId} />, document.getElementById(containerId));
+  ReactDOM.createRoot(<BadgeWidget spaceId={spaceId} />, document.getElementById(containerId));
 }
 
 // Expose the mount function globally

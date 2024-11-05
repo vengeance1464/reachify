@@ -24,8 +24,10 @@ const Dropdown: React.FC<DropdownType> = ({ items, defaultKey, name }) => {
         onChange={handleChange}
         name={name}
       >
-        {items.map((item) => (
-          <option value={JSON.stringify(item)}>{item.text}</option>
+        {items.map((item, index) => (
+          <option key={index} value={JSON.stringify(item)}>
+            {item.text}
+          </option>
         ))}
       </select>
     </div>

@@ -65,6 +65,7 @@ const DraggableList: React.FC<DraggableListProps> = ({
         {items.items.map((item: any, index: number) => (
           <DroppableArea id={`droppable-${index}`}>
             <DraggableItem
+              key={item}
               index={index}
               name={`${items.namePrefix}.${
                 item.nameSuffix ? item.nameSuffix : item.id

@@ -124,9 +124,9 @@ const Inbox: React.FC<Props> = ({ reviews, spaceId, spaceName }) => {
       <Sidebar menuLists={menuLists} />
       <div className="col-span-2 flex flex-col items-center gap-1">
         <>
-          {filteredReviews.map((review: any) => {
+          {filteredReviews.map((review: any, index: number) => {
             //   <InboxCard review={review} />;
-            return <InboxCard review={review} />;
+            return <InboxCard key={review} review={review} />;
           })}
         </>
       </div>

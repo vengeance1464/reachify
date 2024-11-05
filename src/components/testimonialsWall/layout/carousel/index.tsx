@@ -65,7 +65,9 @@ const CarouselLayout: React.FC<any> = ({ children }) => {
         {children &&
           children.length > 0 &&
           getCurrentCarouselItems().map((item: any) => (
-            <div style={{ maxWidth: "350px" }}>{item}</div>
+            <div key={item} style={{ maxWidth: "350px" }}>
+              {item}
+            </div>
           ))}
         {/* </div> */}
         {/* <RightArrow

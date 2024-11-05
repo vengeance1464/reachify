@@ -19,6 +19,7 @@ const Spaces: React.FC = async () => {
           return (
             <Link href={`/products/${space.id}/${space.spaceName}`}>
               <CardComponent
+                key={space}
                 classNames="bg-[#25282C] border-[#33363A]"
                 content={
                   <SpaceItem

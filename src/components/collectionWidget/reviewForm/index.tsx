@@ -1,5 +1,5 @@
-import { revalidateData } from "@/actions/actions";
-import { Button } from "@/components/button";
+//import { revalidateData } from "@/actions/actions";
+import Button from "@/components/button/button";
 import { InputCheckbox } from "@/components/checkbox";
 import InputTextArea from "@/components/inputElements/inputTextArea";
 import InputTextElement from "@/components/inputElements/inputTextBox";
@@ -7,7 +7,7 @@ import { Ratings } from "@/components/reviewStars";
 import { useToast } from "@/hooks/use-toast";
 import { useCustomForm } from "@/hooks/useFormContext";
 import { TestimonialType } from "@prisma/client";
-import { redirect } from "next/navigation";
+//import { redirect } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 interface Props {
@@ -19,7 +19,6 @@ interface Props {
 
 const ReviewForm: React.FC<Props> = ({ setOpenReview, spaceId, spaceName }) => {
   // Implement your component's logic here
-  const totalStarCount = 5;
 
   const { register, handleSubmit, errors, watch, control, getValues } =
     useCustomForm("review-form");
@@ -67,7 +66,7 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview, spaceId, spaceName }) => {
 
   useEffect(() => {
     async function addReview() {
-      await fetch(`/api/embed/${spaceId}`, {
+      await fetch(`https://reachify.vercel.app/api/embed/${spaceId}`, {
         method: "POST", // Specifies the HTTP method as POST
         headers: {
           "Content-Type": "application/json", // Sets the content type to JSON
@@ -84,8 +83,8 @@ const ReviewForm: React.FC<Props> = ({ setOpenReview, spaceId, spaceName }) => {
       setTimeout(() => {
         showToast();
       }, 1000);
-      revalidateData("reviews");
-      redirect(`/products/${spaceId}/${spaceName}`);
+      //  revalidateData("reviews");
+      // redirect(`/products/${spaceId}/${spaceName}`);
     }
   }, [review]);
 

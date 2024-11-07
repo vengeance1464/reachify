@@ -145,7 +145,13 @@ const Inbox: React.FC<Props> = ({ reviews, spaceId, spaceName }) => {
           setOpen={setCollectionDialogOpen}
         />
       }
-      {<LayoutModal open={layoutDialog} setOpen={setLayoutDialogOpen} />}
+      {
+        <LayoutModal
+          spaceId={spaceId}
+          open={layoutDialog}
+          setOpen={setLayoutDialogOpen}
+        />
+      }
     </>
   );
 };

@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const LandingPage: React.FC<any> = () => {
   const [isCopied, setIsCopied] = useState(false);
-  const codeString = `<script type="text/javascript" src="https://reachify-bucker.s3.amazonaws.com/bundles/badgeWidget.main.js"></script>\n<div class="testimonial-to-embed" data-url="https://embed-v2.testimonial.to/badge/space-new?backgroundColor=EB144C&starColor=facc15&fontColor=000000&fontFamily=Roboto&reviewTerm=review&fontSize=16&reviewTermPlural=reviews&alignment=left" data-resize="true" data-resize-width="true" data-redirect-click="https://testimonial.to/space-new/all" style="width:fit-content"></div>`;
+  const codeString = `<iframe id="testimonialsLayout" style="width:100vw;height:100vh;" src="https://reachify-bucker.s3.us-east-1.amazonaws.com/bundles/index.html?spaceId=66acbb8d01328df97a7be18a&layoutType=fixed"></iframe>`;
   const CodeBlock = () => {
     return (
       <SyntaxHighlighter language={"javascript"} style={tomorrow}>

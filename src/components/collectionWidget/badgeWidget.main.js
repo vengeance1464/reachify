@@ -1,4 +1,5 @@
 // Function to load a script dynamically
+
 function loadScript(url, callback) {
     const script = document.createElement('script');
     script.src = url;
@@ -24,7 +25,7 @@ loadCSS('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css',
     loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css', function() {
         console.log('FontAwesome CSS loaded');
 
-loadCSS('https://reachify-bucker.s3.amazonaws.com/bundles/badgeBundleHelper.css', function() {
+loadCSS('https://reachify-bucker.s3.us-east-1.amazonaws.com/bundles/badgeWidgetHelper.bundle.css', function() {
 loadScript('https://unpkg.com/react@17/umd/react.development.js', function() {
     console.log('React loaded');
     
@@ -33,7 +34,7 @@ loadScript('https://unpkg.com/react@17/umd/react.development.js', function() {
         console.log('ReactDOM loaded');
         
         // After React and ReactDOM have loaded, start your application
-        loadScript('https://reachify-bucker.s3.amazonaws.com/bundles/badgeBundleHelper.js', function() {
+        loadScript('https://reachify-bucker.s3.us-east-1.amazonaws.com/bundles/badgeWidgetHelper.bundle.js', function() {
             console.log('ReactDOM loaded');
             
             // After React and ReactDOM have loaded, start your application
@@ -42,17 +43,22 @@ loadScript('https://unpkg.com/react@17/umd/react.development.js', function() {
     });
 })})})});
 
-function getPathParams(){
-    const queryString = window.location.search;
+// function getPathParams(){
+//     const queryString = window.location.search;
 
-    // Create a URLSearchParams object
-    const params = new URLSearchParams(queryString);
+//     // Create a URLSearchParams object
+//     const params = new URLSearchParams(queryString);
     
-    // Retrieve specific query parameters
-    const spaceId = params.get('spaceId'); // 'asc'
+//     // Retrieve specific query parameters
+//     const spaceId = params.get('spaceId'); // 'asc'
 
-    return spaceId;
-}
+//     const avgRating = params.get('avgRating'); // 'asc'
+
+//     const totalReviews = params.get('totalReviews'); // 'asc'
+
+
+//     return spaceId;
+// }
 
 
 // Function to start your application
@@ -68,5 +74,9 @@ function startApp() {
    const urlParams = new URLSearchParams(url.search);
 
    const spaceId = urlParams.get('spaceId');
-    BadgeWidgetHelper.mount('hello-world-container',spaceId)
+
+
+    const totalReviews = urlParams.get('totalFullReviews'); // 'asc'
+
+    BadgeWidgetHelper.mount('hello-world-container',spaceId,totalReviews)
 }

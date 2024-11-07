@@ -124,38 +124,38 @@
             ReactSharedInternals.ReactDebugCurrentFrame = ReactDebugCurrentFrame;
             ReactSharedInternals.ReactCurrentActQueue = ReactCurrentActQueue;
           }
-          function warn(format2) {
+          function warn(format) {
             {
               {
                 for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
                   args[_key - 1] = arguments[_key];
                 }
-                printWarning("warn", format2, args);
+                printWarning("warn", format, args);
               }
             }
           }
-          function error(format2) {
+          function error(format) {
             {
               {
                 for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
                   args[_key2 - 1] = arguments[_key2];
                 }
-                printWarning("error", format2, args);
+                printWarning("error", format, args);
               }
             }
           }
-          function printWarning(level, format2, args) {
+          function printWarning(level, format, args) {
             {
               var ReactDebugCurrentFrame2 = ReactSharedInternals.ReactDebugCurrentFrame;
               var stack = ReactDebugCurrentFrame2.getStackAddendum();
               if (stack !== "") {
-                format2 += "%s";
+                format += "%s";
                 args = args.concat([stack]);
               }
               var argsWithFormat = args.map(function(item) {
                 return String(item);
               });
-              argsWithFormat.unshift("Warning: " + format2);
+              argsWithFormat.unshift("Warning: " + format);
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
@@ -510,7 +510,7 @@
             }
             return element;
           };
-          function createElement2(type, config, children) {
+          function createElement(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -637,8 +637,8 @@
               "=": "=0",
               ":": "=2"
             };
-            var escapedString = key.replace(escapeRegex, function(match2) {
-              return escaperLookup[match2];
+            var escapedString = key.replace(escapeRegex, function(match) {
+              return escaperLookup[match];
             });
             return "$" + escapedString;
           }
@@ -755,9 +755,9 @@
               return children;
             }
             var result = [];
-            var count = 0;
+            var count2 = 0;
             mapIntoArray(children, result, "", "", function(child) {
-              return func.call(context, child, count++);
+              return func.call(context, child, count2++);
             });
             return result;
           }
@@ -784,7 +784,7 @@
             }
             return children;
           }
-          function createContext(defaultValue) {
+          function createContext2(defaultValue) {
             var context = {
               $$typeof: REACT_CONTEXT_TYPE,
               // As a workaround to support multiple concurrent renderers, we categorize
@@ -971,7 +971,7 @@
             }
             return lazyType;
           }
-          function forwardRef2(render) {
+          function forwardRef(render) {
             {
               if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
                 error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1070,7 +1070,7 @@
             }
             return dispatcher;
           }
-          function useContext(Context) {
+          function useContext2(Context) {
             var dispatcher = resolveDispatcher();
             {
               if (Context._context !== void 0) {
@@ -1084,19 +1084,19 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState5(initialState) {
+          function useState7(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
-          function useReducer(reducer, initialArg, init) {
+          function useReducer(reducer2, initialArg, init) {
             var dispatcher = resolveDispatcher();
-            return dispatcher.useReducer(reducer, initialArg, init);
+            return dispatcher.useReducer(reducer2, initialArg, init);
           }
-          function useRef(initialValue) {
+          function useRef2(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect3(create, deps) {
+          function useEffect5(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1228,8 +1228,8 @@
                 try {
                   throw Error();
                 } catch (x) {
-                  var match2 = x.stack.trim().match(/\n( *(at )?)/);
-                  prefix = match2 && match2[1] || "";
+                  var match = x.stack.trim().match(/\n( *(at )?)/);
+                  prefix = match && match[1] || "";
                 }
               }
               return "\n" + prefix + name;
@@ -1609,7 +1609,7 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement2.apply(this, arguments);
+            var element = createElement.apply(this, arguments);
             if (element == null) {
               return element;
             }
@@ -1865,29 +1865,29 @@
           exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
           exports.act = act;
           exports.cloneElement = cloneElement$1;
-          exports.createContext = createContext;
+          exports.createContext = createContext2;
           exports.createElement = createElement$1;
           exports.createFactory = createFactory;
           exports.createRef = createRef;
-          exports.forwardRef = forwardRef2;
+          exports.forwardRef = forwardRef;
           exports.isValidElement = isValidElement;
           exports.lazy = lazy;
           exports.memo = memo;
           exports.startTransition = startTransition;
           exports.unstable_act = act;
           exports.useCallback = useCallback;
-          exports.useContext = useContext;
+          exports.useContext = useContext2;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect3;
+          exports.useEffect = useEffect5;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
-          exports.useRef = useRef;
-          exports.useState = useState5;
+          exports.useRef = useRef2;
+          exports.useState = useState7;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2383,47 +2383,47 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React13 = require_react();
+          var React16 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React13.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React16.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
               suppressWarning = newSuppressWarning;
             }
           }
-          function warn(format2) {
+          function warn(format) {
             {
               if (!suppressWarning) {
                 for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
                   args[_key - 1] = arguments[_key];
                 }
-                printWarning("warn", format2, args);
+                printWarning("warn", format, args);
               }
             }
           }
-          function error(format2) {
+          function error(format) {
             {
               if (!suppressWarning) {
                 for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
                   args[_key2 - 1] = arguments[_key2];
                 }
-                printWarning("error", format2, args);
+                printWarning("error", format, args);
               }
             }
           }
-          function printWarning(level, format2, args) {
+          function printWarning(level, format, args) {
             {
               var ReactDebugCurrentFrame2 = ReactSharedInternals.ReactDebugCurrentFrame;
               var stack = ReactDebugCurrentFrame2.getStackAddendum();
               if (stack !== "") {
-                format2 += "%s";
+                format += "%s";
                 args = args.concat([stack]);
               }
               var argsWithFormat = args.map(function(item) {
                 return String(item);
               });
-              argsWithFormat.unshift("Warning: " + format2);
+              argsWithFormat.unshift("Warning: " + format);
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
@@ -3295,8 +3295,8 @@
                 try {
                   throw Error();
                 } catch (x) {
-                  var match2 = x.stack.trim().match(/\n( *(at )?)/);
-                  prefix = match2 && match2[1] || "";
+                  var match = x.stack.trim().match(/\n( *(at )?)/);
+                  prefix = match && match[1] || "";
                 }
               }
               return "\n" + prefix + name;
@@ -3755,18 +3755,18 @@
             if (node.hasOwnProperty(valueField) || typeof descriptor === "undefined" || typeof descriptor.get !== "function" || typeof descriptor.set !== "function") {
               return;
             }
-            var get2 = descriptor.get, set2 = descriptor.set;
+            var get3 = descriptor.get, set3 = descriptor.set;
             Object.defineProperty(node, valueField, {
               configurable: true,
               get: function() {
-                return get2.call(this);
+                return get3.call(this);
               },
               set: function(value) {
                 {
                   checkFormFieldValueStringCoercion(value);
                 }
                 currentValue = "" + value;
-                set2.call(this, value);
+                set3.call(this, value);
               }
             });
             Object.defineProperty(node, valueField, {
@@ -3992,7 +3992,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React13.Children.forEach(props.children, function(child) {
+                  React16.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -5225,8 +5225,8 @@
             {
               var invalidProps = [];
               for (var key in props) {
-                var isValid2 = validateProperty(type, key);
-                if (!isValid2) {
+                var isValid = validateProperty(type, key);
+                if (!isValid) {
                   invalidProps.push(key);
                 }
               }
@@ -5368,8 +5368,8 @@
             {
               var unknownProps = [];
               for (var key in props) {
-                var isValid2 = validateProperty$1(type, key, props[key], eventRegistry);
-                if (!isValid2) {
+                var isValid = validateProperty$1(type, key, props[key], eventRegistry);
+                if (!isValid) {
                   unknownProps.push(key);
                 }
               }
@@ -5675,13 +5675,13 @@
               throw new Error("clearCaughtError was called but no error was captured. This error is likely caused by a bug in React. Please file an issue.");
             }
           }
-          function get(key) {
+          function get2(key) {
             return key._reactInternals;
           }
           function has(key) {
             return key._reactInternals !== void 0;
           }
-          function set(key, value) {
+          function set2(key, value) {
             key._reactInternals = value;
           }
           var NoFlags = (
@@ -5850,7 +5850,7 @@
                 instance._warnedAboutRefsInRender = true;
               }
             }
-            var fiber = get(component);
+            var fiber = get2(component);
             if (!fiber) {
               return false;
             }
@@ -5969,9 +5969,9 @@
             }
             var child = node.child;
             while (child !== null) {
-              var match2 = findCurrentHostFiberImpl(child);
-              if (match2 !== null) {
-                return match2;
+              var match = findCurrentHostFiberImpl(child);
+              if (match !== null) {
+                return match;
               }
               child = child.sibling;
             }
@@ -5988,9 +5988,9 @@
             var child = node.child;
             while (child !== null) {
               if (child.tag !== HostPortal) {
-                var match2 = findCurrentHostFiberWithNoPortalsImpl(child);
-                if (match2 !== null) {
-                  return match2;
+                var match = findCurrentHostFiberWithNoPortalsImpl(child);
+                if (match !== null) {
+                  return match;
                 }
               }
               child = child.sibling;
@@ -6814,14 +6814,14 @@
           function includesSomeLane(a, b) {
             return (a & b) !== NoLanes;
           }
-          function isSubsetOfLanes(set2, subset) {
-            return (set2 & subset) === subset;
+          function isSubsetOfLanes(set3, subset) {
+            return (set3 & subset) === subset;
           }
           function mergeLanes(a, b) {
             return a | b;
           }
-          function removeLanes(set2, subset) {
-            return set2 & ~subset;
+          function removeLanes(set3, subset) {
+            return set3 & ~subset;
           }
           function intersectLanes(a, b) {
             return a & b;
@@ -8060,12 +8060,12 @@
                 }
               }
             }
-            var listeners = accumulateTwoPhaseListeners(targetInst, eventType);
-            if (listeners.length > 0) {
+            var listeners2 = accumulateTwoPhaseListeners(targetInst, eventType);
+            if (listeners2.length > 0) {
               var event = new SyntheticCompositionEvent(eventType, domEventName, null, nativeEvent, nativeEventTarget);
               dispatchQueue.push({
                 event,
-                listeners
+                listeners: listeners2
               });
               if (fallbackData) {
                 event.data = fallbackData;
@@ -8136,12 +8136,12 @@
             if (!chars) {
               return null;
             }
-            var listeners = accumulateTwoPhaseListeners(targetInst, "onBeforeInput");
-            if (listeners.length > 0) {
+            var listeners2 = accumulateTwoPhaseListeners(targetInst, "onBeforeInput");
+            if (listeners2.length > 0) {
               var event = new SyntheticInputEvent("onBeforeInput", "beforeinput", null, nativeEvent, nativeEventTarget);
               dispatchQueue.push({
                 event,
-                listeners
+                listeners: listeners2
               });
               event.data = chars;
             }
@@ -8195,12 +8195,12 @@
           }
           function createAndAccumulateChangeEvent(dispatchQueue, inst, nativeEvent, target) {
             enqueueStateRestore(target);
-            var listeners = accumulateTwoPhaseListeners(inst, "onChange");
-            if (listeners.length > 0) {
+            var listeners2 = accumulateTwoPhaseListeners(inst, "onChange");
+            if (listeners2.length > 0) {
               var event = new SyntheticEvent("onChange", "change", null, nativeEvent, target);
               dispatchQueue.push({
                 event,
-                listeners
+                listeners: listeners2
               });
             }
           }
@@ -8698,12 +8698,12 @@
             var currentSelection = getSelection$1(activeElement$1);
             if (!lastSelection || !shallowEqual(lastSelection, currentSelection)) {
               lastSelection = currentSelection;
-              var listeners = accumulateTwoPhaseListeners(activeElementInst$1, "onSelect");
-              if (listeners.length > 0) {
+              var listeners2 = accumulateTwoPhaseListeners(activeElementInst$1, "onSelect");
+              if (listeners2.length > 0) {
                 var event = new SyntheticEvent("onSelect", "select", null, nativeEvent, nativeEventTarget);
                 dispatchQueue.push({
                   event,
-                  listeners
+                  listeners: listeners2
                 });
                 event.target = activeElement$1;
               }
@@ -8977,8 +8977,8 @@
           function processDispatchQueue(dispatchQueue, eventSystemFlags) {
             var inCapturePhase = (eventSystemFlags & IS_CAPTURE_PHASE) !== 0;
             for (var i = 0; i < dispatchQueue.length; i++) {
-              var _dispatchQueue$i = dispatchQueue[i], event = _dispatchQueue$i.event, listeners = _dispatchQueue$i.listeners;
-              processDispatchQueueItemsInOrder(event, listeners, inCapturePhase);
+              var _dispatchQueue$i = dispatchQueue[i], event = _dispatchQueue$i.event, listeners2 = _dispatchQueue$i.listeners;
+              processDispatchQueueItemsInOrder(event, listeners2, inCapturePhase);
             }
             rethrowCaughtError();
           }
@@ -9122,7 +9122,7 @@
           function accumulateSinglePhaseListeners(targetFiber, reactName, nativeEventType, inCapturePhase, accumulateTargetOnly, nativeEvent) {
             var captureName = reactName !== null ? reactName + "Capture" : null;
             var reactEventName = inCapturePhase ? captureName : reactName;
-            var listeners = [];
+            var listeners2 = [];
             var instance = targetFiber;
             var lastHostComponent = null;
             while (instance !== null) {
@@ -9132,7 +9132,7 @@
                 if (reactEventName !== null) {
                   var listener = getListener(instance, reactEventName);
                   if (listener != null) {
-                    listeners.push(createDispatchListener(instance, listener, lastHostComponent));
+                    listeners2.push(createDispatchListener(instance, listener, lastHostComponent));
                   }
                 }
               }
@@ -9141,11 +9141,11 @@
               }
               instance = instance.return;
             }
-            return listeners;
+            return listeners2;
           }
           function accumulateTwoPhaseListeners(targetFiber, reactName) {
             var captureName = reactName + "Capture";
-            var listeners = [];
+            var listeners2 = [];
             var instance = targetFiber;
             while (instance !== null) {
               var _instance3 = instance, stateNode = _instance3.stateNode, tag = _instance3.tag;
@@ -9153,16 +9153,16 @@
                 var currentTarget = stateNode;
                 var captureListener = getListener(instance, captureName);
                 if (captureListener != null) {
-                  listeners.unshift(createDispatchListener(instance, captureListener, currentTarget));
+                  listeners2.unshift(createDispatchListener(instance, captureListener, currentTarget));
                 }
                 var bubbleListener = getListener(instance, reactName);
                 if (bubbleListener != null) {
-                  listeners.push(createDispatchListener(instance, bubbleListener, currentTarget));
+                  listeners2.push(createDispatchListener(instance, bubbleListener, currentTarget));
                 }
               }
               instance = instance.return;
             }
-            return listeners;
+            return listeners2;
           }
           function getParent(inst) {
             if (inst === null) {
@@ -9207,7 +9207,7 @@
           }
           function accumulateEnterLeaveListenersForEvent(dispatchQueue, event, target, common, inCapturePhase) {
             var registrationName = event._reactName;
-            var listeners = [];
+            var listeners2 = [];
             var instance = target;
             while (instance !== null) {
               if (instance === common) {
@@ -9222,21 +9222,21 @@
                 if (inCapturePhase) {
                   var captureListener = getListener(instance, registrationName);
                   if (captureListener != null) {
-                    listeners.unshift(createDispatchListener(instance, captureListener, currentTarget));
+                    listeners2.unshift(createDispatchListener(instance, captureListener, currentTarget));
                   }
                 } else if (!inCapturePhase) {
                   var bubbleListener = getListener(instance, registrationName);
                   if (bubbleListener != null) {
-                    listeners.push(createDispatchListener(instance, bubbleListener, currentTarget));
+                    listeners2.push(createDispatchListener(instance, bubbleListener, currentTarget));
                   }
                 }
               }
               instance = instance.return;
             }
-            if (listeners.length !== 0) {
+            if (listeners2.length !== 0) {
               dispatchQueue.push({
                 event,
-                listeners
+                listeners: listeners2
               });
             }
           }
@@ -9416,7 +9416,7 @@
               }
             }
           }
-          function createElement2(type, props, rootContainerElement, parentNamespace) {
+          function createElement(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
             var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
@@ -10286,7 +10286,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement2(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -10503,17 +10503,17 @@
           }
           function getSuspenseInstanceFallbackErrorDetails(instance) {
             var dataset = instance.nextSibling && instance.nextSibling.dataset;
-            var digest, message2, stack;
+            var digest, message, stack;
             if (dataset) {
               digest = dataset.dgst;
               {
-                message2 = dataset.msg;
+                message = dataset.msg;
                 stack = dataset.stck;
               }
             }
             {
               return {
-                message: message2,
+                message,
                 digest,
                 stack
               };
@@ -11623,9 +11623,9 @@
               }
               return maybeStrictRoot;
             };
-            var setToSortedString = function(set2) {
+            var setToSortedString = function(set3) {
               var array = [];
-              set2.forEach(function(value) {
+              set3.forEach(function(value) {
                 array.push(value);
               });
               return array.sort().join(", ");
@@ -13656,7 +13656,7 @@
           function basicStateReducer(state, action) {
             return typeof action === "function" ? action(state) : action;
           }
-          function mountReducer(reducer, initialArg, init) {
+          function mountReducer(reducer2, initialArg, init) {
             var hook = mountWorkInProgressHook();
             var initialState;
             if (init !== void 0) {
@@ -13670,20 +13670,20 @@
               interleaved: null,
               lanes: NoLanes,
               dispatch: null,
-              lastRenderedReducer: reducer,
+              lastRenderedReducer: reducer2,
               lastRenderedState: initialState
             };
             hook.queue = queue;
-            var dispatch = queue.dispatch = dispatchReducerAction.bind(null, currentlyRenderingFiber$1, queue);
-            return [hook.memoizedState, dispatch];
+            var dispatch2 = queue.dispatch = dispatchReducerAction.bind(null, currentlyRenderingFiber$1, queue);
+            return [hook.memoizedState, dispatch2];
           }
-          function updateReducer(reducer, initialArg, init) {
+          function updateReducer(reducer2, initialArg, init) {
             var hook = updateWorkInProgressHook();
             var queue = hook.queue;
             if (queue === null) {
               throw new Error("Should have a queue. This is likely a bug in React. Please file an issue.");
             }
-            queue.lastRenderedReducer = reducer;
+            queue.lastRenderedReducer = reducer2;
             var current2 = currentHook;
             var baseQueue = current2.baseQueue;
             var pendingQueue = queue.pending;
@@ -13745,7 +13745,7 @@
                     newState = update.eagerState;
                   } else {
                     var action = update.action;
-                    newState = reducer(newState, action);
+                    newState = reducer2(newState, action);
                   }
                 }
                 update = update.next;
@@ -13775,17 +13775,17 @@
             } else if (baseQueue === null) {
               queue.lanes = NoLanes;
             }
-            var dispatch = queue.dispatch;
-            return [hook.memoizedState, dispatch];
+            var dispatch2 = queue.dispatch;
+            return [hook.memoizedState, dispatch2];
           }
-          function rerenderReducer(reducer, initialArg, init) {
+          function rerenderReducer(reducer2, initialArg, init) {
             var hook = updateWorkInProgressHook();
             var queue = hook.queue;
             if (queue === null) {
               throw new Error("Should have a queue. This is likely a bug in React. Please file an issue.");
             }
-            queue.lastRenderedReducer = reducer;
-            var dispatch = queue.dispatch;
+            queue.lastRenderedReducer = reducer2;
+            var dispatch2 = queue.dispatch;
             var lastRenderPhaseUpdate = queue.pending;
             var newState = hook.memoizedState;
             if (lastRenderPhaseUpdate !== null) {
@@ -13794,7 +13794,7 @@
               var update = firstRenderPhaseUpdate;
               do {
                 var action = update.action;
-                newState = reducer(newState, action);
+                newState = reducer2(newState, action);
                 update = update.next;
               } while (update !== firstRenderPhaseUpdate);
               if (!objectIs(newState, hook.memoizedState)) {
@@ -13806,7 +13806,7 @@
               }
               queue.lastRenderedState = newState;
             }
-            return [newState, dispatch];
+            return [newState, dispatch2];
           }
           function mountMutableSource(source, getSnapshot, subscribe) {
             {
@@ -13968,8 +13968,8 @@
               lastRenderedState: initialState
             };
             hook.queue = queue;
-            var dispatch = queue.dispatch = dispatchSetState.bind(null, currentlyRenderingFiber$1, queue);
-            return [hook.memoizedState, dispatch];
+            var dispatch2 = queue.dispatch = dispatchSetState.bind(null, currentlyRenderingFiber$1, queue);
+            return [hook.memoizedState, dispatch2];
           }
           function updateState(initialState) {
             return updateReducer(basicStateReducer);
@@ -14474,13 +14474,13 @@
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
               },
-              useReducer: function(reducer, initialArg, init) {
+              useReducer: function(reducer2, initialArg, init) {
                 currentHookNameInDev = "useReducer";
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountReducer(reducer, initialArg, init);
+                  return mountReducer(reducer2, initialArg, init);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14578,13 +14578,13 @@
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
               },
-              useReducer: function(reducer, initialArg, init) {
+              useReducer: function(reducer2, initialArg, init) {
                 currentHookNameInDev = "useReducer";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountReducer(reducer, initialArg, init);
+                  return mountReducer(reducer2, initialArg, init);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14682,13 +14682,13 @@
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
               },
-              useReducer: function(reducer, initialArg, init) {
+              useReducer: function(reducer2, initialArg, init) {
                 currentHookNameInDev = "useReducer";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateReducer(reducer, initialArg, init);
+                  return updateReducer(reducer2, initialArg, init);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14786,13 +14786,13 @@
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
               },
-              useReducer: function(reducer, initialArg, init) {
+              useReducer: function(reducer2, initialArg, init) {
                 currentHookNameInDev = "useReducer";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnRerenderInDEV;
                 try {
-                  return rerenderReducer(reducer, initialArg, init);
+                  return rerenderReducer(reducer2, initialArg, init);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14898,14 +14898,14 @@
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
               },
-              useReducer: function(reducer, initialArg, init) {
+              useReducer: function(reducer2, initialArg, init) {
                 currentHookNameInDev = "useReducer";
                 warnInvalidHookAccess();
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountReducer(reducer, initialArg, init);
+                  return mountReducer(reducer2, initialArg, init);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -15019,14 +15019,14 @@
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
               },
-              useReducer: function(reducer, initialArg, init) {
+              useReducer: function(reducer2, initialArg, init) {
                 currentHookNameInDev = "useReducer";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateReducer(reducer, initialArg, init);
+                  return updateReducer(reducer2, initialArg, init);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -15140,14 +15140,14 @@
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
               },
-              useReducer: function(reducer, initialArg, init) {
+              useReducer: function(reducer2, initialArg, init) {
                 currentHookNameInDev = "useReducer";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return rerenderReducer(reducer, initialArg, init);
+                  return rerenderReducer(reducer2, initialArg, init);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -15405,7 +15405,7 @@
           var classComponentUpdater = {
             isMounted,
             enqueueSetState: function(inst, payload, callback) {
-              var fiber = get(inst);
+              var fiber = get2(inst);
               var eventTime = requestEventTime();
               var lane = requestUpdateLane(fiber);
               var update = createUpdate(eventTime, lane);
@@ -15426,7 +15426,7 @@
               }
             },
             enqueueReplaceState: function(inst, payload, callback) {
-              var fiber = get(inst);
+              var fiber = get2(inst);
               var eventTime = requestEventTime();
               var lane = requestUpdateLane(fiber);
               var update = createUpdate(eventTime, lane);
@@ -15448,7 +15448,7 @@
               }
             },
             enqueueForceUpdate: function(inst, callback) {
-              var fiber = get(inst);
+              var fiber = get2(inst);
               var eventTime = requestEventTime();
               var lane = requestUpdateLane(fiber);
               var update = createUpdate(eventTime, lane);
@@ -15588,7 +15588,7 @@
           function adoptClassInstance(workInProgress2, instance) {
             instance.updater = classComponentUpdater;
             workInProgress2.stateNode = instance;
-            set(instance, workInProgress2);
+            set2(instance, workInProgress2);
             {
               instance._reactInternalInstance = fakeInternalInstance;
             }
@@ -15600,11 +15600,11 @@
             var contextType = ctor.contextType;
             {
               if ("contextType" in ctor) {
-                var isValid2 = (
+                var isValid = (
                   // Allow null for conditional declaration
                   contextType === null || contextType !== void 0 && contextType.$$typeof === REACT_CONTEXT_TYPE && contextType._context === void 0
                 );
-                if (!isValid2 && !didWarnAboutInvalidateContextType.has(ctor)) {
+                if (!isValid && !didWarnAboutInvalidateContextType.has(ctor)) {
                   didWarnAboutInvalidateContextType.add(ctor);
                   var addendum = "";
                   if (contextType === void 0) {
@@ -17267,16 +17267,16 @@
                 );
               }
               if (isSuspenseInstanceFallback(suspenseInstance)) {
-                var digest, message2, stack;
+                var digest, message, stack;
                 {
                   var _getSuspenseInstanceF = getSuspenseInstanceFallbackErrorDetails(suspenseInstance);
                   digest = _getSuspenseInstanceF.digest;
-                  message2 = _getSuspenseInstanceF.message;
+                  message = _getSuspenseInstanceF.message;
                   stack = _getSuspenseInstanceF.stack;
                 }
                 var error2;
-                if (message2) {
-                  error2 = new Error(message2);
+                if (message) {
+                  error2 = new Error(message);
                 } else {
                   error2 = new Error("The server could not finish this Suspense boundary, likely due to an error during server rendering. Switched to client rendering.");
                 }
@@ -22633,7 +22633,7 @@
             if (!parentComponent) {
               return emptyContextObject;
             }
-            var fiber = get(parentComponent);
+            var fiber = get2(parentComponent);
             var parentContext = findCurrentUnmaskedContext(fiber);
             if (fiber.tag === ClassComponent) {
               var Component = fiber.type;
@@ -22645,7 +22645,7 @@
           }
           function findHostInstanceWithWarning(component, methodName) {
             {
-              var fiber = get(component);
+              var fiber = get2(component);
               if (fiber === void 0) {
                 if (typeof component.render === "function") {
                   throw new Error("Unable to find node on an unmounted component.");
@@ -23100,7 +23100,7 @@
               unmarkContainerAsRoot(container);
             }
           };
-          function createRoot(container, options2) {
+          function createRoot2(container, options2) {
             if (!isValidContainer(container)) {
               throw new Error("createRoot(...): Target container is not a DOM element.");
             }
@@ -23483,7 +23483,7 @@
                 error('You are importing createRoot from "react-dom" which is not supported. You should instead import it from "react-dom/client".');
               }
             }
-            return createRoot(container, options2);
+            return createRoot2(container, options2);
           }
           function hydrateRoot$1(container, initialChildren, options2) {
             {
@@ -23550,20 +23550,1344 @@
     }
   });
 
-  // src/components/collectionWidget/layoutHelper.js
-  var import_react12 = __toESM(require_react());
+  // node_modules/@prisma/client/runtime/index-browser.js
+  var require_index_browser = __commonJS({
+    "node_modules/@prisma/client/runtime/index-browser.js"(exports, module) {
+      "use strict";
+      var de = Object.defineProperty;
+      var We = Object.getOwnPropertyDescriptor;
+      var Ge = Object.getOwnPropertyNames;
+      var Je = Object.prototype.hasOwnProperty;
+      var Me = (e, n) => {
+        for (var i in n) de(e, i, { get: n[i], enumerable: true });
+      };
+      var Xe = (e, n, i, t) => {
+        if (n && typeof n == "object" || typeof n == "function") for (let r of Ge(n)) !Je.call(e, r) && r !== i && de(e, r, { get: () => n[r], enumerable: !(t = We(n, r)) || t.enumerable });
+        return e;
+      };
+      var Ke = (e) => Xe(de({}, "__esModule", { value: true }), e);
+      var Xn = {};
+      Me(Xn, { Decimal: () => je, Public: () => he, getRuntime: () => be, makeStrictEnum: () => Pe, objectEnumValues: () => Oe });
+      module.exports = Ke(Xn);
+      var he = {};
+      Me(he, { validator: () => Ce });
+      function Ce(...e) {
+        return (n) => n;
+      }
+      var ne = Symbol();
+      var pe = /* @__PURE__ */ new WeakMap();
+      var ge = class {
+        constructor(n) {
+          n === ne ? pe.set(this, "Prisma.".concat(this._getName())) : pe.set(this, "new Prisma.".concat(this._getNamespace(), ".").concat(this._getName(), "()"));
+        }
+        _getName() {
+          return this.constructor.name;
+        }
+        toString() {
+          return pe.get(this);
+        }
+      };
+      var G = class extends ge {
+        _getNamespace() {
+          return "NullTypes";
+        }
+      };
+      var J = class extends G {
+      };
+      me(J, "DbNull");
+      var X = class extends G {
+      };
+      me(X, "JsonNull");
+      var K = class extends G {
+      };
+      me(K, "AnyNull");
+      var Oe = { classes: { DbNull: J, JsonNull: X, AnyNull: K }, instances: { DbNull: new J(ne), JsonNull: new X(ne), AnyNull: new K(ne) } };
+      function me(e, n) {
+        Object.defineProperty(e, "name", { value: n, configurable: true });
+      }
+      var xe = /* @__PURE__ */ new Set(["toJSON", "$$typeof", "asymmetricMatch", Symbol.iterator, Symbol.toStringTag, Symbol.isConcatSpreadable, Symbol.toPrimitive]);
+      function Pe(e) {
+        return new Proxy(e, { get(n, i) {
+          if (i in n) return n[i];
+          if (!xe.has(i)) throw new TypeError("Invalid enum value: ".concat(String(i)));
+        } });
+      }
+      var Qe = "Cloudflare-Workers";
+      var Ye = "node";
+      function Re() {
+        var e, n, i;
+        return typeof Netlify == "object" ? "netlify" : typeof EdgeRuntime == "string" ? "edge-light" : ((e = globalThis.navigator) == null ? void 0 : e.userAgent) === Qe ? "workerd" : globalThis.Deno ? "deno" : globalThis.__lagon__ ? "lagon" : ((i = (n = globalThis.process) == null ? void 0 : n.release) == null ? void 0 : i.name) === Ye ? "node" : globalThis.Bun ? "bun" : globalThis.fastly ? "fastly" : "unknown";
+      }
+      var ze = { node: "Node.js", workerd: "Cloudflare Workers", deno: "Deno and Deno Deploy", netlify: "Netlify Edge Functions", "edge-light": "Edge Runtime (Vercel Edge Functions, Vercel Edge Middleware, Next.js (Pages Router) Edge API Routes, Next.js (App Router) Edge Route Handlers or Next.js Middleware)" };
+      function be() {
+        let e = Re();
+        return { id: e, prettyName: ze[e] || e, isEdge: ["workerd", "deno", "netlify", "edge-light"].includes(e) };
+      }
+      var H = 9e15;
+      var $ = 1e9;
+      var we = "0123456789abcdef";
+      var te = "2.3025850929940456840179914546843642076011014886287729760333279009675726096773524802359972050895982983419677840422862486334095254650828067566662873690987816894829072083255546808437998948262331985283935053089653777326288461633662222876982198867465436674744042432743651550489343149393914796194044002221051017141748003688084012647080685567743216228355220114804663715659121373450747856947683463616792101806445070648000277502684916746550586856935673420670581136429224554405758925724208241314695689016758940256776311356919292033376587141660230105703089634572075440370847469940168269282808481184289314848524948644871927809676271275775397027668605952496716674183485704422507197965004714951050492214776567636938662976979522110718264549734772662425709429322582798502585509785265383207606726317164309505995087807523710333101197857547331541421808427543863591778117054309827482385045648019095610299291824318237525357709750539565187697510374970888692180205189339507238539205144634197265287286965110862571492198849978748873771345686209167058";
+      var re = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632789";
+      var Ne = { precision: 20, rounding: 4, modulo: 1, toExpNeg: -7, toExpPos: 21, minE: -H, maxE: H, crypto: false };
+      var Te;
+      var Z;
+      var w = true;
+      var oe = "[DecimalError] ";
+      var V = oe + "Invalid argument: ";
+      var Le = oe + "Precision limit exceeded";
+      var De = oe + "crypto unavailable";
+      var Fe = "[object Decimal]";
+      var b = Math.floor;
+      var C = Math.pow;
+      var ye = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i;
+      var en = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i;
+      var nn = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i;
+      var Ie = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i;
+      var D = 1e7;
+      var m = 7;
+      var tn = 9007199254740991;
+      var rn = te.length - 1;
+      var ve = re.length - 1;
+      var h = { toStringTag: Fe };
+      h.absoluteValue = h.abs = function() {
+        var e = new this.constructor(this);
+        return e.s < 0 && (e.s = 1), p(e);
+      };
+      h.ceil = function() {
+        return p(new this.constructor(this), this.e + 1, 2);
+      };
+      h.clampedTo = h.clamp = function(e, n) {
+        var i, t = this, r = t.constructor;
+        if (e = new r(e), n = new r(n), !e.s || !n.s) return new r(NaN);
+        if (e.gt(n)) throw Error(V + n);
+        return i = t.cmp(e), i < 0 ? e : t.cmp(n) > 0 ? n : new r(t);
+      };
+      h.comparedTo = h.cmp = function(e) {
+        var n, i, t, r, s = this, o = s.d, u = (e = new s.constructor(e)).d, l = s.s, f = e.s;
+        if (!o || !u) return !l || !f ? NaN : l !== f ? l : o === u ? 0 : !o ^ l < 0 ? 1 : -1;
+        if (!o[0] || !u[0]) return o[0] ? l : u[0] ? -f : 0;
+        if (l !== f) return l;
+        if (s.e !== e.e) return s.e > e.e ^ l < 0 ? 1 : -1;
+        for (t = o.length, r = u.length, n = 0, i = t < r ? t : r; n < i; ++n) if (o[n] !== u[n]) return o[n] > u[n] ^ l < 0 ? 1 : -1;
+        return t === r ? 0 : t > r ^ l < 0 ? 1 : -1;
+      };
+      h.cosine = h.cos = function() {
+        var e, n, i = this, t = i.constructor;
+        return i.d ? i.d[0] ? (e = t.precision, n = t.rounding, t.precision = e + Math.max(i.e, i.sd()) + m, t.rounding = 1, i = sn(t, $e(t, i)), t.precision = e, t.rounding = n, p(Z == 2 || Z == 3 ? i.neg() : i, e, n, true)) : new t(1) : new t(NaN);
+      };
+      h.cubeRoot = h.cbrt = function() {
+        var e, n, i, t, r, s, o, u, l, f, c = this, a = c.constructor;
+        if (!c.isFinite() || c.isZero()) return new a(c);
+        for (w = false, s = c.s * C(c.s * c, 1 / 3), !s || Math.abs(s) == 1 / 0 ? (i = O(c.d), e = c.e, (s = (e - i.length + 1) % 3) && (i += s == 1 || s == -2 ? "0" : "00"), s = C(i, 1 / 3), e = b((e + 1) / 3) - (e % 3 == (e < 0 ? -1 : 2)), s == 1 / 0 ? i = "5e" + e : (i = s.toExponential(), i = i.slice(0, i.indexOf("e") + 1) + e), t = new a(i), t.s = c.s) : t = new a(s.toString()), o = (e = a.precision) + 3; ; ) if (u = t, l = u.times(u).times(u), f = l.plus(c), t = S(f.plus(c).times(u), f.plus(l), o + 2, 1), O(u.d).slice(0, o) === (i = O(t.d)).slice(0, o)) if (i = i.slice(o - 3, o + 1), i == "9999" || !r && i == "4999") {
+          if (!r && (p(u, e + 1, 0), u.times(u).times(u).eq(c))) {
+            t = u;
+            break;
+          }
+          o += 4, r = 1;
+        } else {
+          (!+i || !+i.slice(1) && i.charAt(0) == "5") && (p(t, e + 1, 1), n = !t.times(t).times(t).eq(c));
+          break;
+        }
+        return w = true, p(t, e, a.rounding, n);
+      };
+      h.decimalPlaces = h.dp = function() {
+        var e, n = this.d, i = NaN;
+        if (n) {
+          if (e = n.length - 1, i = (e - b(this.e / m)) * m, e = n[e], e) for (; e % 10 == 0; e /= 10) i--;
+          i < 0 && (i = 0);
+        }
+        return i;
+      };
+      h.dividedBy = h.div = function(e) {
+        return S(this, new this.constructor(e));
+      };
+      h.dividedToIntegerBy = h.divToInt = function(e) {
+        var n = this, i = n.constructor;
+        return p(S(n, new i(e), 0, 1, 1), i.precision, i.rounding);
+      };
+      h.equals = h.eq = function(e) {
+        return this.cmp(e) === 0;
+      };
+      h.floor = function() {
+        return p(new this.constructor(this), this.e + 1, 3);
+      };
+      h.greaterThan = h.gt = function(e) {
+        return this.cmp(e) > 0;
+      };
+      h.greaterThanOrEqualTo = h.gte = function(e) {
+        var n = this.cmp(e);
+        return n == 1 || n === 0;
+      };
+      h.hyperbolicCosine = h.cosh = function() {
+        var e, n, i, t, r, s = this, o = s.constructor, u = new o(1);
+        if (!s.isFinite()) return new o(s.s ? 1 / 0 : NaN);
+        if (s.isZero()) return u;
+        i = o.precision, t = o.rounding, o.precision = i + Math.max(s.e, s.sd()) + 4, o.rounding = 1, r = s.d.length, r < 32 ? (e = Math.ceil(r / 3), n = (1 / fe(4, e)).toString()) : (e = 16, n = "2.3283064365386962890625e-10"), s = j(o, 1, s.times(n), new o(1), true);
+        for (var l, f = e, c = new o(8); f--; ) l = s.times(s), s = u.minus(l.times(c.minus(l.times(c))));
+        return p(s, o.precision = i, o.rounding = t, true);
+      };
+      h.hyperbolicSine = h.sinh = function() {
+        var e, n, i, t, r = this, s = r.constructor;
+        if (!r.isFinite() || r.isZero()) return new s(r);
+        if (n = s.precision, i = s.rounding, s.precision = n + Math.max(r.e, r.sd()) + 4, s.rounding = 1, t = r.d.length, t < 3) r = j(s, 2, r, r, true);
+        else {
+          e = 1.4 * Math.sqrt(t), e = e > 16 ? 16 : e | 0, r = r.times(1 / fe(5, e)), r = j(s, 2, r, r, true);
+          for (var o, u = new s(5), l = new s(16), f = new s(20); e--; ) o = r.times(r), r = r.times(u.plus(o.times(l.times(o).plus(f))));
+        }
+        return s.precision = n, s.rounding = i, p(r, n, i, true);
+      };
+      h.hyperbolicTangent = h.tanh = function() {
+        var e, n, i = this, t = i.constructor;
+        return i.isFinite() ? i.isZero() ? new t(i) : (e = t.precision, n = t.rounding, t.precision = e + 7, t.rounding = 1, S(i.sinh(), i.cosh(), t.precision = e, t.rounding = n)) : new t(i.s);
+      };
+      h.inverseCosine = h.acos = function() {
+        var e, n = this, i = n.constructor, t = n.abs().cmp(1), r = i.precision, s = i.rounding;
+        return t !== -1 ? t === 0 ? n.isNeg() ? L(i, r, s) : new i(0) : new i(NaN) : n.isZero() ? L(i, r + 4, s).times(0.5) : (i.precision = r + 6, i.rounding = 1, n = n.asin(), e = L(i, r + 4, s).times(0.5), i.precision = r, i.rounding = s, e.minus(n));
+      };
+      h.inverseHyperbolicCosine = h.acosh = function() {
+        var e, n, i = this, t = i.constructor;
+        return i.lte(1) ? new t(i.eq(1) ? 0 : NaN) : i.isFinite() ? (e = t.precision, n = t.rounding, t.precision = e + Math.max(Math.abs(i.e), i.sd()) + 4, t.rounding = 1, w = false, i = i.times(i).minus(1).sqrt().plus(i), w = true, t.precision = e, t.rounding = n, i.ln()) : new t(i);
+      };
+      h.inverseHyperbolicSine = h.asinh = function() {
+        var e, n, i = this, t = i.constructor;
+        return !i.isFinite() || i.isZero() ? new t(i) : (e = t.precision, n = t.rounding, t.precision = e + 2 * Math.max(Math.abs(i.e), i.sd()) + 6, t.rounding = 1, w = false, i = i.times(i).plus(1).sqrt().plus(i), w = true, t.precision = e, t.rounding = n, i.ln());
+      };
+      h.inverseHyperbolicTangent = h.atanh = function() {
+        var e, n, i, t, r = this, s = r.constructor;
+        return r.isFinite() ? r.e >= 0 ? new s(r.abs().eq(1) ? r.s / 0 : r.isZero() ? r : NaN) : (e = s.precision, n = s.rounding, t = r.sd(), Math.max(t, e) < 2 * -r.e - 1 ? p(new s(r), e, n, true) : (s.precision = i = t - r.e, r = S(r.plus(1), new s(1).minus(r), i + e, 1), s.precision = e + 4, s.rounding = 1, r = r.ln(), s.precision = e, s.rounding = n, r.times(0.5))) : new s(NaN);
+      };
+      h.inverseSine = h.asin = function() {
+        var e, n, i, t, r = this, s = r.constructor;
+        return r.isZero() ? new s(r) : (n = r.abs().cmp(1), i = s.precision, t = s.rounding, n !== -1 ? n === 0 ? (e = L(s, i + 4, t).times(0.5), e.s = r.s, e) : new s(NaN) : (s.precision = i + 6, s.rounding = 1, r = r.div(new s(1).minus(r.times(r)).sqrt().plus(1)).atan(), s.precision = i, s.rounding = t, r.times(2)));
+      };
+      h.inverseTangent = h.atan = function() {
+        var e, n, i, t, r, s, o, u, l, f = this, c = f.constructor, a = c.precision, d = c.rounding;
+        if (f.isFinite()) {
+          if (f.isZero()) return new c(f);
+          if (f.abs().eq(1) && a + 4 <= ve) return o = L(c, a + 4, d).times(0.25), o.s = f.s, o;
+        } else {
+          if (!f.s) return new c(NaN);
+          if (a + 4 <= ve) return o = L(c, a + 4, d).times(0.5), o.s = f.s, o;
+        }
+        for (c.precision = u = a + 10, c.rounding = 1, i = Math.min(28, u / m + 2 | 0), e = i; e; --e) f = f.div(f.times(f).plus(1).sqrt().plus(1));
+        for (w = false, n = Math.ceil(u / m), t = 1, l = f.times(f), o = new c(f), r = f; e !== -1; ) if (r = r.times(l), s = o.minus(r.div(t += 2)), r = r.times(l), o = s.plus(r.div(t += 2)), o.d[n] !== void 0) for (e = n; o.d[e] === s.d[e] && e--; ) ;
+        return i && (o = o.times(2 << i - 1)), w = true, p(o, c.precision = a, c.rounding = d, true);
+      };
+      h.isFinite = function() {
+        return !!this.d;
+      };
+      h.isInteger = h.isInt = function() {
+        return !!this.d && b(this.e / m) > this.d.length - 2;
+      };
+      h.isNaN = function() {
+        return !this.s;
+      };
+      h.isNegative = h.isNeg = function() {
+        return this.s < 0;
+      };
+      h.isPositive = h.isPos = function() {
+        return this.s > 0;
+      };
+      h.isZero = function() {
+        return !!this.d && this.d[0] === 0;
+      };
+      h.lessThan = h.lt = function(e) {
+        return this.cmp(e) < 0;
+      };
+      h.lessThanOrEqualTo = h.lte = function(e) {
+        return this.cmp(e) < 1;
+      };
+      h.logarithm = h.log = function(e) {
+        var n, i, t, r, s, o, u, l, f = this, c = f.constructor, a = c.precision, d = c.rounding, g = 5;
+        if (e == null) e = new c(10), n = true;
+        else {
+          if (e = new c(e), i = e.d, e.s < 0 || !i || !i[0] || e.eq(1)) return new c(NaN);
+          n = e.eq(10);
+        }
+        if (i = f.d, f.s < 0 || !i || !i[0] || f.eq(1)) return new c(i && !i[0] ? -1 / 0 : f.s != 1 ? NaN : i ? 0 : 1 / 0);
+        if (n) if (i.length > 1) s = true;
+        else {
+          for (r = i[0]; r % 10 === 0; ) r /= 10;
+          s = r !== 1;
+        }
+        if (w = false, u = a + g, o = B(f, u), t = n ? se(c, u + 10) : B(e, u), l = S(o, t, u, 1), x(l.d, r = a, d)) do
+          if (u += 10, o = B(f, u), t = n ? se(c, u + 10) : B(e, u), l = S(o, t, u, 1), !s) {
+            +O(l.d).slice(r + 1, r + 15) + 1 == 1e14 && (l = p(l, a + 1, 0));
+            break;
+          }
+        while (x(l.d, r += 10, d));
+        return w = true, p(l, a, d);
+      };
+      h.minus = h.sub = function(e) {
+        var n, i, t, r, s, o, u, l, f, c, a, d, g = this, v = g.constructor;
+        if (e = new v(e), !g.d || !e.d) return !g.s || !e.s ? e = new v(NaN) : g.d ? e.s = -e.s : e = new v(e.d || g.s !== e.s ? g : NaN), e;
+        if (g.s != e.s) return e.s = -e.s, g.plus(e);
+        if (f = g.d, d = e.d, u = v.precision, l = v.rounding, !f[0] || !d[0]) {
+          if (d[0]) e.s = -e.s;
+          else if (f[0]) e = new v(g);
+          else return new v(l === 3 ? -0 : 0);
+          return w ? p(e, u, l) : e;
+        }
+        if (i = b(e.e / m), c = b(g.e / m), f = f.slice(), s = c - i, s) {
+          for (a = s < 0, a ? (n = f, s = -s, o = d.length) : (n = d, i = c, o = f.length), t = Math.max(Math.ceil(u / m), o) + 2, s > t && (s = t, n.length = 1), n.reverse(), t = s; t--; ) n.push(0);
+          n.reverse();
+        } else {
+          for (t = f.length, o = d.length, a = t < o, a && (o = t), t = 0; t < o; t++) if (f[t] != d[t]) {
+            a = f[t] < d[t];
+            break;
+          }
+          s = 0;
+        }
+        for (a && (n = f, f = d, d = n, e.s = -e.s), o = f.length, t = d.length - o; t > 0; --t) f[o++] = 0;
+        for (t = d.length; t > s; ) {
+          if (f[--t] < d[t]) {
+            for (r = t; r && f[--r] === 0; ) f[r] = D - 1;
+            --f[r], f[t] += D;
+          }
+          f[t] -= d[t];
+        }
+        for (; f[--o] === 0; ) f.pop();
+        for (; f[0] === 0; f.shift()) --i;
+        return f[0] ? (e.d = f, e.e = ue(f, i), w ? p(e, u, l) : e) : new v(l === 3 ? -0 : 0);
+      };
+      h.modulo = h.mod = function(e) {
+        var n, i = this, t = i.constructor;
+        return e = new t(e), !i.d || !e.s || e.d && !e.d[0] ? new t(NaN) : !e.d || i.d && !i.d[0] ? p(new t(i), t.precision, t.rounding) : (w = false, t.modulo == 9 ? (n = S(i, e.abs(), 0, 3, 1), n.s *= e.s) : n = S(i, e, 0, t.modulo, 1), n = n.times(e), w = true, i.minus(n));
+      };
+      h.naturalExponential = h.exp = function() {
+        return Ee(this);
+      };
+      h.naturalLogarithm = h.ln = function() {
+        return B(this);
+      };
+      h.negated = h.neg = function() {
+        var e = new this.constructor(this);
+        return e.s = -e.s, p(e);
+      };
+      h.plus = h.add = function(e) {
+        var n, i, t, r, s, o, u, l, f, c, a = this, d = a.constructor;
+        if (e = new d(e), !a.d || !e.d) return !a.s || !e.s ? e = new d(NaN) : a.d || (e = new d(e.d || a.s === e.s ? a : NaN)), e;
+        if (a.s != e.s) return e.s = -e.s, a.minus(e);
+        if (f = a.d, c = e.d, u = d.precision, l = d.rounding, !f[0] || !c[0]) return c[0] || (e = new d(a)), w ? p(e, u, l) : e;
+        if (s = b(a.e / m), t = b(e.e / m), f = f.slice(), r = s - t, r) {
+          for (r < 0 ? (i = f, r = -r, o = c.length) : (i = c, t = s, o = f.length), s = Math.ceil(u / m), o = s > o ? s + 1 : o + 1, r > o && (r = o, i.length = 1), i.reverse(); r--; ) i.push(0);
+          i.reverse();
+        }
+        for (o = f.length, r = c.length, o - r < 0 && (r = o, i = c, c = f, f = i), n = 0; r; ) n = (f[--r] = f[r] + c[r] + n) / D | 0, f[r] %= D;
+        for (n && (f.unshift(n), ++t), o = f.length; f[--o] == 0; ) f.pop();
+        return e.d = f, e.e = ue(f, t), w ? p(e, u, l) : e;
+      };
+      h.precision = h.sd = function(e) {
+        var n, i = this;
+        if (e !== void 0 && e !== !!e && e !== 1 && e !== 0) throw Error(V + e);
+        return i.d ? (n = Ze(i.d), e && i.e + 1 > n && (n = i.e + 1)) : n = NaN, n;
+      };
+      h.round = function() {
+        var e = this, n = e.constructor;
+        return p(new n(e), e.e + 1, n.rounding);
+      };
+      h.sine = h.sin = function() {
+        var e, n, i = this, t = i.constructor;
+        return i.isFinite() ? i.isZero() ? new t(i) : (e = t.precision, n = t.rounding, t.precision = e + Math.max(i.e, i.sd()) + m, t.rounding = 1, i = un(t, $e(t, i)), t.precision = e, t.rounding = n, p(Z > 2 ? i.neg() : i, e, n, true)) : new t(NaN);
+      };
+      h.squareRoot = h.sqrt = function() {
+        var e, n, i, t, r, s, o = this, u = o.d, l = o.e, f = o.s, c = o.constructor;
+        if (f !== 1 || !u || !u[0]) return new c(!f || f < 0 && (!u || u[0]) ? NaN : u ? o : 1 / 0);
+        for (w = false, f = Math.sqrt(+o), f == 0 || f == 1 / 0 ? (n = O(u), (n.length + l) % 2 == 0 && (n += "0"), f = Math.sqrt(n), l = b((l + 1) / 2) - (l < 0 || l % 2), f == 1 / 0 ? n = "5e" + l : (n = f.toExponential(), n = n.slice(0, n.indexOf("e") + 1) + l), t = new c(n)) : t = new c(f.toString()), i = (l = c.precision) + 3; ; ) if (s = t, t = s.plus(S(o, s, i + 2, 1)).times(0.5), O(s.d).slice(0, i) === (n = O(t.d)).slice(0, i)) if (n = n.slice(i - 3, i + 1), n == "9999" || !r && n == "4999") {
+          if (!r && (p(s, l + 1, 0), s.times(s).eq(o))) {
+            t = s;
+            break;
+          }
+          i += 4, r = 1;
+        } else {
+          (!+n || !+n.slice(1) && n.charAt(0) == "5") && (p(t, l + 1, 1), e = !t.times(t).eq(o));
+          break;
+        }
+        return w = true, p(t, l, c.rounding, e);
+      };
+      h.tangent = h.tan = function() {
+        var e, n, i = this, t = i.constructor;
+        return i.isFinite() ? i.isZero() ? new t(i) : (e = t.precision, n = t.rounding, t.precision = e + 10, t.rounding = 1, i = i.sin(), i.s = 1, i = S(i, new t(1).minus(i.times(i)).sqrt(), e + 10, 0), t.precision = e, t.rounding = n, p(Z == 2 || Z == 4 ? i.neg() : i, e, n, true)) : new t(NaN);
+      };
+      h.times = h.mul = function(e) {
+        var n, i, t, r, s, o, u, l, f, c = this, a = c.constructor, d = c.d, g = (e = new a(e)).d;
+        if (e.s *= c.s, !d || !d[0] || !g || !g[0]) return new a(!e.s || d && !d[0] && !g || g && !g[0] && !d ? NaN : !d || !g ? e.s / 0 : e.s * 0);
+        for (i = b(c.e / m) + b(e.e / m), l = d.length, f = g.length, l < f && (s = d, d = g, g = s, o = l, l = f, f = o), s = [], o = l + f, t = o; t--; ) s.push(0);
+        for (t = f; --t >= 0; ) {
+          for (n = 0, r = l + t; r > t; ) u = s[r] + g[t] * d[r - t - 1] + n, s[r--] = u % D | 0, n = u / D | 0;
+          s[r] = (s[r] + n) % D | 0;
+        }
+        for (; !s[--o]; ) s.pop();
+        return n ? ++i : s.shift(), e.d = s, e.e = ue(s, i), w ? p(e, a.precision, a.rounding) : e;
+      };
+      h.toBinary = function(e, n) {
+        return ke(this, 2, e, n);
+      };
+      h.toDecimalPlaces = h.toDP = function(e, n) {
+        var i = this, t = i.constructor;
+        return i = new t(i), e === void 0 ? i : (_(e, 0, $), n === void 0 ? n = t.rounding : _(n, 0, 8), p(i, e + i.e + 1, n));
+      };
+      h.toExponential = function(e, n) {
+        var i, t = this, r = t.constructor;
+        return e === void 0 ? i = F(t, true) : (_(e, 0, $), n === void 0 ? n = r.rounding : _(n, 0, 8), t = p(new r(t), e + 1, n), i = F(t, true, e + 1)), t.isNeg() && !t.isZero() ? "-" + i : i;
+      };
+      h.toFixed = function(e, n) {
+        var i, t, r = this, s = r.constructor;
+        return e === void 0 ? i = F(r) : (_(e, 0, $), n === void 0 ? n = s.rounding : _(n, 0, 8), t = p(new s(r), e + r.e + 1, n), i = F(t, false, e + t.e + 1)), r.isNeg() && !r.isZero() ? "-" + i : i;
+      };
+      h.toFraction = function(e) {
+        var n, i, t, r, s, o, u, l, f, c, a, d, g = this, v = g.d, N = g.constructor;
+        if (!v) return new N(g);
+        if (f = i = new N(1), t = l = new N(0), n = new N(t), s = n.e = Ze(v) - g.e - 1, o = s % m, n.d[0] = C(10, o < 0 ? m + o : o), e == null) e = s > 0 ? n : f;
+        else {
+          if (u = new N(e), !u.isInt() || u.lt(f)) throw Error(V + u);
+          e = u.gt(n) ? s > 0 ? n : f : u;
+        }
+        for (w = false, u = new N(O(v)), c = N.precision, N.precision = s = v.length * m * 2; a = S(u, n, 0, 1, 1), r = i.plus(a.times(t)), r.cmp(e) != 1; ) i = t, t = r, r = f, f = l.plus(a.times(r)), l = r, r = n, n = u.minus(a.times(r)), u = r;
+        return r = S(e.minus(i), t, 0, 1, 1), l = l.plus(r.times(f)), i = i.plus(r.times(t)), l.s = f.s = g.s, d = S(f, t, s, 1).minus(g).abs().cmp(S(l, i, s, 1).minus(g).abs()) < 1 ? [f, t] : [l, i], N.precision = c, w = true, d;
+      };
+      h.toHexadecimal = h.toHex = function(e, n) {
+        return ke(this, 16, e, n);
+      };
+      h.toNearest = function(e, n) {
+        var i = this, t = i.constructor;
+        if (i = new t(i), e == null) {
+          if (!i.d) return i;
+          e = new t(1), n = t.rounding;
+        } else {
+          if (e = new t(e), n === void 0 ? n = t.rounding : _(n, 0, 8), !i.d) return e.s ? i : e;
+          if (!e.d) return e.s && (e.s = i.s), e;
+        }
+        return e.d[0] ? (w = false, i = S(i, e, 0, n, 1).times(e), w = true, p(i)) : (e.s = i.s, i = e), i;
+      };
+      h.toNumber = function() {
+        return +this;
+      };
+      h.toOctal = function(e, n) {
+        return ke(this, 8, e, n);
+      };
+      h.toPower = h.pow = function(e) {
+        var n, i, t, r, s, o, u = this, l = u.constructor, f = +(e = new l(e));
+        if (!u.d || !e.d || !u.d[0] || !e.d[0]) return new l(C(+u, f));
+        if (u = new l(u), u.eq(1)) return u;
+        if (t = l.precision, s = l.rounding, e.eq(1)) return p(u, t, s);
+        if (n = b(e.e / m), n >= e.d.length - 1 && (i = f < 0 ? -f : f) <= tn) return r = Ue(l, u, i, t), e.s < 0 ? new l(1).div(r) : p(r, t, s);
+        if (o = u.s, o < 0) {
+          if (n < e.d.length - 1) return new l(NaN);
+          if (e.d[n] & 1 || (o = 1), u.e == 0 && u.d[0] == 1 && u.d.length == 1) return u.s = o, u;
+        }
+        return i = C(+u, f), n = i == 0 || !isFinite(i) ? b(f * (Math.log("0." + O(u.d)) / Math.LN10 + u.e + 1)) : new l(i + "").e, n > l.maxE + 1 || n < l.minE - 1 ? new l(n > 0 ? o / 0 : 0) : (w = false, l.rounding = u.s = 1, i = Math.min(12, (n + "").length), r = Ee(e.times(B(u, t + i)), t), r.d && (r = p(r, t + 5, 1), x(r.d, t, s) && (n = t + 10, r = p(Ee(e.times(B(u, n + i)), n), n + 5, 1), +O(r.d).slice(t + 1, t + 15) + 1 == 1e14 && (r = p(r, t + 1, 0)))), r.s = o, w = true, l.rounding = s, p(r, t, s));
+      };
+      h.toPrecision = function(e, n) {
+        var i, t = this, r = t.constructor;
+        return e === void 0 ? i = F(t, t.e <= r.toExpNeg || t.e >= r.toExpPos) : (_(e, 1, $), n === void 0 ? n = r.rounding : _(n, 0, 8), t = p(new r(t), e, n), i = F(t, e <= t.e || t.e <= r.toExpNeg, e)), t.isNeg() && !t.isZero() ? "-" + i : i;
+      };
+      h.toSignificantDigits = h.toSD = function(e, n) {
+        var i = this, t = i.constructor;
+        return e === void 0 ? (e = t.precision, n = t.rounding) : (_(e, 1, $), n === void 0 ? n = t.rounding : _(n, 0, 8)), p(new t(i), e, n);
+      };
+      h.toString = function() {
+        var e = this, n = e.constructor, i = F(e, e.e <= n.toExpNeg || e.e >= n.toExpPos);
+        return e.isNeg() && !e.isZero() ? "-" + i : i;
+      };
+      h.truncated = h.trunc = function() {
+        return p(new this.constructor(this), this.e + 1, 1);
+      };
+      h.valueOf = h.toJSON = function() {
+        var e = this, n = e.constructor, i = F(e, e.e <= n.toExpNeg || e.e >= n.toExpPos);
+        return e.isNeg() ? "-" + i : i;
+      };
+      function O(e) {
+        var n, i, t, r = e.length - 1, s = "", o = e[0];
+        if (r > 0) {
+          for (s += o, n = 1; n < r; n++) t = e[n] + "", i = m - t.length, i && (s += U(i)), s += t;
+          o = e[n], t = o + "", i = m - t.length, i && (s += U(i));
+        } else if (o === 0) return "0";
+        for (; o % 10 === 0; ) o /= 10;
+        return s + o;
+      }
+      function _(e, n, i) {
+        if (e !== ~~e || e < n || e > i) throw Error(V + e);
+      }
+      function x(e, n, i, t) {
+        var r, s, o, u;
+        for (s = e[0]; s >= 10; s /= 10) --n;
+        return --n < 0 ? (n += m, r = 0) : (r = Math.ceil((n + 1) / m), n %= m), s = C(10, m - n), u = e[r] % s | 0, t == null ? n < 3 ? (n == 0 ? u = u / 100 | 0 : n == 1 && (u = u / 10 | 0), o = i < 4 && u == 99999 || i > 3 && u == 49999 || u == 5e4 || u == 0) : o = (i < 4 && u + 1 == s || i > 3 && u + 1 == s / 2) && (e[r + 1] / s / 100 | 0) == C(10, n - 2) - 1 || (u == s / 2 || u == 0) && (e[r + 1] / s / 100 | 0) == 0 : n < 4 ? (n == 0 ? u = u / 1e3 | 0 : n == 1 ? u = u / 100 | 0 : n == 2 && (u = u / 10 | 0), o = (t || i < 4) && u == 9999 || !t && i > 3 && u == 4999) : o = ((t || i < 4) && u + 1 == s || !t && i > 3 && u + 1 == s / 2) && (e[r + 1] / s / 1e3 | 0) == C(10, n - 3) - 1, o;
+      }
+      function ie(e, n, i) {
+        for (var t, r = [0], s, o = 0, u = e.length; o < u; ) {
+          for (s = r.length; s--; ) r[s] *= n;
+          for (r[0] += we.indexOf(e.charAt(o++)), t = 0; t < r.length; t++) r[t] > i - 1 && (r[t + 1] === void 0 && (r[t + 1] = 0), r[t + 1] += r[t] / i | 0, r[t] %= i);
+        }
+        return r.reverse();
+      }
+      function sn(e, n) {
+        var i, t, r;
+        if (n.isZero()) return n;
+        t = n.d.length, t < 32 ? (i = Math.ceil(t / 3), r = (1 / fe(4, i)).toString()) : (i = 16, r = "2.3283064365386962890625e-10"), e.precision += i, n = j(e, 1, n.times(r), new e(1));
+        for (var s = i; s--; ) {
+          var o = n.times(n);
+          n = o.times(o).minus(o).times(8).plus(1);
+        }
+        return e.precision -= i, n;
+      }
+      var S = /* @__PURE__ */ function() {
+        function e(t, r, s) {
+          var o, u = 0, l = t.length;
+          for (t = t.slice(); l--; ) o = t[l] * r + u, t[l] = o % s | 0, u = o / s | 0;
+          return u && t.unshift(u), t;
+        }
+        function n(t, r, s, o) {
+          var u, l;
+          if (s != o) l = s > o ? 1 : -1;
+          else for (u = l = 0; u < s; u++) if (t[u] != r[u]) {
+            l = t[u] > r[u] ? 1 : -1;
+            break;
+          }
+          return l;
+        }
+        function i(t, r, s, o) {
+          for (var u = 0; s--; ) t[s] -= u, u = t[s] < r[s] ? 1 : 0, t[s] = u * o + t[s] - r[s];
+          for (; !t[0] && t.length > 1; ) t.shift();
+        }
+        return function(t, r, s, o, u, l) {
+          var f, c, a, d, g, v, N, A, M, q, E, P, Y, I, le, z, W, ce, T, y, ee = t.constructor, ae = t.s == r.s ? 1 : -1, R = t.d, k = r.d;
+          if (!R || !R[0] || !k || !k[0]) return new ee(!t.s || !r.s || (R ? k && R[0] == k[0] : !k) ? NaN : R && R[0] == 0 || !k ? ae * 0 : ae / 0);
+          for (l ? (g = 1, c = t.e - r.e) : (l = D, g = m, c = b(t.e / g) - b(r.e / g)), T = k.length, W = R.length, M = new ee(ae), q = M.d = [], a = 0; k[a] == (R[a] || 0); a++) ;
+          if (k[a] > (R[a] || 0) && c--, s == null ? (I = s = ee.precision, o = ee.rounding) : u ? I = s + (t.e - r.e) + 1 : I = s, I < 0) q.push(1), v = true;
+          else {
+            if (I = I / g + 2 | 0, a = 0, T == 1) {
+              for (d = 0, k = k[0], I++; (a < W || d) && I--; a++) le = d * l + (R[a] || 0), q[a] = le / k | 0, d = le % k | 0;
+              v = d || a < W;
+            } else {
+              for (d = l / (k[0] + 1) | 0, d > 1 && (k = e(k, d, l), R = e(R, d, l), T = k.length, W = R.length), z = T, E = R.slice(0, T), P = E.length; P < T; ) E[P++] = 0;
+              y = k.slice(), y.unshift(0), ce = k[0], k[1] >= l / 2 && ++ce;
+              do
+                d = 0, f = n(k, E, T, P), f < 0 ? (Y = E[0], T != P && (Y = Y * l + (E[1] || 0)), d = Y / ce | 0, d > 1 ? (d >= l && (d = l - 1), N = e(k, d, l), A = N.length, P = E.length, f = n(N, E, A, P), f == 1 && (d--, i(N, T < A ? y : k, A, l))) : (d == 0 && (f = d = 1), N = k.slice()), A = N.length, A < P && N.unshift(0), i(E, N, P, l), f == -1 && (P = E.length, f = n(k, E, T, P), f < 1 && (d++, i(E, T < P ? y : k, P, l))), P = E.length) : f === 0 && (d++, E = [0]), q[a++] = d, f && E[0] ? E[P++] = R[z] || 0 : (E = [R[z]], P = 1);
+              while ((z++ < W || E[0] !== void 0) && I--);
+              v = E[0] !== void 0;
+            }
+            q[0] || q.shift();
+          }
+          if (g == 1) M.e = c, Te = v;
+          else {
+            for (a = 1, d = q[0]; d >= 10; d /= 10) a++;
+            M.e = a + c * g - 1, p(M, u ? s + M.e + 1 : s, o, v);
+          }
+          return M;
+        };
+      }();
+      function p(e, n, i, t) {
+        var r, s, o, u, l, f, c, a, d, g = e.constructor;
+        e: if (n != null) {
+          if (a = e.d, !a) return e;
+          for (r = 1, u = a[0]; u >= 10; u /= 10) r++;
+          if (s = n - r, s < 0) s += m, o = n, c = a[d = 0], l = c / C(10, r - o - 1) % 10 | 0;
+          else if (d = Math.ceil((s + 1) / m), u = a.length, d >= u) if (t) {
+            for (; u++ <= d; ) a.push(0);
+            c = l = 0, r = 1, s %= m, o = s - m + 1;
+          } else break e;
+          else {
+            for (c = u = a[d], r = 1; u >= 10; u /= 10) r++;
+            s %= m, o = s - m + r, l = o < 0 ? 0 : c / C(10, r - o - 1) % 10 | 0;
+          }
+          if (t = t || n < 0 || a[d + 1] !== void 0 || (o < 0 ? c : c % C(10, r - o - 1)), f = i < 4 ? (l || t) && (i == 0 || i == (e.s < 0 ? 3 : 2)) : l > 5 || l == 5 && (i == 4 || t || i == 6 && (s > 0 ? o > 0 ? c / C(10, r - o) : 0 : a[d - 1]) % 10 & 1 || i == (e.s < 0 ? 8 : 7)), n < 1 || !a[0]) return a.length = 0, f ? (n -= e.e + 1, a[0] = C(10, (m - n % m) % m), e.e = -n || 0) : a[0] = e.e = 0, e;
+          if (s == 0 ? (a.length = d, u = 1, d--) : (a.length = d + 1, u = C(10, m - s), a[d] = o > 0 ? (c / C(10, r - o) % C(10, o) | 0) * u : 0), f) for (; ; ) if (d == 0) {
+            for (s = 1, o = a[0]; o >= 10; o /= 10) s++;
+            for (o = a[0] += u, u = 1; o >= 10; o /= 10) u++;
+            s != u && (e.e++, a[0] == D && (a[0] = 1));
+            break;
+          } else {
+            if (a[d] += u, a[d] != D) break;
+            a[d--] = 0, u = 1;
+          }
+          for (s = a.length; a[--s] === 0; ) a.pop();
+        }
+        return w && (e.e > g.maxE ? (e.d = null, e.e = NaN) : e.e < g.minE && (e.e = 0, e.d = [0])), e;
+      }
+      function F(e, n, i) {
+        if (!e.isFinite()) return Ve(e);
+        var t, r = e.e, s = O(e.d), o = s.length;
+        return n ? (i && (t = i - o) > 0 ? s = s.charAt(0) + "." + s.slice(1) + U(t) : o > 1 && (s = s.charAt(0) + "." + s.slice(1)), s = s + (e.e < 0 ? "e" : "e+") + e.e) : r < 0 ? (s = "0." + U(-r - 1) + s, i && (t = i - o) > 0 && (s += U(t))) : r >= o ? (s += U(r + 1 - o), i && (t = i - r - 1) > 0 && (s = s + "." + U(t))) : ((t = r + 1) < o && (s = s.slice(0, t) + "." + s.slice(t)), i && (t = i - o) > 0 && (r + 1 === o && (s += "."), s += U(t))), s;
+      }
+      function ue(e, n) {
+        var i = e[0];
+        for (n *= m; i >= 10; i /= 10) n++;
+        return n;
+      }
+      function se(e, n, i) {
+        if (n > rn) throw w = true, i && (e.precision = i), Error(Le);
+        return p(new e(te), n, 1, true);
+      }
+      function L(e, n, i) {
+        if (n > ve) throw Error(Le);
+        return p(new e(re), n, i, true);
+      }
+      function Ze(e) {
+        var n = e.length - 1, i = n * m + 1;
+        if (n = e[n], n) {
+          for (; n % 10 == 0; n /= 10) i--;
+          for (n = e[0]; n >= 10; n /= 10) i++;
+        }
+        return i;
+      }
+      function U(e) {
+        for (var n = ""; e--; ) n += "0";
+        return n;
+      }
+      function Ue(e, n, i, t) {
+        var r, s = new e(1), o = Math.ceil(t / m + 4);
+        for (w = false; ; ) {
+          if (i % 2 && (s = s.times(n), _e(s.d, o) && (r = true)), i = b(i / 2), i === 0) {
+            i = s.d.length - 1, r && s.d[i] === 0 && ++s.d[i];
+            break;
+          }
+          n = n.times(n), _e(n.d, o);
+        }
+        return w = true, s;
+      }
+      function Ae(e) {
+        return e.d[e.d.length - 1] & 1;
+      }
+      function Be(e, n, i) {
+        for (var t, r = new e(n[0]), s = 0; ++s < n.length; ) if (t = new e(n[s]), t.s) r[i](t) && (r = t);
+        else {
+          r = t;
+          break;
+        }
+        return r;
+      }
+      function Ee(e, n) {
+        var i, t, r, s, o, u, l, f = 0, c = 0, a = 0, d = e.constructor, g = d.rounding, v = d.precision;
+        if (!e.d || !e.d[0] || e.e > 17) return new d(e.d ? e.d[0] ? e.s < 0 ? 0 : 1 / 0 : 1 : e.s ? e.s < 0 ? 0 : e : NaN);
+        for (n == null ? (w = false, l = v) : l = n, u = new d(0.03125); e.e > -2; ) e = e.times(u), a += 5;
+        for (t = Math.log(C(2, a)) / Math.LN10 * 2 + 5 | 0, l += t, i = s = o = new d(1), d.precision = l; ; ) {
+          if (s = p(s.times(e), l, 1), i = i.times(++c), u = o.plus(S(s, i, l, 1)), O(u.d).slice(0, l) === O(o.d).slice(0, l)) {
+            for (r = a; r--; ) o = p(o.times(o), l, 1);
+            if (n == null) if (f < 3 && x(o.d, l - t, g, f)) d.precision = l += 10, i = s = u = new d(1), c = 0, f++;
+            else return p(o, d.precision = v, g, w = true);
+            else return d.precision = v, o;
+          }
+          o = u;
+        }
+      }
+      function B(e, n) {
+        var i, t, r, s, o, u, l, f, c, a, d, g = 1, v = 10, N = e, A = N.d, M = N.constructor, q = M.rounding, E = M.precision;
+        if (N.s < 0 || !A || !A[0] || !N.e && A[0] == 1 && A.length == 1) return new M(A && !A[0] ? -1 / 0 : N.s != 1 ? NaN : A ? 0 : N);
+        if (n == null ? (w = false, c = E) : c = n, M.precision = c += v, i = O(A), t = i.charAt(0), Math.abs(s = N.e) < 15e14) {
+          for (; t < 7 && t != 1 || t == 1 && i.charAt(1) > 3; ) N = N.times(e), i = O(N.d), t = i.charAt(0), g++;
+          s = N.e, t > 1 ? (N = new M("0." + i), s++) : N = new M(t + "." + i.slice(1));
+        } else return f = se(M, c + 2, E).times(s + ""), N = B(new M(t + "." + i.slice(1)), c - v).plus(f), M.precision = E, n == null ? p(N, E, q, w = true) : N;
+        for (a = N, l = o = N = S(N.minus(1), N.plus(1), c, 1), d = p(N.times(N), c, 1), r = 3; ; ) {
+          if (o = p(o.times(d), c, 1), f = l.plus(S(o, new M(r), c, 1)), O(f.d).slice(0, c) === O(l.d).slice(0, c)) if (l = l.times(2), s !== 0 && (l = l.plus(se(M, c + 2, E).times(s + ""))), l = S(l, new M(g), c, 1), n == null) if (x(l.d, c - v, q, u)) M.precision = c += v, f = o = N = S(a.minus(1), a.plus(1), c, 1), d = p(N.times(N), c, 1), r = u = 1;
+          else return p(l, M.precision = E, q, w = true);
+          else return M.precision = E, l;
+          l = f, r += 2;
+        }
+      }
+      function Ve(e) {
+        return String(e.s * e.s / 0);
+      }
+      function Se(e, n) {
+        var i, t, r;
+        for ((i = n.indexOf(".")) > -1 && (n = n.replace(".", "")), (t = n.search(/e/i)) > 0 ? (i < 0 && (i = t), i += +n.slice(t + 1), n = n.substring(0, t)) : i < 0 && (i = n.length), t = 0; n.charCodeAt(t) === 48; t++) ;
+        for (r = n.length; n.charCodeAt(r - 1) === 48; --r) ;
+        if (n = n.slice(t, r), n) {
+          if (r -= t, e.e = i = i - t - 1, e.d = [], t = (i + 1) % m, i < 0 && (t += m), t < r) {
+            for (t && e.d.push(+n.slice(0, t)), r -= m; t < r; ) e.d.push(+n.slice(t, t += m));
+            n = n.slice(t), t = m - n.length;
+          } else t -= r;
+          for (; t--; ) n += "0";
+          e.d.push(+n), w && (e.e > e.constructor.maxE ? (e.d = null, e.e = NaN) : e.e < e.constructor.minE && (e.e = 0, e.d = [0]));
+        } else e.e = 0, e.d = [0];
+        return e;
+      }
+      function on(e, n) {
+        var i, t, r, s, o, u, l, f, c;
+        if (n.indexOf("_") > -1) {
+          if (n = n.replace(/(\d)_(?=\d)/g, "$1"), Ie.test(n)) return Se(e, n);
+        } else if (n === "Infinity" || n === "NaN") return +n || (e.s = NaN), e.e = NaN, e.d = null, e;
+        if (en.test(n)) i = 16, n = n.toLowerCase();
+        else if (ye.test(n)) i = 2;
+        else if (nn.test(n)) i = 8;
+        else throw Error(V + n);
+        for (s = n.search(/p/i), s > 0 ? (l = +n.slice(s + 1), n = n.substring(2, s)) : n = n.slice(2), s = n.indexOf("."), o = s >= 0, t = e.constructor, o && (n = n.replace(".", ""), u = n.length, s = u - s, r = Ue(t, new t(i), s, s * 2)), f = ie(n, i, D), c = f.length - 1, s = c; f[s] === 0; --s) f.pop();
+        return s < 0 ? new t(e.s * 0) : (e.e = ue(f, c), e.d = f, w = false, o && (e = S(e, r, u * 4)), l && (e = e.times(Math.abs(l) < 54 ? C(2, l) : Q.pow(2, l))), w = true, e);
+      }
+      function un(e, n) {
+        var i, t = n.d.length;
+        if (t < 3) return n.isZero() ? n : j(e, 2, n, n);
+        i = 1.4 * Math.sqrt(t), i = i > 16 ? 16 : i | 0, n = n.times(1 / fe(5, i)), n = j(e, 2, n, n);
+        for (var r, s = new e(5), o = new e(16), u = new e(20); i--; ) r = n.times(n), n = n.times(s.plus(r.times(o.times(r).minus(u))));
+        return n;
+      }
+      function j(e, n, i, t, r) {
+        var s, o, u, l, f = 1, c = e.precision, a = Math.ceil(c / m);
+        for (w = false, l = i.times(i), u = new e(t); ; ) {
+          if (o = S(u.times(l), new e(n++ * n++), c, 1), u = r ? t.plus(o) : t.minus(o), t = S(o.times(l), new e(n++ * n++), c, 1), o = u.plus(t), o.d[a] !== void 0) {
+            for (s = a; o.d[s] === u.d[s] && s--; ) ;
+            if (s == -1) break;
+          }
+          s = u, u = t, t = o, o = s, f++;
+        }
+        return w = true, o.d.length = a + 1, o;
+      }
+      function fe(e, n) {
+        for (var i = e; --n; ) i *= e;
+        return i;
+      }
+      function $e(e, n) {
+        var i, t = n.s < 0, r = L(e, e.precision, 1), s = r.times(0.5);
+        if (n = n.abs(), n.lte(s)) return Z = t ? 4 : 1, n;
+        if (i = n.divToInt(r), i.isZero()) Z = t ? 3 : 2;
+        else {
+          if (n = n.minus(i.times(r)), n.lte(s)) return Z = Ae(i) ? t ? 2 : 3 : t ? 4 : 1, n;
+          Z = Ae(i) ? t ? 1 : 4 : t ? 3 : 2;
+        }
+        return n.minus(r).abs();
+      }
+      function ke(e, n, i, t) {
+        var r, s, o, u, l, f, c, a, d, g = e.constructor, v = i !== void 0;
+        if (v ? (_(i, 1, $), t === void 0 ? t = g.rounding : _(t, 0, 8)) : (i = g.precision, t = g.rounding), !e.isFinite()) c = Ve(e);
+        else {
+          for (c = F(e), o = c.indexOf("."), v ? (r = 2, n == 16 ? i = i * 4 - 3 : n == 8 && (i = i * 3 - 2)) : r = n, o >= 0 && (c = c.replace(".", ""), d = new g(1), d.e = c.length - o, d.d = ie(F(d), 10, r), d.e = d.d.length), a = ie(c, 10, r), s = l = a.length; a[--l] == 0; ) a.pop();
+          if (!a[0]) c = v ? "0p+0" : "0";
+          else {
+            if (o < 0 ? s-- : (e = new g(e), e.d = a, e.e = s, e = S(e, d, i, t, 0, r), a = e.d, s = e.e, f = Te), o = a[i], u = r / 2, f = f || a[i + 1] !== void 0, f = t < 4 ? (o !== void 0 || f) && (t === 0 || t === (e.s < 0 ? 3 : 2)) : o > u || o === u && (t === 4 || f || t === 6 && a[i - 1] & 1 || t === (e.s < 0 ? 8 : 7)), a.length = i, f) for (; ++a[--i] > r - 1; ) a[i] = 0, i || (++s, a.unshift(1));
+            for (l = a.length; !a[l - 1]; --l) ;
+            for (o = 0, c = ""; o < l; o++) c += we.charAt(a[o]);
+            if (v) {
+              if (l > 1) if (n == 16 || n == 8) {
+                for (o = n == 16 ? 4 : 3, --l; l % o; l++) c += "0";
+                for (a = ie(c, r, n), l = a.length; !a[l - 1]; --l) ;
+                for (o = 1, c = "1."; o < l; o++) c += we.charAt(a[o]);
+              } else c = c.charAt(0) + "." + c.slice(1);
+              c = c + (s < 0 ? "p" : "p+") + s;
+            } else if (s < 0) {
+              for (; ++s; ) c = "0" + c;
+              c = "0." + c;
+            } else if (++s > l) for (s -= l; s--; ) c += "0";
+            else s < l && (c = c.slice(0, s) + "." + c.slice(s));
+          }
+          c = (n == 16 ? "0x" : n == 2 ? "0b" : n == 8 ? "0o" : "") + c;
+        }
+        return e.s < 0 ? "-" + c : c;
+      }
+      function _e(e, n) {
+        if (e.length > n) return e.length = n, true;
+      }
+      function fn(e) {
+        return new this(e).abs();
+      }
+      function ln(e) {
+        return new this(e).acos();
+      }
+      function cn(e) {
+        return new this(e).acosh();
+      }
+      function an(e, n) {
+        return new this(e).plus(n);
+      }
+      function dn(e) {
+        return new this(e).asin();
+      }
+      function hn(e) {
+        return new this(e).asinh();
+      }
+      function pn(e) {
+        return new this(e).atan();
+      }
+      function gn(e) {
+        return new this(e).atanh();
+      }
+      function mn(e, n) {
+        e = new this(e), n = new this(n);
+        var i, t = this.precision, r = this.rounding, s = t + 4;
+        return !e.s || !n.s ? i = new this(NaN) : !e.d && !n.d ? (i = L(this, s, 1).times(n.s > 0 ? 0.25 : 0.75), i.s = e.s) : !n.d || e.isZero() ? (i = n.s < 0 ? L(this, t, r) : new this(0), i.s = e.s) : !e.d || n.isZero() ? (i = L(this, s, 1).times(0.5), i.s = e.s) : n.s < 0 ? (this.precision = s, this.rounding = 1, i = this.atan(S(e, n, s, 1)), n = L(this, s, 1), this.precision = t, this.rounding = r, i = e.s < 0 ? i.minus(n) : i.plus(n)) : i = this.atan(S(e, n, s, 1)), i;
+      }
+      function wn(e) {
+        return new this(e).cbrt();
+      }
+      function Nn(e) {
+        return p(e = new this(e), e.e + 1, 2);
+      }
+      function vn(e, n, i) {
+        return new this(e).clamp(n, i);
+      }
+      function En(e) {
+        if (!e || typeof e != "object") throw Error(oe + "Object expected");
+        var n, i, t, r = e.defaults === true, s = ["precision", 1, $, "rounding", 0, 8, "toExpNeg", -H, 0, "toExpPos", 0, H, "maxE", 0, H, "minE", -H, 0, "modulo", 0, 9];
+        for (n = 0; n < s.length; n += 3) if (i = s[n], r && (this[i] = Ne[i]), (t = e[i]) !== void 0) if (b(t) === t && t >= s[n + 1] && t <= s[n + 2]) this[i] = t;
+        else throw Error(V + i + ": " + t);
+        if (i = "crypto", r && (this[i] = Ne[i]), (t = e[i]) !== void 0) if (t === true || t === false || t === 0 || t === 1) if (t) if (typeof crypto < "u" && crypto && (crypto.getRandomValues || crypto.randomBytes)) this[i] = true;
+        else throw Error(De);
+        else this[i] = false;
+        else throw Error(V + i + ": " + t);
+        return this;
+      }
+      function Sn(e) {
+        return new this(e).cos();
+      }
+      function kn(e) {
+        return new this(e).cosh();
+      }
+      function He(e) {
+        var n, i, t;
+        function r(s) {
+          var o, u, l, f = this;
+          if (!(f instanceof r)) return new r(s);
+          if (f.constructor = r, qe(s)) {
+            f.s = s.s, w ? !s.d || s.e > r.maxE ? (f.e = NaN, f.d = null) : s.e < r.minE ? (f.e = 0, f.d = [0]) : (f.e = s.e, f.d = s.d.slice()) : (f.e = s.e, f.d = s.d ? s.d.slice() : s.d);
+            return;
+          }
+          if (l = typeof s, l === "number") {
+            if (s === 0) {
+              f.s = 1 / s < 0 ? -1 : 1, f.e = 0, f.d = [0];
+              return;
+            }
+            if (s < 0 ? (s = -s, f.s = -1) : f.s = 1, s === ~~s && s < 1e7) {
+              for (o = 0, u = s; u >= 10; u /= 10) o++;
+              w ? o > r.maxE ? (f.e = NaN, f.d = null) : o < r.minE ? (f.e = 0, f.d = [0]) : (f.e = o, f.d = [s]) : (f.e = o, f.d = [s]);
+              return;
+            } else if (s * 0 !== 0) {
+              s || (f.s = NaN), f.e = NaN, f.d = null;
+              return;
+            }
+            return Se(f, s.toString());
+          } else if (l !== "string") throw Error(V + s);
+          return (u = s.charCodeAt(0)) === 45 ? (s = s.slice(1), f.s = -1) : (u === 43 && (s = s.slice(1)), f.s = 1), Ie.test(s) ? Se(f, s) : on(f, s);
+        }
+        if (r.prototype = h, r.ROUND_UP = 0, r.ROUND_DOWN = 1, r.ROUND_CEIL = 2, r.ROUND_FLOOR = 3, r.ROUND_HALF_UP = 4, r.ROUND_HALF_DOWN = 5, r.ROUND_HALF_EVEN = 6, r.ROUND_HALF_CEIL = 7, r.ROUND_HALF_FLOOR = 8, r.EUCLID = 9, r.config = r.set = En, r.clone = He, r.isDecimal = qe, r.abs = fn, r.acos = ln, r.acosh = cn, r.add = an, r.asin = dn, r.asinh = hn, r.atan = pn, r.atanh = gn, r.atan2 = mn, r.cbrt = wn, r.ceil = Nn, r.clamp = vn, r.cos = Sn, r.cosh = kn, r.div = Mn, r.exp = Cn, r.floor = On, r.hypot = Pn, r.ln = Rn, r.log = bn, r.log10 = _n, r.log2 = An, r.max = qn, r.min = Tn, r.mod = Ln, r.mul = Dn, r.pow = Fn, r.random = In, r.round = Zn, r.sign = Un, r.sin = Bn, r.sinh = Vn, r.sqrt = $n, r.sub = Hn, r.sum = jn, r.tan = Wn, r.tanh = Gn, r.trunc = Jn, e === void 0 && (e = {}), e && e.defaults !== true) for (t = ["precision", "rounding", "toExpNeg", "toExpPos", "maxE", "minE", "modulo", "crypto"], n = 0; n < t.length; ) e.hasOwnProperty(i = t[n++]) || (e[i] = this[i]);
+        return r.config(e), r;
+      }
+      function Mn(e, n) {
+        return new this(e).div(n);
+      }
+      function Cn(e) {
+        return new this(e).exp();
+      }
+      function On(e) {
+        return p(e = new this(e), e.e + 1, 3);
+      }
+      function Pn() {
+        var e, n, i = new this(0);
+        for (w = false, e = 0; e < arguments.length; ) if (n = new this(arguments[e++]), n.d) i.d && (i = i.plus(n.times(n)));
+        else {
+          if (n.s) return w = true, new this(1 / 0);
+          i = n;
+        }
+        return w = true, i.sqrt();
+      }
+      function qe(e) {
+        return e instanceof Q || e && e.toStringTag === Fe || false;
+      }
+      function Rn(e) {
+        return new this(e).ln();
+      }
+      function bn(e, n) {
+        return new this(e).log(n);
+      }
+      function An(e) {
+        return new this(e).log(2);
+      }
+      function _n(e) {
+        return new this(e).log(10);
+      }
+      function qn() {
+        return Be(this, arguments, "lt");
+      }
+      function Tn() {
+        return Be(this, arguments, "gt");
+      }
+      function Ln(e, n) {
+        return new this(e).mod(n);
+      }
+      function Dn(e, n) {
+        return new this(e).mul(n);
+      }
+      function Fn(e, n) {
+        return new this(e).pow(n);
+      }
+      function In(e) {
+        var n, i, t, r, s = 0, o = new this(1), u = [];
+        if (e === void 0 ? e = this.precision : _(e, 1, $), t = Math.ceil(e / m), this.crypto) if (crypto.getRandomValues) for (n = crypto.getRandomValues(new Uint32Array(t)); s < t; ) r = n[s], r >= 429e7 ? n[s] = crypto.getRandomValues(new Uint32Array(1))[0] : u[s++] = r % 1e7;
+        else if (crypto.randomBytes) {
+          for (n = crypto.randomBytes(t *= 4); s < t; ) r = n[s] + (n[s + 1] << 8) + (n[s + 2] << 16) + ((n[s + 3] & 127) << 24), r >= 214e7 ? crypto.randomBytes(4).copy(n, s) : (u.push(r % 1e7), s += 4);
+          s = t / 4;
+        } else throw Error(De);
+        else for (; s < t; ) u[s++] = Math.random() * 1e7 | 0;
+        for (t = u[--s], e %= m, t && e && (r = C(10, m - e), u[s] = (t / r | 0) * r); u[s] === 0; s--) u.pop();
+        if (s < 0) i = 0, u = [0];
+        else {
+          for (i = -1; u[0] === 0; i -= m) u.shift();
+          for (t = 1, r = u[0]; r >= 10; r /= 10) t++;
+          t < m && (i -= m - t);
+        }
+        return o.e = i, o.d = u, o;
+      }
+      function Zn(e) {
+        return p(e = new this(e), e.e + 1, this.rounding);
+      }
+      function Un(e) {
+        return e = new this(e), e.d ? e.d[0] ? e.s : 0 * e.s : e.s || NaN;
+      }
+      function Bn(e) {
+        return new this(e).sin();
+      }
+      function Vn(e) {
+        return new this(e).sinh();
+      }
+      function $n(e) {
+        return new this(e).sqrt();
+      }
+      function Hn(e, n) {
+        return new this(e).sub(n);
+      }
+      function jn() {
+        var e = 0, n = arguments, i = new this(n[e]);
+        for (w = false; i.s && ++e < n.length; ) i = i.plus(n[e]);
+        return w = true, p(i, this.precision, this.rounding);
+      }
+      function Wn(e) {
+        return new this(e).tan();
+      }
+      function Gn(e) {
+        return new this(e).tanh();
+      }
+      function Jn(e) {
+        return p(e = new this(e), e.e + 1, 1);
+      }
+      h[Symbol.for("nodejs.util.inspect.custom")] = h.toString;
+      h[Symbol.toStringTag] = "Decimal";
+      var Q = h.constructor = He(Ne);
+      te = new Q(te);
+      re = new Q(re);
+      var je = Q;
+    }
+  });
+
+  // node_modules/.prisma/client/index-browser.js
+  var require_index_browser2 = __commonJS({
+    "node_modules/.prisma/client/index-browser.js"(exports) {
+      Object.defineProperty(exports, "__esModule", { value: true });
+      var {
+        Decimal: Decimal2,
+        objectEnumValues: objectEnumValues2,
+        makeStrictEnum: makeStrictEnum2,
+        Public: Public2,
+        getRuntime: getRuntime2
+      } = require_index_browser();
+      var Prisma = {};
+      exports.Prisma = Prisma;
+      exports.$Enums = {};
+      Prisma.prismaVersion = {
+        client: "5.18.0",
+        engine: "4c784e32044a8a016d99474bd02a3b6123742169"
+      };
+      Prisma.PrismaClientKnownRequestError = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `PrismaClientKnownRequestError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.PrismaClientUnknownRequestError = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `PrismaClientUnknownRequestError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.PrismaClientRustPanicError = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `PrismaClientRustPanicError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.PrismaClientInitializationError = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `PrismaClientInitializationError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.PrismaClientValidationError = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `PrismaClientValidationError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.NotFoundError = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `NotFoundError is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.Decimal = Decimal2;
+      Prisma.sql = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `sqltag is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.empty = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `empty is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.join = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `join is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.raw = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `raw is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.validator = Public2.validator;
+      Prisma.getExtensionContext = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `Extensions.getExtensionContext is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.defineExtension = () => {
+        const runtimeName = getRuntime2().prettyName;
+        throw new Error(
+          `Extensions.defineExtension is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
+In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`
+        );
+      };
+      Prisma.DbNull = objectEnumValues2.instances.DbNull;
+      Prisma.JsonNull = objectEnumValues2.instances.JsonNull;
+      Prisma.AnyNull = objectEnumValues2.instances.AnyNull;
+      Prisma.NullTypes = {
+        DbNull: objectEnumValues2.classes.DbNull,
+        JsonNull: objectEnumValues2.classes.JsonNull,
+        AnyNull: objectEnumValues2.classes.AnyNull
+      };
+      exports.Prisma.SpaceScalarFieldEnum = {
+        id: "id",
+        spaceName: "spaceName",
+        spaceUrl: "spaceUrl",
+        headerTitle: "headerTitle",
+        customMessage: "customMessage",
+        questions: "questions",
+        collectStars: "collectStars",
+        testimonialType: "testimonialType",
+        createdAt: "createdAt",
+        updatedAt: "updatedAt"
+      };
+      exports.Prisma.ReviewScalarFieldEnum = {
+        id: "id",
+        spaceId: "spaceId",
+        testimonialText: "testimonialText",
+        name: "name",
+        email: "email",
+        rating: "rating",
+        type: "type",
+        videoLink: "videoLink",
+        isArchived: "isArchived",
+        createdAt: "createdAt",
+        updatedAt: "updatedAt"
+      };
+      exports.Prisma.UserScalarFieldEnum = {
+        id: "id",
+        userId: "userId",
+        name: "name",
+        email: "email",
+        imageUrl: "imageUrl"
+      };
+      exports.Prisma.SortOrder = {
+        asc: "asc",
+        desc: "desc"
+      };
+      exports.Prisma.QueryMode = {
+        default: "default",
+        insensitive: "insensitive"
+      };
+      exports.TestimonialType = exports.$Enums.TestimonialType = {
+        TEXT: "TEXT",
+        BOTH: "BOTH",
+        VIDEO: "VIDEO"
+      };
+      exports.Prisma.ModelName = {
+        Space: "Space",
+        Review: "Review",
+        User: "User"
+      };
+      var PrismaClient = class {
+        constructor() {
+          return new Proxy(this, {
+            get(target, prop) {
+              let message;
+              const runtime = getRuntime2();
+              if (runtime.isEdge) {
+                message = `PrismaClient is not configured to run in ${runtime.prettyName}. In order to run Prisma Client on edge runtime, either:
+- Use Prisma Accelerate: https://pris.ly/d/accelerate
+- Use Driver Adapters: https://pris.ly/d/driver-adapters
+`;
+              } else {
+                message = "PrismaClient is unable to run in this browser environment, or has been bundled for the browser (running in `" + runtime.prettyName + "`).";
+              }
+              message += `
+If this is unexpected, please open an issue: https://pris.ly/prisma-prisma-bug-report`;
+              throw new Error(message);
+            }
+          });
+        }
+      };
+      exports.PrismaClient = PrismaClient;
+      Object.assign(exports, Prisma);
+    }
+  });
+
+  // node_modules/@prisma/client/index-browser.js
+  var require_index_browser3 = __commonJS({
+    "node_modules/@prisma/client/index-browser.js"(exports, module) {
+      var prisma = require_index_browser2();
+      module.exports = prisma;
+    }
+  });
+
+  // node_modules/react-dom/client.js
+  var require_client = __commonJS({
+    "node_modules/react-dom/client.js"(exports) {
+      "use strict";
+      var m = require_react_dom();
+      if (false) {
+        exports.createRoot = m.createRoot;
+        exports.hydrateRoot = m.hydrateRoot;
+      } else {
+        i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        exports.createRoot = function(c, o) {
+          i.usingClientEntryPoint = true;
+          try {
+            return m.createRoot(c, o);
+          } finally {
+            i.usingClientEntryPoint = false;
+          }
+        };
+        exports.hydrateRoot = function(c, h, o) {
+          i.usingClientEntryPoint = true;
+          try {
+            return m.hydrateRoot(c, h, o);
+          } finally {
+            i.usingClientEntryPoint = false;
+          }
+        };
+      }
+      var i;
+    }
+  });
+
+  // src/components/collectionWidget/collectionWidget.js
+  var import_react15 = __toESM(require_react());
   var import_react_dom = __toESM(require_react_dom());
 
-  // src/components/collectionWidget/badgeWidget.js
-  var import_react8 = __toESM(require_react());
+  // src/components/collectionWidget/index.js
+  var import_react14 = __toESM(require_react());
+
+  // src/components/collectionWidget/collectionPreview/index.js
+  var import_react3 = __toESM(require_react());
+
+  // public/assets/like.tsx
+  var import_react = __toESM(require_react());
+  var Like = ({ width, height }) => {
+    return (
+      // JSX code for your component's UI goes here
+      /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement(
+        "svg",
+        {
+          xmlns: "http://www.w3.org/2000/svg",
+          xmlnsXlink: "http://www.w3.org/1999/xlink",
+          width,
+          height,
+          viewBox: "0 0 375 374.999991",
+          version: "1.2"
+        },
+        /* @__PURE__ */ import_react.default.createElement("defs", null, /* @__PURE__ */ import_react.default.createElement("clipPath", { id: "clip1" }, /* @__PURE__ */ import_react.default.createElement(
+          "path",
+          {
+            style: { color: "red", background: "red" },
+            d: "M 66.429688 66.429688 L 308.679688 66.429688 L 308.679688 308.679688 L 66.429688 308.679688 Z M 66.429688 66.429688 "
+          }
+        ))),
+        /* @__PURE__ */ import_react.default.createElement("g", { id: "surface1" }, /* @__PURE__ */ import_react.default.createElement("g", { "clip-path": "url(#clip1)", "clip-rule": "nonzero" }, /* @__PURE__ */ import_react.default.createElement(
+          "path",
+          {
+            style: {
+              stroke: "none",
+              fillRule: "nonzero",
+              fill: "rgb(36.468506%,36.468506%,100%)",
+              fillOpacity: "1"
+            },
+            d: "M 187.449219 66.359375 C 120.574219 66.359375 66.359375 120.574219 66.359375 187.449219 C 66.359375 254.324219 120.574219 308.542969 187.449219 308.542969 C 254.324219 308.542969 308.542969 254.324219 308.542969 187.449219 C 308.542969 120.574219 254.324219 66.359375 187.449219 66.359375 Z M 157.789062 219.964844 C 157.789062 226.507812 152.484375 231.808594 145.949219 231.808594 C 139.410156 231.808594 134.105469 226.507812 134.105469 219.964844 L 134.105469 169.496094 C 134.105469 162.953125 139.410156 157.652344 145.949219 157.652344 C 152.484375 157.652344 157.789062 162.953125 157.789062 169.496094 Z M 241.40625 219.117188 C 241.40625 228.367188 236 231.679688 226.75 231.679688 L 184.175781 231.679688 C 174.925781 231.679688 167.425781 224.179688 167.425781 214.929688 L 167.425781 173.054688 C 167.425781 173.054688 166.601562 166.089844 174.308594 159.542969 C 178.667969 155.839844 185.140625 148.773438 189.664062 140.195312 C 198.652344 123.160156 204.027344 118.199219 208.125 119.527344 C 223.28125 124.441406 215.703125 146.917969 210.8125 156.304688 L 224.65625 156.304688 C 233.90625 156.304688 241.40625 163.804688 241.40625 173.054688 Z M 241.40625 219.117188 "
+          }
+        )))
+      ))
+    );
+  };
+  var like_default = Like;
+
+  // src/components/button/button.tsx
+  var import_react2 = __toESM(require_react());
+  var Button = ({
+    text,
+    onClick,
+    className,
+    icon,
+    type = "button",
+    formAction,
+    children,
+    disabled = false,
+    showLoader = false,
+    showToastOnComplete = false,
+    toastTitle,
+    toastDescription
+  }) => {
+    const buttonRef = (0, import_react2.useRef)(null);
+    const [processStarted, setProcessStarted] = (0, import_react2.useState)(false);
+    return /* @__PURE__ */ import_react2.default.createElement(
+      "button",
+      {
+        ref: buttonRef,
+        disabled,
+        className: `btn rounded  text-white   w-40 ${icon && "flex items-center justify-center"} ${disabled ? "bg-[#d3d3d3]" : "bg-blue-500 hover:bg-purple-700"} ${className}  `,
+        type,
+        onClick
+      },
+      /* @__PURE__ */ import_react2.default.createElement("div", { className: "flex justify-center items-center" }, children ? children : /* @__PURE__ */ import_react2.default.createElement(import_react2.default.Fragment, null, icon, " ", text))
+    );
+  };
+  var button_default = Button;
+
+  // src/components/collectionWidget/collectionPreview/index.js
+  var CollectionPreview = ({
+    spaceHeader,
+    questions,
+    customMessage,
+    spaceImageUrl,
+    setOpenReview
+  }) => {
+    return (
+      // <div className="mx-auto h-3/4 p-6 bg-#fff border-2  rounded-lg shadow-md w-full flex flex-col justify-evenly">
+      //   <div className="flex justify-center items-center mb-4">
+      //     <div className="w-4 h-4 bg-indigo-100 rounded-full flex items-center justify-center">
+      //       {/* <Like width={75} height={75} /> */}
+      //     </div>
+      //   </div>
+      //   <h3 className="text-xl font-semibold text-center mb-2">{spaceHeader}</h3>
+      //   <p className="text-center text-gray-500 mb-4">{customMessage}</p>
+      //   <div className="border-t border-gray-200 pt-4">
+      //     <h4 className="text-sm font-semibold text-gray-700 mb-2">QUESTIONS</h4>
+      //     <ul className="list-disc list-inside text-black-600">
+      //       {questions &&
+      //         questions.length > 0 &&
+      //         questions.map((question, index) => {
+      //           return <li className="text-black-600" key={index}>{question}</li>;
+      //         })}
+      //     </ul>
+      //   </div>
+      //   <div className="flex flex">
+      //     <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+      //       Record a video
+      //     </button>
+      //     <button onClick={()=>{
+      //       setOpenReview(true)
+      //     }} className="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800">
+      //       Send in text
+      //     </button>
+      //   </div>
+      // </div>
+      /* @__PURE__ */ import_react3.default.createElement("div", { className: "w-full mx-auto !h-5/6  p-6 bg-#fff border rounded-lg shadow-md flex flex-col justify-evenly" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex justify-center items-center mb-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "w-4 h-4 bg-indigo-100 rounded-full flex items-center justify-center" }, /* @__PURE__ */ import_react3.default.createElement(like_default, { width: 75, height: 75 }))), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "text-xl font-semibold text-center mb-2" }, spaceHeader), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-center text-gray-500 mb-4" }, customMessage)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "border-t border-gray-200 pt-4" }, /* @__PURE__ */ import_react3.default.createElement("h4", { className: "text-sm font-semibold text-gray-700 mb-2" }, "QUESTIONS"), /* @__PURE__ */ import_react3.default.createElement("ul", { className: "list-disc list-inside text-gray-600" }, questions && questions.length > 0 && questions.map((question, index) => {
+        return /* @__PURE__ */ import_react3.default.createElement("li", { className: "text-black-600", key: index }, question);
+      }))), /* @__PURE__ */ import_react3.default.createElement(button_default, { text: "Send In Text", onClick: () => {
+        setOpenReview(true);
+      }, className: "!h-fit text-white px-4 py-2 rounded-md mx-auto" }))
+    );
+  };
+  var collectionPreview_default = CollectionPreview;
+
+  // src/components/checkbox/index.tsx
+  var import_react4 = __toESM(require_react());
+  var InputCheckbox = ({
+    text,
+    checked = false,
+    onChange
+  }) => {
+    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center" }, /* @__PURE__ */ import_react4.default.createElement("input", { onChange, checked, type: "checkbox" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "text-textBlack" }, text));
+  };
+
+  // src/components/inputElements/inputTextArea.tsx
+  var import_react5 = __toESM(require_react());
+  var InputTextArea = ({
+    register,
+    required,
+    label,
+    name,
+    errorMessage
+  }) => {
+    return /* @__PURE__ */ import_react5.default.createElement("div", { className: "flex flex-col" }, label && /* @__PURE__ */ import_react5.default.createElement("div", { className: "flex" }, /* @__PURE__ */ import_react5.default.createElement("label", { className: "text-gray-700" }, label), required && /* @__PURE__ */ import_react5.default.createElement("span", { className: "text-red-600" }, "*")), /* @__PURE__ */ import_react5.default.createElement(
+      "textarea",
+      {
+        name,
+        className: `border border-gray-300 px-4 py-2 rounded-md mt-2  ${errorMessage !== "" ? "border border-red-600" : "border border-gray-300"} `,
+        ...register(name, {
+          required: required ? "This field is requried" : ""
+        })
+      }
+    ), errorMessage !== "" && /* @__PURE__ */ import_react5.default.createElement("p", { className: "text-red-600" }, errorMessage));
+  };
+  var inputTextArea_default = InputTextArea;
+
+  // src/components/inputElements/inputTextBox.tsx
+  var import_react6 = __toESM(require_react());
+  var InputTextElement = ({
+    label,
+    name,
+    required = false,
+    register,
+    defaultValue,
+    classes,
+    hasError = false,
+    errorMessage = "",
+    trigger
+  }) => {
+    return /* @__PURE__ */ import_react6.default.createElement("div", { className: `flex flex-col ${classes}` }, label && /* @__PURE__ */ import_react6.default.createElement("div", { className: "flex" }, /* @__PURE__ */ import_react6.default.createElement("label", { className: "text-textBlack" }, label), required && /* @__PURE__ */ import_react6.default.createElement("span", { className: "text-red-600" }, "*")), /* @__PURE__ */ import_react6.default.createElement(
+      "input",
+      {
+        ...register(name, {
+          required: required ? `This field is required` : ""
+        }),
+        defaultValue,
+        name,
+        className: ` ${errorMessage !== "" ? "border border-red-600" : "border border-gray-300"} px-4 py-2 rounded-md mt-2 ${classes}`,
+        type: "text"
+      }
+    ), errorMessage !== "" && /* @__PURE__ */ import_react6.default.createElement("p", { className: "text-red-600" }, errorMessage));
+  };
+  var inputTextBox_default = InputTextElement;
 
   // src/components/reviewStars/index.tsx
-  var import_react2 = __toESM(require_react());
+  var import_react8 = __toESM(require_react());
 
   // public/assets/star.tsx
-  var import_react = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
   var Star = ({ fillColor }) => {
-    return /* @__PURE__ */ import_react.default.createElement(
+    return /* @__PURE__ */ import_react7.default.createElement(
       "svg",
       {
         viewBox: "0 0 51 48",
@@ -23574,7 +24898,7 @@
           transition: "transform 0.2s ease-in-out 0s"
         }
       },
-      /* @__PURE__ */ import_react.default.createElement(
+      /* @__PURE__ */ import_react7.default.createElement(
         "path",
         {
           className: "fill-zinc-500",
@@ -23597,9 +24921,9 @@
     children,
     className
   }) => {
-    const [hoveredIndex, setHoveredIndex] = (0, import_react2.useState)(-1);
-    const [clickedIndex, setClickedIndex] = (0, import_react2.useState)(-1);
-    const [isHoverState, setIsHoverState] = (0, import_react2.useState)(false);
+    const [hoveredIndex, setHoveredIndex] = (0, import_react8.useState)(-1);
+    const [clickedIndex, setClickedIndex] = (0, import_react8.useState)(-1);
+    const [isHoverState, setIsHoverState] = (0, import_react8.useState)(false);
     const getRatingsComponent = () => {
       const elements = [];
       let indexToCheck = -1;
@@ -23653,4363 +24977,1727 @@
     return /* @__PURE__ */ React.createElement("div", { className: `flex flex-col ${className}` }, /* @__PURE__ */ React.createElement("div", { className: "flex  " }, !isStatic ? getRatingsComponent() : getStaticRatings()), children);
   };
 
-  // src/components/typography/index.tsx
-  var import_react7 = __toESM(require_react());
+  // src/hooks/use-toast.ts
+  var React9 = __toESM(require_react());
+  var TOAST_LIMIT = 1;
+  var TOAST_REMOVE_DELAY = 1e6;
+  var count = 0;
+  function genId() {
+    count = (count + 1) % Number.MAX_SAFE_INTEGER;
+    return count.toString();
+  }
+  var toastTimeouts = /* @__PURE__ */ new Map();
+  var addToRemoveQueue = (toastId) => {
+    if (toastTimeouts.has(toastId)) {
+      return;
+    }
+    const timeout = setTimeout(() => {
+      toastTimeouts.delete(toastId);
+      dispatch({
+        type: "REMOVE_TOAST",
+        toastId
+      });
+    }, TOAST_REMOVE_DELAY);
+    toastTimeouts.set(toastId, timeout);
+  };
+  var reducer = (state, action) => {
+    switch (action.type) {
+      case "ADD_TOAST":
+        return {
+          ...state,
+          toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT)
+        };
+      case "UPDATE_TOAST":
+        return {
+          ...state,
+          toasts: state.toasts.map(
+            (t) => t.id === action.toast.id ? { ...t, ...action.toast } : t
+          )
+        };
+      case "DISMISS_TOAST": {
+        const { toastId } = action;
+        if (toastId) {
+          addToRemoveQueue(toastId);
+        } else {
+          state.toasts.forEach((toast2) => {
+            addToRemoveQueue(toast2.id);
+          });
+        }
+        return {
+          ...state,
+          toasts: state.toasts.map(
+            (t) => t.id === toastId || toastId === void 0 ? {
+              ...t,
+              open: false
+            } : t
+          )
+        };
+      }
+      case "REMOVE_TOAST":
+        if (action.toastId === void 0) {
+          return {
+            ...state,
+            toasts: []
+          };
+        }
+        return {
+          ...state,
+          toasts: state.toasts.filter((t) => t.id !== action.toastId)
+        };
+    }
+  };
+  var listeners = [];
+  var memoryState = { toasts: [] };
+  function dispatch(action) {
+    memoryState = reducer(memoryState, action);
+    listeners.forEach((listener) => {
+      listener(memoryState);
+    });
+  }
+  function toast({ ...props }) {
+    const id = genId();
+    const update = (props2) => dispatch({
+      type: "UPDATE_TOAST",
+      toast: { ...props2, id }
+    });
+    const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id });
+    dispatch({
+      type: "ADD_TOAST",
+      toast: {
+        ...props,
+        id,
+        open: true,
+        onOpenChange: (open) => {
+          if (!open) dismiss();
+        }
+      }
+    });
+    return {
+      id,
+      dismiss,
+      update
+    };
+  }
+  function useToast() {
+    const [state, setState] = React9.useState(memoryState);
+    React9.useEffect(() => {
+      listeners.push(setState);
+      return () => {
+        const index = listeners.indexOf(setState);
+        if (index > -1) {
+          listeners.splice(index, 1);
+        }
+      };
+    }, [state]);
+    return {
+      ...state,
+      toast,
+      dismiss: (toastId) => dispatch({ type: "DISMISS_TOAST", toastId })
+    };
+  }
 
-  // src/components/typography/h1.tsx
-  var import_react3 = __toESM(require_react());
+  // src/contexts/FormContext/index.tsx
+  var import_react9 = __toESM(require_react());
+  var FormContext = (0, import_react9.createContext)({
+    formMap: null
+  });
 
-  // src/components/typography/h2.tsx
-  var import_react4 = __toESM(require_react());
-
-  // src/components/typography/h3.tsx
-  var import_react5 = __toESM(require_react());
-
-  // src/components/typography/h4.tsx
-  var import_react6 = __toESM(require_react());
-
-  // src/components/testimonialsWall/wall.tsx
+  // src/hooks/useFormContext.ts
   var import_react11 = __toESM(require_react());
 
-  // src/components/ui/card.tsx
-  var React9 = __toESM(require_react());
-
-  // node_modules/clsx/dist/clsx.mjs
-  function r(e) {
-    var t, f, n = "";
-    if ("string" == typeof e || "number" == typeof e) n += e;
-    else if ("object" == typeof e) if (Array.isArray(e)) {
-      var o = e.length;
-      for (t = 0; t < o; t++) e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
-    } else for (f in e) e[f] && (n && (n += " "), n += f);
-    return n;
-  }
-  function clsx() {
-    for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++) (e = arguments[f]) && (t = r(e)) && (n && (n += " "), n += t);
-    return n;
-  }
-
-  // node_modules/tailwind-merge/dist/bundle-mjs.mjs
-  var CLASS_PART_SEPARATOR = "-";
-  function createClassGroupUtils(config) {
-    const classMap = createClassMap(config);
-    const {
-      conflictingClassGroups,
-      conflictingClassGroupModifiers
-    } = config;
-    function getClassGroupId(className) {
-      const classParts = className.split(CLASS_PART_SEPARATOR);
-      if (classParts[0] === "" && classParts.length !== 1) {
-        classParts.shift();
-      }
-      return getGroupRecursive(classParts, classMap) || getGroupIdForArbitraryProperty(className);
-    }
-    function getConflictingClassGroupIds(classGroupId, hasPostfixModifier) {
-      const conflicts = conflictingClassGroups[classGroupId] || [];
-      if (hasPostfixModifier && conflictingClassGroupModifiers[classGroupId]) {
-        return [...conflicts, ...conflictingClassGroupModifiers[classGroupId]];
-      }
-      return conflicts;
-    }
-    return {
-      getClassGroupId,
-      getConflictingClassGroupIds
-    };
-  }
-  function getGroupRecursive(classParts, classPartObject) {
-    if (classParts.length === 0) {
-      return classPartObject.classGroupId;
-    }
-    const currentClassPart = classParts[0];
-    const nextClassPartObject = classPartObject.nextPart.get(currentClassPart);
-    const classGroupFromNextClassPart = nextClassPartObject ? getGroupRecursive(classParts.slice(1), nextClassPartObject) : void 0;
-    if (classGroupFromNextClassPart) {
-      return classGroupFromNextClassPart;
-    }
-    if (classPartObject.validators.length === 0) {
-      return void 0;
-    }
-    const classRest = classParts.join(CLASS_PART_SEPARATOR);
-    return classPartObject.validators.find(({
-      validator
-    }) => validator(classRest))?.classGroupId;
-  }
-  var arbitraryPropertyRegex = /^\[(.+)\]$/;
-  function getGroupIdForArbitraryProperty(className) {
-    if (arbitraryPropertyRegex.test(className)) {
-      const arbitraryPropertyClassName = arbitraryPropertyRegex.exec(className)[1];
-      const property = arbitraryPropertyClassName?.substring(0, arbitraryPropertyClassName.indexOf(":"));
-      if (property) {
-        return "arbitrary.." + property;
-      }
-    }
-  }
-  function createClassMap(config) {
-    const {
-      theme,
-      prefix
-    } = config;
-    const classMap = {
-      nextPart: /* @__PURE__ */ new Map(),
-      validators: []
-    };
-    const prefixedClassGroupEntries = getPrefixedClassGroupEntries(Object.entries(config.classGroups), prefix);
-    prefixedClassGroupEntries.forEach(([classGroupId, classGroup]) => {
-      processClassesRecursively(classGroup, classMap, classGroupId, theme);
-    });
-    return classMap;
-  }
-  function processClassesRecursively(classGroup, classPartObject, classGroupId, theme) {
-    classGroup.forEach((classDefinition) => {
-      if (typeof classDefinition === "string") {
-        const classPartObjectToEdit = classDefinition === "" ? classPartObject : getPart(classPartObject, classDefinition);
-        classPartObjectToEdit.classGroupId = classGroupId;
-        return;
-      }
-      if (typeof classDefinition === "function") {
-        if (isThemeGetter(classDefinition)) {
-          processClassesRecursively(classDefinition(theme), classPartObject, classGroupId, theme);
-          return;
-        }
-        classPartObject.validators.push({
-          validator: classDefinition,
-          classGroupId
-        });
-        return;
-      }
-      Object.entries(classDefinition).forEach(([key, classGroup2]) => {
-        processClassesRecursively(classGroup2, getPart(classPartObject, key), classGroupId, theme);
-      });
-    });
-  }
-  function getPart(classPartObject, path) {
-    let currentClassPartObject = classPartObject;
-    path.split(CLASS_PART_SEPARATOR).forEach((pathPart) => {
-      if (!currentClassPartObject.nextPart.has(pathPart)) {
-        currentClassPartObject.nextPart.set(pathPart, {
-          nextPart: /* @__PURE__ */ new Map(),
-          validators: []
-        });
-      }
-      currentClassPartObject = currentClassPartObject.nextPart.get(pathPart);
-    });
-    return currentClassPartObject;
-  }
-  function isThemeGetter(func) {
-    return func.isThemeGetter;
-  }
-  function getPrefixedClassGroupEntries(classGroupEntries, prefix) {
-    if (!prefix) {
-      return classGroupEntries;
-    }
-    return classGroupEntries.map(([classGroupId, classGroup]) => {
-      const prefixedClassGroup = classGroup.map((classDefinition) => {
-        if (typeof classDefinition === "string") {
-          return prefix + classDefinition;
-        }
-        if (typeof classDefinition === "object") {
-          return Object.fromEntries(Object.entries(classDefinition).map(([key, value]) => [prefix + key, value]));
-        }
-        return classDefinition;
-      });
-      return [classGroupId, prefixedClassGroup];
-    });
-  }
-  function createLruCache(maxCacheSize) {
-    if (maxCacheSize < 1) {
-      return {
-        get: () => void 0,
-        set: () => {
-        }
-      };
-    }
-    let cacheSize = 0;
-    let cache = /* @__PURE__ */ new Map();
-    let previousCache = /* @__PURE__ */ new Map();
-    function update(key, value) {
-      cache.set(key, value);
-      cacheSize++;
-      if (cacheSize > maxCacheSize) {
-        cacheSize = 0;
-        previousCache = cache;
-        cache = /* @__PURE__ */ new Map();
-      }
-    }
-    return {
-      get(key) {
-        let value = cache.get(key);
-        if (value !== void 0) {
-          return value;
-        }
-        if ((value = previousCache.get(key)) !== void 0) {
-          update(key, value);
-          return value;
-        }
-      },
-      set(key, value) {
-        if (cache.has(key)) {
-          cache.set(key, value);
-        } else {
-          update(key, value);
-        }
-      }
-    };
-  }
-  var IMPORTANT_MODIFIER = "!";
-  function createParseClassName(config) {
-    const {
-      separator,
-      experimentalParseClassName
-    } = config;
-    const isSeparatorSingleCharacter = separator.length === 1;
-    const firstSeparatorCharacter = separator[0];
-    const separatorLength = separator.length;
-    function parseClassName(className) {
-      const modifiers = [];
-      let bracketDepth = 0;
-      let modifierStart = 0;
-      let postfixModifierPosition;
-      for (let index = 0; index < className.length; index++) {
-        let currentCharacter = className[index];
-        if (bracketDepth === 0) {
-          if (currentCharacter === firstSeparatorCharacter && (isSeparatorSingleCharacter || className.slice(index, index + separatorLength) === separator)) {
-            modifiers.push(className.slice(modifierStart, index));
-            modifierStart = index + separatorLength;
-            continue;
-          }
-          if (currentCharacter === "/") {
-            postfixModifierPosition = index;
-            continue;
+  // node_modules/react-hook-form/dist/index.esm.mjs
+  var import_react10 = __toESM(require_react(), 1);
+  var isCheckBoxInput = (element) => element.type === "checkbox";
+  var isDateObject = (value) => value instanceof Date;
+  var isNullOrUndefined = (value) => value == null;
+  var isObjectType = (value) => typeof value === "object";
+  var isObject = (value) => !isNullOrUndefined(value) && !Array.isArray(value) && isObjectType(value) && !isDateObject(value);
+  var getEventValue = (event) => isObject(event) && event.target ? isCheckBoxInput(event.target) ? event.target.checked : event.target.value : event;
+  var getNodeParentName = (name) => name.substring(0, name.search(/\.\d+(\.|$)/)) || name;
+  var isNameInFieldArray = (names, name) => names.has(getNodeParentName(name));
+  var isPlainObject = (tempObject) => {
+    const prototypeCopy = tempObject.constructor && tempObject.constructor.prototype;
+    return isObject(prototypeCopy) && prototypeCopy.hasOwnProperty("isPrototypeOf");
+  };
+  var isWeb = typeof window !== "undefined" && typeof window.HTMLElement !== "undefined" && typeof document !== "undefined";
+  function cloneObject(data) {
+    let copy;
+    const isArray = Array.isArray(data);
+    if (data instanceof Date) {
+      copy = new Date(data);
+    } else if (data instanceof Set) {
+      copy = new Set(data);
+    } else if (!(isWeb && (data instanceof Blob || data instanceof FileList)) && (isArray || isObject(data))) {
+      copy = isArray ? [] : {};
+      if (!isArray && !isPlainObject(data)) {
+        copy = data;
+      } else {
+        for (const key in data) {
+          if (data.hasOwnProperty(key)) {
+            copy[key] = cloneObject(data[key]);
           }
         }
-        if (currentCharacter === "[") {
-          bracketDepth++;
-        } else if (currentCharacter === "]") {
-          bracketDepth--;
-        }
       }
-      const baseClassNameWithImportantModifier = modifiers.length === 0 ? className : className.substring(modifierStart);
-      const hasImportantModifier = baseClassNameWithImportantModifier.startsWith(IMPORTANT_MODIFIER);
-      const baseClassName = hasImportantModifier ? baseClassNameWithImportantModifier.substring(1) : baseClassNameWithImportantModifier;
-      const maybePostfixModifierPosition = postfixModifierPosition && postfixModifierPosition > modifierStart ? postfixModifierPosition - modifierStart : void 0;
-      return {
-        modifiers,
-        hasImportantModifier,
-        baseClassName,
-        maybePostfixModifierPosition
-      };
+    } else {
+      return data;
     }
-    if (experimentalParseClassName) {
-      return function parseClassNameExperimental(className) {
-        return experimentalParseClassName({
-          className,
-          parseClassName
-        });
-      };
+    return copy;
+  }
+  var compact = (value) => Array.isArray(value) ? value.filter(Boolean) : [];
+  var isUndefined = (val) => val === void 0;
+  var get = (object, path, defaultValue) => {
+    if (!path || !isObject(object)) {
+      return defaultValue;
     }
-    return parseClassName;
-  }
-  function sortModifiers(modifiers) {
-    if (modifiers.length <= 1) {
-      return modifiers;
-    }
-    const sortedModifiers = [];
-    let unsortedModifiers = [];
-    modifiers.forEach((modifier) => {
-      const isArbitraryVariant = modifier[0] === "[";
-      if (isArbitraryVariant) {
-        sortedModifiers.push(...unsortedModifiers.sort(), modifier);
-        unsortedModifiers = [];
-      } else {
-        unsortedModifiers.push(modifier);
-      }
-    });
-    sortedModifiers.push(...unsortedModifiers.sort());
-    return sortedModifiers;
-  }
-  function createConfigUtils(config) {
-    return {
-      cache: createLruCache(config.cacheSize),
-      parseClassName: createParseClassName(config),
-      ...createClassGroupUtils(config)
-    };
-  }
-  var SPLIT_CLASSES_REGEX = /\s+/;
-  function mergeClassList(classList, configUtils) {
-    const {
-      parseClassName,
-      getClassGroupId,
-      getConflictingClassGroupIds
-    } = configUtils;
-    const classGroupsInConflict = /* @__PURE__ */ new Set();
-    return classList.trim().split(SPLIT_CLASSES_REGEX).map((originalClassName) => {
-      const {
-        modifiers,
-        hasImportantModifier,
-        baseClassName,
-        maybePostfixModifierPosition
-      } = parseClassName(originalClassName);
-      let hasPostfixModifier = Boolean(maybePostfixModifierPosition);
-      let classGroupId = getClassGroupId(hasPostfixModifier ? baseClassName.substring(0, maybePostfixModifierPosition) : baseClassName);
-      if (!classGroupId) {
-        if (!hasPostfixModifier) {
-          return {
-            isTailwindClass: false,
-            originalClassName
-          };
-        }
-        classGroupId = getClassGroupId(baseClassName);
-        if (!classGroupId) {
-          return {
-            isTailwindClass: false,
-            originalClassName
-          };
-        }
-        hasPostfixModifier = false;
-      }
-      const variantModifier = sortModifiers(modifiers).join(":");
-      const modifierId = hasImportantModifier ? variantModifier + IMPORTANT_MODIFIER : variantModifier;
-      return {
-        isTailwindClass: true,
-        modifierId,
-        classGroupId,
-        originalClassName,
-        hasPostfixModifier
-      };
-    }).reverse().filter((parsed) => {
-      if (!parsed.isTailwindClass) {
-        return true;
-      }
-      const {
-        modifierId,
-        classGroupId,
-        hasPostfixModifier
-      } = parsed;
-      const classId = modifierId + classGroupId;
-      if (classGroupsInConflict.has(classId)) {
-        return false;
-      }
-      classGroupsInConflict.add(classId);
-      getConflictingClassGroupIds(classGroupId, hasPostfixModifier).forEach((group) => classGroupsInConflict.add(modifierId + group));
-      return true;
-    }).reverse().map((parsed) => parsed.originalClassName).join(" ");
-  }
-  function twJoin() {
-    let index = 0;
-    let argument;
-    let resolvedValue;
-    let string = "";
-    while (index < arguments.length) {
-      if (argument = arguments[index++]) {
-        if (resolvedValue = toValue(argument)) {
-          string && (string += " ");
-          string += resolvedValue;
-        }
-      }
-    }
-    return string;
-  }
-  function toValue(mix) {
-    if (typeof mix === "string") {
-      return mix;
-    }
-    let resolvedValue;
-    let string = "";
-    for (let k = 0; k < mix.length; k++) {
-      if (mix[k]) {
-        if (resolvedValue = toValue(mix[k])) {
-          string && (string += " ");
-          string += resolvedValue;
-        }
-      }
-    }
-    return string;
-  }
-  function createTailwindMerge(createConfigFirst, ...createConfigRest) {
-    let configUtils;
-    let cacheGet;
-    let cacheSet;
-    let functionToCall = initTailwindMerge;
-    function initTailwindMerge(classList) {
-      const config = createConfigRest.reduce((previousConfig, createConfigCurrent) => createConfigCurrent(previousConfig), createConfigFirst());
-      configUtils = createConfigUtils(config);
-      cacheGet = configUtils.cache.get;
-      cacheSet = configUtils.cache.set;
-      functionToCall = tailwindMerge;
-      return tailwindMerge(classList);
-    }
-    function tailwindMerge(classList) {
-      const cachedResult = cacheGet(classList);
-      if (cachedResult) {
-        return cachedResult;
-      }
-      const result = mergeClassList(classList, configUtils);
-      cacheSet(classList, result);
-      return result;
-    }
-    return function callTailwindMerge() {
-      return functionToCall(twJoin.apply(null, arguments));
-    };
-  }
-  function fromTheme(key) {
-    const themeGetter = (theme) => theme[key] || [];
-    themeGetter.isThemeGetter = true;
-    return themeGetter;
-  }
-  var arbitraryValueRegex = /^\[(?:([a-z-]+):)?(.+)\]$/i;
-  var fractionRegex = /^\d+\/\d+$/;
-  var stringLengths = /* @__PURE__ */ new Set(["px", "full", "screen"]);
-  var tshirtUnitRegex = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/;
-  var lengthUnitRegex = /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/;
-  var colorFunctionRegex = /^(rgba?|hsla?|hwb|(ok)?(lab|lch))\(.+\)$/;
-  var shadowRegex = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/;
-  var imageRegex = /^(url|image|image-set|cross-fade|element|(repeating-)?(linear|radial|conic)-gradient)\(.+\)$/;
-  function isLength(value) {
-    return isNumber(value) || stringLengths.has(value) || fractionRegex.test(value);
-  }
-  function isArbitraryLength(value) {
-    return getIsArbitraryValue(value, "length", isLengthOnly);
-  }
-  function isNumber(value) {
-    return Boolean(value) && !Number.isNaN(Number(value));
-  }
-  function isArbitraryNumber(value) {
-    return getIsArbitraryValue(value, "number", isNumber);
-  }
-  function isInteger(value) {
-    return Boolean(value) && Number.isInteger(Number(value));
-  }
-  function isPercent(value) {
-    return value.endsWith("%") && isNumber(value.slice(0, -1));
-  }
-  function isArbitraryValue(value) {
-    return arbitraryValueRegex.test(value);
-  }
-  function isTshirtSize(value) {
-    return tshirtUnitRegex.test(value);
-  }
-  var sizeLabels = /* @__PURE__ */ new Set(["length", "size", "percentage"]);
-  function isArbitrarySize(value) {
-    return getIsArbitraryValue(value, sizeLabels, isNever);
-  }
-  function isArbitraryPosition(value) {
-    return getIsArbitraryValue(value, "position", isNever);
-  }
-  var imageLabels = /* @__PURE__ */ new Set(["image", "url"]);
-  function isArbitraryImage(value) {
-    return getIsArbitraryValue(value, imageLabels, isImage);
-  }
-  function isArbitraryShadow(value) {
-    return getIsArbitraryValue(value, "", isShadow);
-  }
-  function isAny() {
-    return true;
-  }
-  function getIsArbitraryValue(value, label, testValue) {
-    const result = arbitraryValueRegex.exec(value);
-    if (result) {
-      if (result[1]) {
-        return typeof label === "string" ? result[1] === label : label.has(result[1]);
-      }
-      return testValue(result[2]);
-    }
-    return false;
-  }
-  function isLengthOnly(value) {
-    return lengthUnitRegex.test(value) && !colorFunctionRegex.test(value);
-  }
-  function isNever() {
-    return false;
-  }
-  function isShadow(value) {
-    return shadowRegex.test(value);
-  }
-  function isImage(value) {
-    return imageRegex.test(value);
-  }
-  function getDefaultConfig() {
-    const colors = fromTheme("colors");
-    const spacing = fromTheme("spacing");
-    const blur = fromTheme("blur");
-    const brightness = fromTheme("brightness");
-    const borderColor = fromTheme("borderColor");
-    const borderRadius = fromTheme("borderRadius");
-    const borderSpacing = fromTheme("borderSpacing");
-    const borderWidth = fromTheme("borderWidth");
-    const contrast = fromTheme("contrast");
-    const grayscale = fromTheme("grayscale");
-    const hueRotate = fromTheme("hueRotate");
-    const invert = fromTheme("invert");
-    const gap = fromTheme("gap");
-    const gradientColorStops = fromTheme("gradientColorStops");
-    const gradientColorStopPositions = fromTheme("gradientColorStopPositions");
-    const inset = fromTheme("inset");
-    const margin = fromTheme("margin");
-    const opacity = fromTheme("opacity");
-    const padding = fromTheme("padding");
-    const saturate = fromTheme("saturate");
-    const scale = fromTheme("scale");
-    const sepia = fromTheme("sepia");
-    const skew = fromTheme("skew");
-    const space = fromTheme("space");
-    const translate = fromTheme("translate");
-    const getOverscroll = () => ["auto", "contain", "none"];
-    const getOverflow = () => ["auto", "hidden", "clip", "visible", "scroll"];
-    const getSpacingWithAutoAndArbitrary = () => ["auto", isArbitraryValue, spacing];
-    const getSpacingWithArbitrary = () => [isArbitraryValue, spacing];
-    const getLengthWithEmptyAndArbitrary = () => ["", isLength, isArbitraryLength];
-    const getNumberWithAutoAndArbitrary = () => ["auto", isNumber, isArbitraryValue];
-    const getPositions = () => ["bottom", "center", "left", "left-bottom", "left-top", "right", "right-bottom", "right-top", "top"];
-    const getLineStyles = () => ["solid", "dashed", "dotted", "double", "none"];
-    const getBlendModes = () => ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"];
-    const getAlign = () => ["start", "end", "center", "between", "around", "evenly", "stretch"];
-    const getZeroAndEmpty = () => ["", "0", isArbitraryValue];
-    const getBreaks = () => ["auto", "avoid", "all", "avoid-page", "page", "left", "right", "column"];
-    const getNumber = () => [isNumber, isArbitraryNumber];
-    const getNumberAndArbitrary = () => [isNumber, isArbitraryValue];
-    return {
-      cacheSize: 500,
-      separator: ":",
-      theme: {
-        colors: [isAny],
-        spacing: [isLength, isArbitraryLength],
-        blur: ["none", "", isTshirtSize, isArbitraryValue],
-        brightness: getNumber(),
-        borderColor: [colors],
-        borderRadius: ["none", "", "full", isTshirtSize, isArbitraryValue],
-        borderSpacing: getSpacingWithArbitrary(),
-        borderWidth: getLengthWithEmptyAndArbitrary(),
-        contrast: getNumber(),
-        grayscale: getZeroAndEmpty(),
-        hueRotate: getNumberAndArbitrary(),
-        invert: getZeroAndEmpty(),
-        gap: getSpacingWithArbitrary(),
-        gradientColorStops: [colors],
-        gradientColorStopPositions: [isPercent, isArbitraryLength],
-        inset: getSpacingWithAutoAndArbitrary(),
-        margin: getSpacingWithAutoAndArbitrary(),
-        opacity: getNumber(),
-        padding: getSpacingWithArbitrary(),
-        saturate: getNumber(),
-        scale: getNumber(),
-        sepia: getZeroAndEmpty(),
-        skew: getNumberAndArbitrary(),
-        space: getSpacingWithArbitrary(),
-        translate: getSpacingWithArbitrary()
-      },
-      classGroups: {
-        // Layout
-        /**
-         * Aspect Ratio
-         * @see https://tailwindcss.com/docs/aspect-ratio
-         */
-        aspect: [{
-          aspect: ["auto", "square", "video", isArbitraryValue]
-        }],
-        /**
-         * Container
-         * @see https://tailwindcss.com/docs/container
-         */
-        container: ["container"],
-        /**
-         * Columns
-         * @see https://tailwindcss.com/docs/columns
-         */
-        columns: [{
-          columns: [isTshirtSize]
-        }],
-        /**
-         * Break After
-         * @see https://tailwindcss.com/docs/break-after
-         */
-        "break-after": [{
-          "break-after": getBreaks()
-        }],
-        /**
-         * Break Before
-         * @see https://tailwindcss.com/docs/break-before
-         */
-        "break-before": [{
-          "break-before": getBreaks()
-        }],
-        /**
-         * Break Inside
-         * @see https://tailwindcss.com/docs/break-inside
-         */
-        "break-inside": [{
-          "break-inside": ["auto", "avoid", "avoid-page", "avoid-column"]
-        }],
-        /**
-         * Box Decoration Break
-         * @see https://tailwindcss.com/docs/box-decoration-break
-         */
-        "box-decoration": [{
-          "box-decoration": ["slice", "clone"]
-        }],
-        /**
-         * Box Sizing
-         * @see https://tailwindcss.com/docs/box-sizing
-         */
-        box: [{
-          box: ["border", "content"]
-        }],
-        /**
-         * Display
-         * @see https://tailwindcss.com/docs/display
-         */
-        display: ["block", "inline-block", "inline", "flex", "inline-flex", "table", "inline-table", "table-caption", "table-cell", "table-column", "table-column-group", "table-footer-group", "table-header-group", "table-row-group", "table-row", "flow-root", "grid", "inline-grid", "contents", "list-item", "hidden"],
-        /**
-         * Floats
-         * @see https://tailwindcss.com/docs/float
-         */
-        float: [{
-          float: ["right", "left", "none", "start", "end"]
-        }],
-        /**
-         * Clear
-         * @see https://tailwindcss.com/docs/clear
-         */
-        clear: [{
-          clear: ["left", "right", "both", "none", "start", "end"]
-        }],
-        /**
-         * Isolation
-         * @see https://tailwindcss.com/docs/isolation
-         */
-        isolation: ["isolate", "isolation-auto"],
-        /**
-         * Object Fit
-         * @see https://tailwindcss.com/docs/object-fit
-         */
-        "object-fit": [{
-          object: ["contain", "cover", "fill", "none", "scale-down"]
-        }],
-        /**
-         * Object Position
-         * @see https://tailwindcss.com/docs/object-position
-         */
-        "object-position": [{
-          object: [...getPositions(), isArbitraryValue]
-        }],
-        /**
-         * Overflow
-         * @see https://tailwindcss.com/docs/overflow
-         */
-        overflow: [{
-          overflow: getOverflow()
-        }],
-        /**
-         * Overflow X
-         * @see https://tailwindcss.com/docs/overflow
-         */
-        "overflow-x": [{
-          "overflow-x": getOverflow()
-        }],
-        /**
-         * Overflow Y
-         * @see https://tailwindcss.com/docs/overflow
-         */
-        "overflow-y": [{
-          "overflow-y": getOverflow()
-        }],
-        /**
-         * Overscroll Behavior
-         * @see https://tailwindcss.com/docs/overscroll-behavior
-         */
-        overscroll: [{
-          overscroll: getOverscroll()
-        }],
-        /**
-         * Overscroll Behavior X
-         * @see https://tailwindcss.com/docs/overscroll-behavior
-         */
-        "overscroll-x": [{
-          "overscroll-x": getOverscroll()
-        }],
-        /**
-         * Overscroll Behavior Y
-         * @see https://tailwindcss.com/docs/overscroll-behavior
-         */
-        "overscroll-y": [{
-          "overscroll-y": getOverscroll()
-        }],
-        /**
-         * Position
-         * @see https://tailwindcss.com/docs/position
-         */
-        position: ["static", "fixed", "absolute", "relative", "sticky"],
-        /**
-         * Top / Right / Bottom / Left
-         * @see https://tailwindcss.com/docs/top-right-bottom-left
-         */
-        inset: [{
-          inset: [inset]
-        }],
-        /**
-         * Right / Left
-         * @see https://tailwindcss.com/docs/top-right-bottom-left
-         */
-        "inset-x": [{
-          "inset-x": [inset]
-        }],
-        /**
-         * Top / Bottom
-         * @see https://tailwindcss.com/docs/top-right-bottom-left
-         */
-        "inset-y": [{
-          "inset-y": [inset]
-        }],
-        /**
-         * Start
-         * @see https://tailwindcss.com/docs/top-right-bottom-left
-         */
-        start: [{
-          start: [inset]
-        }],
-        /**
-         * End
-         * @see https://tailwindcss.com/docs/top-right-bottom-left
-         */
-        end: [{
-          end: [inset]
-        }],
-        /**
-         * Top
-         * @see https://tailwindcss.com/docs/top-right-bottom-left
-         */
-        top: [{
-          top: [inset]
-        }],
-        /**
-         * Right
-         * @see https://tailwindcss.com/docs/top-right-bottom-left
-         */
-        right: [{
-          right: [inset]
-        }],
-        /**
-         * Bottom
-         * @see https://tailwindcss.com/docs/top-right-bottom-left
-         */
-        bottom: [{
-          bottom: [inset]
-        }],
-        /**
-         * Left
-         * @see https://tailwindcss.com/docs/top-right-bottom-left
-         */
-        left: [{
-          left: [inset]
-        }],
-        /**
-         * Visibility
-         * @see https://tailwindcss.com/docs/visibility
-         */
-        visibility: ["visible", "invisible", "collapse"],
-        /**
-         * Z-Index
-         * @see https://tailwindcss.com/docs/z-index
-         */
-        z: [{
-          z: ["auto", isInteger, isArbitraryValue]
-        }],
-        // Flexbox and Grid
-        /**
-         * Flex Basis
-         * @see https://tailwindcss.com/docs/flex-basis
-         */
-        basis: [{
-          basis: getSpacingWithAutoAndArbitrary()
-        }],
-        /**
-         * Flex Direction
-         * @see https://tailwindcss.com/docs/flex-direction
-         */
-        "flex-direction": [{
-          flex: ["row", "row-reverse", "col", "col-reverse"]
-        }],
-        /**
-         * Flex Wrap
-         * @see https://tailwindcss.com/docs/flex-wrap
-         */
-        "flex-wrap": [{
-          flex: ["wrap", "wrap-reverse", "nowrap"]
-        }],
-        /**
-         * Flex
-         * @see https://tailwindcss.com/docs/flex
-         */
-        flex: [{
-          flex: ["1", "auto", "initial", "none", isArbitraryValue]
-        }],
-        /**
-         * Flex Grow
-         * @see https://tailwindcss.com/docs/flex-grow
-         */
-        grow: [{
-          grow: getZeroAndEmpty()
-        }],
-        /**
-         * Flex Shrink
-         * @see https://tailwindcss.com/docs/flex-shrink
-         */
-        shrink: [{
-          shrink: getZeroAndEmpty()
-        }],
-        /**
-         * Order
-         * @see https://tailwindcss.com/docs/order
-         */
-        order: [{
-          order: ["first", "last", "none", isInteger, isArbitraryValue]
-        }],
-        /**
-         * Grid Template Columns
-         * @see https://tailwindcss.com/docs/grid-template-columns
-         */
-        "grid-cols": [{
-          "grid-cols": [isAny]
-        }],
-        /**
-         * Grid Column Start / End
-         * @see https://tailwindcss.com/docs/grid-column
-         */
-        "col-start-end": [{
-          col: ["auto", {
-            span: ["full", isInteger, isArbitraryValue]
-          }, isArbitraryValue]
-        }],
-        /**
-         * Grid Column Start
-         * @see https://tailwindcss.com/docs/grid-column
-         */
-        "col-start": [{
-          "col-start": getNumberWithAutoAndArbitrary()
-        }],
-        /**
-         * Grid Column End
-         * @see https://tailwindcss.com/docs/grid-column
-         */
-        "col-end": [{
-          "col-end": getNumberWithAutoAndArbitrary()
-        }],
-        /**
-         * Grid Template Rows
-         * @see https://tailwindcss.com/docs/grid-template-rows
-         */
-        "grid-rows": [{
-          "grid-rows": [isAny]
-        }],
-        /**
-         * Grid Row Start / End
-         * @see https://tailwindcss.com/docs/grid-row
-         */
-        "row-start-end": [{
-          row: ["auto", {
-            span: [isInteger, isArbitraryValue]
-          }, isArbitraryValue]
-        }],
-        /**
-         * Grid Row Start
-         * @see https://tailwindcss.com/docs/grid-row
-         */
-        "row-start": [{
-          "row-start": getNumberWithAutoAndArbitrary()
-        }],
-        /**
-         * Grid Row End
-         * @see https://tailwindcss.com/docs/grid-row
-         */
-        "row-end": [{
-          "row-end": getNumberWithAutoAndArbitrary()
-        }],
-        /**
-         * Grid Auto Flow
-         * @see https://tailwindcss.com/docs/grid-auto-flow
-         */
-        "grid-flow": [{
-          "grid-flow": ["row", "col", "dense", "row-dense", "col-dense"]
-        }],
-        /**
-         * Grid Auto Columns
-         * @see https://tailwindcss.com/docs/grid-auto-columns
-         */
-        "auto-cols": [{
-          "auto-cols": ["auto", "min", "max", "fr", isArbitraryValue]
-        }],
-        /**
-         * Grid Auto Rows
-         * @see https://tailwindcss.com/docs/grid-auto-rows
-         */
-        "auto-rows": [{
-          "auto-rows": ["auto", "min", "max", "fr", isArbitraryValue]
-        }],
-        /**
-         * Gap
-         * @see https://tailwindcss.com/docs/gap
-         */
-        gap: [{
-          gap: [gap]
-        }],
-        /**
-         * Gap X
-         * @see https://tailwindcss.com/docs/gap
-         */
-        "gap-x": [{
-          "gap-x": [gap]
-        }],
-        /**
-         * Gap Y
-         * @see https://tailwindcss.com/docs/gap
-         */
-        "gap-y": [{
-          "gap-y": [gap]
-        }],
-        /**
-         * Justify Content
-         * @see https://tailwindcss.com/docs/justify-content
-         */
-        "justify-content": [{
-          justify: ["normal", ...getAlign()]
-        }],
-        /**
-         * Justify Items
-         * @see https://tailwindcss.com/docs/justify-items
-         */
-        "justify-items": [{
-          "justify-items": ["start", "end", "center", "stretch"]
-        }],
-        /**
-         * Justify Self
-         * @see https://tailwindcss.com/docs/justify-self
-         */
-        "justify-self": [{
-          "justify-self": ["auto", "start", "end", "center", "stretch"]
-        }],
-        /**
-         * Align Content
-         * @see https://tailwindcss.com/docs/align-content
-         */
-        "align-content": [{
-          content: ["normal", ...getAlign(), "baseline"]
-        }],
-        /**
-         * Align Items
-         * @see https://tailwindcss.com/docs/align-items
-         */
-        "align-items": [{
-          items: ["start", "end", "center", "baseline", "stretch"]
-        }],
-        /**
-         * Align Self
-         * @see https://tailwindcss.com/docs/align-self
-         */
-        "align-self": [{
-          self: ["auto", "start", "end", "center", "stretch", "baseline"]
-        }],
-        /**
-         * Place Content
-         * @see https://tailwindcss.com/docs/place-content
-         */
-        "place-content": [{
-          "place-content": [...getAlign(), "baseline"]
-        }],
-        /**
-         * Place Items
-         * @see https://tailwindcss.com/docs/place-items
-         */
-        "place-items": [{
-          "place-items": ["start", "end", "center", "baseline", "stretch"]
-        }],
-        /**
-         * Place Self
-         * @see https://tailwindcss.com/docs/place-self
-         */
-        "place-self": [{
-          "place-self": ["auto", "start", "end", "center", "stretch"]
-        }],
-        // Spacing
-        /**
-         * Padding
-         * @see https://tailwindcss.com/docs/padding
-         */
-        p: [{
-          p: [padding]
-        }],
-        /**
-         * Padding X
-         * @see https://tailwindcss.com/docs/padding
-         */
-        px: [{
-          px: [padding]
-        }],
-        /**
-         * Padding Y
-         * @see https://tailwindcss.com/docs/padding
-         */
-        py: [{
-          py: [padding]
-        }],
-        /**
-         * Padding Start
-         * @see https://tailwindcss.com/docs/padding
-         */
-        ps: [{
-          ps: [padding]
-        }],
-        /**
-         * Padding End
-         * @see https://tailwindcss.com/docs/padding
-         */
-        pe: [{
-          pe: [padding]
-        }],
-        /**
-         * Padding Top
-         * @see https://tailwindcss.com/docs/padding
-         */
-        pt: [{
-          pt: [padding]
-        }],
-        /**
-         * Padding Right
-         * @see https://tailwindcss.com/docs/padding
-         */
-        pr: [{
-          pr: [padding]
-        }],
-        /**
-         * Padding Bottom
-         * @see https://tailwindcss.com/docs/padding
-         */
-        pb: [{
-          pb: [padding]
-        }],
-        /**
-         * Padding Left
-         * @see https://tailwindcss.com/docs/padding
-         */
-        pl: [{
-          pl: [padding]
-        }],
-        /**
-         * Margin
-         * @see https://tailwindcss.com/docs/margin
-         */
-        m: [{
-          m: [margin]
-        }],
-        /**
-         * Margin X
-         * @see https://tailwindcss.com/docs/margin
-         */
-        mx: [{
-          mx: [margin]
-        }],
-        /**
-         * Margin Y
-         * @see https://tailwindcss.com/docs/margin
-         */
-        my: [{
-          my: [margin]
-        }],
-        /**
-         * Margin Start
-         * @see https://tailwindcss.com/docs/margin
-         */
-        ms: [{
-          ms: [margin]
-        }],
-        /**
-         * Margin End
-         * @see https://tailwindcss.com/docs/margin
-         */
-        me: [{
-          me: [margin]
-        }],
-        /**
-         * Margin Top
-         * @see https://tailwindcss.com/docs/margin
-         */
-        mt: [{
-          mt: [margin]
-        }],
-        /**
-         * Margin Right
-         * @see https://tailwindcss.com/docs/margin
-         */
-        mr: [{
-          mr: [margin]
-        }],
-        /**
-         * Margin Bottom
-         * @see https://tailwindcss.com/docs/margin
-         */
-        mb: [{
-          mb: [margin]
-        }],
-        /**
-         * Margin Left
-         * @see https://tailwindcss.com/docs/margin
-         */
-        ml: [{
-          ml: [margin]
-        }],
-        /**
-         * Space Between X
-         * @see https://tailwindcss.com/docs/space
-         */
-        "space-x": [{
-          "space-x": [space]
-        }],
-        /**
-         * Space Between X Reverse
-         * @see https://tailwindcss.com/docs/space
-         */
-        "space-x-reverse": ["space-x-reverse"],
-        /**
-         * Space Between Y
-         * @see https://tailwindcss.com/docs/space
-         */
-        "space-y": [{
-          "space-y": [space]
-        }],
-        /**
-         * Space Between Y Reverse
-         * @see https://tailwindcss.com/docs/space
-         */
-        "space-y-reverse": ["space-y-reverse"],
-        // Sizing
-        /**
-         * Width
-         * @see https://tailwindcss.com/docs/width
-         */
-        w: [{
-          w: ["auto", "min", "max", "fit", "svw", "lvw", "dvw", isArbitraryValue, spacing]
-        }],
-        /**
-         * Min-Width
-         * @see https://tailwindcss.com/docs/min-width
-         */
-        "min-w": [{
-          "min-w": [isArbitraryValue, spacing, "min", "max", "fit"]
-        }],
-        /**
-         * Max-Width
-         * @see https://tailwindcss.com/docs/max-width
-         */
-        "max-w": [{
-          "max-w": [isArbitraryValue, spacing, "none", "full", "min", "max", "fit", "prose", {
-            screen: [isTshirtSize]
-          }, isTshirtSize]
-        }],
-        /**
-         * Height
-         * @see https://tailwindcss.com/docs/height
-         */
-        h: [{
-          h: [isArbitraryValue, spacing, "auto", "min", "max", "fit", "svh", "lvh", "dvh"]
-        }],
-        /**
-         * Min-Height
-         * @see https://tailwindcss.com/docs/min-height
-         */
-        "min-h": [{
-          "min-h": [isArbitraryValue, spacing, "min", "max", "fit", "svh", "lvh", "dvh"]
-        }],
-        /**
-         * Max-Height
-         * @see https://tailwindcss.com/docs/max-height
-         */
-        "max-h": [{
-          "max-h": [isArbitraryValue, spacing, "min", "max", "fit", "svh", "lvh", "dvh"]
-        }],
-        /**
-         * Size
-         * @see https://tailwindcss.com/docs/size
-         */
-        size: [{
-          size: [isArbitraryValue, spacing, "auto", "min", "max", "fit"]
-        }],
-        // Typography
-        /**
-         * Font Size
-         * @see https://tailwindcss.com/docs/font-size
-         */
-        "font-size": [{
-          text: ["base", isTshirtSize, isArbitraryLength]
-        }],
-        /**
-         * Font Smoothing
-         * @see https://tailwindcss.com/docs/font-smoothing
-         */
-        "font-smoothing": ["antialiased", "subpixel-antialiased"],
-        /**
-         * Font Style
-         * @see https://tailwindcss.com/docs/font-style
-         */
-        "font-style": ["italic", "not-italic"],
-        /**
-         * Font Weight
-         * @see https://tailwindcss.com/docs/font-weight
-         */
-        "font-weight": [{
-          font: ["thin", "extralight", "light", "normal", "medium", "semibold", "bold", "extrabold", "black", isArbitraryNumber]
-        }],
-        /**
-         * Font Family
-         * @see https://tailwindcss.com/docs/font-family
-         */
-        "font-family": [{
-          font: [isAny]
-        }],
-        /**
-         * Font Variant Numeric
-         * @see https://tailwindcss.com/docs/font-variant-numeric
-         */
-        "fvn-normal": ["normal-nums"],
-        /**
-         * Font Variant Numeric
-         * @see https://tailwindcss.com/docs/font-variant-numeric
-         */
-        "fvn-ordinal": ["ordinal"],
-        /**
-         * Font Variant Numeric
-         * @see https://tailwindcss.com/docs/font-variant-numeric
-         */
-        "fvn-slashed-zero": ["slashed-zero"],
-        /**
-         * Font Variant Numeric
-         * @see https://tailwindcss.com/docs/font-variant-numeric
-         */
-        "fvn-figure": ["lining-nums", "oldstyle-nums"],
-        /**
-         * Font Variant Numeric
-         * @see https://tailwindcss.com/docs/font-variant-numeric
-         */
-        "fvn-spacing": ["proportional-nums", "tabular-nums"],
-        /**
-         * Font Variant Numeric
-         * @see https://tailwindcss.com/docs/font-variant-numeric
-         */
-        "fvn-fraction": ["diagonal-fractions", "stacked-fractons"],
-        /**
-         * Letter Spacing
-         * @see https://tailwindcss.com/docs/letter-spacing
-         */
-        tracking: [{
-          tracking: ["tighter", "tight", "normal", "wide", "wider", "widest", isArbitraryValue]
-        }],
-        /**
-         * Line Clamp
-         * @see https://tailwindcss.com/docs/line-clamp
-         */
-        "line-clamp": [{
-          "line-clamp": ["none", isNumber, isArbitraryNumber]
-        }],
-        /**
-         * Line Height
-         * @see https://tailwindcss.com/docs/line-height
-         */
-        leading: [{
-          leading: ["none", "tight", "snug", "normal", "relaxed", "loose", isLength, isArbitraryValue]
-        }],
-        /**
-         * List Style Image
-         * @see https://tailwindcss.com/docs/list-style-image
-         */
-        "list-image": [{
-          "list-image": ["none", isArbitraryValue]
-        }],
-        /**
-         * List Style Type
-         * @see https://tailwindcss.com/docs/list-style-type
-         */
-        "list-style-type": [{
-          list: ["none", "disc", "decimal", isArbitraryValue]
-        }],
-        /**
-         * List Style Position
-         * @see https://tailwindcss.com/docs/list-style-position
-         */
-        "list-style-position": [{
-          list: ["inside", "outside"]
-        }],
-        /**
-         * Placeholder Color
-         * @deprecated since Tailwind CSS v3.0.0
-         * @see https://tailwindcss.com/docs/placeholder-color
-         */
-        "placeholder-color": [{
-          placeholder: [colors]
-        }],
-        /**
-         * Placeholder Opacity
-         * @see https://tailwindcss.com/docs/placeholder-opacity
-         */
-        "placeholder-opacity": [{
-          "placeholder-opacity": [opacity]
-        }],
-        /**
-         * Text Alignment
-         * @see https://tailwindcss.com/docs/text-align
-         */
-        "text-alignment": [{
-          text: ["left", "center", "right", "justify", "start", "end"]
-        }],
-        /**
-         * Text Color
-         * @see https://tailwindcss.com/docs/text-color
-         */
-        "text-color": [{
-          text: [colors]
-        }],
-        /**
-         * Text Opacity
-         * @see https://tailwindcss.com/docs/text-opacity
-         */
-        "text-opacity": [{
-          "text-opacity": [opacity]
-        }],
-        /**
-         * Text Decoration
-         * @see https://tailwindcss.com/docs/text-decoration
-         */
-        "text-decoration": ["underline", "overline", "line-through", "no-underline"],
-        /**
-         * Text Decoration Style
-         * @see https://tailwindcss.com/docs/text-decoration-style
-         */
-        "text-decoration-style": [{
-          decoration: [...getLineStyles(), "wavy"]
-        }],
-        /**
-         * Text Decoration Thickness
-         * @see https://tailwindcss.com/docs/text-decoration-thickness
-         */
-        "text-decoration-thickness": [{
-          decoration: ["auto", "from-font", isLength, isArbitraryLength]
-        }],
-        /**
-         * Text Underline Offset
-         * @see https://tailwindcss.com/docs/text-underline-offset
-         */
-        "underline-offset": [{
-          "underline-offset": ["auto", isLength, isArbitraryValue]
-        }],
-        /**
-         * Text Decoration Color
-         * @see https://tailwindcss.com/docs/text-decoration-color
-         */
-        "text-decoration-color": [{
-          decoration: [colors]
-        }],
-        /**
-         * Text Transform
-         * @see https://tailwindcss.com/docs/text-transform
-         */
-        "text-transform": ["uppercase", "lowercase", "capitalize", "normal-case"],
-        /**
-         * Text Overflow
-         * @see https://tailwindcss.com/docs/text-overflow
-         */
-        "text-overflow": ["truncate", "text-ellipsis", "text-clip"],
-        /**
-         * Text Wrap
-         * @see https://tailwindcss.com/docs/text-wrap
-         */
-        "text-wrap": [{
-          text: ["wrap", "nowrap", "balance", "pretty"]
-        }],
-        /**
-         * Text Indent
-         * @see https://tailwindcss.com/docs/text-indent
-         */
-        indent: [{
-          indent: getSpacingWithArbitrary()
-        }],
-        /**
-         * Vertical Alignment
-         * @see https://tailwindcss.com/docs/vertical-align
-         */
-        "vertical-align": [{
-          align: ["baseline", "top", "middle", "bottom", "text-top", "text-bottom", "sub", "super", isArbitraryValue]
-        }],
-        /**
-         * Whitespace
-         * @see https://tailwindcss.com/docs/whitespace
-         */
-        whitespace: [{
-          whitespace: ["normal", "nowrap", "pre", "pre-line", "pre-wrap", "break-spaces"]
-        }],
-        /**
-         * Word Break
-         * @see https://tailwindcss.com/docs/word-break
-         */
-        break: [{
-          break: ["normal", "words", "all", "keep"]
-        }],
-        /**
-         * Hyphens
-         * @see https://tailwindcss.com/docs/hyphens
-         */
-        hyphens: [{
-          hyphens: ["none", "manual", "auto"]
-        }],
-        /**
-         * Content
-         * @see https://tailwindcss.com/docs/content
-         */
-        content: [{
-          content: ["none", isArbitraryValue]
-        }],
-        // Backgrounds
-        /**
-         * Background Attachment
-         * @see https://tailwindcss.com/docs/background-attachment
-         */
-        "bg-attachment": [{
-          bg: ["fixed", "local", "scroll"]
-        }],
-        /**
-         * Background Clip
-         * @see https://tailwindcss.com/docs/background-clip
-         */
-        "bg-clip": [{
-          "bg-clip": ["border", "padding", "content", "text"]
-        }],
-        /**
-         * Background Opacity
-         * @deprecated since Tailwind CSS v3.0.0
-         * @see https://tailwindcss.com/docs/background-opacity
-         */
-        "bg-opacity": [{
-          "bg-opacity": [opacity]
-        }],
-        /**
-         * Background Origin
-         * @see https://tailwindcss.com/docs/background-origin
-         */
-        "bg-origin": [{
-          "bg-origin": ["border", "padding", "content"]
-        }],
-        /**
-         * Background Position
-         * @see https://tailwindcss.com/docs/background-position
-         */
-        "bg-position": [{
-          bg: [...getPositions(), isArbitraryPosition]
-        }],
-        /**
-         * Background Repeat
-         * @see https://tailwindcss.com/docs/background-repeat
-         */
-        "bg-repeat": [{
-          bg: ["no-repeat", {
-            repeat: ["", "x", "y", "round", "space"]
-          }]
-        }],
-        /**
-         * Background Size
-         * @see https://tailwindcss.com/docs/background-size
-         */
-        "bg-size": [{
-          bg: ["auto", "cover", "contain", isArbitrarySize]
-        }],
-        /**
-         * Background Image
-         * @see https://tailwindcss.com/docs/background-image
-         */
-        "bg-image": [{
-          bg: ["none", {
-            "gradient-to": ["t", "tr", "r", "br", "b", "bl", "l", "tl"]
-          }, isArbitraryImage]
-        }],
-        /**
-         * Background Color
-         * @see https://tailwindcss.com/docs/background-color
-         */
-        "bg-color": [{
-          bg: [colors]
-        }],
-        /**
-         * Gradient Color Stops From Position
-         * @see https://tailwindcss.com/docs/gradient-color-stops
-         */
-        "gradient-from-pos": [{
-          from: [gradientColorStopPositions]
-        }],
-        /**
-         * Gradient Color Stops Via Position
-         * @see https://tailwindcss.com/docs/gradient-color-stops
-         */
-        "gradient-via-pos": [{
-          via: [gradientColorStopPositions]
-        }],
-        /**
-         * Gradient Color Stops To Position
-         * @see https://tailwindcss.com/docs/gradient-color-stops
-         */
-        "gradient-to-pos": [{
-          to: [gradientColorStopPositions]
-        }],
-        /**
-         * Gradient Color Stops From
-         * @see https://tailwindcss.com/docs/gradient-color-stops
-         */
-        "gradient-from": [{
-          from: [gradientColorStops]
-        }],
-        /**
-         * Gradient Color Stops Via
-         * @see https://tailwindcss.com/docs/gradient-color-stops
-         */
-        "gradient-via": [{
-          via: [gradientColorStops]
-        }],
-        /**
-         * Gradient Color Stops To
-         * @see https://tailwindcss.com/docs/gradient-color-stops
-         */
-        "gradient-to": [{
-          to: [gradientColorStops]
-        }],
-        // Borders
-        /**
-         * Border Radius
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        rounded: [{
-          rounded: [borderRadius]
-        }],
-        /**
-         * Border Radius Start
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-s": [{
-          "rounded-s": [borderRadius]
-        }],
-        /**
-         * Border Radius End
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-e": [{
-          "rounded-e": [borderRadius]
-        }],
-        /**
-         * Border Radius Top
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-t": [{
-          "rounded-t": [borderRadius]
-        }],
-        /**
-         * Border Radius Right
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-r": [{
-          "rounded-r": [borderRadius]
-        }],
-        /**
-         * Border Radius Bottom
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-b": [{
-          "rounded-b": [borderRadius]
-        }],
-        /**
-         * Border Radius Left
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-l": [{
-          "rounded-l": [borderRadius]
-        }],
-        /**
-         * Border Radius Start Start
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-ss": [{
-          "rounded-ss": [borderRadius]
-        }],
-        /**
-         * Border Radius Start End
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-se": [{
-          "rounded-se": [borderRadius]
-        }],
-        /**
-         * Border Radius End End
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-ee": [{
-          "rounded-ee": [borderRadius]
-        }],
-        /**
-         * Border Radius End Start
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-es": [{
-          "rounded-es": [borderRadius]
-        }],
-        /**
-         * Border Radius Top Left
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-tl": [{
-          "rounded-tl": [borderRadius]
-        }],
-        /**
-         * Border Radius Top Right
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-tr": [{
-          "rounded-tr": [borderRadius]
-        }],
-        /**
-         * Border Radius Bottom Right
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-br": [{
-          "rounded-br": [borderRadius]
-        }],
-        /**
-         * Border Radius Bottom Left
-         * @see https://tailwindcss.com/docs/border-radius
-         */
-        "rounded-bl": [{
-          "rounded-bl": [borderRadius]
-        }],
-        /**
-         * Border Width
-         * @see https://tailwindcss.com/docs/border-width
-         */
-        "border-w": [{
-          border: [borderWidth]
-        }],
-        /**
-         * Border Width X
-         * @see https://tailwindcss.com/docs/border-width
-         */
-        "border-w-x": [{
-          "border-x": [borderWidth]
-        }],
-        /**
-         * Border Width Y
-         * @see https://tailwindcss.com/docs/border-width
-         */
-        "border-w-y": [{
-          "border-y": [borderWidth]
-        }],
-        /**
-         * Border Width Start
-         * @see https://tailwindcss.com/docs/border-width
-         */
-        "border-w-s": [{
-          "border-s": [borderWidth]
-        }],
-        /**
-         * Border Width End
-         * @see https://tailwindcss.com/docs/border-width
-         */
-        "border-w-e": [{
-          "border-e": [borderWidth]
-        }],
-        /**
-         * Border Width Top
-         * @see https://tailwindcss.com/docs/border-width
-         */
-        "border-w-t": [{
-          "border-t": [borderWidth]
-        }],
-        /**
-         * Border Width Right
-         * @see https://tailwindcss.com/docs/border-width
-         */
-        "border-w-r": [{
-          "border-r": [borderWidth]
-        }],
-        /**
-         * Border Width Bottom
-         * @see https://tailwindcss.com/docs/border-width
-         */
-        "border-w-b": [{
-          "border-b": [borderWidth]
-        }],
-        /**
-         * Border Width Left
-         * @see https://tailwindcss.com/docs/border-width
-         */
-        "border-w-l": [{
-          "border-l": [borderWidth]
-        }],
-        /**
-         * Border Opacity
-         * @see https://tailwindcss.com/docs/border-opacity
-         */
-        "border-opacity": [{
-          "border-opacity": [opacity]
-        }],
-        /**
-         * Border Style
-         * @see https://tailwindcss.com/docs/border-style
-         */
-        "border-style": [{
-          border: [...getLineStyles(), "hidden"]
-        }],
-        /**
-         * Divide Width X
-         * @see https://tailwindcss.com/docs/divide-width
-         */
-        "divide-x": [{
-          "divide-x": [borderWidth]
-        }],
-        /**
-         * Divide Width X Reverse
-         * @see https://tailwindcss.com/docs/divide-width
-         */
-        "divide-x-reverse": ["divide-x-reverse"],
-        /**
-         * Divide Width Y
-         * @see https://tailwindcss.com/docs/divide-width
-         */
-        "divide-y": [{
-          "divide-y": [borderWidth]
-        }],
-        /**
-         * Divide Width Y Reverse
-         * @see https://tailwindcss.com/docs/divide-width
-         */
-        "divide-y-reverse": ["divide-y-reverse"],
-        /**
-         * Divide Opacity
-         * @see https://tailwindcss.com/docs/divide-opacity
-         */
-        "divide-opacity": [{
-          "divide-opacity": [opacity]
-        }],
-        /**
-         * Divide Style
-         * @see https://tailwindcss.com/docs/divide-style
-         */
-        "divide-style": [{
-          divide: getLineStyles()
-        }],
-        /**
-         * Border Color
-         * @see https://tailwindcss.com/docs/border-color
-         */
-        "border-color": [{
-          border: [borderColor]
-        }],
-        /**
-         * Border Color X
-         * @see https://tailwindcss.com/docs/border-color
-         */
-        "border-color-x": [{
-          "border-x": [borderColor]
-        }],
-        /**
-         * Border Color Y
-         * @see https://tailwindcss.com/docs/border-color
-         */
-        "border-color-y": [{
-          "border-y": [borderColor]
-        }],
-        /**
-         * Border Color Top
-         * @see https://tailwindcss.com/docs/border-color
-         */
-        "border-color-t": [{
-          "border-t": [borderColor]
-        }],
-        /**
-         * Border Color Right
-         * @see https://tailwindcss.com/docs/border-color
-         */
-        "border-color-r": [{
-          "border-r": [borderColor]
-        }],
-        /**
-         * Border Color Bottom
-         * @see https://tailwindcss.com/docs/border-color
-         */
-        "border-color-b": [{
-          "border-b": [borderColor]
-        }],
-        /**
-         * Border Color Left
-         * @see https://tailwindcss.com/docs/border-color
-         */
-        "border-color-l": [{
-          "border-l": [borderColor]
-        }],
-        /**
-         * Divide Color
-         * @see https://tailwindcss.com/docs/divide-color
-         */
-        "divide-color": [{
-          divide: [borderColor]
-        }],
-        /**
-         * Outline Style
-         * @see https://tailwindcss.com/docs/outline-style
-         */
-        "outline-style": [{
-          outline: ["", ...getLineStyles()]
-        }],
-        /**
-         * Outline Offset
-         * @see https://tailwindcss.com/docs/outline-offset
-         */
-        "outline-offset": [{
-          "outline-offset": [isLength, isArbitraryValue]
-        }],
-        /**
-         * Outline Width
-         * @see https://tailwindcss.com/docs/outline-width
-         */
-        "outline-w": [{
-          outline: [isLength, isArbitraryLength]
-        }],
-        /**
-         * Outline Color
-         * @see https://tailwindcss.com/docs/outline-color
-         */
-        "outline-color": [{
-          outline: [colors]
-        }],
-        /**
-         * Ring Width
-         * @see https://tailwindcss.com/docs/ring-width
-         */
-        "ring-w": [{
-          ring: getLengthWithEmptyAndArbitrary()
-        }],
-        /**
-         * Ring Width Inset
-         * @see https://tailwindcss.com/docs/ring-width
-         */
-        "ring-w-inset": ["ring-inset"],
-        /**
-         * Ring Color
-         * @see https://tailwindcss.com/docs/ring-color
-         */
-        "ring-color": [{
-          ring: [colors]
-        }],
-        /**
-         * Ring Opacity
-         * @see https://tailwindcss.com/docs/ring-opacity
-         */
-        "ring-opacity": [{
-          "ring-opacity": [opacity]
-        }],
-        /**
-         * Ring Offset Width
-         * @see https://tailwindcss.com/docs/ring-offset-width
-         */
-        "ring-offset-w": [{
-          "ring-offset": [isLength, isArbitraryLength]
-        }],
-        /**
-         * Ring Offset Color
-         * @see https://tailwindcss.com/docs/ring-offset-color
-         */
-        "ring-offset-color": [{
-          "ring-offset": [colors]
-        }],
-        // Effects
-        /**
-         * Box Shadow
-         * @see https://tailwindcss.com/docs/box-shadow
-         */
-        shadow: [{
-          shadow: ["", "inner", "none", isTshirtSize, isArbitraryShadow]
-        }],
-        /**
-         * Box Shadow Color
-         * @see https://tailwindcss.com/docs/box-shadow-color
-         */
-        "shadow-color": [{
-          shadow: [isAny]
-        }],
-        /**
-         * Opacity
-         * @see https://tailwindcss.com/docs/opacity
-         */
-        opacity: [{
-          opacity: [opacity]
-        }],
-        /**
-         * Mix Blend Mode
-         * @see https://tailwindcss.com/docs/mix-blend-mode
-         */
-        "mix-blend": [{
-          "mix-blend": [...getBlendModes(), "plus-lighter", "plus-darker"]
-        }],
-        /**
-         * Background Blend Mode
-         * @see https://tailwindcss.com/docs/background-blend-mode
-         */
-        "bg-blend": [{
-          "bg-blend": getBlendModes()
-        }],
-        // Filters
-        /**
-         * Filter
-         * @deprecated since Tailwind CSS v3.0.0
-         * @see https://tailwindcss.com/docs/filter
-         */
-        filter: [{
-          filter: ["", "none"]
-        }],
-        /**
-         * Blur
-         * @see https://tailwindcss.com/docs/blur
-         */
-        blur: [{
-          blur: [blur]
-        }],
-        /**
-         * Brightness
-         * @see https://tailwindcss.com/docs/brightness
-         */
-        brightness: [{
-          brightness: [brightness]
-        }],
-        /**
-         * Contrast
-         * @see https://tailwindcss.com/docs/contrast
-         */
-        contrast: [{
-          contrast: [contrast]
-        }],
-        /**
-         * Drop Shadow
-         * @see https://tailwindcss.com/docs/drop-shadow
-         */
-        "drop-shadow": [{
-          "drop-shadow": ["", "none", isTshirtSize, isArbitraryValue]
-        }],
-        /**
-         * Grayscale
-         * @see https://tailwindcss.com/docs/grayscale
-         */
-        grayscale: [{
-          grayscale: [grayscale]
-        }],
-        /**
-         * Hue Rotate
-         * @see https://tailwindcss.com/docs/hue-rotate
-         */
-        "hue-rotate": [{
-          "hue-rotate": [hueRotate]
-        }],
-        /**
-         * Invert
-         * @see https://tailwindcss.com/docs/invert
-         */
-        invert: [{
-          invert: [invert]
-        }],
-        /**
-         * Saturate
-         * @see https://tailwindcss.com/docs/saturate
-         */
-        saturate: [{
-          saturate: [saturate]
-        }],
-        /**
-         * Sepia
-         * @see https://tailwindcss.com/docs/sepia
-         */
-        sepia: [{
-          sepia: [sepia]
-        }],
-        /**
-         * Backdrop Filter
-         * @deprecated since Tailwind CSS v3.0.0
-         * @see https://tailwindcss.com/docs/backdrop-filter
-         */
-        "backdrop-filter": [{
-          "backdrop-filter": ["", "none"]
-        }],
-        /**
-         * Backdrop Blur
-         * @see https://tailwindcss.com/docs/backdrop-blur
-         */
-        "backdrop-blur": [{
-          "backdrop-blur": [blur]
-        }],
-        /**
-         * Backdrop Brightness
-         * @see https://tailwindcss.com/docs/backdrop-brightness
-         */
-        "backdrop-brightness": [{
-          "backdrop-brightness": [brightness]
-        }],
-        /**
-         * Backdrop Contrast
-         * @see https://tailwindcss.com/docs/backdrop-contrast
-         */
-        "backdrop-contrast": [{
-          "backdrop-contrast": [contrast]
-        }],
-        /**
-         * Backdrop Grayscale
-         * @see https://tailwindcss.com/docs/backdrop-grayscale
-         */
-        "backdrop-grayscale": [{
-          "backdrop-grayscale": [grayscale]
-        }],
-        /**
-         * Backdrop Hue Rotate
-         * @see https://tailwindcss.com/docs/backdrop-hue-rotate
-         */
-        "backdrop-hue-rotate": [{
-          "backdrop-hue-rotate": [hueRotate]
-        }],
-        /**
-         * Backdrop Invert
-         * @see https://tailwindcss.com/docs/backdrop-invert
-         */
-        "backdrop-invert": [{
-          "backdrop-invert": [invert]
-        }],
-        /**
-         * Backdrop Opacity
-         * @see https://tailwindcss.com/docs/backdrop-opacity
-         */
-        "backdrop-opacity": [{
-          "backdrop-opacity": [opacity]
-        }],
-        /**
-         * Backdrop Saturate
-         * @see https://tailwindcss.com/docs/backdrop-saturate
-         */
-        "backdrop-saturate": [{
-          "backdrop-saturate": [saturate]
-        }],
-        /**
-         * Backdrop Sepia
-         * @see https://tailwindcss.com/docs/backdrop-sepia
-         */
-        "backdrop-sepia": [{
-          "backdrop-sepia": [sepia]
-        }],
-        // Tables
-        /**
-         * Border Collapse
-         * @see https://tailwindcss.com/docs/border-collapse
-         */
-        "border-collapse": [{
-          border: ["collapse", "separate"]
-        }],
-        /**
-         * Border Spacing
-         * @see https://tailwindcss.com/docs/border-spacing
-         */
-        "border-spacing": [{
-          "border-spacing": [borderSpacing]
-        }],
-        /**
-         * Border Spacing X
-         * @see https://tailwindcss.com/docs/border-spacing
-         */
-        "border-spacing-x": [{
-          "border-spacing-x": [borderSpacing]
-        }],
-        /**
-         * Border Spacing Y
-         * @see https://tailwindcss.com/docs/border-spacing
-         */
-        "border-spacing-y": [{
-          "border-spacing-y": [borderSpacing]
-        }],
-        /**
-         * Table Layout
-         * @see https://tailwindcss.com/docs/table-layout
-         */
-        "table-layout": [{
-          table: ["auto", "fixed"]
-        }],
-        /**
-         * Caption Side
-         * @see https://tailwindcss.com/docs/caption-side
-         */
-        caption: [{
-          caption: ["top", "bottom"]
-        }],
-        // Transitions and Animation
-        /**
-         * Tranisition Property
-         * @see https://tailwindcss.com/docs/transition-property
-         */
-        transition: [{
-          transition: ["none", "all", "", "colors", "opacity", "shadow", "transform", isArbitraryValue]
-        }],
-        /**
-         * Transition Duration
-         * @see https://tailwindcss.com/docs/transition-duration
-         */
-        duration: [{
-          duration: getNumberAndArbitrary()
-        }],
-        /**
-         * Transition Timing Function
-         * @see https://tailwindcss.com/docs/transition-timing-function
-         */
-        ease: [{
-          ease: ["linear", "in", "out", "in-out", isArbitraryValue]
-        }],
-        /**
-         * Transition Delay
-         * @see https://tailwindcss.com/docs/transition-delay
-         */
-        delay: [{
-          delay: getNumberAndArbitrary()
-        }],
-        /**
-         * Animation
-         * @see https://tailwindcss.com/docs/animation
-         */
-        animate: [{
-          animate: ["none", "spin", "ping", "pulse", "bounce", isArbitraryValue]
-        }],
-        // Transforms
-        /**
-         * Transform
-         * @see https://tailwindcss.com/docs/transform
-         */
-        transform: [{
-          transform: ["", "gpu", "none"]
-        }],
-        /**
-         * Scale
-         * @see https://tailwindcss.com/docs/scale
-         */
-        scale: [{
-          scale: [scale]
-        }],
-        /**
-         * Scale X
-         * @see https://tailwindcss.com/docs/scale
-         */
-        "scale-x": [{
-          "scale-x": [scale]
-        }],
-        /**
-         * Scale Y
-         * @see https://tailwindcss.com/docs/scale
-         */
-        "scale-y": [{
-          "scale-y": [scale]
-        }],
-        /**
-         * Rotate
-         * @see https://tailwindcss.com/docs/rotate
-         */
-        rotate: [{
-          rotate: [isInteger, isArbitraryValue]
-        }],
-        /**
-         * Translate X
-         * @see https://tailwindcss.com/docs/translate
-         */
-        "translate-x": [{
-          "translate-x": [translate]
-        }],
-        /**
-         * Translate Y
-         * @see https://tailwindcss.com/docs/translate
-         */
-        "translate-y": [{
-          "translate-y": [translate]
-        }],
-        /**
-         * Skew X
-         * @see https://tailwindcss.com/docs/skew
-         */
-        "skew-x": [{
-          "skew-x": [skew]
-        }],
-        /**
-         * Skew Y
-         * @see https://tailwindcss.com/docs/skew
-         */
-        "skew-y": [{
-          "skew-y": [skew]
-        }],
-        /**
-         * Transform Origin
-         * @see https://tailwindcss.com/docs/transform-origin
-         */
-        "transform-origin": [{
-          origin: ["center", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left", "top-left", isArbitraryValue]
-        }],
-        // Interactivity
-        /**
-         * Accent Color
-         * @see https://tailwindcss.com/docs/accent-color
-         */
-        accent: [{
-          accent: ["auto", colors]
-        }],
-        /**
-         * Appearance
-         * @see https://tailwindcss.com/docs/appearance
-         */
-        appearance: [{
-          appearance: ["none", "auto"]
-        }],
-        /**
-         * Cursor
-         * @see https://tailwindcss.com/docs/cursor
-         */
-        cursor: [{
-          cursor: ["auto", "default", "pointer", "wait", "text", "move", "help", "not-allowed", "none", "context-menu", "progress", "cell", "crosshair", "vertical-text", "alias", "copy", "no-drop", "grab", "grabbing", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "ne-resize", "nw-resize", "se-resize", "sw-resize", "ew-resize", "ns-resize", "nesw-resize", "nwse-resize", "zoom-in", "zoom-out", isArbitraryValue]
-        }],
-        /**
-         * Caret Color
-         * @see https://tailwindcss.com/docs/just-in-time-mode#caret-color-utilities
-         */
-        "caret-color": [{
-          caret: [colors]
-        }],
-        /**
-         * Pointer Events
-         * @see https://tailwindcss.com/docs/pointer-events
-         */
-        "pointer-events": [{
-          "pointer-events": ["none", "auto"]
-        }],
-        /**
-         * Resize
-         * @see https://tailwindcss.com/docs/resize
-         */
-        resize: [{
-          resize: ["none", "y", "x", ""]
-        }],
-        /**
-         * Scroll Behavior
-         * @see https://tailwindcss.com/docs/scroll-behavior
-         */
-        "scroll-behavior": [{
-          scroll: ["auto", "smooth"]
-        }],
-        /**
-         * Scroll Margin
-         * @see https://tailwindcss.com/docs/scroll-margin
-         */
-        "scroll-m": [{
-          "scroll-m": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Margin X
-         * @see https://tailwindcss.com/docs/scroll-margin
-         */
-        "scroll-mx": [{
-          "scroll-mx": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Margin Y
-         * @see https://tailwindcss.com/docs/scroll-margin
-         */
-        "scroll-my": [{
-          "scroll-my": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Margin Start
-         * @see https://tailwindcss.com/docs/scroll-margin
-         */
-        "scroll-ms": [{
-          "scroll-ms": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Margin End
-         * @see https://tailwindcss.com/docs/scroll-margin
-         */
-        "scroll-me": [{
-          "scroll-me": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Margin Top
-         * @see https://tailwindcss.com/docs/scroll-margin
-         */
-        "scroll-mt": [{
-          "scroll-mt": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Margin Right
-         * @see https://tailwindcss.com/docs/scroll-margin
-         */
-        "scroll-mr": [{
-          "scroll-mr": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Margin Bottom
-         * @see https://tailwindcss.com/docs/scroll-margin
-         */
-        "scroll-mb": [{
-          "scroll-mb": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Margin Left
-         * @see https://tailwindcss.com/docs/scroll-margin
-         */
-        "scroll-ml": [{
-          "scroll-ml": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Padding
-         * @see https://tailwindcss.com/docs/scroll-padding
-         */
-        "scroll-p": [{
-          "scroll-p": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Padding X
-         * @see https://tailwindcss.com/docs/scroll-padding
-         */
-        "scroll-px": [{
-          "scroll-px": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Padding Y
-         * @see https://tailwindcss.com/docs/scroll-padding
-         */
-        "scroll-py": [{
-          "scroll-py": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Padding Start
-         * @see https://tailwindcss.com/docs/scroll-padding
-         */
-        "scroll-ps": [{
-          "scroll-ps": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Padding End
-         * @see https://tailwindcss.com/docs/scroll-padding
-         */
-        "scroll-pe": [{
-          "scroll-pe": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Padding Top
-         * @see https://tailwindcss.com/docs/scroll-padding
-         */
-        "scroll-pt": [{
-          "scroll-pt": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Padding Right
-         * @see https://tailwindcss.com/docs/scroll-padding
-         */
-        "scroll-pr": [{
-          "scroll-pr": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Padding Bottom
-         * @see https://tailwindcss.com/docs/scroll-padding
-         */
-        "scroll-pb": [{
-          "scroll-pb": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Padding Left
-         * @see https://tailwindcss.com/docs/scroll-padding
-         */
-        "scroll-pl": [{
-          "scroll-pl": getSpacingWithArbitrary()
-        }],
-        /**
-         * Scroll Snap Align
-         * @see https://tailwindcss.com/docs/scroll-snap-align
-         */
-        "snap-align": [{
-          snap: ["start", "end", "center", "align-none"]
-        }],
-        /**
-         * Scroll Snap Stop
-         * @see https://tailwindcss.com/docs/scroll-snap-stop
-         */
-        "snap-stop": [{
-          snap: ["normal", "always"]
-        }],
-        /**
-         * Scroll Snap Type
-         * @see https://tailwindcss.com/docs/scroll-snap-type
-         */
-        "snap-type": [{
-          snap: ["none", "x", "y", "both"]
-        }],
-        /**
-         * Scroll Snap Type Strictness
-         * @see https://tailwindcss.com/docs/scroll-snap-type
-         */
-        "snap-strictness": [{
-          snap: ["mandatory", "proximity"]
-        }],
-        /**
-         * Touch Action
-         * @see https://tailwindcss.com/docs/touch-action
-         */
-        touch: [{
-          touch: ["auto", "none", "manipulation"]
-        }],
-        /**
-         * Touch Action X
-         * @see https://tailwindcss.com/docs/touch-action
-         */
-        "touch-x": [{
-          "touch-pan": ["x", "left", "right"]
-        }],
-        /**
-         * Touch Action Y
-         * @see https://tailwindcss.com/docs/touch-action
-         */
-        "touch-y": [{
-          "touch-pan": ["y", "up", "down"]
-        }],
-        /**
-         * Touch Action Pinch Zoom
-         * @see https://tailwindcss.com/docs/touch-action
-         */
-        "touch-pz": ["touch-pinch-zoom"],
-        /**
-         * User Select
-         * @see https://tailwindcss.com/docs/user-select
-         */
-        select: [{
-          select: ["none", "text", "all", "auto"]
-        }],
-        /**
-         * Will Change
-         * @see https://tailwindcss.com/docs/will-change
-         */
-        "will-change": [{
-          "will-change": ["auto", "scroll", "contents", "transform", isArbitraryValue]
-        }],
-        // SVG
-        /**
-         * Fill
-         * @see https://tailwindcss.com/docs/fill
-         */
-        fill: [{
-          fill: [colors, "none"]
-        }],
-        /**
-         * Stroke Width
-         * @see https://tailwindcss.com/docs/stroke-width
-         */
-        "stroke-w": [{
-          stroke: [isLength, isArbitraryLength, isArbitraryNumber]
-        }],
-        /**
-         * Stroke
-         * @see https://tailwindcss.com/docs/stroke
-         */
-        stroke: [{
-          stroke: [colors, "none"]
-        }],
-        // Accessibility
-        /**
-         * Screen Readers
-         * @see https://tailwindcss.com/docs/screen-readers
-         */
-        sr: ["sr-only", "not-sr-only"],
-        /**
-         * Forced Color Adjust
-         * @see https://tailwindcss.com/docs/forced-color-adjust
-         */
-        "forced-color-adjust": [{
-          "forced-color-adjust": ["auto", "none"]
-        }]
-      },
-      conflictingClassGroups: {
-        overflow: ["overflow-x", "overflow-y"],
-        overscroll: ["overscroll-x", "overscroll-y"],
-        inset: ["inset-x", "inset-y", "start", "end", "top", "right", "bottom", "left"],
-        "inset-x": ["right", "left"],
-        "inset-y": ["top", "bottom"],
-        flex: ["basis", "grow", "shrink"],
-        gap: ["gap-x", "gap-y"],
-        p: ["px", "py", "ps", "pe", "pt", "pr", "pb", "pl"],
-        px: ["pr", "pl"],
-        py: ["pt", "pb"],
-        m: ["mx", "my", "ms", "me", "mt", "mr", "mb", "ml"],
-        mx: ["mr", "ml"],
-        my: ["mt", "mb"],
-        size: ["w", "h"],
-        "font-size": ["leading"],
-        "fvn-normal": ["fvn-ordinal", "fvn-slashed-zero", "fvn-figure", "fvn-spacing", "fvn-fraction"],
-        "fvn-ordinal": ["fvn-normal"],
-        "fvn-slashed-zero": ["fvn-normal"],
-        "fvn-figure": ["fvn-normal"],
-        "fvn-spacing": ["fvn-normal"],
-        "fvn-fraction": ["fvn-normal"],
-        "line-clamp": ["display", "overflow"],
-        rounded: ["rounded-s", "rounded-e", "rounded-t", "rounded-r", "rounded-b", "rounded-l", "rounded-ss", "rounded-se", "rounded-ee", "rounded-es", "rounded-tl", "rounded-tr", "rounded-br", "rounded-bl"],
-        "rounded-s": ["rounded-ss", "rounded-es"],
-        "rounded-e": ["rounded-se", "rounded-ee"],
-        "rounded-t": ["rounded-tl", "rounded-tr"],
-        "rounded-r": ["rounded-tr", "rounded-br"],
-        "rounded-b": ["rounded-br", "rounded-bl"],
-        "rounded-l": ["rounded-tl", "rounded-bl"],
-        "border-spacing": ["border-spacing-x", "border-spacing-y"],
-        "border-w": ["border-w-s", "border-w-e", "border-w-t", "border-w-r", "border-w-b", "border-w-l"],
-        "border-w-x": ["border-w-r", "border-w-l"],
-        "border-w-y": ["border-w-t", "border-w-b"],
-        "border-color": ["border-color-t", "border-color-r", "border-color-b", "border-color-l"],
-        "border-color-x": ["border-color-r", "border-color-l"],
-        "border-color-y": ["border-color-t", "border-color-b"],
-        "scroll-m": ["scroll-mx", "scroll-my", "scroll-ms", "scroll-me", "scroll-mt", "scroll-mr", "scroll-mb", "scroll-ml"],
-        "scroll-mx": ["scroll-mr", "scroll-ml"],
-        "scroll-my": ["scroll-mt", "scroll-mb"],
-        "scroll-p": ["scroll-px", "scroll-py", "scroll-ps", "scroll-pe", "scroll-pt", "scroll-pr", "scroll-pb", "scroll-pl"],
-        "scroll-px": ["scroll-pr", "scroll-pl"],
-        "scroll-py": ["scroll-pt", "scroll-pb"],
-        touch: ["touch-x", "touch-y", "touch-pz"],
-        "touch-x": ["touch"],
-        "touch-y": ["touch"],
-        "touch-pz": ["touch"]
-      },
-      conflictingClassGroupModifiers: {
-        "font-size": ["leading"]
-      }
-    };
-  }
-  var twMerge = /* @__PURE__ */ createTailwindMerge(getDefaultConfig);
-
-  // src/lib/utils.ts
-  function cn(...inputs) {
-    return twMerge(clsx(inputs));
-  }
-
-  // src/components/ui/card.tsx
-  var Card = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ React9.createElement(
-    "div",
-    {
-      ref,
-      className: cn(
-        "rounded-lg border bg-card text-card-foreground shadow-sm",
-        className
-      ),
-      ...props
-    }
-  ));
-  Card.displayName = "Card";
-  var CardHeader = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ React9.createElement(
-    "div",
-    {
-      ref,
-      className: cn("flex flex-col space-y-1.5 p-6", className),
-      ...props
-    }
-  ));
-  CardHeader.displayName = "CardHeader";
-  var CardTitle = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ React9.createElement(
-    "h3",
-    {
-      ref,
-      className: cn(
-        "text-2xl font-semibold leading-none tracking-tight",
-        className
-      ),
-      ...props
-    }
-  ));
-  CardTitle.displayName = "CardTitle";
-  var CardDescription = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ React9.createElement(
-    "p",
-    {
-      ref,
-      className: cn("text-sm text-muted-foreground", className),
-      ...props
-    }
-  ));
-  CardDescription.displayName = "CardDescription";
-  var CardContent = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ React9.createElement("div", { ref, className: cn("p-6 pt-0", className), ...props }));
-  CardContent.displayName = "CardContent";
-  var CardFooter = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ React9.createElement(
-    "div",
-    {
-      ref,
-      className: cn("flex items-center p-6 pt-0", className),
-      ...props
-    }
-  ));
-  CardFooter.displayName = "CardFooter";
-
-  // src/components/card/index.tsx
-  var CardComponent = ({
-    title,
-    description,
-    content,
-    footerContent,
-    classNames,
-    headerContent,
-    onClick
-  }) => {
-    return /* @__PURE__ */ React.createElement(Card, { onClick, className: `w-[350px] ${classNames}` }, /* @__PURE__ */ React.createElement(CardHeader, null, /* @__PURE__ */ React.createElement(CardTitle, null, title), /* @__PURE__ */ React.createElement(CardDescription, null, description), headerContent), /* @__PURE__ */ React.createElement(CardContent, null, content), /* @__PURE__ */ React.createElement(CardFooter, { className: "flex justify-between" }, footerContent));
+    const result = compact(path.split(/[,[\].]+?/)).reduce((result2, key) => isNullOrUndefined(result2) ? result2 : result2[key], object);
+    return isUndefined(result) || result === object ? isUndefined(object[path]) ? defaultValue : object[path] : result;
   };
-  var card_default = CardComponent;
-
-  // node_modules/date-fns/toDate.mjs
-  function toDate(argument) {
-    const argStr = Object.prototype.toString.call(argument);
-    if (argument instanceof Date || typeof argument === "object" && argStr === "[object Date]") {
-      return new argument.constructor(+argument);
-    } else if (typeof argument === "number" || argStr === "[object Number]" || typeof argument === "string" || argStr === "[object String]") {
-      return new Date(argument);
-    } else {
-      return /* @__PURE__ */ new Date(NaN);
-    }
-  }
-
-  // node_modules/date-fns/constructFrom.mjs
-  function constructFrom(date, value) {
-    if (date instanceof Date) {
-      return new date.constructor(value);
-    } else {
-      return new Date(value);
-    }
-  }
-
-  // node_modules/date-fns/constants.mjs
-  var daysInYear = 365.2425;
-  var maxTime = Math.pow(10, 8) * 24 * 60 * 60 * 1e3;
-  var minTime = -maxTime;
-  var millisecondsInWeek = 6048e5;
-  var millisecondsInDay = 864e5;
-  var secondsInHour = 3600;
-  var secondsInDay = secondsInHour * 24;
-  var secondsInWeek = secondsInDay * 7;
-  var secondsInYear = secondsInDay * daysInYear;
-  var secondsInMonth = secondsInYear / 12;
-  var secondsInQuarter = secondsInMonth * 3;
-
-  // node_modules/date-fns/_lib/defaultOptions.mjs
-  var defaultOptions = {};
-  function getDefaultOptions() {
-    return defaultOptions;
-  }
-
-  // node_modules/date-fns/startOfWeek.mjs
-  function startOfWeek(date, options) {
-    const defaultOptions2 = getDefaultOptions();
-    const weekStartsOn = options?.weekStartsOn ?? options?.locale?.options?.weekStartsOn ?? defaultOptions2.weekStartsOn ?? defaultOptions2.locale?.options?.weekStartsOn ?? 0;
-    const _date = toDate(date);
-    const day = _date.getDay();
-    const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
-    _date.setDate(_date.getDate() - diff);
-    _date.setHours(0, 0, 0, 0);
-    return _date;
-  }
-
-  // node_modules/date-fns/startOfISOWeek.mjs
-  function startOfISOWeek(date) {
-    return startOfWeek(date, { weekStartsOn: 1 });
-  }
-
-  // node_modules/date-fns/getISOWeekYear.mjs
-  function getISOWeekYear(date) {
-    const _date = toDate(date);
-    const year = _date.getFullYear();
-    const fourthOfJanuaryOfNextYear = constructFrom(date, 0);
-    fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4);
-    fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0);
-    const startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear);
-    const fourthOfJanuaryOfThisYear = constructFrom(date, 0);
-    fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4);
-    fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0);
-    const startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear);
-    if (_date.getTime() >= startOfNextYear.getTime()) {
-      return year + 1;
-    } else if (_date.getTime() >= startOfThisYear.getTime()) {
-      return year;
-    } else {
-      return year - 1;
-    }
-  }
-
-  // node_modules/date-fns/startOfDay.mjs
-  function startOfDay(date) {
-    const _date = toDate(date);
-    _date.setHours(0, 0, 0, 0);
-    return _date;
-  }
-
-  // node_modules/date-fns/_lib/getTimezoneOffsetInMilliseconds.mjs
-  function getTimezoneOffsetInMilliseconds(date) {
-    const _date = toDate(date);
-    const utcDate = new Date(
-      Date.UTC(
-        _date.getFullYear(),
-        _date.getMonth(),
-        _date.getDate(),
-        _date.getHours(),
-        _date.getMinutes(),
-        _date.getSeconds(),
-        _date.getMilliseconds()
-      )
-    );
-    utcDate.setUTCFullYear(_date.getFullYear());
-    return +date - +utcDate;
-  }
-
-  // node_modules/date-fns/differenceInCalendarDays.mjs
-  function differenceInCalendarDays(dateLeft, dateRight) {
-    const startOfDayLeft = startOfDay(dateLeft);
-    const startOfDayRight = startOfDay(dateRight);
-    const timestampLeft = +startOfDayLeft - getTimezoneOffsetInMilliseconds(startOfDayLeft);
-    const timestampRight = +startOfDayRight - getTimezoneOffsetInMilliseconds(startOfDayRight);
-    return Math.round((timestampLeft - timestampRight) / millisecondsInDay);
-  }
-
-  // node_modules/date-fns/startOfISOWeekYear.mjs
-  function startOfISOWeekYear(date) {
-    const year = getISOWeekYear(date);
-    const fourthOfJanuary = constructFrom(date, 0);
-    fourthOfJanuary.setFullYear(year, 0, 4);
-    fourthOfJanuary.setHours(0, 0, 0, 0);
-    return startOfISOWeek(fourthOfJanuary);
-  }
-
-  // node_modules/date-fns/isDate.mjs
-  function isDate(value) {
-    return value instanceof Date || typeof value === "object" && Object.prototype.toString.call(value) === "[object Date]";
-  }
-
-  // node_modules/date-fns/isValid.mjs
-  function isValid(date) {
-    if (!isDate(date) && typeof date !== "number") {
-      return false;
-    }
-    const _date = toDate(date);
-    return !isNaN(Number(_date));
-  }
-
-  // node_modules/date-fns/startOfYear.mjs
-  function startOfYear(date) {
-    const cleanDate = toDate(date);
-    const _date = constructFrom(date, 0);
-    _date.setFullYear(cleanDate.getFullYear(), 0, 1);
-    _date.setHours(0, 0, 0, 0);
-    return _date;
-  }
-
-  // node_modules/date-fns/locale/en-US/_lib/formatDistance.mjs
-  var formatDistanceLocale = {
-    lessThanXSeconds: {
-      one: "less than a second",
-      other: "less than {{count}} seconds"
-    },
-    xSeconds: {
-      one: "1 second",
-      other: "{{count}} seconds"
-    },
-    halfAMinute: "half a minute",
-    lessThanXMinutes: {
-      one: "less than a minute",
-      other: "less than {{count}} minutes"
-    },
-    xMinutes: {
-      one: "1 minute",
-      other: "{{count}} minutes"
-    },
-    aboutXHours: {
-      one: "about 1 hour",
-      other: "about {{count}} hours"
-    },
-    xHours: {
-      one: "1 hour",
-      other: "{{count}} hours"
-    },
-    xDays: {
-      one: "1 day",
-      other: "{{count}} days"
-    },
-    aboutXWeeks: {
-      one: "about 1 week",
-      other: "about {{count}} weeks"
-    },
-    xWeeks: {
-      one: "1 week",
-      other: "{{count}} weeks"
-    },
-    aboutXMonths: {
-      one: "about 1 month",
-      other: "about {{count}} months"
-    },
-    xMonths: {
-      one: "1 month",
-      other: "{{count}} months"
-    },
-    aboutXYears: {
-      one: "about 1 year",
-      other: "about {{count}} years"
-    },
-    xYears: {
-      one: "1 year",
-      other: "{{count}} years"
-    },
-    overXYears: {
-      one: "over 1 year",
-      other: "over {{count}} years"
-    },
-    almostXYears: {
-      one: "almost 1 year",
-      other: "almost {{count}} years"
-    }
-  };
-  var formatDistance = (token, count, options) => {
-    let result;
-    const tokenValue = formatDistanceLocale[token];
-    if (typeof tokenValue === "string") {
-      result = tokenValue;
-    } else if (count === 1) {
-      result = tokenValue.one;
-    } else {
-      result = tokenValue.other.replace("{{count}}", count.toString());
-    }
-    if (options?.addSuffix) {
-      if (options.comparison && options.comparison > 0) {
-        return "in " + result;
-      } else {
-        return result + " ago";
+  var isBoolean = (value) => typeof value === "boolean";
+  var isKey = (value) => /^\w*$/.test(value);
+  var stringToPath = (input) => compact(input.replace(/["|']|\]/g, "").split(/\.|\[/));
+  var set = (object, path, value) => {
+    let index = -1;
+    const tempPath = isKey(path) ? [path] : stringToPath(path);
+    const length = tempPath.length;
+    const lastIndex = length - 1;
+    while (++index < length) {
+      const key = tempPath[index];
+      let newValue = value;
+      if (index !== lastIndex) {
+        const objValue = object[key];
+        newValue = isObject(objValue) || Array.isArray(objValue) ? objValue : !isNaN(+tempPath[index + 1]) ? [] : {};
       }
+      if (key === "__proto__") {
+        return;
+      }
+      object[key] = newValue;
+      object = object[key];
+    }
+    return object;
+  };
+  var EVENTS = {
+    BLUR: "blur",
+    FOCUS_OUT: "focusout",
+    CHANGE: "change"
+  };
+  var VALIDATION_MODE = {
+    onBlur: "onBlur",
+    onChange: "onChange",
+    onSubmit: "onSubmit",
+    onTouched: "onTouched",
+    all: "all"
+  };
+  var INPUT_VALIDATION_RULES = {
+    max: "max",
+    min: "min",
+    maxLength: "maxLength",
+    minLength: "minLength",
+    pattern: "pattern",
+    required: "required",
+    validate: "validate"
+  };
+  var HookFormContext = import_react10.default.createContext(null);
+  var getProxyFormState = (formState, control, localProxyFormState, isRoot = true) => {
+    const result = {
+      defaultValues: control._defaultValues
+    };
+    for (const key in formState) {
+      Object.defineProperty(result, key, {
+        get: () => {
+          const _key = key;
+          if (control._proxyFormState[_key] !== VALIDATION_MODE.all) {
+            control._proxyFormState[_key] = !isRoot || VALIDATION_MODE.all;
+          }
+          localProxyFormState && (localProxyFormState[_key] = true);
+          return formState[_key];
+        }
+      });
     }
     return result;
   };
-
-  // node_modules/date-fns/locale/_lib/buildFormatLongFn.mjs
-  function buildFormatLongFn(args) {
-    return (options = {}) => {
-      const width = options.width ? String(options.width) : args.defaultWidth;
-      const format2 = args.formats[width] || args.formats[args.defaultWidth];
-      return format2;
-    };
+  var isEmptyObject = (value) => isObject(value) && !Object.keys(value).length;
+  var shouldRenderFormState = (formStateData, _proxyFormState, updateFormState, isRoot) => {
+    updateFormState(formStateData);
+    const { name, ...formState } = formStateData;
+    return isEmptyObject(formState) || Object.keys(formState).length >= Object.keys(_proxyFormState).length || Object.keys(formState).find((key) => _proxyFormState[key] === (!isRoot || VALIDATION_MODE.all));
+  };
+  var convertToArrayPayload = (value) => Array.isArray(value) ? value : [value];
+  function useSubscribe(props) {
+    const _props = import_react10.default.useRef(props);
+    _props.current = props;
+    import_react10.default.useEffect(() => {
+      const subscription = !props.disabled && _props.current.subject && _props.current.subject.subscribe({
+        next: _props.current.next
+      });
+      return () => {
+        subscription && subscription.unsubscribe();
+      };
+    }, [props.disabled]);
   }
-
-  // node_modules/date-fns/locale/en-US/_lib/formatLong.mjs
-  var dateFormats = {
-    full: "EEEE, MMMM do, y",
-    long: "MMMM do, y",
-    medium: "MMM d, y",
-    short: "MM/dd/yyyy"
+  var isString = (value) => typeof value === "string";
+  var generateWatchOutput = (names, _names, formValues, isGlobal, defaultValue) => {
+    if (isString(names)) {
+      isGlobal && _names.watch.add(names);
+      return get(formValues, names, defaultValue);
+    }
+    if (Array.isArray(names)) {
+      return names.map((fieldName) => (isGlobal && _names.watch.add(fieldName), get(formValues, fieldName)));
+    }
+    isGlobal && (_names.watchAll = true);
+    return formValues;
   };
-  var timeFormats = {
-    full: "h:mm:ss a zzzz",
-    long: "h:mm:ss a z",
-    medium: "h:mm:ss a",
-    short: "h:mm a"
+  var appendErrors = (name, validateAllFieldCriteria, errors, type, message) => validateAllFieldCriteria ? {
+    ...errors[name],
+    types: {
+      ...errors[name] && errors[name].types ? errors[name].types : {},
+      [type]: message || true
+    }
+  } : {};
+  var getValidationModes = (mode) => ({
+    isOnSubmit: !mode || mode === VALIDATION_MODE.onSubmit,
+    isOnBlur: mode === VALIDATION_MODE.onBlur,
+    isOnChange: mode === VALIDATION_MODE.onChange,
+    isOnAll: mode === VALIDATION_MODE.all,
+    isOnTouch: mode === VALIDATION_MODE.onTouched
+  });
+  var isWatched = (name, _names, isBlurEvent) => !isBlurEvent && (_names.watchAll || _names.watch.has(name) || [..._names.watch].some((watchName) => name.startsWith(watchName) && /^\.\w+/.test(name.slice(watchName.length))));
+  var iterateFieldsByAction = (fields, action, fieldsNames, abortEarly) => {
+    for (const key of fieldsNames || Object.keys(fields)) {
+      const field = get(fields, key);
+      if (field) {
+        const { _f, ...currentField } = field;
+        if (_f) {
+          if (_f.refs && _f.refs[0] && action(_f.refs[0], key) && !abortEarly) {
+            break;
+          } else if (_f.ref && action(_f.ref, _f.name) && !abortEarly) {
+            break;
+          } else {
+            iterateFieldsByAction(currentField, action);
+          }
+        } else if (isObject(currentField)) {
+          iterateFieldsByAction(currentField, action);
+        }
+      }
+    }
   };
-  var dateTimeFormats = {
-    full: "{{date}} 'at' {{time}}",
-    long: "{{date}} 'at' {{time}}",
-    medium: "{{date}}, {{time}}",
-    short: "{{date}}, {{time}}"
+  var updateFieldArrayRootError = (errors, error, name) => {
+    const fieldArrayErrors = convertToArrayPayload(get(errors, name));
+    set(fieldArrayErrors, "root", error[name]);
+    set(errors, name, fieldArrayErrors);
+    return errors;
   };
-  var formatLong = {
-    date: buildFormatLongFn({
-      formats: dateFormats,
-      defaultWidth: "full"
-    }),
-    time: buildFormatLongFn({
-      formats: timeFormats,
-      defaultWidth: "full"
-    }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats,
-      defaultWidth: "full"
-    })
+  var isFileInput = (element) => element.type === "file";
+  var isFunction = (value) => typeof value === "function";
+  var isHTMLElement = (value) => {
+    if (!isWeb) {
+      return false;
+    }
+    const owner = value ? value.ownerDocument : 0;
+    return value instanceof (owner && owner.defaultView ? owner.defaultView.HTMLElement : HTMLElement);
   };
-
-  // node_modules/date-fns/locale/en-US/_lib/formatRelative.mjs
-  var formatRelativeLocale = {
-    lastWeek: "'last' eeee 'at' p",
-    yesterday: "'yesterday at' p",
-    today: "'today at' p",
-    tomorrow: "'tomorrow at' p",
-    nextWeek: "eeee 'at' p",
-    other: "P"
+  var isMessage = (value) => isString(value);
+  var isRadioInput = (element) => element.type === "radio";
+  var isRegex = (value) => value instanceof RegExp;
+  var defaultResult = {
+    value: false,
+    isValid: false
   };
-  var formatRelative = (token, _date, _baseDate, _options) => formatRelativeLocale[token];
-
-  // node_modules/date-fns/locale/_lib/buildLocalizeFn.mjs
-  function buildLocalizeFn(args) {
-    return (value, options) => {
-      const context = options?.context ? String(options.context) : "standalone";
-      let valuesArray;
-      if (context === "formatting" && args.formattingValues) {
-        const defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
-        const width = options?.width ? String(options.width) : defaultWidth;
-        valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
+  var validResult = { value: true, isValid: true };
+  var getCheckboxValue = (options) => {
+    if (Array.isArray(options)) {
+      if (options.length > 1) {
+        const values = options.filter((option) => option && option.checked && !option.disabled).map((option) => option.value);
+        return { value: values, isValid: !!values.length };
+      }
+      return options[0].checked && !options[0].disabled ? (
+        // @ts-expect-error expected to work in the browser
+        options[0].attributes && !isUndefined(options[0].attributes.value) ? isUndefined(options[0].value) || options[0].value === "" ? validResult : { value: options[0].value, isValid: true } : validResult
+      ) : defaultResult;
+    }
+    return defaultResult;
+  };
+  var defaultReturn = {
+    isValid: false,
+    value: null
+  };
+  var getRadioValue = (options) => Array.isArray(options) ? options.reduce((previous, option) => option && option.checked && !option.disabled ? {
+    isValid: true,
+    value: option.value
+  } : previous, defaultReturn) : defaultReturn;
+  function getValidateError(result, ref, type = "validate") {
+    if (isMessage(result) || Array.isArray(result) && result.every(isMessage) || isBoolean(result) && !result) {
+      return {
+        type,
+        message: isMessage(result) ? result : "",
+        ref
+      };
+    }
+  }
+  var getValueAndMessage = (validationData) => isObject(validationData) && !isRegex(validationData) ? validationData : {
+    value: validationData,
+    message: ""
+  };
+  var validateField = async (field, formValues, validateAllFieldCriteria, shouldUseNativeValidation, isFieldArray) => {
+    const { ref, refs, required, maxLength, minLength, min, max, pattern, validate, name, valueAsNumber, mount: mount2, disabled } = field._f;
+    const inputValue = get(formValues, name);
+    if (!mount2 || disabled) {
+      return {};
+    }
+    const inputRef = refs ? refs[0] : ref;
+    const setCustomValidity = (message) => {
+      if (shouldUseNativeValidation && inputRef.reportValidity) {
+        inputRef.setCustomValidity(isBoolean(message) ? "" : message || "");
+        inputRef.reportValidity();
+      }
+    };
+    const error = {};
+    const isRadio = isRadioInput(ref);
+    const isCheckBox = isCheckBoxInput(ref);
+    const isRadioOrCheckbox2 = isRadio || isCheckBox;
+    const isEmpty = (valueAsNumber || isFileInput(ref)) && isUndefined(ref.value) && isUndefined(inputValue) || isHTMLElement(ref) && ref.value === "" || inputValue === "" || Array.isArray(inputValue) && !inputValue.length;
+    const appendErrorsCurry = appendErrors.bind(null, name, validateAllFieldCriteria, error);
+    const getMinMaxMessage = (exceedMax, maxLengthMessage, minLengthMessage, maxType = INPUT_VALIDATION_RULES.maxLength, minType = INPUT_VALIDATION_RULES.minLength) => {
+      const message = exceedMax ? maxLengthMessage : minLengthMessage;
+      error[name] = {
+        type: exceedMax ? maxType : minType,
+        message,
+        ref,
+        ...appendErrorsCurry(exceedMax ? maxType : minType, message)
+      };
+    };
+    if (isFieldArray ? !Array.isArray(inputValue) || !inputValue.length : required && (!isRadioOrCheckbox2 && (isEmpty || isNullOrUndefined(inputValue)) || isBoolean(inputValue) && !inputValue || isCheckBox && !getCheckboxValue(refs).isValid || isRadio && !getRadioValue(refs).isValid)) {
+      const { value, message } = isMessage(required) ? { value: !!required, message: required } : getValueAndMessage(required);
+      if (value) {
+        error[name] = {
+          type: INPUT_VALIDATION_RULES.required,
+          message,
+          ref: inputRef,
+          ...appendErrorsCurry(INPUT_VALIDATION_RULES.required, message)
+        };
+        if (!validateAllFieldCriteria) {
+          setCustomValidity(message);
+          return error;
+        }
+      }
+    }
+    if (!isEmpty && (!isNullOrUndefined(min) || !isNullOrUndefined(max))) {
+      let exceedMax;
+      let exceedMin;
+      const maxOutput = getValueAndMessage(max);
+      const minOutput = getValueAndMessage(min);
+      if (!isNullOrUndefined(inputValue) && !isNaN(inputValue)) {
+        const valueNumber = ref.valueAsNumber || (inputValue ? +inputValue : inputValue);
+        if (!isNullOrUndefined(maxOutput.value)) {
+          exceedMax = valueNumber > maxOutput.value;
+        }
+        if (!isNullOrUndefined(minOutput.value)) {
+          exceedMin = valueNumber < minOutput.value;
+        }
       } else {
-        const defaultWidth = args.defaultWidth;
-        const width = options?.width ? String(options.width) : args.defaultWidth;
-        valuesArray = args.values[width] || args.values[defaultWidth];
-      }
-      const index = args.argumentCallback ? args.argumentCallback(value) : value;
-      return valuesArray[index];
-    };
-  }
-
-  // node_modules/date-fns/locale/en-US/_lib/localize.mjs
-  var eraValues = {
-    narrow: ["B", "A"],
-    abbreviated: ["BC", "AD"],
-    wide: ["Before Christ", "Anno Domini"]
-  };
-  var quarterValues = {
-    narrow: ["1", "2", "3", "4"],
-    abbreviated: ["Q1", "Q2", "Q3", "Q4"],
-    wide: ["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"]
-  };
-  var monthValues = {
-    narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
-    abbreviated: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ],
-    wide: [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ]
-  };
-  var dayValues = {
-    narrow: ["S", "M", "T", "W", "T", "F", "S"],
-    short: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-    abbreviated: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    wide: [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ]
-  };
-  var dayPeriodValues = {
-    narrow: {
-      am: "a",
-      pm: "p",
-      midnight: "mi",
-      noon: "n",
-      morning: "morning",
-      afternoon: "afternoon",
-      evening: "evening",
-      night: "night"
-    },
-    abbreviated: {
-      am: "AM",
-      pm: "PM",
-      midnight: "midnight",
-      noon: "noon",
-      morning: "morning",
-      afternoon: "afternoon",
-      evening: "evening",
-      night: "night"
-    },
-    wide: {
-      am: "a.m.",
-      pm: "p.m.",
-      midnight: "midnight",
-      noon: "noon",
-      morning: "morning",
-      afternoon: "afternoon",
-      evening: "evening",
-      night: "night"
-    }
-  };
-  var formattingDayPeriodValues = {
-    narrow: {
-      am: "a",
-      pm: "p",
-      midnight: "mi",
-      noon: "n",
-      morning: "in the morning",
-      afternoon: "in the afternoon",
-      evening: "in the evening",
-      night: "at night"
-    },
-    abbreviated: {
-      am: "AM",
-      pm: "PM",
-      midnight: "midnight",
-      noon: "noon",
-      morning: "in the morning",
-      afternoon: "in the afternoon",
-      evening: "in the evening",
-      night: "at night"
-    },
-    wide: {
-      am: "a.m.",
-      pm: "p.m.",
-      midnight: "midnight",
-      noon: "noon",
-      morning: "in the morning",
-      afternoon: "in the afternoon",
-      evening: "in the evening",
-      night: "at night"
-    }
-  };
-  var ordinalNumber = (dirtyNumber, _options) => {
-    const number = Number(dirtyNumber);
-    const rem100 = number % 100;
-    if (rem100 > 20 || rem100 < 10) {
-      switch (rem100 % 10) {
-        case 1:
-          return number + "st";
-        case 2:
-          return number + "nd";
-        case 3:
-          return number + "rd";
-      }
-    }
-    return number + "th";
-  };
-  var localize = {
-    ordinalNumber,
-    era: buildLocalizeFn({
-      values: eraValues,
-      defaultWidth: "wide"
-    }),
-    quarter: buildLocalizeFn({
-      values: quarterValues,
-      defaultWidth: "wide",
-      argumentCallback: (quarter) => quarter - 1
-    }),
-    month: buildLocalizeFn({
-      values: monthValues,
-      defaultWidth: "wide"
-    }),
-    day: buildLocalizeFn({
-      values: dayValues,
-      defaultWidth: "wide"
-    }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues,
-      defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues,
-      defaultFormattingWidth: "wide"
-    })
-  };
-
-  // node_modules/date-fns/locale/_lib/buildMatchFn.mjs
-  function buildMatchFn(args) {
-    return (string, options = {}) => {
-      const width = options.width;
-      const matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
-      const matchResult = string.match(matchPattern);
-      if (!matchResult) {
-        return null;
-      }
-      const matchedString = matchResult[0];
-      const parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
-      const key = Array.isArray(parsePatterns) ? findIndex(parsePatterns, (pattern) => pattern.test(matchedString)) : (
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- I challange you to fix the type
-        findKey(parsePatterns, (pattern) => pattern.test(matchedString))
-      );
-      let value;
-      value = args.valueCallback ? args.valueCallback(key) : key;
-      value = options.valueCallback ? (
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- I challange you to fix the type
-        options.valueCallback(value)
-      ) : value;
-      const rest = string.slice(matchedString.length);
-      return { value, rest };
-    };
-  }
-  function findKey(object, predicate) {
-    for (const key in object) {
-      if (Object.prototype.hasOwnProperty.call(object, key) && predicate(object[key])) {
-        return key;
-      }
-    }
-    return void 0;
-  }
-  function findIndex(array, predicate) {
-    for (let key = 0; key < array.length; key++) {
-      if (predicate(array[key])) {
-        return key;
-      }
-    }
-    return void 0;
-  }
-
-  // node_modules/date-fns/locale/_lib/buildMatchPatternFn.mjs
-  function buildMatchPatternFn(args) {
-    return (string, options = {}) => {
-      const matchResult = string.match(args.matchPattern);
-      if (!matchResult) return null;
-      const matchedString = matchResult[0];
-      const parseResult = string.match(args.parsePattern);
-      if (!parseResult) return null;
-      let value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
-      value = options.valueCallback ? options.valueCallback(value) : value;
-      const rest = string.slice(matchedString.length);
-      return { value, rest };
-    };
-  }
-
-  // node_modules/date-fns/locale/en-US/_lib/match.mjs
-  var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
-  var parseOrdinalNumberPattern = /\d+/i;
-  var matchEraPatterns = {
-    narrow: /^(b|a)/i,
-    abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
-    wide: /^(before christ|before common era|anno domini|common era)/i
-  };
-  var parseEraPatterns = {
-    any: [/^b/i, /^(a|c)/i]
-  };
-  var matchQuarterPatterns = {
-    narrow: /^[1234]/i,
-    abbreviated: /^q[1234]/i,
-    wide: /^[1234](th|st|nd|rd)? quarter/i
-  };
-  var parseQuarterPatterns = {
-    any: [/1/i, /2/i, /3/i, /4/i]
-  };
-  var matchMonthPatterns = {
-    narrow: /^[jfmasond]/i,
-    abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
-    wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
-  };
-  var parseMonthPatterns = {
-    narrow: [
-      /^j/i,
-      /^f/i,
-      /^m/i,
-      /^a/i,
-      /^m/i,
-      /^j/i,
-      /^j/i,
-      /^a/i,
-      /^s/i,
-      /^o/i,
-      /^n/i,
-      /^d/i
-    ],
-    any: [
-      /^ja/i,
-      /^f/i,
-      /^mar/i,
-      /^ap/i,
-      /^may/i,
-      /^jun/i,
-      /^jul/i,
-      /^au/i,
-      /^s/i,
-      /^o/i,
-      /^n/i,
-      /^d/i
-    ]
-  };
-  var matchDayPatterns = {
-    narrow: /^[smtwf]/i,
-    short: /^(su|mo|tu|we|th|fr|sa)/i,
-    abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
-    wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
-  };
-  var parseDayPatterns = {
-    narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
-    any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
-  };
-  var matchDayPeriodPatterns = {
-    narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
-    any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
-  };
-  var parseDayPeriodPatterns = {
-    any: {
-      am: /^a/i,
-      pm: /^p/i,
-      midnight: /^mi/i,
-      noon: /^no/i,
-      morning: /morning/i,
-      afternoon: /afternoon/i,
-      evening: /evening/i,
-      night: /night/i
-    }
-  };
-  var match = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern,
-      parsePattern: parseOrdinalNumberPattern,
-      valueCallback: (value) => parseInt(value, 10)
-    }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns,
-      defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns,
-      defaultParseWidth: "any"
-    }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns,
-      defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns,
-      defaultParseWidth: "any",
-      valueCallback: (index) => index + 1
-    }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns,
-      defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns,
-      defaultParseWidth: "any"
-    }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns,
-      defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns,
-      defaultParseWidth: "any"
-    }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns,
-      defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns,
-      defaultParseWidth: "any"
-    })
-  };
-
-  // node_modules/date-fns/locale/en-US.mjs
-  var enUS = {
-    code: "en-US",
-    formatDistance,
-    formatLong,
-    formatRelative,
-    localize,
-    match,
-    options: {
-      weekStartsOn: 0,
-      firstWeekContainsDate: 1
-    }
-  };
-
-  // node_modules/date-fns/getDayOfYear.mjs
-  function getDayOfYear(date) {
-    const _date = toDate(date);
-    const diff = differenceInCalendarDays(_date, startOfYear(_date));
-    const dayOfYear = diff + 1;
-    return dayOfYear;
-  }
-
-  // node_modules/date-fns/getISOWeek.mjs
-  function getISOWeek(date) {
-    const _date = toDate(date);
-    const diff = +startOfISOWeek(_date) - +startOfISOWeekYear(_date);
-    return Math.round(diff / millisecondsInWeek) + 1;
-  }
-
-  // node_modules/date-fns/getWeekYear.mjs
-  function getWeekYear(date, options) {
-    const _date = toDate(date);
-    const year = _date.getFullYear();
-    const defaultOptions2 = getDefaultOptions();
-    const firstWeekContainsDate = options?.firstWeekContainsDate ?? options?.locale?.options?.firstWeekContainsDate ?? defaultOptions2.firstWeekContainsDate ?? defaultOptions2.locale?.options?.firstWeekContainsDate ?? 1;
-    const firstWeekOfNextYear = constructFrom(date, 0);
-    firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate);
-    firstWeekOfNextYear.setHours(0, 0, 0, 0);
-    const startOfNextYear = startOfWeek(firstWeekOfNextYear, options);
-    const firstWeekOfThisYear = constructFrom(date, 0);
-    firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate);
-    firstWeekOfThisYear.setHours(0, 0, 0, 0);
-    const startOfThisYear = startOfWeek(firstWeekOfThisYear, options);
-    if (_date.getTime() >= startOfNextYear.getTime()) {
-      return year + 1;
-    } else if (_date.getTime() >= startOfThisYear.getTime()) {
-      return year;
-    } else {
-      return year - 1;
-    }
-  }
-
-  // node_modules/date-fns/startOfWeekYear.mjs
-  function startOfWeekYear(date, options) {
-    const defaultOptions2 = getDefaultOptions();
-    const firstWeekContainsDate = options?.firstWeekContainsDate ?? options?.locale?.options?.firstWeekContainsDate ?? defaultOptions2.firstWeekContainsDate ?? defaultOptions2.locale?.options?.firstWeekContainsDate ?? 1;
-    const year = getWeekYear(date, options);
-    const firstWeek = constructFrom(date, 0);
-    firstWeek.setFullYear(year, 0, firstWeekContainsDate);
-    firstWeek.setHours(0, 0, 0, 0);
-    const _date = startOfWeek(firstWeek, options);
-    return _date;
-  }
-
-  // node_modules/date-fns/getWeek.mjs
-  function getWeek(date, options) {
-    const _date = toDate(date);
-    const diff = +startOfWeek(_date, options) - +startOfWeekYear(_date, options);
-    return Math.round(diff / millisecondsInWeek) + 1;
-  }
-
-  // node_modules/date-fns/_lib/addLeadingZeros.mjs
-  function addLeadingZeros(number, targetLength) {
-    const sign = number < 0 ? "-" : "";
-    const output = Math.abs(number).toString().padStart(targetLength, "0");
-    return sign + output;
-  }
-
-  // node_modules/date-fns/_lib/format/lightFormatters.mjs
-  var lightFormatters = {
-    // Year
-    y(date, token) {
-      const signedYear = date.getFullYear();
-      const year = signedYear > 0 ? signedYear : 1 - signedYear;
-      return addLeadingZeros(token === "yy" ? year % 100 : year, token.length);
-    },
-    // Month
-    M(date, token) {
-      const month = date.getMonth();
-      return token === "M" ? String(month + 1) : addLeadingZeros(month + 1, 2);
-    },
-    // Day of the month
-    d(date, token) {
-      return addLeadingZeros(date.getDate(), token.length);
-    },
-    // AM or PM
-    a(date, token) {
-      const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
-      switch (token) {
-        case "a":
-        case "aa":
-          return dayPeriodEnumValue.toUpperCase();
-        case "aaa":
-          return dayPeriodEnumValue;
-        case "aaaaa":
-          return dayPeriodEnumValue[0];
-        case "aaaa":
-        default:
-          return dayPeriodEnumValue === "am" ? "a.m." : "p.m.";
-      }
-    },
-    // Hour [1-12]
-    h(date, token) {
-      return addLeadingZeros(date.getHours() % 12 || 12, token.length);
-    },
-    // Hour [0-23]
-    H(date, token) {
-      return addLeadingZeros(date.getHours(), token.length);
-    },
-    // Minute
-    m(date, token) {
-      return addLeadingZeros(date.getMinutes(), token.length);
-    },
-    // Second
-    s(date, token) {
-      return addLeadingZeros(date.getSeconds(), token.length);
-    },
-    // Fraction of second
-    S(date, token) {
-      const numberOfDigits = token.length;
-      const milliseconds = date.getMilliseconds();
-      const fractionalSeconds = Math.trunc(
-        milliseconds * Math.pow(10, numberOfDigits - 3)
-      );
-      return addLeadingZeros(fractionalSeconds, token.length);
-    }
-  };
-
-  // node_modules/date-fns/_lib/format/formatters.mjs
-  var dayPeriodEnum = {
-    am: "am",
-    pm: "pm",
-    midnight: "midnight",
-    noon: "noon",
-    morning: "morning",
-    afternoon: "afternoon",
-    evening: "evening",
-    night: "night"
-  };
-  var formatters = {
-    // Era
-    G: function(date, token, localize2) {
-      const era = date.getFullYear() > 0 ? 1 : 0;
-      switch (token) {
-        // AD, BC
-        case "G":
-        case "GG":
-        case "GGG":
-          return localize2.era(era, { width: "abbreviated" });
-        // A, B
-        case "GGGGG":
-          return localize2.era(era, { width: "narrow" });
-        // Anno Domini, Before Christ
-        case "GGGG":
-        default:
-          return localize2.era(era, { width: "wide" });
-      }
-    },
-    // Year
-    y: function(date, token, localize2) {
-      if (token === "yo") {
-        const signedYear = date.getFullYear();
-        const year = signedYear > 0 ? signedYear : 1 - signedYear;
-        return localize2.ordinalNumber(year, { unit: "year" });
-      }
-      return lightFormatters.y(date, token);
-    },
-    // Local week-numbering year
-    Y: function(date, token, localize2, options) {
-      const signedWeekYear = getWeekYear(date, options);
-      const weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
-      if (token === "YY") {
-        const twoDigitYear = weekYear % 100;
-        return addLeadingZeros(twoDigitYear, 2);
-      }
-      if (token === "Yo") {
-        return localize2.ordinalNumber(weekYear, { unit: "year" });
-      }
-      return addLeadingZeros(weekYear, token.length);
-    },
-    // ISO week-numbering year
-    R: function(date, token) {
-      const isoWeekYear = getISOWeekYear(date);
-      return addLeadingZeros(isoWeekYear, token.length);
-    },
-    // Extended year. This is a single number designating the year of this calendar system.
-    // The main difference between `y` and `u` localizers are B.C. years:
-    // | Year | `y` | `u` |
-    // |------|-----|-----|
-    // | AC 1 |   1 |   1 |
-    // | BC 1 |   1 |   0 |
-    // | BC 2 |   2 |  -1 |
-    // Also `yy` always returns the last two digits of a year,
-    // while `uu` pads single digit years to 2 characters and returns other years unchanged.
-    u: function(date, token) {
-      const year = date.getFullYear();
-      return addLeadingZeros(year, token.length);
-    },
-    // Quarter
-    Q: function(date, token, localize2) {
-      const quarter = Math.ceil((date.getMonth() + 1) / 3);
-      switch (token) {
-        // 1, 2, 3, 4
-        case "Q":
-          return String(quarter);
-        // 01, 02, 03, 04
-        case "QQ":
-          return addLeadingZeros(quarter, 2);
-        // 1st, 2nd, 3rd, 4th
-        case "Qo":
-          return localize2.ordinalNumber(quarter, { unit: "quarter" });
-        // Q1, Q2, Q3, Q4
-        case "QQQ":
-          return localize2.quarter(quarter, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        // 1, 2, 3, 4 (narrow quarter; could be not numerical)
-        case "QQQQQ":
-          return localize2.quarter(quarter, {
-            width: "narrow",
-            context: "formatting"
-          });
-        // 1st quarter, 2nd quarter, ...
-        case "QQQQ":
-        default:
-          return localize2.quarter(quarter, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    // Stand-alone quarter
-    q: function(date, token, localize2) {
-      const quarter = Math.ceil((date.getMonth() + 1) / 3);
-      switch (token) {
-        // 1, 2, 3, 4
-        case "q":
-          return String(quarter);
-        // 01, 02, 03, 04
-        case "qq":
-          return addLeadingZeros(quarter, 2);
-        // 1st, 2nd, 3rd, 4th
-        case "qo":
-          return localize2.ordinalNumber(quarter, { unit: "quarter" });
-        // Q1, Q2, Q3, Q4
-        case "qqq":
-          return localize2.quarter(quarter, {
-            width: "abbreviated",
-            context: "standalone"
-          });
-        // 1, 2, 3, 4 (narrow quarter; could be not numerical)
-        case "qqqqq":
-          return localize2.quarter(quarter, {
-            width: "narrow",
-            context: "standalone"
-          });
-        // 1st quarter, 2nd quarter, ...
-        case "qqqq":
-        default:
-          return localize2.quarter(quarter, {
-            width: "wide",
-            context: "standalone"
-          });
-      }
-    },
-    // Month
-    M: function(date, token, localize2) {
-      const month = date.getMonth();
-      switch (token) {
-        case "M":
-        case "MM":
-          return lightFormatters.M(date, token);
-        // 1st, 2nd, ..., 12th
-        case "Mo":
-          return localize2.ordinalNumber(month + 1, { unit: "month" });
-        // Jan, Feb, ..., Dec
-        case "MMM":
-          return localize2.month(month, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        // J, F, ..., D
-        case "MMMMM":
-          return localize2.month(month, {
-            width: "narrow",
-            context: "formatting"
-          });
-        // January, February, ..., December
-        case "MMMM":
-        default:
-          return localize2.month(month, { width: "wide", context: "formatting" });
-      }
-    },
-    // Stand-alone month
-    L: function(date, token, localize2) {
-      const month = date.getMonth();
-      switch (token) {
-        // 1, 2, ..., 12
-        case "L":
-          return String(month + 1);
-        // 01, 02, ..., 12
-        case "LL":
-          return addLeadingZeros(month + 1, 2);
-        // 1st, 2nd, ..., 12th
-        case "Lo":
-          return localize2.ordinalNumber(month + 1, { unit: "month" });
-        // Jan, Feb, ..., Dec
-        case "LLL":
-          return localize2.month(month, {
-            width: "abbreviated",
-            context: "standalone"
-          });
-        // J, F, ..., D
-        case "LLLLL":
-          return localize2.month(month, {
-            width: "narrow",
-            context: "standalone"
-          });
-        // January, February, ..., December
-        case "LLLL":
-        default:
-          return localize2.month(month, { width: "wide", context: "standalone" });
-      }
-    },
-    // Local week of year
-    w: function(date, token, localize2, options) {
-      const week = getWeek(date, options);
-      if (token === "wo") {
-        return localize2.ordinalNumber(week, { unit: "week" });
-      }
-      return addLeadingZeros(week, token.length);
-    },
-    // ISO week of year
-    I: function(date, token, localize2) {
-      const isoWeek = getISOWeek(date);
-      if (token === "Io") {
-        return localize2.ordinalNumber(isoWeek, { unit: "week" });
-      }
-      return addLeadingZeros(isoWeek, token.length);
-    },
-    // Day of the month
-    d: function(date, token, localize2) {
-      if (token === "do") {
-        return localize2.ordinalNumber(date.getDate(), { unit: "date" });
-      }
-      return lightFormatters.d(date, token);
-    },
-    // Day of year
-    D: function(date, token, localize2) {
-      const dayOfYear = getDayOfYear(date);
-      if (token === "Do") {
-        return localize2.ordinalNumber(dayOfYear, { unit: "dayOfYear" });
-      }
-      return addLeadingZeros(dayOfYear, token.length);
-    },
-    // Day of week
-    E: function(date, token, localize2) {
-      const dayOfWeek = date.getDay();
-      switch (token) {
-        // Tue
-        case "E":
-        case "EE":
-        case "EEE":
-          return localize2.day(dayOfWeek, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        // T
-        case "EEEEE":
-          return localize2.day(dayOfWeek, {
-            width: "narrow",
-            context: "formatting"
-          });
-        // Tu
-        case "EEEEEE":
-          return localize2.day(dayOfWeek, {
-            width: "short",
-            context: "formatting"
-          });
-        // Tuesday
-        case "EEEE":
-        default:
-          return localize2.day(dayOfWeek, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    // Local day of week
-    e: function(date, token, localize2, options) {
-      const dayOfWeek = date.getDay();
-      const localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
-      switch (token) {
-        // Numerical value (Nth day of week with current locale or weekStartsOn)
-        case "e":
-          return String(localDayOfWeek);
-        // Padded numerical value
-        case "ee":
-          return addLeadingZeros(localDayOfWeek, 2);
-        // 1st, 2nd, ..., 7th
-        case "eo":
-          return localize2.ordinalNumber(localDayOfWeek, { unit: "day" });
-        case "eee":
-          return localize2.day(dayOfWeek, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        // T
-        case "eeeee":
-          return localize2.day(dayOfWeek, {
-            width: "narrow",
-            context: "formatting"
-          });
-        // Tu
-        case "eeeeee":
-          return localize2.day(dayOfWeek, {
-            width: "short",
-            context: "formatting"
-          });
-        // Tuesday
-        case "eeee":
-        default:
-          return localize2.day(dayOfWeek, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    // Stand-alone local day of week
-    c: function(date, token, localize2, options) {
-      const dayOfWeek = date.getDay();
-      const localDayOfWeek = (dayOfWeek - options.weekStartsOn + 8) % 7 || 7;
-      switch (token) {
-        // Numerical value (same as in `e`)
-        case "c":
-          return String(localDayOfWeek);
-        // Padded numerical value
-        case "cc":
-          return addLeadingZeros(localDayOfWeek, token.length);
-        // 1st, 2nd, ..., 7th
-        case "co":
-          return localize2.ordinalNumber(localDayOfWeek, { unit: "day" });
-        case "ccc":
-          return localize2.day(dayOfWeek, {
-            width: "abbreviated",
-            context: "standalone"
-          });
-        // T
-        case "ccccc":
-          return localize2.day(dayOfWeek, {
-            width: "narrow",
-            context: "standalone"
-          });
-        // Tu
-        case "cccccc":
-          return localize2.day(dayOfWeek, {
-            width: "short",
-            context: "standalone"
-          });
-        // Tuesday
-        case "cccc":
-        default:
-          return localize2.day(dayOfWeek, {
-            width: "wide",
-            context: "standalone"
-          });
-      }
-    },
-    // ISO day of week
-    i: function(date, token, localize2) {
-      const dayOfWeek = date.getDay();
-      const isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
-      switch (token) {
-        // 2
-        case "i":
-          return String(isoDayOfWeek);
-        // 02
-        case "ii":
-          return addLeadingZeros(isoDayOfWeek, token.length);
-        // 2nd
-        case "io":
-          return localize2.ordinalNumber(isoDayOfWeek, { unit: "day" });
-        // Tue
-        case "iii":
-          return localize2.day(dayOfWeek, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        // T
-        case "iiiii":
-          return localize2.day(dayOfWeek, {
-            width: "narrow",
-            context: "formatting"
-          });
-        // Tu
-        case "iiiiii":
-          return localize2.day(dayOfWeek, {
-            width: "short",
-            context: "formatting"
-          });
-        // Tuesday
-        case "iiii":
-        default:
-          return localize2.day(dayOfWeek, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    // AM or PM
-    a: function(date, token, localize2) {
-      const hours = date.getHours();
-      const dayPeriodEnumValue = hours / 12 >= 1 ? "pm" : "am";
-      switch (token) {
-        case "a":
-        case "aa":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "aaa":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "abbreviated",
-            context: "formatting"
-          }).toLowerCase();
-        case "aaaaa":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "aaaa":
-        default:
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    // AM, PM, midnight, noon
-    b: function(date, token, localize2) {
-      const hours = date.getHours();
-      let dayPeriodEnumValue;
-      if (hours === 12) {
-        dayPeriodEnumValue = dayPeriodEnum.noon;
-      } else if (hours === 0) {
-        dayPeriodEnumValue = dayPeriodEnum.midnight;
-      } else {
-        dayPeriodEnumValue = hours / 12 >= 1 ? "pm" : "am";
-      }
-      switch (token) {
-        case "b":
-        case "bb":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "bbb":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "abbreviated",
-            context: "formatting"
-          }).toLowerCase();
-        case "bbbbb":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "bbbb":
-        default:
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    // in the morning, in the afternoon, in the evening, at night
-    B: function(date, token, localize2) {
-      const hours = date.getHours();
-      let dayPeriodEnumValue;
-      if (hours >= 17) {
-        dayPeriodEnumValue = dayPeriodEnum.evening;
-      } else if (hours >= 12) {
-        dayPeriodEnumValue = dayPeriodEnum.afternoon;
-      } else if (hours >= 4) {
-        dayPeriodEnumValue = dayPeriodEnum.morning;
-      } else {
-        dayPeriodEnumValue = dayPeriodEnum.night;
-      }
-      switch (token) {
-        case "B":
-        case "BB":
-        case "BBB":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "abbreviated",
-            context: "formatting"
-          });
-        case "BBBBB":
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "narrow",
-            context: "formatting"
-          });
-        case "BBBB":
-        default:
-          return localize2.dayPeriod(dayPeriodEnumValue, {
-            width: "wide",
-            context: "formatting"
-          });
-      }
-    },
-    // Hour [1-12]
-    h: function(date, token, localize2) {
-      if (token === "ho") {
-        let hours = date.getHours() % 12;
-        if (hours === 0) hours = 12;
-        return localize2.ordinalNumber(hours, { unit: "hour" });
-      }
-      return lightFormatters.h(date, token);
-    },
-    // Hour [0-23]
-    H: function(date, token, localize2) {
-      if (token === "Ho") {
-        return localize2.ordinalNumber(date.getHours(), { unit: "hour" });
-      }
-      return lightFormatters.H(date, token);
-    },
-    // Hour [0-11]
-    K: function(date, token, localize2) {
-      const hours = date.getHours() % 12;
-      if (token === "Ko") {
-        return localize2.ordinalNumber(hours, { unit: "hour" });
-      }
-      return addLeadingZeros(hours, token.length);
-    },
-    // Hour [1-24]
-    k: function(date, token, localize2) {
-      let hours = date.getHours();
-      if (hours === 0) hours = 24;
-      if (token === "ko") {
-        return localize2.ordinalNumber(hours, { unit: "hour" });
-      }
-      return addLeadingZeros(hours, token.length);
-    },
-    // Minute
-    m: function(date, token, localize2) {
-      if (token === "mo") {
-        return localize2.ordinalNumber(date.getMinutes(), { unit: "minute" });
-      }
-      return lightFormatters.m(date, token);
-    },
-    // Second
-    s: function(date, token, localize2) {
-      if (token === "so") {
-        return localize2.ordinalNumber(date.getSeconds(), { unit: "second" });
-      }
-      return lightFormatters.s(date, token);
-    },
-    // Fraction of second
-    S: function(date, token) {
-      return lightFormatters.S(date, token);
-    },
-    // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
-    X: function(date, token, _localize) {
-      const timezoneOffset = date.getTimezoneOffset();
-      if (timezoneOffset === 0) {
-        return "Z";
-      }
-      switch (token) {
-        // Hours and optional minutes
-        case "X":
-          return formatTimezoneWithOptionalMinutes(timezoneOffset);
-        // Hours, minutes and optional seconds without `:` delimiter
-        // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-        // so this token always has the same output as `XX`
-        case "XXXX":
-        case "XX":
-          return formatTimezone(timezoneOffset);
-        // Hours, minutes and optional seconds with `:` delimiter
-        // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-        // so this token always has the same output as `XXX`
-        case "XXXXX":
-        case "XXX":
-        // Hours and minutes with `:` delimiter
-        default:
-          return formatTimezone(timezoneOffset, ":");
-      }
-    },
-    // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
-    x: function(date, token, _localize) {
-      const timezoneOffset = date.getTimezoneOffset();
-      switch (token) {
-        // Hours and optional minutes
-        case "x":
-          return formatTimezoneWithOptionalMinutes(timezoneOffset);
-        // Hours, minutes and optional seconds without `:` delimiter
-        // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-        // so this token always has the same output as `xx`
-        case "xxxx":
-        case "xx":
-          return formatTimezone(timezoneOffset);
-        // Hours, minutes and optional seconds with `:` delimiter
-        // Note: neither ISO-8601 nor JavaScript supports seconds in timezone offsets
-        // so this token always has the same output as `xxx`
-        case "xxxxx":
-        case "xxx":
-        // Hours and minutes with `:` delimiter
-        default:
-          return formatTimezone(timezoneOffset, ":");
-      }
-    },
-    // Timezone (GMT)
-    O: function(date, token, _localize) {
-      const timezoneOffset = date.getTimezoneOffset();
-      switch (token) {
-        // Short
-        case "O":
-        case "OO":
-        case "OOO":
-          return "GMT" + formatTimezoneShort(timezoneOffset, ":");
-        // Long
-        case "OOOO":
-        default:
-          return "GMT" + formatTimezone(timezoneOffset, ":");
-      }
-    },
-    // Timezone (specific non-location)
-    z: function(date, token, _localize) {
-      const timezoneOffset = date.getTimezoneOffset();
-      switch (token) {
-        // Short
-        case "z":
-        case "zz":
-        case "zzz":
-          return "GMT" + formatTimezoneShort(timezoneOffset, ":");
-        // Long
-        case "zzzz":
-        default:
-          return "GMT" + formatTimezone(timezoneOffset, ":");
-      }
-    },
-    // Seconds timestamp
-    t: function(date, token, _localize) {
-      const timestamp = Math.trunc(date.getTime() / 1e3);
-      return addLeadingZeros(timestamp, token.length);
-    },
-    // Milliseconds timestamp
-    T: function(date, token, _localize) {
-      const timestamp = date.getTime();
-      return addLeadingZeros(timestamp, token.length);
-    }
-  };
-  function formatTimezoneShort(offset, delimiter = "") {
-    const sign = offset > 0 ? "-" : "+";
-    const absOffset = Math.abs(offset);
-    const hours = Math.trunc(absOffset / 60);
-    const minutes = absOffset % 60;
-    if (minutes === 0) {
-      return sign + String(hours);
-    }
-    return sign + String(hours) + delimiter + addLeadingZeros(minutes, 2);
-  }
-  function formatTimezoneWithOptionalMinutes(offset, delimiter) {
-    if (offset % 60 === 0) {
-      const sign = offset > 0 ? "-" : "+";
-      return sign + addLeadingZeros(Math.abs(offset) / 60, 2);
-    }
-    return formatTimezone(offset, delimiter);
-  }
-  function formatTimezone(offset, delimiter = "") {
-    const sign = offset > 0 ? "-" : "+";
-    const absOffset = Math.abs(offset);
-    const hours = addLeadingZeros(Math.trunc(absOffset / 60), 2);
-    const minutes = addLeadingZeros(absOffset % 60, 2);
-    return sign + hours + delimiter + minutes;
-  }
-
-  // node_modules/date-fns/_lib/format/longFormatters.mjs
-  var dateLongFormatter = (pattern, formatLong2) => {
-    switch (pattern) {
-      case "P":
-        return formatLong2.date({ width: "short" });
-      case "PP":
-        return formatLong2.date({ width: "medium" });
-      case "PPP":
-        return formatLong2.date({ width: "long" });
-      case "PPPP":
-      default:
-        return formatLong2.date({ width: "full" });
-    }
-  };
-  var timeLongFormatter = (pattern, formatLong2) => {
-    switch (pattern) {
-      case "p":
-        return formatLong2.time({ width: "short" });
-      case "pp":
-        return formatLong2.time({ width: "medium" });
-      case "ppp":
-        return formatLong2.time({ width: "long" });
-      case "pppp":
-      default:
-        return formatLong2.time({ width: "full" });
-    }
-  };
-  var dateTimeLongFormatter = (pattern, formatLong2) => {
-    const matchResult = pattern.match(/(P+)(p+)?/) || [];
-    const datePattern = matchResult[1];
-    const timePattern = matchResult[2];
-    if (!timePattern) {
-      return dateLongFormatter(pattern, formatLong2);
-    }
-    let dateTimeFormat;
-    switch (datePattern) {
-      case "P":
-        dateTimeFormat = formatLong2.dateTime({ width: "short" });
-        break;
-      case "PP":
-        dateTimeFormat = formatLong2.dateTime({ width: "medium" });
-        break;
-      case "PPP":
-        dateTimeFormat = formatLong2.dateTime({ width: "long" });
-        break;
-      case "PPPP":
-      default:
-        dateTimeFormat = formatLong2.dateTime({ width: "full" });
-        break;
-    }
-    return dateTimeFormat.replace("{{date}}", dateLongFormatter(datePattern, formatLong2)).replace("{{time}}", timeLongFormatter(timePattern, formatLong2));
-  };
-  var longFormatters = {
-    p: timeLongFormatter,
-    P: dateTimeLongFormatter
-  };
-
-  // node_modules/date-fns/_lib/protectedTokens.mjs
-  var dayOfYearTokenRE = /^D+$/;
-  var weekYearTokenRE = /^Y+$/;
-  var throwTokens = ["D", "DD", "YY", "YYYY"];
-  function isProtectedDayOfYearToken(token) {
-    return dayOfYearTokenRE.test(token);
-  }
-  function isProtectedWeekYearToken(token) {
-    return weekYearTokenRE.test(token);
-  }
-  function warnOrThrowProtectedError(token, format2, input) {
-    const _message = message(token, format2, input);
-    console.warn(_message);
-    if (throwTokens.includes(token)) throw new RangeError(_message);
-  }
-  function message(token, format2, input) {
-    const subject = token[0] === "Y" ? "years" : "days of the month";
-    return `Use \`${token.toLowerCase()}\` instead of \`${token}\` (in \`${format2}\`) for formatting ${subject} to the input \`${input}\`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md`;
-  }
-
-  // node_modules/date-fns/format.mjs
-  var formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
-  var longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
-  var escapedStringRegExp = /^'([^]*?)'?$/;
-  var doubleQuoteRegExp = /''/g;
-  var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
-  function format(date, formatStr, options) {
-    const defaultOptions2 = getDefaultOptions();
-    const locale = options?.locale ?? defaultOptions2.locale ?? enUS;
-    const firstWeekContainsDate = options?.firstWeekContainsDate ?? options?.locale?.options?.firstWeekContainsDate ?? defaultOptions2.firstWeekContainsDate ?? defaultOptions2.locale?.options?.firstWeekContainsDate ?? 1;
-    const weekStartsOn = options?.weekStartsOn ?? options?.locale?.options?.weekStartsOn ?? defaultOptions2.weekStartsOn ?? defaultOptions2.locale?.options?.weekStartsOn ?? 0;
-    const originalDate = toDate(date);
-    if (!isValid(originalDate)) {
-      throw new RangeError("Invalid time value");
-    }
-    let parts = formatStr.match(longFormattingTokensRegExp).map((substring) => {
-      const firstCharacter = substring[0];
-      if (firstCharacter === "p" || firstCharacter === "P") {
-        const longFormatter = longFormatters[firstCharacter];
-        return longFormatter(substring, locale.formatLong);
-      }
-      return substring;
-    }).join("").match(formattingTokensRegExp).map((substring) => {
-      if (substring === "''") {
-        return { isToken: false, value: "'" };
-      }
-      const firstCharacter = substring[0];
-      if (firstCharacter === "'") {
-        return { isToken: false, value: cleanEscapedString(substring) };
-      }
-      if (formatters[firstCharacter]) {
-        return { isToken: true, value: substring };
-      }
-      if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError(
-          "Format string contains an unescaped latin alphabet character `" + firstCharacter + "`"
-        );
-      }
-      return { isToken: false, value: substring };
-    });
-    if (locale.localize.preprocessor) {
-      parts = locale.localize.preprocessor(originalDate, parts);
-    }
-    const formatterOptions = {
-      firstWeekContainsDate,
-      weekStartsOn,
-      locale
-    };
-    return parts.map((part) => {
-      if (!part.isToken) return part.value;
-      const token = part.value;
-      if (!options?.useAdditionalWeekYearTokens && isProtectedWeekYearToken(token) || !options?.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(token)) {
-        warnOrThrowProtectedError(token, formatStr, String(date));
-      }
-      const formatter = formatters[token[0]];
-      return formatter(originalDate, token, locale.localize, formatterOptions);
-    }).join("");
-  }
-  function cleanEscapedString(input) {
-    const matched = input.match(escapedStringRegExp);
-    if (!matched) {
-      return input;
-    }
-    return matched[1].replace(doubleQuoteRegExp, "'");
-  }
-
-  // src/components/testimonialsWall/testimonialCard/index.tsx
-  var TestimonialCard = ({ review }) => {
-    const content = () => {
-      return /* @__PURE__ */ React.createElement("div", { className: "flex-col" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(Ratings, { isStatic: true, totalStars: review.rating })), /* @__PURE__ */ React.createElement("div", null, review.testimonialText));
-    };
-    return /* @__PURE__ */ React.createElement(
-      card_default,
-      {
-        title: review.name,
-        footerContent: /* @__PURE__ */ React.createElement("div", null, review.createdAt !== null ? format(review.createdAt, "MMM d, yyyy, h:mm:ss a") : ""),
-        content: content()
-      }
-    );
-  };
-  var testimonialCard_default = TestimonialCard;
-
-  // src/components/testimonialsWall/layout/animated/index.tsx
-  var AnimatedLayout = ({ children, width = 1, gap = 0.2 }) => {
-    return /* @__PURE__ */ React.createElement("div", { className: `grid grid-cols-2 gap-${gap}` }, children && children.length > 0 && children.map((item) => /* @__PURE__ */ React.createElement("div", { className: "relative animate-marquee-infinite" }, item)));
-  };
-  var animated_default = AnimatedLayout;
-
-  // src/components/testimonialsWall/layout/carousel/index.tsx
-  var import_react10 = __toESM(require_react());
-
-  // public/assets/rightArrowNew.tsx
-  var import_react9 = __toESM(require_react());
-  var RightArrowNew = ({ onClick }) => {
-    return /* @__PURE__ */ import_react9.default.createElement(
-      "svg",
-      {
-        fill: "#9ba9b4",
-        height: "24px",
-        width: "24px",
-        version: "1.1",
-        id: "Layer_1",
-        onClick,
-        xmlns: "http://www.w3.org/2000/svg",
-        viewBox: "0 0 330 330"
-      },
-      /* @__PURE__ */ import_react9.default.createElement("g", { id: "SVGRepo_bgCarrier", "stroke-width": "0" }),
-      /* @__PURE__ */ import_react9.default.createElement(
-        "g",
-        {
-          id: "SVGRepo_tracerCarrier",
-          "stroke-linecap": "round",
-          "stroke-linejoin": "round"
+        const valueDate = ref.valueAsDate || new Date(inputValue);
+        const convertTimeToDate = (time) => /* @__PURE__ */ new Date((/* @__PURE__ */ new Date()).toDateString() + " " + time);
+        const isTime = ref.type == "time";
+        const isWeek = ref.type == "week";
+        if (isString(maxOutput.value) && inputValue) {
+          exceedMax = isTime ? convertTimeToDate(inputValue) > convertTimeToDate(maxOutput.value) : isWeek ? inputValue > maxOutput.value : valueDate > new Date(maxOutput.value);
         }
-      ),
-      /* @__PURE__ */ import_react9.default.createElement("g", { id: "SVGRepo_iconCarrier" }, " ", /* @__PURE__ */ import_react9.default.createElement(
-        "path",
-        {
-          id: "XMLID_2_",
-          d: "M165,0C74.019,0,0,74.019,0,165s74.019,165,165,165s165-74.019,165-165S255.981,0,165,0z M225.606,175.605 l-80,80.002C142.678,258.535,138.839,260,135,260s-7.678-1.464-10.606-4.394c-5.858-5.857-5.858-15.355,0-21.213l69.393-69.396 l-69.393-69.392c-5.858-5.857-5.858-15.355,0-21.213c5.857-5.858,15.355-5.858,21.213,0l80,79.998 c2.814,2.813,4.394,6.628,4.394,10.606C230,168.976,228.42,172.792,225.606,175.605z"
+        if (isString(minOutput.value) && inputValue) {
+          exceedMin = isTime ? convertTimeToDate(inputValue) < convertTimeToDate(minOutput.value) : isWeek ? inputValue < minOutput.value : valueDate < new Date(minOutput.value);
         }
-      ), " ")
-    );
-  };
-  var rightArrowNew_default = RightArrowNew;
-
-  // public/assets/leftArrowNew.tsx
-  var LeftArrowNew = () => {
-    return /* @__PURE__ */ React.createElement(
-      "svg",
-      {
-        fill: "#9ba9b4",
-        height: "24px",
-        width: "24px",
-        version: "1.1",
-        id: "Layer_1",
-        xmlns: "http://www.w3.org/2000/svg",
-        viewBox: "0 0 330 330"
-      },
-      /* @__PURE__ */ React.createElement("g", { id: "SVGRepo_bgCarrier", "stroke-width": "0" }),
-      /* @__PURE__ */ React.createElement(
-        "g",
-        {
-          id: "SVGRepo_tracerCarrier",
-          "stroke-linecap": "round",
-          "stroke-linejoin": "round"
-        }
-      ),
-      /* @__PURE__ */ React.createElement("g", { id: "SVGRepo_iconCarrier" }, " ", /* @__PURE__ */ React.createElement(
-        "path",
-        {
-          id: "XMLID_6_",
-          d: "M165,0C74.019,0,0,74.019,0,165s74.019,165,165,165s165-74.019,165-165S255.981,0,165,0z M205.606,234.394 c5.858,5.857,5.858,15.355,0,21.213C202.678,258.535,198.839,260,195,260s-7.678-1.464-10.606-4.394l-80-79.998 c-2.813-2.813-4.394-6.628-4.394-10.606c0-3.978,1.58-7.794,4.394-10.607l80-80.002c5.857-5.858,15.355-5.858,21.213,0 c5.858,5.857,5.858,15.355,0,21.213l-69.393,69.396L205.606,234.394z"
-        }
-      ), " ")
-    );
-  };
-  var leftArrowNew_default = LeftArrowNew;
-
-  // src/components/testimonialsWall/layout/carousel/index.tsx
-  var CarouselLayout = ({ children }) => {
-    const [currentPage, setCurrentPage] = (0, import_react10.useState)(0);
-    const totalPages = children.length % 3 === 0 ? children.length / 3 : Math.floor(children.length / 3) + 1;
-    const getCurrentCarouselItems = () => {
-      const items = [];
-      for (let i = currentPage * 3; i < currentPage * 3 + 3; i++) {
-        items.push(children[i]);
       }
-      return items;
-    };
-    return (
-      // <Carousel>
-      //   <CarouselContent>
-      //     {children &&
-      //       children.length > 0 &&
-      //       children.map((item: any) => (
-      //         <CarouselItem className="md:basis-1/2 lg:basis-1/2 pl-1 md:pl-1">
-      //           {item}
-      //         </CarouselItem>
-      //       ))}
-      //   </CarouselContent>
-      //   <CarouselPrevious />
-      //   <CarouselNext />
-      // </Carousel>
-      /* @__PURE__ */ React.createElement("div", { className: "flex flex-col" }, /* @__PURE__ */ React.createElement(
-        "div",
-        {
-          style: {
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          },
-          className: "grid grid-cols-5 gap-x-3 p-4 flex flex-row justify-center items-center mx-auto"
-        },
-        /* @__PURE__ */ React.createElement(leftArrowNew_default, null),
-        children && children.length > 0 && getCurrentCarouselItems().map((item) => /* @__PURE__ */ React.createElement("div", { className: "w-[350px]" }, item)),
-        /* @__PURE__ */ React.createElement(
-          rightArrowNew_default,
-          {
-            onClick: () => {
-              if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
-              else setCurrentPage(0);
+      if (exceedMax || exceedMin) {
+        getMinMaxMessage(!!exceedMax, maxOutput.message, minOutput.message, INPUT_VALIDATION_RULES.max, INPUT_VALIDATION_RULES.min);
+        if (!validateAllFieldCriteria) {
+          setCustomValidity(error[name].message);
+          return error;
+        }
+      }
+    }
+    if ((maxLength || minLength) && !isEmpty && (isString(inputValue) || isFieldArray && Array.isArray(inputValue))) {
+      const maxLengthOutput = getValueAndMessage(maxLength);
+      const minLengthOutput = getValueAndMessage(minLength);
+      const exceedMax = !isNullOrUndefined(maxLengthOutput.value) && inputValue.length > +maxLengthOutput.value;
+      const exceedMin = !isNullOrUndefined(minLengthOutput.value) && inputValue.length < +minLengthOutput.value;
+      if (exceedMax || exceedMin) {
+        getMinMaxMessage(exceedMax, maxLengthOutput.message, minLengthOutput.message);
+        if (!validateAllFieldCriteria) {
+          setCustomValidity(error[name].message);
+          return error;
+        }
+      }
+    }
+    if (pattern && !isEmpty && isString(inputValue)) {
+      const { value: patternValue, message } = getValueAndMessage(pattern);
+      if (isRegex(patternValue) && !inputValue.match(patternValue)) {
+        error[name] = {
+          type: INPUT_VALIDATION_RULES.pattern,
+          message,
+          ref,
+          ...appendErrorsCurry(INPUT_VALIDATION_RULES.pattern, message)
+        };
+        if (!validateAllFieldCriteria) {
+          setCustomValidity(message);
+          return error;
+        }
+      }
+    }
+    if (validate) {
+      if (isFunction(validate)) {
+        const result = await validate(inputValue, formValues);
+        const validateError = getValidateError(result, inputRef);
+        if (validateError) {
+          error[name] = {
+            ...validateError,
+            ...appendErrorsCurry(INPUT_VALIDATION_RULES.validate, validateError.message)
+          };
+          if (!validateAllFieldCriteria) {
+            setCustomValidity(validateError.message);
+            return error;
+          }
+        }
+      } else if (isObject(validate)) {
+        let validationResult = {};
+        for (const key in validate) {
+          if (!isEmptyObject(validationResult) && !validateAllFieldCriteria) {
+            break;
+          }
+          const validateError = getValidateError(await validate[key](inputValue, formValues), inputRef, key);
+          if (validateError) {
+            validationResult = {
+              ...validateError,
+              ...appendErrorsCurry(key, validateError.message)
+            };
+            setCustomValidity(validateError.message);
+            if (validateAllFieldCriteria) {
+              error[name] = validationResult;
             }
           }
-        )
-      ), totalPages >= 1 && /* @__PURE__ */ React.createElement("div", { className: "flex justify-center items-center" }, Array(totalPages).fill(0).map((_, index) => /* @__PURE__ */ React.createElement(
-        "div",
-        {
-          key: index,
-          className: `w-2 h-2 mx-1 rounded-full cursor-pointer ${currentPage === index ? "bg-gray-500" : "bg-gray-300"}`,
-          onClick: () => setCurrentPage(index)
         }
-      ))))
-    );
+        if (!isEmptyObject(validationResult)) {
+          error[name] = {
+            ref: inputRef,
+            ...validationResult
+          };
+          if (!validateAllFieldCriteria) {
+            return error;
+          }
+        }
+      }
+    }
+    setCustomValidity(true);
+    return error;
   };
-  var carousel_default = CarouselLayout;
-
-  // src/components/testimonialsWall/layout/fixed/index.tsx
-  var FixedLayout = ({ width = 0.34, gap = 2, children }) => {
-    return /* @__PURE__ */ React.createElement(
-      "div",
-      {
-        className: `grid grid-cols-[repeat(2,_minmax(0,_${width}fr))] gap-${gap} justify-center`
-      },
-      children
-    );
-  };
-  var fixed_default = FixedLayout;
-
-  // src/components/testimonialsWall/layout/index.tsx
-  var TestimonialsWallLayout = ({ children, layoutType }) => {
-    const getLayoutType = () => {
-      switch (layoutType) {
-        case "fixed" /* FIXED */:
-          return /* @__PURE__ */ React.createElement(fixed_default, null, children);
-        case "carousel" /* CAROUSEL */:
-          return /* @__PURE__ */ React.createElement(carousel_default, null, children);
-        case "animated" /* ANIMATED */:
-          return /* @__PURE__ */ React.createElement(animated_default, null, children);
+  function baseGet(object, updatePath) {
+    const length = updatePath.slice(0, -1).length;
+    let index = 0;
+    while (index < length) {
+      object = isUndefined(object) ? index++ : object[updatePath[index++]];
+    }
+    return object;
+  }
+  function isEmptyArray(obj) {
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key) && !isUndefined(obj[key])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  function unset(object, path) {
+    const paths = Array.isArray(path) ? path : isKey(path) ? [path] : stringToPath(path);
+    const childObject = paths.length === 1 ? object : baseGet(object, paths);
+    const index = paths.length - 1;
+    const key = paths[index];
+    if (childObject) {
+      delete childObject[key];
+    }
+    if (index !== 0 && (isObject(childObject) && isEmptyObject(childObject) || Array.isArray(childObject) && isEmptyArray(childObject))) {
+      unset(object, paths.slice(0, -1));
+    }
+    return object;
+  }
+  var createSubject = () => {
+    let _observers = [];
+    const next = (value) => {
+      for (const observer of _observers) {
+        observer.next && observer.next(value);
       }
     };
-    return getLayoutType();
+    const subscribe = (observer) => {
+      _observers.push(observer);
+      return {
+        unsubscribe: () => {
+          _observers = _observers.filter((o) => o !== observer);
+        }
+      };
+    };
+    const unsubscribe = () => {
+      _observers = [];
+    };
+    return {
+      get observers() {
+        return _observers;
+      },
+      next,
+      subscribe,
+      unsubscribe
+    };
   };
-  var layout_default = TestimonialsWallLayout;
+  var isPrimitive = (value) => isNullOrUndefined(value) || !isObjectType(value);
+  function deepEqual(object1, object2) {
+    if (isPrimitive(object1) || isPrimitive(object2)) {
+      return object1 === object2;
+    }
+    if (isDateObject(object1) && isDateObject(object2)) {
+      return object1.getTime() === object2.getTime();
+    }
+    const keys1 = Object.keys(object1);
+    const keys2 = Object.keys(object2);
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+    for (const key of keys1) {
+      const val1 = object1[key];
+      if (!keys2.includes(key)) {
+        return false;
+      }
+      if (key !== "ref") {
+        const val2 = object2[key];
+        if (isDateObject(val1) && isDateObject(val2) || isObject(val1) && isObject(val2) || Array.isArray(val1) && Array.isArray(val2) ? !deepEqual(val1, val2) : val1 !== val2) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  var isMultipleSelect = (element) => element.type === `select-multiple`;
+  var isRadioOrCheckbox = (ref) => isRadioInput(ref) || isCheckBoxInput(ref);
+  var live = (ref) => isHTMLElement(ref) && ref.isConnected;
+  var objectHasFunction = (data) => {
+    for (const key in data) {
+      if (isFunction(data[key])) {
+        return true;
+      }
+    }
+    return false;
+  };
+  function markFieldsDirty(data, fields = {}) {
+    const isParentNodeArray = Array.isArray(data);
+    if (isObject(data) || isParentNodeArray) {
+      for (const key in data) {
+        if (Array.isArray(data[key]) || isObject(data[key]) && !objectHasFunction(data[key])) {
+          fields[key] = Array.isArray(data[key]) ? [] : {};
+          markFieldsDirty(data[key], fields[key]);
+        } else if (!isNullOrUndefined(data[key])) {
+          fields[key] = true;
+        }
+      }
+    }
+    return fields;
+  }
+  function getDirtyFieldsFromDefaultValues(data, formValues, dirtyFieldsFromValues) {
+    const isParentNodeArray = Array.isArray(data);
+    if (isObject(data) || isParentNodeArray) {
+      for (const key in data) {
+        if (Array.isArray(data[key]) || isObject(data[key]) && !objectHasFunction(data[key])) {
+          if (isUndefined(formValues) || isPrimitive(dirtyFieldsFromValues[key])) {
+            dirtyFieldsFromValues[key] = Array.isArray(data[key]) ? markFieldsDirty(data[key], []) : { ...markFieldsDirty(data[key]) };
+          } else {
+            getDirtyFieldsFromDefaultValues(data[key], isNullOrUndefined(formValues) ? {} : formValues[key], dirtyFieldsFromValues[key]);
+          }
+        } else {
+          dirtyFieldsFromValues[key] = !deepEqual(data[key], formValues[key]);
+        }
+      }
+    }
+    return dirtyFieldsFromValues;
+  }
+  var getDirtyFields = (defaultValues, formValues) => getDirtyFieldsFromDefaultValues(defaultValues, formValues, markFieldsDirty(formValues));
+  var getFieldValueAs = (value, { valueAsNumber, valueAsDate, setValueAs }) => isUndefined(value) ? value : valueAsNumber ? value === "" ? NaN : value ? +value : value : valueAsDate && isString(value) ? new Date(value) : setValueAs ? setValueAs(value) : value;
+  function getFieldValue(_f) {
+    const ref = _f.ref;
+    if (_f.refs ? _f.refs.every((ref2) => ref2.disabled) : ref.disabled) {
+      return;
+    }
+    if (isFileInput(ref)) {
+      return ref.files;
+    }
+    if (isRadioInput(ref)) {
+      return getRadioValue(_f.refs).value;
+    }
+    if (isMultipleSelect(ref)) {
+      return [...ref.selectedOptions].map(({ value }) => value);
+    }
+    if (isCheckBoxInput(ref)) {
+      return getCheckboxValue(_f.refs).value;
+    }
+    return getFieldValueAs(isUndefined(ref.value) ? _f.ref.value : ref.value, _f);
+  }
+  var getResolverOptions = (fieldsNames, _fields, criteriaMode, shouldUseNativeValidation) => {
+    const fields = {};
+    for (const name of fieldsNames) {
+      const field = get(_fields, name);
+      field && set(fields, name, field._f);
+    }
+    return {
+      criteriaMode,
+      names: [...fieldsNames],
+      fields,
+      shouldUseNativeValidation
+    };
+  };
+  var getRuleValue = (rule) => isUndefined(rule) ? rule : isRegex(rule) ? rule.source : isObject(rule) ? isRegex(rule.value) ? rule.value.source : rule.value : rule;
+  var hasValidation = (options) => options.mount && (options.required || options.min || options.max || options.maxLength || options.minLength || options.pattern || options.validate);
+  function schemaErrorLookup(errors, _fields, name) {
+    const error = get(errors, name);
+    if (error || isKey(name)) {
+      return {
+        error,
+        name
+      };
+    }
+    const names = name.split(".");
+    while (names.length) {
+      const fieldName = names.join(".");
+      const field = get(_fields, fieldName);
+      const foundError = get(errors, fieldName);
+      if (field && !Array.isArray(field) && name !== fieldName) {
+        return { name };
+      }
+      if (foundError && foundError.type) {
+        return {
+          name: fieldName,
+          error: foundError
+        };
+      }
+      names.pop();
+    }
+    return {
+      name
+    };
+  }
+  var skipValidation = (isBlurEvent, isTouched, isSubmitted, reValidateMode, mode) => {
+    if (mode.isOnAll) {
+      return false;
+    } else if (!isSubmitted && mode.isOnTouch) {
+      return !(isTouched || isBlurEvent);
+    } else if (isSubmitted ? reValidateMode.isOnBlur : mode.isOnBlur) {
+      return !isBlurEvent;
+    } else if (isSubmitted ? reValidateMode.isOnChange : mode.isOnChange) {
+      return isBlurEvent;
+    }
+    return true;
+  };
+  var unsetEmptyArray = (ref, name) => !compact(get(ref, name)).length && unset(ref, name);
+  var defaultOptions = {
+    mode: VALIDATION_MODE.onSubmit,
+    reValidateMode: VALIDATION_MODE.onChange,
+    shouldFocusError: true
+  };
+  function createFormControl(props = {}) {
+    let _options = {
+      ...defaultOptions,
+      ...props
+    };
+    let _formState = {
+      submitCount: 0,
+      isDirty: false,
+      isLoading: isFunction(_options.defaultValues),
+      isValidating: false,
+      isSubmitted: false,
+      isSubmitting: false,
+      isSubmitSuccessful: false,
+      isValid: false,
+      touchedFields: {},
+      dirtyFields: {},
+      validatingFields: {},
+      errors: _options.errors || {},
+      disabled: _options.disabled || false
+    };
+    let _fields = {};
+    let _defaultValues = isObject(_options.defaultValues) || isObject(_options.values) ? cloneObject(_options.defaultValues || _options.values) || {} : {};
+    let _formValues = _options.shouldUnregister ? {} : cloneObject(_defaultValues);
+    let _state = {
+      action: false,
+      mount: false,
+      watch: false
+    };
+    let _names = {
+      mount: /* @__PURE__ */ new Set(),
+      unMount: /* @__PURE__ */ new Set(),
+      array: /* @__PURE__ */ new Set(),
+      watch: /* @__PURE__ */ new Set()
+    };
+    let delayErrorCallback;
+    let timer = 0;
+    const _proxyFormState = {
+      isDirty: false,
+      dirtyFields: false,
+      validatingFields: false,
+      touchedFields: false,
+      isValidating: false,
+      isValid: false,
+      errors: false
+    };
+    const _subjects = {
+      values: createSubject(),
+      array: createSubject(),
+      state: createSubject()
+    };
+    const validationModeBeforeSubmit = getValidationModes(_options.mode);
+    const validationModeAfterSubmit = getValidationModes(_options.reValidateMode);
+    const shouldDisplayAllAssociatedErrors = _options.criteriaMode === VALIDATION_MODE.all;
+    const debounce = (callback) => (wait) => {
+      clearTimeout(timer);
+      timer = setTimeout(callback, wait);
+    };
+    const _updateValid = async (shouldUpdateValid) => {
+      if (_proxyFormState.isValid || shouldUpdateValid) {
+        const isValid = _options.resolver ? isEmptyObject((await _executeSchema()).errors) : await executeBuiltInValidation(_fields, true);
+        if (isValid !== _formState.isValid) {
+          _subjects.state.next({
+            isValid
+          });
+        }
+      }
+    };
+    const _updateIsValidating = (names, isValidating) => {
+      if (_proxyFormState.isValidating || _proxyFormState.validatingFields) {
+        (names || Array.from(_names.mount)).forEach((name) => {
+          if (name) {
+            isValidating ? set(_formState.validatingFields, name, isValidating) : unset(_formState.validatingFields, name);
+          }
+        });
+        _subjects.state.next({
+          validatingFields: _formState.validatingFields,
+          isValidating: !isEmptyObject(_formState.validatingFields)
+        });
+      }
+    };
+    const _updateFieldArray = (name, values = [], method, args, shouldSetValues = true, shouldUpdateFieldsAndState = true) => {
+      if (args && method) {
+        _state.action = true;
+        if (shouldUpdateFieldsAndState && Array.isArray(get(_fields, name))) {
+          const fieldValues = method(get(_fields, name), args.argA, args.argB);
+          shouldSetValues && set(_fields, name, fieldValues);
+        }
+        if (shouldUpdateFieldsAndState && Array.isArray(get(_formState.errors, name))) {
+          const errors = method(get(_formState.errors, name), args.argA, args.argB);
+          shouldSetValues && set(_formState.errors, name, errors);
+          unsetEmptyArray(_formState.errors, name);
+        }
+        if (_proxyFormState.touchedFields && shouldUpdateFieldsAndState && Array.isArray(get(_formState.touchedFields, name))) {
+          const touchedFields = method(get(_formState.touchedFields, name), args.argA, args.argB);
+          shouldSetValues && set(_formState.touchedFields, name, touchedFields);
+        }
+        if (_proxyFormState.dirtyFields) {
+          _formState.dirtyFields = getDirtyFields(_defaultValues, _formValues);
+        }
+        _subjects.state.next({
+          name,
+          isDirty: _getDirty(name, values),
+          dirtyFields: _formState.dirtyFields,
+          errors: _formState.errors,
+          isValid: _formState.isValid
+        });
+      } else {
+        set(_formValues, name, values);
+      }
+    };
+    const updateErrors = (name, error) => {
+      set(_formState.errors, name, error);
+      _subjects.state.next({
+        errors: _formState.errors
+      });
+    };
+    const _setErrors = (errors) => {
+      _formState.errors = errors;
+      _subjects.state.next({
+        errors: _formState.errors,
+        isValid: false
+      });
+    };
+    const updateValidAndValue = (name, shouldSkipSetValueAs, value, ref) => {
+      const field = get(_fields, name);
+      if (field) {
+        const defaultValue = get(_formValues, name, isUndefined(value) ? get(_defaultValues, name) : value);
+        isUndefined(defaultValue) || ref && ref.defaultChecked || shouldSkipSetValueAs ? set(_formValues, name, shouldSkipSetValueAs ? defaultValue : getFieldValue(field._f)) : setFieldValue(name, defaultValue);
+        _state.mount && _updateValid();
+      }
+    };
+    const updateTouchAndDirty = (name, fieldValue, isBlurEvent, shouldDirty, shouldRender) => {
+      let shouldUpdateField = false;
+      let isPreviousDirty = false;
+      const output = {
+        name
+      };
+      const disabledField = !!(get(_fields, name) && get(_fields, name)._f && get(_fields, name)._f.disabled);
+      if (!isBlurEvent || shouldDirty) {
+        if (_proxyFormState.isDirty) {
+          isPreviousDirty = _formState.isDirty;
+          _formState.isDirty = output.isDirty = _getDirty();
+          shouldUpdateField = isPreviousDirty !== output.isDirty;
+        }
+        const isCurrentFieldPristine = disabledField || deepEqual(get(_defaultValues, name), fieldValue);
+        isPreviousDirty = !!(!disabledField && get(_formState.dirtyFields, name));
+        isCurrentFieldPristine || disabledField ? unset(_formState.dirtyFields, name) : set(_formState.dirtyFields, name, true);
+        output.dirtyFields = _formState.dirtyFields;
+        shouldUpdateField = shouldUpdateField || _proxyFormState.dirtyFields && isPreviousDirty !== !isCurrentFieldPristine;
+      }
+      if (isBlurEvent) {
+        const isPreviousFieldTouched = get(_formState.touchedFields, name);
+        if (!isPreviousFieldTouched) {
+          set(_formState.touchedFields, name, isBlurEvent);
+          output.touchedFields = _formState.touchedFields;
+          shouldUpdateField = shouldUpdateField || _proxyFormState.touchedFields && isPreviousFieldTouched !== isBlurEvent;
+        }
+      }
+      shouldUpdateField && shouldRender && _subjects.state.next(output);
+      return shouldUpdateField ? output : {};
+    };
+    const shouldRenderByError = (name, isValid, error, fieldState) => {
+      const previousFieldError = get(_formState.errors, name);
+      const shouldUpdateValid = _proxyFormState.isValid && isBoolean(isValid) && _formState.isValid !== isValid;
+      if (props.delayError && error) {
+        delayErrorCallback = debounce(() => updateErrors(name, error));
+        delayErrorCallback(props.delayError);
+      } else {
+        clearTimeout(timer);
+        delayErrorCallback = null;
+        error ? set(_formState.errors, name, error) : unset(_formState.errors, name);
+      }
+      if ((error ? !deepEqual(previousFieldError, error) : previousFieldError) || !isEmptyObject(fieldState) || shouldUpdateValid) {
+        const updatedFormState = {
+          ...fieldState,
+          ...shouldUpdateValid && isBoolean(isValid) ? { isValid } : {},
+          errors: _formState.errors,
+          name
+        };
+        _formState = {
+          ..._formState,
+          ...updatedFormState
+        };
+        _subjects.state.next(updatedFormState);
+      }
+    };
+    const _executeSchema = async (name) => {
+      _updateIsValidating(name, true);
+      const result = await _options.resolver(_formValues, _options.context, getResolverOptions(name || _names.mount, _fields, _options.criteriaMode, _options.shouldUseNativeValidation));
+      _updateIsValidating(name);
+      return result;
+    };
+    const executeSchemaAndUpdateState = async (names) => {
+      const { errors } = await _executeSchema(names);
+      if (names) {
+        for (const name of names) {
+          const error = get(errors, name);
+          error ? set(_formState.errors, name, error) : unset(_formState.errors, name);
+        }
+      } else {
+        _formState.errors = errors;
+      }
+      return errors;
+    };
+    const executeBuiltInValidation = async (fields, shouldOnlyCheckValid, context = {
+      valid: true
+    }) => {
+      for (const name in fields) {
+        const field = fields[name];
+        if (field) {
+          const { _f, ...fieldValue } = field;
+          if (_f) {
+            const isFieldArrayRoot = _names.array.has(_f.name);
+            _updateIsValidating([name], true);
+            const fieldError = await validateField(field, _formValues, shouldDisplayAllAssociatedErrors, _options.shouldUseNativeValidation && !shouldOnlyCheckValid, isFieldArrayRoot);
+            _updateIsValidating([name]);
+            if (fieldError[_f.name]) {
+              context.valid = false;
+              if (shouldOnlyCheckValid) {
+                break;
+              }
+            }
+            !shouldOnlyCheckValid && (get(fieldError, _f.name) ? isFieldArrayRoot ? updateFieldArrayRootError(_formState.errors, fieldError, _f.name) : set(_formState.errors, _f.name, fieldError[_f.name]) : unset(_formState.errors, _f.name));
+          }
+          fieldValue && await executeBuiltInValidation(fieldValue, shouldOnlyCheckValid, context);
+        }
+      }
+      return context.valid;
+    };
+    const _removeUnmounted = () => {
+      for (const name of _names.unMount) {
+        const field = get(_fields, name);
+        field && (field._f.refs ? field._f.refs.every((ref) => !live(ref)) : !live(field._f.ref)) && unregister(name);
+      }
+      _names.unMount = /* @__PURE__ */ new Set();
+    };
+    const _getDirty = (name, data) => (name && data && set(_formValues, name, data), !deepEqual(getValues(), _defaultValues));
+    const _getWatch = (names, defaultValue, isGlobal) => generateWatchOutput(names, _names, {
+      ..._state.mount ? _formValues : isUndefined(defaultValue) ? _defaultValues : isString(names) ? { [names]: defaultValue } : defaultValue
+    }, isGlobal, defaultValue);
+    const _getFieldArray = (name) => compact(get(_state.mount ? _formValues : _defaultValues, name, props.shouldUnregister ? get(_defaultValues, name, []) : []));
+    const setFieldValue = (name, value, options = {}) => {
+      const field = get(_fields, name);
+      let fieldValue = value;
+      if (field) {
+        const fieldReference = field._f;
+        if (fieldReference) {
+          !fieldReference.disabled && set(_formValues, name, getFieldValueAs(value, fieldReference));
+          fieldValue = isHTMLElement(fieldReference.ref) && isNullOrUndefined(value) ? "" : value;
+          if (isMultipleSelect(fieldReference.ref)) {
+            [...fieldReference.ref.options].forEach((optionRef) => optionRef.selected = fieldValue.includes(optionRef.value));
+          } else if (fieldReference.refs) {
+            if (isCheckBoxInput(fieldReference.ref)) {
+              fieldReference.refs.length > 1 ? fieldReference.refs.forEach((checkboxRef) => (!checkboxRef.defaultChecked || !checkboxRef.disabled) && (checkboxRef.checked = Array.isArray(fieldValue) ? !!fieldValue.find((data) => data === checkboxRef.value) : fieldValue === checkboxRef.value)) : fieldReference.refs[0] && (fieldReference.refs[0].checked = !!fieldValue);
+            } else {
+              fieldReference.refs.forEach((radioRef) => radioRef.checked = radioRef.value === fieldValue);
+            }
+          } else if (isFileInput(fieldReference.ref)) {
+            fieldReference.ref.value = "";
+          } else {
+            fieldReference.ref.value = fieldValue;
+            if (!fieldReference.ref.type) {
+              _subjects.values.next({
+                name,
+                values: { ..._formValues }
+              });
+            }
+          }
+        }
+      }
+      (options.shouldDirty || options.shouldTouch) && updateTouchAndDirty(name, fieldValue, options.shouldTouch, options.shouldDirty, true);
+      options.shouldValidate && trigger(name);
+    };
+    const setValues = (name, value, options) => {
+      for (const fieldKey in value) {
+        const fieldValue = value[fieldKey];
+        const fieldName = `${name}.${fieldKey}`;
+        const field = get(_fields, fieldName);
+        (_names.array.has(name) || !isPrimitive(fieldValue) || field && !field._f) && !isDateObject(fieldValue) ? setValues(fieldName, fieldValue, options) : setFieldValue(fieldName, fieldValue, options);
+      }
+    };
+    const setValue = (name, value, options = {}) => {
+      const field = get(_fields, name);
+      const isFieldArray = _names.array.has(name);
+      const cloneValue = cloneObject(value);
+      set(_formValues, name, cloneValue);
+      if (isFieldArray) {
+        _subjects.array.next({
+          name,
+          values: { ..._formValues }
+        });
+        if ((_proxyFormState.isDirty || _proxyFormState.dirtyFields) && options.shouldDirty) {
+          _subjects.state.next({
+            name,
+            dirtyFields: getDirtyFields(_defaultValues, _formValues),
+            isDirty: _getDirty(name, cloneValue)
+          });
+        }
+      } else {
+        field && !field._f && !isNullOrUndefined(cloneValue) ? setValues(name, cloneValue, options) : setFieldValue(name, cloneValue, options);
+      }
+      isWatched(name, _names) && _subjects.state.next({ ..._formState });
+      _subjects.values.next({
+        name: _state.mount ? name : void 0,
+        values: { ..._formValues }
+      });
+    };
+    const onChange = async (event) => {
+      _state.mount = true;
+      const target = event.target;
+      let name = target.name;
+      let isFieldValueUpdated = true;
+      const field = get(_fields, name);
+      const getCurrentFieldValue = () => target.type ? getFieldValue(field._f) : getEventValue(event);
+      const _updateIsFieldValueUpdated = (fieldValue) => {
+        isFieldValueUpdated = Number.isNaN(fieldValue) || fieldValue === get(_formValues, name, fieldValue);
+      };
+      if (field) {
+        let error;
+        let isValid;
+        const fieldValue = getCurrentFieldValue();
+        const isBlurEvent = event.type === EVENTS.BLUR || event.type === EVENTS.FOCUS_OUT;
+        const shouldSkipValidation = !hasValidation(field._f) && !_options.resolver && !get(_formState.errors, name) && !field._f.deps || skipValidation(isBlurEvent, get(_formState.touchedFields, name), _formState.isSubmitted, validationModeAfterSubmit, validationModeBeforeSubmit);
+        const watched = isWatched(name, _names, isBlurEvent);
+        set(_formValues, name, fieldValue);
+        if (isBlurEvent) {
+          field._f.onBlur && field._f.onBlur(event);
+          delayErrorCallback && delayErrorCallback(0);
+        } else if (field._f.onChange) {
+          field._f.onChange(event);
+        }
+        const fieldState = updateTouchAndDirty(name, fieldValue, isBlurEvent, false);
+        const shouldRender = !isEmptyObject(fieldState) || watched;
+        !isBlurEvent && _subjects.values.next({
+          name,
+          type: event.type,
+          values: { ..._formValues }
+        });
+        if (shouldSkipValidation) {
+          _proxyFormState.isValid && _updateValid();
+          return shouldRender && _subjects.state.next({ name, ...watched ? {} : fieldState });
+        }
+        !isBlurEvent && watched && _subjects.state.next({ ..._formState });
+        if (_options.resolver) {
+          const { errors } = await _executeSchema([name]);
+          _updateIsFieldValueUpdated(fieldValue);
+          if (isFieldValueUpdated) {
+            const previousErrorLookupResult = schemaErrorLookup(_formState.errors, _fields, name);
+            const errorLookupResult = schemaErrorLookup(errors, _fields, previousErrorLookupResult.name || name);
+            error = errorLookupResult.error;
+            name = errorLookupResult.name;
+            isValid = isEmptyObject(errors);
+          }
+        } else {
+          _updateIsValidating([name], true);
+          error = (await validateField(field, _formValues, shouldDisplayAllAssociatedErrors, _options.shouldUseNativeValidation))[name];
+          _updateIsValidating([name]);
+          _updateIsFieldValueUpdated(fieldValue);
+          if (isFieldValueUpdated) {
+            if (error) {
+              isValid = false;
+            } else if (_proxyFormState.isValid) {
+              isValid = await executeBuiltInValidation(_fields, true);
+            }
+          }
+        }
+        if (isFieldValueUpdated) {
+          field._f.deps && trigger(field._f.deps);
+          shouldRenderByError(name, isValid, error, fieldState);
+        }
+      }
+    };
+    const _focusInput = (ref, key) => {
+      if (get(_formState.errors, key) && ref.focus) {
+        ref.focus();
+        return 1;
+      }
+      return;
+    };
+    const trigger = async (name, options = {}) => {
+      let isValid;
+      let validationResult;
+      const fieldNames = convertToArrayPayload(name);
+      if (_options.resolver) {
+        const errors = await executeSchemaAndUpdateState(isUndefined(name) ? name : fieldNames);
+        isValid = isEmptyObject(errors);
+        validationResult = name ? !fieldNames.some((name2) => get(errors, name2)) : isValid;
+      } else if (name) {
+        validationResult = (await Promise.all(fieldNames.map(async (fieldName) => {
+          const field = get(_fields, fieldName);
+          return await executeBuiltInValidation(field && field._f ? { [fieldName]: field } : field);
+        }))).every(Boolean);
+        !(!validationResult && !_formState.isValid) && _updateValid();
+      } else {
+        validationResult = isValid = await executeBuiltInValidation(_fields);
+      }
+      _subjects.state.next({
+        ...!isString(name) || _proxyFormState.isValid && isValid !== _formState.isValid ? {} : { name },
+        ..._options.resolver || !name ? { isValid } : {},
+        errors: _formState.errors
+      });
+      options.shouldFocus && !validationResult && iterateFieldsByAction(_fields, _focusInput, name ? fieldNames : _names.mount);
+      return validationResult;
+    };
+    const getValues = (fieldNames) => {
+      const values = {
+        ..._state.mount ? _formValues : _defaultValues
+      };
+      return isUndefined(fieldNames) ? values : isString(fieldNames) ? get(values, fieldNames) : fieldNames.map((name) => get(values, name));
+    };
+    const getFieldState = (name, formState) => ({
+      invalid: !!get((formState || _formState).errors, name),
+      isDirty: !!get((formState || _formState).dirtyFields, name),
+      error: get((formState || _formState).errors, name),
+      isValidating: !!get(_formState.validatingFields, name),
+      isTouched: !!get((formState || _formState).touchedFields, name)
+    });
+    const clearErrors = (name) => {
+      name && convertToArrayPayload(name).forEach((inputName) => unset(_formState.errors, inputName));
+      _subjects.state.next({
+        errors: name ? _formState.errors : {}
+      });
+    };
+    const setError = (name, error, options) => {
+      const ref = (get(_fields, name, { _f: {} })._f || {}).ref;
+      const currentError = get(_formState.errors, name) || {};
+      const { ref: currentRef, message, type, ...restOfErrorTree } = currentError;
+      set(_formState.errors, name, {
+        ...restOfErrorTree,
+        ...error,
+        ref
+      });
+      _subjects.state.next({
+        name,
+        errors: _formState.errors,
+        isValid: false
+      });
+      options && options.shouldFocus && ref && ref.focus && ref.focus();
+    };
+    const watch = (name, defaultValue) => isFunction(name) ? _subjects.values.subscribe({
+      next: (payload) => name(_getWatch(void 0, defaultValue), payload)
+    }) : _getWatch(name, defaultValue, true);
+    const unregister = (name, options = {}) => {
+      for (const fieldName of name ? convertToArrayPayload(name) : _names.mount) {
+        _names.mount.delete(fieldName);
+        _names.array.delete(fieldName);
+        if (!options.keepValue) {
+          unset(_fields, fieldName);
+          unset(_formValues, fieldName);
+        }
+        !options.keepError && unset(_formState.errors, fieldName);
+        !options.keepDirty && unset(_formState.dirtyFields, fieldName);
+        !options.keepTouched && unset(_formState.touchedFields, fieldName);
+        !options.keepIsValidating && unset(_formState.validatingFields, fieldName);
+        !_options.shouldUnregister && !options.keepDefaultValue && unset(_defaultValues, fieldName);
+      }
+      _subjects.values.next({
+        values: { ..._formValues }
+      });
+      _subjects.state.next({
+        ..._formState,
+        ...!options.keepDirty ? {} : { isDirty: _getDirty() }
+      });
+      !options.keepIsValid && _updateValid();
+    };
+    const _updateDisabledField = ({ disabled, name, field, fields, value }) => {
+      if (isBoolean(disabled) && _state.mount || !!disabled) {
+        const inputValue = disabled ? void 0 : isUndefined(value) ? getFieldValue(field ? field._f : get(fields, name)._f) : value;
+        set(_formValues, name, inputValue);
+        updateTouchAndDirty(name, inputValue, false, false, true);
+      }
+    };
+    const register = (name, options = {}) => {
+      let field = get(_fields, name);
+      const disabledIsDefined = isBoolean(options.disabled);
+      set(_fields, name, {
+        ...field || {},
+        _f: {
+          ...field && field._f ? field._f : { ref: { name } },
+          name,
+          mount: true,
+          ...options
+        }
+      });
+      _names.mount.add(name);
+      if (field) {
+        _updateDisabledField({
+          field,
+          disabled: options.disabled,
+          name,
+          value: options.value
+        });
+      } else {
+        updateValidAndValue(name, true, options.value);
+      }
+      return {
+        ...disabledIsDefined ? { disabled: options.disabled } : {},
+        ..._options.progressive ? {
+          required: !!options.required,
+          min: getRuleValue(options.min),
+          max: getRuleValue(options.max),
+          minLength: getRuleValue(options.minLength),
+          maxLength: getRuleValue(options.maxLength),
+          pattern: getRuleValue(options.pattern)
+        } : {},
+        name,
+        onChange,
+        onBlur: onChange,
+        ref: (ref) => {
+          if (ref) {
+            register(name, options);
+            field = get(_fields, name);
+            const fieldRef = isUndefined(ref.value) ? ref.querySelectorAll ? ref.querySelectorAll("input,select,textarea")[0] || ref : ref : ref;
+            const radioOrCheckbox = isRadioOrCheckbox(fieldRef);
+            const refs = field._f.refs || [];
+            if (radioOrCheckbox ? refs.find((option) => option === fieldRef) : fieldRef === field._f.ref) {
+              return;
+            }
+            set(_fields, name, {
+              _f: {
+                ...field._f,
+                ...radioOrCheckbox ? {
+                  refs: [
+                    ...refs.filter(live),
+                    fieldRef,
+                    ...Array.isArray(get(_defaultValues, name)) ? [{}] : []
+                  ],
+                  ref: { type: fieldRef.type, name }
+                } : { ref: fieldRef }
+              }
+            });
+            updateValidAndValue(name, false, void 0, fieldRef);
+          } else {
+            field = get(_fields, name, {});
+            if (field._f) {
+              field._f.mount = false;
+            }
+            (_options.shouldUnregister || options.shouldUnregister) && !(isNameInFieldArray(_names.array, name) && _state.action) && _names.unMount.add(name);
+          }
+        }
+      };
+    };
+    const _focusError = () => _options.shouldFocusError && iterateFieldsByAction(_fields, _focusInput, _names.mount);
+    const _disableForm = (disabled) => {
+      if (isBoolean(disabled)) {
+        _subjects.state.next({ disabled });
+        iterateFieldsByAction(_fields, (ref, name) => {
+          const currentField = get(_fields, name);
+          if (currentField) {
+            ref.disabled = currentField._f.disabled || disabled;
+            if (Array.isArray(currentField._f.refs)) {
+              currentField._f.refs.forEach((inputRef) => {
+                inputRef.disabled = currentField._f.disabled || disabled;
+              });
+            }
+          }
+        }, 0, false);
+      }
+    };
+    const handleSubmit = (onValid, onInvalid) => async (e) => {
+      let onValidError = void 0;
+      if (e) {
+        e.preventDefault && e.preventDefault();
+        e.persist && e.persist();
+      }
+      let fieldValues = cloneObject(_formValues);
+      _subjects.state.next({
+        isSubmitting: true
+      });
+      if (_options.resolver) {
+        const { errors, values } = await _executeSchema();
+        _formState.errors = errors;
+        fieldValues = values;
+      } else {
+        await executeBuiltInValidation(_fields);
+      }
+      unset(_formState.errors, "root");
+      if (isEmptyObject(_formState.errors)) {
+        _subjects.state.next({
+          errors: {}
+        });
+        try {
+          await onValid(fieldValues, e);
+        } catch (error) {
+          onValidError = error;
+        }
+      } else {
+        if (onInvalid) {
+          await onInvalid({ ..._formState.errors }, e);
+        }
+        _focusError();
+        setTimeout(_focusError);
+      }
+      _subjects.state.next({
+        isSubmitted: true,
+        isSubmitting: false,
+        isSubmitSuccessful: isEmptyObject(_formState.errors) && !onValidError,
+        submitCount: _formState.submitCount + 1,
+        errors: _formState.errors
+      });
+      if (onValidError) {
+        throw onValidError;
+      }
+    };
+    const resetField = (name, options = {}) => {
+      if (get(_fields, name)) {
+        if (isUndefined(options.defaultValue)) {
+          setValue(name, cloneObject(get(_defaultValues, name)));
+        } else {
+          setValue(name, options.defaultValue);
+          set(_defaultValues, name, cloneObject(options.defaultValue));
+        }
+        if (!options.keepTouched) {
+          unset(_formState.touchedFields, name);
+        }
+        if (!options.keepDirty) {
+          unset(_formState.dirtyFields, name);
+          _formState.isDirty = options.defaultValue ? _getDirty(name, cloneObject(get(_defaultValues, name))) : _getDirty();
+        }
+        if (!options.keepError) {
+          unset(_formState.errors, name);
+          _proxyFormState.isValid && _updateValid();
+        }
+        _subjects.state.next({ ..._formState });
+      }
+    };
+    const _reset = (formValues, keepStateOptions = {}) => {
+      const updatedValues = formValues ? cloneObject(formValues) : _defaultValues;
+      const cloneUpdatedValues = cloneObject(updatedValues);
+      const isEmptyResetValues = isEmptyObject(formValues);
+      const values = isEmptyResetValues ? _defaultValues : cloneUpdatedValues;
+      if (!keepStateOptions.keepDefaultValues) {
+        _defaultValues = updatedValues;
+      }
+      if (!keepStateOptions.keepValues) {
+        if (keepStateOptions.keepDirtyValues) {
+          for (const fieldName of _names.mount) {
+            get(_formState.dirtyFields, fieldName) ? set(values, fieldName, get(_formValues, fieldName)) : setValue(fieldName, get(values, fieldName));
+          }
+        } else {
+          if (isWeb && isUndefined(formValues)) {
+            for (const name of _names.mount) {
+              const field = get(_fields, name);
+              if (field && field._f) {
+                const fieldReference = Array.isArray(field._f.refs) ? field._f.refs[0] : field._f.ref;
+                if (isHTMLElement(fieldReference)) {
+                  const form = fieldReference.closest("form");
+                  if (form) {
+                    form.reset();
+                    break;
+                  }
+                }
+              }
+            }
+          }
+          _fields = {};
+        }
+        _formValues = props.shouldUnregister ? keepStateOptions.keepDefaultValues ? cloneObject(_defaultValues) : {} : cloneObject(values);
+        _subjects.array.next({
+          values: { ...values }
+        });
+        _subjects.values.next({
+          values: { ...values }
+        });
+      }
+      _names = {
+        mount: keepStateOptions.keepDirtyValues ? _names.mount : /* @__PURE__ */ new Set(),
+        unMount: /* @__PURE__ */ new Set(),
+        array: /* @__PURE__ */ new Set(),
+        watch: /* @__PURE__ */ new Set(),
+        watchAll: false,
+        focus: ""
+      };
+      _state.mount = !_proxyFormState.isValid || !!keepStateOptions.keepIsValid || !!keepStateOptions.keepDirtyValues;
+      _state.watch = !!props.shouldUnregister;
+      _subjects.state.next({
+        submitCount: keepStateOptions.keepSubmitCount ? _formState.submitCount : 0,
+        isDirty: isEmptyResetValues ? false : keepStateOptions.keepDirty ? _formState.isDirty : !!(keepStateOptions.keepDefaultValues && !deepEqual(formValues, _defaultValues)),
+        isSubmitted: keepStateOptions.keepIsSubmitted ? _formState.isSubmitted : false,
+        dirtyFields: isEmptyResetValues ? {} : keepStateOptions.keepDirtyValues ? keepStateOptions.keepDefaultValues && _formValues ? getDirtyFields(_defaultValues, _formValues) : _formState.dirtyFields : keepStateOptions.keepDefaultValues && formValues ? getDirtyFields(_defaultValues, formValues) : keepStateOptions.keepDirty ? _formState.dirtyFields : {},
+        touchedFields: keepStateOptions.keepTouched ? _formState.touchedFields : {},
+        errors: keepStateOptions.keepErrors ? _formState.errors : {},
+        isSubmitSuccessful: keepStateOptions.keepIsSubmitSuccessful ? _formState.isSubmitSuccessful : false,
+        isSubmitting: false
+      });
+    };
+    const reset = (formValues, keepStateOptions) => _reset(isFunction(formValues) ? formValues(_formValues) : formValues, keepStateOptions);
+    const setFocus = (name, options = {}) => {
+      const field = get(_fields, name);
+      const fieldReference = field && field._f;
+      if (fieldReference) {
+        const fieldRef = fieldReference.refs ? fieldReference.refs[0] : fieldReference.ref;
+        if (fieldRef.focus) {
+          fieldRef.focus();
+          options.shouldSelect && fieldRef.select();
+        }
+      }
+    };
+    const _updateFormState = (updatedFormState) => {
+      _formState = {
+        ..._formState,
+        ...updatedFormState
+      };
+    };
+    const _resetDefaultValues = () => isFunction(_options.defaultValues) && _options.defaultValues().then((values) => {
+      reset(values, _options.resetOptions);
+      _subjects.state.next({
+        isLoading: false
+      });
+    });
+    return {
+      control: {
+        register,
+        unregister,
+        getFieldState,
+        handleSubmit,
+        setError,
+        _executeSchema,
+        _getWatch,
+        _getDirty,
+        _updateValid,
+        _removeUnmounted,
+        _updateFieldArray,
+        _updateDisabledField,
+        _getFieldArray,
+        _reset,
+        _resetDefaultValues,
+        _updateFormState,
+        _disableForm,
+        _subjects,
+        _proxyFormState,
+        _setErrors,
+        get _fields() {
+          return _fields;
+        },
+        get _formValues() {
+          return _formValues;
+        },
+        get _state() {
+          return _state;
+        },
+        set _state(value) {
+          _state = value;
+        },
+        get _defaultValues() {
+          return _defaultValues;
+        },
+        get _names() {
+          return _names;
+        },
+        set _names(value) {
+          _names = value;
+        },
+        get _formState() {
+          return _formState;
+        },
+        set _formState(value) {
+          _formState = value;
+        },
+        get _options() {
+          return _options;
+        },
+        set _options(value) {
+          _options = {
+            ..._options,
+            ...value
+          };
+        }
+      },
+      trigger,
+      register,
+      handleSubmit,
+      watch,
+      setValue,
+      getValues,
+      reset,
+      resetField,
+      clearErrors,
+      unregister,
+      setError,
+      setFocus,
+      getFieldState
+    };
+  }
+  function useForm(props = {}) {
+    const _formControl = import_react10.default.useRef();
+    const _values = import_react10.default.useRef();
+    const [formState, updateFormState] = import_react10.default.useState({
+      isDirty: false,
+      isValidating: false,
+      isLoading: isFunction(props.defaultValues),
+      isSubmitted: false,
+      isSubmitting: false,
+      isSubmitSuccessful: false,
+      isValid: false,
+      submitCount: 0,
+      dirtyFields: {},
+      touchedFields: {},
+      validatingFields: {},
+      errors: props.errors || {},
+      disabled: props.disabled || false,
+      defaultValues: isFunction(props.defaultValues) ? void 0 : props.defaultValues
+    });
+    if (!_formControl.current) {
+      _formControl.current = {
+        ...createFormControl(props),
+        formState
+      };
+    }
+    const control = _formControl.current.control;
+    control._options = props;
+    useSubscribe({
+      subject: control._subjects.state,
+      next: (value) => {
+        if (shouldRenderFormState(value, control._proxyFormState, control._updateFormState, true)) {
+          updateFormState({ ...control._formState });
+        }
+      }
+    });
+    import_react10.default.useEffect(() => control._disableForm(props.disabled), [control, props.disabled]);
+    import_react10.default.useEffect(() => {
+      if (control._proxyFormState.isDirty) {
+        const isDirty = control._getDirty();
+        if (isDirty !== formState.isDirty) {
+          control._subjects.state.next({
+            isDirty
+          });
+        }
+      }
+    }, [control, formState.isDirty]);
+    import_react10.default.useEffect(() => {
+      if (props.values && !deepEqual(props.values, _values.current)) {
+        control._reset(props.values, control._options.resetOptions);
+        _values.current = props.values;
+        updateFormState((state) => ({ ...state }));
+      } else {
+        control._resetDefaultValues();
+      }
+    }, [props.values, control]);
+    import_react10.default.useEffect(() => {
+      if (props.errors) {
+        control._setErrors(props.errors);
+      }
+    }, [props.errors, control]);
+    import_react10.default.useEffect(() => {
+      if (!control._state.mount) {
+        control._updateValid();
+        control._state.mount = true;
+      }
+      if (control._state.watch) {
+        control._state.watch = false;
+        control._subjects.state.next({ ...control._formState });
+      }
+      control._removeUnmounted();
+    });
+    import_react10.default.useEffect(() => {
+      props.shouldUnregister && control._subjects.values.next({
+        values: control._getWatch()
+      });
+    }, [props.shouldUnregister, control]);
+    _formControl.current.formState = getProxyFormState(formState, control);
+    return _formControl.current;
+  }
 
-  // src/components/testimonialsWall/wall.tsx
-  var TestimonialsWall = ({ spaceId, layoutType }) => {
-    const [reviews, setReviews] = (0, import_react11.useState)([]);
-    (0, import_react11.useEffect)(() => {
-      async function fetchReviews() {
+  // src/hooks/useFormContext.ts
+  var useCustomForm = (contextType) => {
+    const { formMap } = (0, import_react11.useContext)(FormContext);
+    const { register, handleSubmit, formState: { errors }, watch, control, getValues, trigger } = useForm({
+      mode: "onBlur",
+      reValidateMode: "onBlur"
+    });
+    if (formMap?.has(contextType)) {
+      const value = formMap.get(contextType);
+      return { register: value.register, handleSubmit: value.handleSubmit, errors: value.errors };
+    }
+    formMap?.set(contextType, { register, handleSubmit, errors });
+    return { register, handleSubmit, errors, watch, control, getValues, trigger };
+  };
+
+  // src/components/collectionWidget/reviewForm/index.tsx
+  var import_client = __toESM(require_index_browser3());
+  var import_react12 = __toESM(require_react());
+  var ReviewForm = ({ setOpenReview, spaceId, spaceName }) => {
+    const { register, handleSubmit, errors, watch, control, getValues } = useCustomForm("review-form");
+    const [checked, setIsChecked] = (0, import_react12.useState)(false);
+    const [review, setReview] = (0, import_react12.useState)(null);
+    const [rating, setRating] = (0, import_react12.useState)(5);
+    const { toast: toast2 } = useToast();
+    const showToast = () => {
+      toast2({
+        title: "Review Created !",
+        description: "Review has been created successfully"
+      });
+    };
+    const onSubmit = (data) => {
+      console.log("Data", data);
+      setReview({ ...data, rating, type: import_client.TestimonialType.TEXT, videoLink: "" });
+    };
+    const [reviewText, name, email] = getValues ? getValues(["testimonialText", "name", "email"]) : ["", "", ""];
+    const hasError = () => {
+      let err = false;
+      if (!reviewText || !name || !email || reviewText === "" || name === "" || email === "" || !checked) {
+        err = true;
+      }
+      console.log("Error", err);
+      return err;
+    };
+    (0, import_react12.useEffect)(() => {
+      async function addReview() {
+        await fetch(`https://reachify.vercel.app/api/embed/${spaceId}`, {
+          method: "POST",
+          // Specifies the HTTP method as POST
+          headers: {
+            "Content-Type": "application/json"
+            // Sets the content type to JSON
+          },
+          body: JSON.stringify({
+            ...review
+          })
+          // Convert your data to JSON
+        });
+      }
+      if (review) {
+        addReview();
+        setReview(null);
+        setOpenReview(false);
+        setTimeout(() => {
+          showToast();
+        }, 1e3);
+      }
+    }, [review]);
+    return (
+      // JSX code goes here
+      // <form className="bg-#fff flex flex-col gap-4  h-100">
+      /* @__PURE__ */ import_react12.default.createElement("div", { className: "w-full mx-auto h-100 relative p-6 bg-#fff border rounded-lg shadow-md flex flex-col justify-evenly gap-4" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "flex" }, /* @__PURE__ */ import_react12.default.createElement(Ratings, { setRating })), /* @__PURE__ */ import_react12.default.createElement(
+        inputTextArea_default,
+        {
+          required: true,
+          register,
+          name: "testimonialText",
+          errorMessage: errors.hasOwnProperty("testimonialText") ? errors["testimonialText"].message : "",
+          label: ""
+        }
+      ), /* @__PURE__ */ import_react12.default.createElement(
+        inputTextBox_default,
+        {
+          required: true,
+          register,
+          name: "name",
+          errorMessage: errors.hasOwnProperty("name") ? errors["name"].message : "",
+          label: "Your Name"
+        }
+      ), /* @__PURE__ */ import_react12.default.createElement(
+        inputTextBox_default,
+        {
+          register,
+          required: true,
+          name: "email",
+          label: "Your Email",
+          errorMessage: errors.hasOwnProperty("email") ? errors["email"].message : ""
+        }
+      ), /* @__PURE__ */ import_react12.default.createElement(
+        InputCheckbox,
+        {
+          checked,
+          onChange: () => setIsChecked(!checked),
+          text: "I give permission to use this testimonial across social channels and other marketing efforts"
+        }
+      ), /* @__PURE__ */ import_react12.default.createElement("div", { className: "flex gap-2 right-0" }, /* @__PURE__ */ import_react12.default.createElement(
+        button_default,
+        {
+          text: "Send",
+          className: "!h-fit text-white px-4 py-2 rounded-md",
+          disabled: hasError(),
+          onClick: () => {
+            handleSubmit(onSubmit)();
+          }
+        }
+      ), /* @__PURE__ */ import_react12.default.createElement(
+        button_default,
+        {
+          className: "h-fit  px-4 py-2 rounded-md !bg-[#fff] !text-black border-solid border-2 border-grayText",
+          text: "Cancel",
+          onClick: () => setOpenReview(false)
+        }
+      )))
+    );
+  };
+  var reviewForm_default = ReviewForm;
+
+  // src/components/loader/index.tsx
+  var import_react13 = __toESM(require_react());
+  function Loader({ className }) {
+    return /* @__PURE__ */ import_react13.default.createElement("div", { className: `flex justify-center h-screen mt-5 ${className}` }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "w-4 h-4 bg-blue-500 rounded-full animate-bounce" }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "w-4 h-4 bg-blue-500 rounded-full animate-bounce delay-200" }), /* @__PURE__ */ import_react13.default.createElement("div", { className: "w-4 h-4 bg-blue-500 rounded-full animate-bounce delay-400" }));
+  }
+
+  // src/components/collectionWidget/index.js
+  var CollectionWidget = ({ spaceId, spaceName }) => {
+    const [spaceData, setSpaceData] = (0, import_react14.useState)();
+    const [openReview, setOpenReview] = (0, import_react14.useState)(false);
+    (0, import_react14.useEffect)(() => {
+      const fetchSpaceData = async (spaceId2) => {
         const response = await fetch(
-          `https://reachify.vercel.app/api/embed/reviews/${spaceId}`,
+          `https://reachify.vercel.app/api/embed/${spaceId2}`,
           {
             method: "GET"
             // headers: {
@@ -28018,21 +26706,37 @@
           }
         );
         const { data } = await response.json();
-        setReviews(data);
-        console.log("Reviews ", data);
-      }
-      fetchReviews();
+        console.log("Data", data);
+        setSpaceData(data);
+      };
+      fetchSpaceData(spaceId);
     }, []);
-    console.log("Reviews ", reviews.length);
-    return /* @__PURE__ */ import_react11.default.createElement(layout_default, { layoutType: "carousel" /* CAROUSEL */ }, reviews.length > 0 && [...reviews, ...reviews, ...reviews, ...reviews].map((review) => /* @__PURE__ */ import_react11.default.createElement(testimonialCard_default, { review })));
+    const getCollectionPreview = () => {
+      if (spaceData) {
+        return /* @__PURE__ */ import_react14.default.createElement(
+          collectionPreview_default,
+          {
+            setOpenReview,
+            spaceHeader: spaceData?.headerTitle,
+            questions: spaceData?.questions,
+            customMessage: spaceData?.customMessage
+          }
+        );
+      }
+      return /* @__PURE__ */ import_react14.default.createElement("div", { className: "w-full mx-auto !h-5/6  p-6 bg-#fff border rounded-lg shadow-md flex justify-center items-center" }, /* @__PURE__ */ import_react14.default.createElement(Loader, { className: "!h-fit mt-5 mb-5" }));
+    };
+    return /* @__PURE__ */ import_react14.default.createElement(import_react14.default.Fragment, null, openReview ? /* @__PURE__ */ import_react14.default.createElement(reviewForm_default, { spaceName, setOpenReview, spaceId }) : getCollectionPreview());
   };
-  var wall_default = TestimonialsWall;
+  var collectionWidget_default = CollectionWidget;
 
-  // src/components/collectionWidget/layoutHelper.js
-  function mount(containerId, spaceId, layoutType) {
-    import_react_dom.default.render(/* @__PURE__ */ import_react12.default.createElement(wall_default, { spaceId, layoutType }), document.getElementById(containerId));
+  // src/components/collectionWidget/collectionWidget.js
+  var import_client2 = __toESM(require_client());
+  function mount(containerId, spaceId) {
+    const container = document.getElementById(containerId);
+    const root = (0, import_client2.createRoot)(container);
+    root.render(/* @__PURE__ */ import_react15.default.createElement(collectionWidget_default, { spaceId }));
   }
-  window.LayoutHelper = { mount };
+  window.CollectionWidgetHelper = { mount };
 })();
 /*! Bundled license information:
 
@@ -28081,4 +26785,17 @@ react-dom/cjs/react-dom.development.js:
    * @internal
    * @license Modernizr 3.0.0pre (Custom Build) | MIT
    *)
+
+@prisma/client/runtime/index-browser.js:
+  (*! Bundled license information:
+  
+  decimal.js/decimal.mjs:
+    (*!
+     *  decimal.js v10.4.3
+     *  An arbitrary-precision Decimal type for JavaScript.
+     *  https://github.com/MikeMcl/decimal.js
+     *  Copyright (c) 2022 Michael Mclaughlin <M8ch88l@gmail.com>
+     *  MIT Licence
+     *)
+  *)
 */

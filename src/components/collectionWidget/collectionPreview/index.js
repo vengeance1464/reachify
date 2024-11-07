@@ -1,6 +1,6 @@
 import React from "react";
 import Like from "../../../../public/assets/like";
-import {Button} from "../../button";
+import Button from "../../button/button";
 
 // interface CollectionPreviewProps {
 //   // Define the props for your component here]

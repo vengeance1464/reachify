@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Badge from "./badge"
 
-const BadgeWidget = ({ spaceId }) => {
+const BadgeWidget = ({ totalFullReviews}) => {
 //   const [spaceData, setSpaceData] = useState();
 
 //   useEffect(() => {
@@ -25,7 +25,7 @@ const BadgeWidget = ({ spaceId }) => {
 
   return (
     <div>
-     <Badge fullStarsRating={3.4}/>
+     <Badge totalFullReviews={totalFullReviews} />
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import { Ratings } from "@/components/reviewStars";
 import Typography from "@/components/typography";
 
-const Badge = ({ fullStarsRating }) => {
+const Badge = ({ fullStarsReviews, totalFullReviews }) => {
   return (
     <>
       <Ratings isStatic>
-        <Typography type={"h4"} text={`5/5 from ${fullStarsRating} reviews`} />
+        <Typography type={"h4"} text={`5/5 from ${totalFullReviews} reviews`} />
       </Ratings>
     </>
   );

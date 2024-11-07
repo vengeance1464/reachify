@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import "./globals.css"
 import TestimonialsWall from "../testimonialsWall/wall"
 
 function mount(containerId,spaceId,layoutType) {
  // const { name } = params;
-  ReactDOM.createRoot(<TestimonialsWall spaceId={spaceId} layoutType={layoutType} />, document.getElementById(containerId));
+ const container=document.getElementById(containerId);
+ const root = createRoot(container); // Use the non-null assertion `!` if you are sure `container` is not null
+
+root.render(<TestimonialsWall spaceId={spaceId} layoutType={layoutType} />);
 }
 
 // Expose the mount function globally

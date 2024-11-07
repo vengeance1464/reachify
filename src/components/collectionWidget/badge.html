@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanilla JS Project</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"></link> 
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></link> 
+<link rel="stylesheet"  href="https://reachify-bucker.s3.us-east-1.amazonaws.com/bundles/badgeWidgetHelper.bundle.css"></link> 
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script> 
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script> 
+</head>
+<body>
+    <div id="hello-world-container"></div>
+  <!-- <script  src="https://reachify-bucker.s3.us-east-1.amazonaws.com/bundles/badgeWidget.main.bundle.js?totalFullReviews=3"></script>   -->
+  <script  src="https://reachify-bucker.s3.us-east-1.amazonaws.com/bundles/badgeWidgetHelper.bundle.js"></script>  
+  <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+
+// Use URLSearchParams to parse the query string
+const spaceId = urlParams.get('spaceId');
+
+
+const totalReviews = urlParams.get('totalFullReviews'); // 'asc'
+
+BadgeWidgetHelper.mount('hello-world-container',spaceId,totalReviews)
+
+
+
+</script>
+
+   
+
+</script> 
+</body>
+</html>

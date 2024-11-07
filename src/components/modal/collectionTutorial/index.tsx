@@ -1,5 +1,5 @@
 "use client";
-import ReviewForm from "@/components/collectionWidget/reviewForm";
+
 import BaseModal from "../baseModal";
 import { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -22,7 +22,7 @@ const CollectionTutorial: React.FC<Props> = ({
   spaceId,
   spaceName,
 }) => {
-  const codeString = `<script async type="text/javascript" src="https://testimonial.to/js/widget-embed.js"></script>\n<div class="testimonial-to-embed" data-url="https://embed-v2.testimonial.to/badge/space-new?backgroundColor=EB144C&starColor=facc15&fontColor=000000&fontFamily=Roboto&reviewTerm=review&fontSize=16&reviewTermPlural=reviews&alignment=left" data-resize="true" data-resize-width="true" data-redirect-click="https://testimonial.to/space-new/all" style="width:fit-content"></div>`;
+  const codeString = `<iframe id="collectingWidget" style="width:100vw;height:100vh;" src="https://reachify-bucker.s3.us-east-1.amazonaws.com/bundles/collection.html?spaceId=${spaceId}"/>`;
   const CodeBlock = () => {
     return (
       <SyntaxHighlighter language={"javascript"} style={tomorrow}>

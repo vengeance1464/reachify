@@ -2,7 +2,7 @@
 
 import { trpc } from "@/server/client"
 import SpaceService from "@/lib/db/SpaceService"
-//import { TestimonialType } from "@prisma/client"
+import { TestimonialType } from "@prisma/client"
 import { revalidatePath, revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 import ReviewService from "@/lib/db/ReviewService"
@@ -99,7 +99,7 @@ async function createSpaceAction(previousState:boolean,formData:FormData)
         headerTitle:headerTitle,
         customMessage:customMessage,
         questions:questionsList,
-        testimonialType:"text",
+        testimonialType:TestimonialType[testimonialType!],
         collectStars:shouldCollectStars,
         spaceUrl:getS3Url(name),
         email:session && session!==null && session.hasOwnProperty("user")?session.user.email:""

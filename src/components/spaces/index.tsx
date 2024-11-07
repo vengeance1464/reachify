@@ -9,6 +9,7 @@ import { Link } from "react-transition-progress/next";
 
 const Spaces: React.FC = async () => {
   const spaces = await trpcClient.space.getAllSpaces();
+
   console.log("res received", spaces);
 
   return (
@@ -25,7 +26,7 @@ const Spaces: React.FC = async () => {
                   <SpaceItem
                     imageUrl={space.spaceUrl ? space.spaceUrl : ""}
                     videosCount={0}
-                    textCount={0}
+                    textReviewCount={space.textReviewCount}
                     name={space.spaceName}
                   />
                 }

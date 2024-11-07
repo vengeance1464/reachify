@@ -34,15 +34,20 @@ const SpaceProduct: React.FC<Props> = async ({
     // const res = await fetch("url");
     // return await res.json();
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/reviews/${params.spaceId}`,
-      {
-        cache: "no-store",
-        next: { tags: ["reviews"] },
-      }
-    ).then((res) => res.json());
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/reviews/${params.spaceId}`,
+        {
+          cache: "no-store",
+          next: { tags: ["reviews"] },
+        }
+      ).then((res) => res.json());
 
-    return response.data;
+      return response.data;
+    } catch (err) {
+      console.log("Error", err);
+      return { reviews: [] };
+    }
   };
 
   const spaceWithReviews = await getData();
@@ -55,7 +60,7 @@ const SpaceProduct: React.FC<Props> = async ({
         <div className="col-span-3   !border-y-[1px] !border-[#25282C] mb-4">
           <SpaceHeader
             spaceUrl={spaceWithReviews.spaceUrl}
-            spaceHeader={params.spaceName}
+            spaceHeader={decodeURIComponent(params.spaceName)}
             spaceId={params.spaceId}
           />
         </div>

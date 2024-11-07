@@ -23,10 +23,16 @@ interface Props {
 const Inbox: React.FC<Props> = ({ reviews, spaceId, spaceName }) => {
   // Implement your component logic here
   // console.log("Reviews Inbox", reviews);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [embedSelectedIndex, setEmbedSelectedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(() => {
+    return reviews.length > 0 ? 0 : -1;
+  });
+  const [embedSelectedIndex, setEmbedSelectedIndex] = useState(() => {
+    return reviews.length === 0 ? 2 : -1;
+  });
   const [badgeDialog, setBadgeDialogOpen] = useState(false);
-  const [collectionDialog, setCollectionDialogOpen] = useState(false);
+  const [collectionDialog, setCollectionDialogOpen] = useState(() => {
+    return reviews.length === 0 ? true : false;
+  });
   const [layoutDialog, setLayoutDialogOpen] = useState(false);
 
   // Implement your component logic here
@@ -54,9 +60,9 @@ const Inbox: React.FC<Props> = ({ reviews, spaceId, spaceName }) => {
     if (index === 0) {
       setLayoutDialogOpen(true);
     }
-    if (index === 2) {
+    if (index === 1) {
       setBadgeDialogOpen(true);
-    } else if (index === 3) {
+    } else if (index === 2) {
       setCollectionDialogOpen(true);
     }
     setSelectedIndex(-1);
@@ -76,7 +82,7 @@ const Inbox: React.FC<Props> = ({ reviews, spaceId, spaceName }) => {
       icon: <Love strokeColor="#fff" />,
       isTrigger: false,
     },
-    { text: "Single testimonial", icon: <Code />, isTrigger: false },
+    // { text: "Single testimonial", icon: <Code />, isTrigger: false },
     { text: "Badge", icon: <SidebarStar />, isTrigger: false },
     { text: "Collecting Widget", icon: <Collecting />, isTrigger: false },
   ];
@@ -124,16 +130,18 @@ const Inbox: React.FC<Props> = ({ reviews, spaceId, spaceName }) => {
       <Sidebar menuLists={menuLists} />
       <div className="col-span-2 flex flex-col items-center gap-1">
         <>
-          {filteredReviews.map((review: any, index: number) => {
-            //   <InboxCard review={review} />;
-            return <InboxCard key={review} review={review} />;
-          })}
+          {filteredReviews &&
+            filteredReviews.length > 0 &&
+            filteredReviews.map((review: any, index: number) => {
+              //   <InboxCard review={review} />;
+              return <InboxCard key={review} review={review} />;
+            })}
         </>
       </div>
       {
         <Badge
           setOpen={setBadgeDialogOpen}
-          reviewRatings={[5, 4, 3]}
+          reviewRatings={reviews}
           open={badgeDialog}
         />
       }

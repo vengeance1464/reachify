@@ -30,7 +30,9 @@ const Badge: React.FC<Props> = ({ reviewRatings, open, setOpen }) => {
       return accum + curr;
     }, 0) / reviewRatings.length;
 
-  const fullStarsRating = reviewRatings.filter((item) => item === 5).length;
+  const fullStarsRating = reviewRatings.filter(
+    (item: any) => item.rating === 5
+  ).length;
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {

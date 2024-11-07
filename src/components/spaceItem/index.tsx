@@ -4,7 +4,7 @@ import Image from "next/image";
 interface SpaceItemProps {
   name: string;
   videosCount: number;
-  textCount: number;
+  textReviewCount: number;
   imageUrl: string;
   onClick?: () => void;
 }
@@ -12,7 +12,7 @@ interface SpaceItemProps {
 const SpaceItem: React.FC<SpaceItemProps> = ({
   name,
   videosCount,
-  textCount,
+  textReviewCount,
   imageUrl,
   onClick,
 }) => {
@@ -30,8 +30,8 @@ const SpaceItem: React.FC<SpaceItemProps> = ({
       <div className="flex-col">
         <div className="text-2xl text-white">{name}</div>
         <div className="flex gap-1">
-          <div className="text-white">Video : {videosCount}</div>
-          <div className="text-white">Text : {textCount}</div>
+          {/* <div className="text-white">Video : {videosCount}</div> */}
+          <div className="text-white">Text : {textReviewCount}</div>
         </div>
       </div>
     </div>

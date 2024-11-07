@@ -24,7 +24,8 @@ class SpaceService extends BaseService<'Space'> {
 
     async getSpaceWithReviews(spaceId:string)
     {
-      const spaceWithReviews = await this.findUnique({
+      let spaceWithReviews=[]
+       spaceWithReviews = await this.findUnique({
         where: {
           id: spaceId, // Replace with the actual user ID
         },
@@ -33,7 +34,38 @@ class SpaceService extends BaseService<'Space'> {
         }
       });
 
+      console.log("Space",spaceWithReviews)
+
+
       return spaceWithReviews;
+    }
+
+    async incrementReviewCount(spaceId:string)
+    {
+
+     let space = await this.findUnique({
+       where: {
+         id: spaceId, // Replace with the actual user ID
+       }
+     });
+     let updatedSpace
+
+     if(space && space!==null)
+     {
+      let textReviewCount=space.textReviewCount
+      textReviewCount++
+      updatedSpace= this.update({
+        where:{
+            id:spaceId
+        },
+        data:{
+          textReviewCount:textReviewCount
+        }
+    })
+     }
+
+     return updatedSpace
+
     }
 
 }

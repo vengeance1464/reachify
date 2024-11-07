@@ -23,6 +23,7 @@ export async function GET(
       const spaceService=new SpaceService('Space')
       console.log("req",body,"context",context)
       await spaceService.addReview(context.params.spaceId,body)
+      await spaceService.incrementReviewCount(context.params.spaceId)
       // const spaceData=await spaceService.addReview({
       //   where :{
       //     id:context.params.spaceId

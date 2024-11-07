@@ -22,7 +22,7 @@ const Layout = ({ children }: LayoutProps) => {
           <ProgressBarProvider>
             {/* I.e. using Tailwind CSS to show the progress bar with custom styling */}
             <ProgressBar className="fixed h-1 shadow-lg shadow-sky-500/20 bg-sky-500 top-0" />
-            {/* <Toaster /> */}
+            <Toaster />
 
             <div className="mb-4">
               <Header title="Reachify" />

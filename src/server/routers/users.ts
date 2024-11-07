@@ -19,9 +19,9 @@ export const appRouter = router({
     // Replace with your database call
    // const context=opts.ctx as Context
     //const user=context.user
-    const {userId,...restUserData}=input! 
+    const {email,...restUserData}=input! 
     let userService=new UserService('User')
-    const data=await userService.createUserIfNotExists(userId,restUserData)
+    const data=await userService.createUserIfNotExists(email,restUserData)
     return data;
   })
 });

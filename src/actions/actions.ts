@@ -2,19 +2,21 @@
 
 import { trpc } from "@/server/client"
 import SpaceService from "@/lib/db/SpaceService"
-import { TestimonialType } from "@prisma/client"
+//import { TestimonialType } from "@prisma/client"
 import { revalidatePath, revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 import ReviewService from "@/lib/db/ReviewService"
 import { v4 as uuidv4 } from 'uuid';
 import { getS3Url } from "@/lib/utils"
 import { trpcClient } from "@/server"
+import { auth } from "@/auth"
 
 
 async function createSpaceAction(previousState:boolean,formData:FormData)
 {  
 
-
+  const session: any = await auth();
+  console.log('Session',session)
     console.log("data",Object.fromEntries(formData))
     const body = new FormData();
     const file = formData.get('imageUpload') as File;
@@ -97,12 +99,13 @@ async function createSpaceAction(previousState:boolean,formData:FormData)
         headerTitle:headerTitle,
         customMessage:customMessage,
         questions:questionsList,
-        testimonialType:TestimonialType[testimonialType!],
+        testimonialType:"text",
         collectStars:shouldCollectStars,
-        spaceUrl:getS3Url(name)
+        spaceUrl:getS3Url(name),
+        email:session && session!==null && session.hasOwnProperty("user")?session.user.email:""
         //reviews:{set:[]}
      }
-
+ 
     console.log("spaceBody",spaceBody)
     console.log("testimonial type",testimonialType)
     let spaceService=new SpaceService('Space')

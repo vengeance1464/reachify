@@ -15,7 +15,10 @@ export const appRouter = router({
     // Replace with your database call
     console.log("context ",ctx)
     let spaceService=new SpaceService('Space')
-    const data=spaceService.findMany()
+    const data=spaceService.findMany({ where: {
+      // Add your filter conditions here
+      email: ctx.user && ctx.user!==null ? ctx.user.email:'', // Example filter by email
+    },})
     return data;
   }),
   // getAllReviews:publicProcedure.use(isAuthenticated).input(
@@ -37,6 +40,7 @@ export const appRouter = router({
   // })
   //})
   .mutation(async ({ input }) => {
+    console.log("Input",input)
     let spaceService=new SpaceService('Space')
     const space = await spaceService.create(input);
     console.log("Space",space)

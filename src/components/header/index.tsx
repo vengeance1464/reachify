@@ -4,6 +4,7 @@ import Image from "next/image";
 import { auth } from "@/auth";
 import Like from "../../../public/assets/like";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 interface HeaderProps {
   title: string;
@@ -34,12 +35,14 @@ const Header: React.FC<HeaderProps> = async ({ title }) => {
         />
       )}
       {(!session || session === null) && (
-        <div
-          style={{ marginRight: "50px" }}
-          className="bg-purple text-white mr-50px"
-        >
-          Sign In
-        </div>
+        <Link href={"/login"}>
+          <div
+            style={{ marginRight: "50px" }}
+            className="bg-purple text-white mr-50px"
+          >
+            Sign In
+          </div>
+        </Link>
       )}
     </div>
   );
